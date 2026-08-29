@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import type { FocusEvent, MouseEvent } from "react";
 
+import { niceAxisMax } from "@/lib/charts/scale";
 import type {
   ExtendedAgeBand,
   ExtendedMunicipalityDetail,
@@ -24,7 +25,7 @@ type ResidentScopeKey = (typeof residentScopes)[number]["key"];
 const ageCategories = [
   {
     key: "minor",
-    label: "未成年相当",
+    label: "年少人口",
     rangeLabel: "0〜14歳",
     start: 0,
     end: 14,
@@ -32,7 +33,7 @@ const ageCategories = [
   },
   {
     key: "young",
-    label: "若年",
+    label: "若年層",
     rangeLabel: "15〜39歳",
     start: 15,
     end: 39,
@@ -40,7 +41,7 @@ const ageCategories = [
   },
   {
     key: "working",
-    label: "現役世代",
+    label: "壮年層",
     rangeLabel: "40〜64歳",
     start: 40,
     end: 64,
@@ -191,10 +192,11 @@ function ScopeLegend() {
 function AgeCategoryLegend() {
   return (
     <div className="chart-legend" aria-label="年齢カテゴリの凡例">
-      {ageCategories.map(({ key, label, tone }) => (
+      {ageCategories.map(({ key, label, rangeLabel, tone }) => (
         <span key={key}>
           <i className={`legend-swatch ${tone}`} aria-hidden="true" />
           {label}
+          <small>{rangeLabel}</small>
         </span>
       ))}
     </div>
@@ -220,7 +222,7 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
     ),
   );
   const max = Math.max(1, ...values);
-  const chartMax = max * 1.12;
+  const chartMax = niceAxisMax(max);
   const xFor = (index: number) =>
     plotLeft +
     (index / Math.max(1, points.length - 1)) * (plotRight - plotLeft);
@@ -381,7 +383,7 @@ function ScopePopulationBarChart({
   const values = points.flatMap((point) =>
     point[scope.key] === null ? [] : [point[scope.key]!],
   );
-  const chartMax = Math.max(1, ...values) * 1.12;
+  const chartMax = niceAxisMax(Math.max(1, ...values));
   const groupWidth = (plotRight - plotLeft) / Math.max(1, points.length);
   const barWidth = Math.min(46, groupWidth * 0.62);
   const xFor = (index: number) => plotLeft + groupWidth * (index + 0.5);
@@ -585,7 +587,7 @@ export function AgeCategoryTrend({
     );
     return point.total ?? categorySum;
   });
-  const chartMax = Math.max(1, ...stackedTotals) * 1.12;
+  const chartMax = niceAxisMax(Math.max(1, ...stackedTotals));
   const groupWidth = (plotRight - plotLeft) / Math.max(1, points.length);
   const barWidth = Math.min(48, groupWidth * 0.6);
   const xFor = (index: number) => plotLeft + groupWidth * (index + 0.5);
@@ -759,7 +761,9 @@ function AgeCategoryPanel({
     ? categories.reduce((total, category) => total + category.population!, 0)
     : null;
   const ageKnownTotal = scopeSnapshot.age_population_known ?? categoryTotal;
-  const chartMax = Math.max(1, ageKnownTotal ?? categoryTotal ?? 1) * 1.12;
+  const chartMax = niceAxisMax(
+    Math.max(1, ageKnownTotal ?? categoryTotal ?? 1),
+  );
   const barWidth = 116;
   const barX = (plotLeft + plotRight - barWidth) / 2;
   const yFor = (value: number) => plotBottom - (value / chartMax) * chartRange;
@@ -902,7 +906,7 @@ function AgeBandChart({
       <p className="chart-card-note">
         {formatAsOfDate(snapshot.as_of_date)}
         。割合ではなく実人数で表示し、日本人住民と外国人住民を別パネルに分けています。
-        各カテゴリは5歳階級を集計したものです。5歳階級の制約上、未成年相当は0〜14歳で表示します。
+        各カテゴリは5歳階級を集計した本サイト独自の区分で、統計の年齢3区分（0〜14歳・15〜64歳・65歳以上）とは異なります。
       </p>
       <AgeCategoryLegend />
       <div className="age-category-chart-grid">

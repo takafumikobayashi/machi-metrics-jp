@@ -33,6 +33,12 @@
   --increase: #0f6e63;
   --decrease: #b0421f;
 
+  /* 年齢の順序尺度。カテゴリカルではなく単色の濃淡で並び順を示す。 */
+  --age-1: #a7c6e4;
+  --age-2: #6f9bcb;
+  --age-3: #3f6da3;
+  --age-4: #1e4372;
+
   /* 旧名の別名。既存ルールを壊さずに新パレットへ寄せる。 */
   --primary: var(--brand-600);
   --primary-deep: var(--brand-700);
@@ -72,6 +78,10 @@
     --series-4: #b09ce0;
     --increase: #4fbfae;
     --decrease: #f08a63;
+    --age-1: #2b4a6b;
+    --age-2: #416f9c;
+    --age-3: #6a9bcd;
+    --age-4: #a8caea;
     --shadow: 0 1px 2px rgb(0 0 0 / 40%);
   }
 }
@@ -96,6 +106,10 @@ html[data-theme="dark"] {
   --series-4: #b09ce0;
   --increase: #4fbfae;
   --decrease: #f08a63;
+  --age-1: #2b4a6b;
+  --age-2: #416f9c;
+  --age-3: #6a9bcd;
+  --age-4: #a8caea;
   --shadow: 0 1px 2px rgb(0 0 0 / 40%);
 }
 
@@ -1458,6 +1472,12 @@ body {
   gap: 6px;
 }
 
+/* 凡例のラベルだけでは何歳か分からないため、年齢範囲を添える。 */
+.chart-legend small {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
 .legend-swatch {
   display: inline-block;
   width: 9px;
@@ -2153,23 +2173,23 @@ body {
 }
 
 .age-category-minor {
-  background: #5b8fbd;
-  fill: #5b8fbd;
+  background: var(--age-1);
+  fill: var(--age-1);
 }
 
 .age-category-young {
-  background: #3d9b91;
-  fill: #3d9b91;
+  background: var(--age-2);
+  fill: var(--age-2);
 }
 
 .age-category-working {
-  background: #c48a2c;
-  fill: #c48a2c;
+  background: var(--age-3);
+  fill: var(--age-3);
 }
 
 .age-category-older {
-  background: #80639e;
-  fill: #80639e;
+  background: var(--age-4);
+  fill: var(--age-4);
 }
 
 .age-category-missing-note {

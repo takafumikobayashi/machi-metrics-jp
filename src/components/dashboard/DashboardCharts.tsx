@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { FocusEvent, MouseEvent, ReactNode, RefObject } from "react";
 
+import { niceAxisBounds, niceAxisMax } from "@/lib/charts/scale";
 import { formatCount, formatSignedCount } from "@/lib/format/display";
 
 export interface RegionalPopulationPoint {
@@ -246,9 +247,7 @@ function RegionalPopulationSvg({
   );
   const min = values.length > 0 ? Math.min(...values) : 0;
   const max = values.length > 0 ? Math.max(...values) : 1;
-  const padding = Math.max((max - min) * 0.14, 1);
-  const chartMin = Math.max(0, min - padding);
-  const chartMax = max + padding;
+  const { min: chartMin, max: chartMax } = niceAxisBounds(min, max);
   const range = chartMax - chartMin || 1;
   const xFor = (index: number) =>
     plotLeft +
@@ -447,11 +446,13 @@ function RegionalFlowSvg({
   const plotTop = 24;
   const plotBottom = 236;
   const zeroY = (plotTop + plotBottom) / 2;
-  const maxAbs = Math.max(
-    1,
-    ...points.flatMap((point) =>
-      [point.natural_change, point.migration_change].flatMap((value) =>
-        value === null ? [] : [Math.abs(value)],
+  const maxAbs = niceAxisMax(
+    Math.max(
+      1,
+      ...points.flatMap((point) =>
+        [point.natural_change, point.migration_change].flatMap((value) =>
+          value === null ? [] : [Math.abs(value)],
+        ),
       ),
     ),
   );
