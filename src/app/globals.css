@@ -23,9 +23,12 @@
   --line: #e3e6eb;
   --chart-grid: #eceef2;
 
-  /* データ可視化のカテゴリカル配色 */
+  /*
+   * データ可視化のカテゴリカル配色。
+   * ティール系は増加の意味色（--increase）と紛らわしいため、系列には使わない。
+   * 系列1=人口のストック、系列3=自然増減、系列4=社会増減と外国人住民。
+   */
   --series-1: #2f6fb5;
-  --series-2: #217f76;
   --series-3: #b8730f;
   --series-4: #6a4fa3;
 
@@ -47,7 +50,6 @@
   --green-dark: var(--brand-700);
   --green-soft: var(--brand-50);
   --orange: var(--brand-600);
-  --teal: var(--series-2);
   --blue: var(--series-1);
   --amber: var(--series-3);
   --purple: var(--series-4);
@@ -86,7 +88,6 @@
     --line: #2f3540;
     --chart-grid: #272c34;
     --series-1: #7fb0e8;
-    --series-2: #5cbdb1;
     --series-3: #e0a34e;
     --series-4: #b09ce0;
     --increase: #4fbfae;
@@ -114,7 +115,6 @@ html[data-theme="dark"] {
   --line: #2f3540;
   --chart-grid: #272c34;
   --series-1: #7fb0e8;
-  --series-2: #5cbdb1;
   --series-3: #e0a34e;
   --series-4: #b09ce0;
   --increase: #4fbfae;
@@ -1496,7 +1496,7 @@ body {
 }
 
 .legend-swatch.migration {
-  background: var(--teal);
+  background: var(--series-4);
 }
 
 .dashboard-chart-frame {
@@ -1724,7 +1724,7 @@ body {
 }
 
 .migration-bar {
-  fill: var(--teal);
+  fill: var(--series-4);
 }
 
 .flow-bar.is-negative {
@@ -1996,7 +1996,7 @@ body {
 }
 
 .scope-summary-grid > div:nth-child(2) strong {
-  color: var(--series-2);
+  color: var(--series-4);
 }
 
 .scope-summary-grid small {
@@ -2037,7 +2037,7 @@ body {
 }
 
 .scope-foreign-line {
-  stroke: var(--teal);
+  stroke: var(--series-4);
 }
 
 .legend-swatch.scope-japanese {
@@ -2045,7 +2045,7 @@ body {
 }
 
 .legend-swatch.scope-foreign {
-  background: var(--teal);
+  background: var(--series-4);
 }
 
 .scope-japanese-point {
@@ -2053,7 +2053,7 @@ body {
 }
 
 .scope-foreign-point {
-  fill: var(--teal);
+  fill: var(--series-4);
 }
 
 .scope-japanese-bar {
@@ -2061,7 +2061,7 @@ body {
 }
 
 .scope-foreign-bar {
-  fill: var(--teal);
+  fill: var(--series-4);
 }
 
 .scope-bar-chart-grid {
@@ -2136,7 +2136,7 @@ body {
 }
 
 .scope-panel-label.scope-foreign {
-  color: var(--teal);
+  color: var(--series-4);
 }
 
 .age-category-panel-heading h4 {
