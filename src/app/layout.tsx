@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Noto_Sans_Mono } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -20,6 +20,15 @@ const notoSansJP = Noto_Sans_JP({
   fallback: ["Hiragino Sans", "Yu Gothic", "system-ui", "sans-serif"],
 });
 
+/** 等幅もデジタル庁デザインシステムに合わせてNoto Sans Monoにする。 */
+const notoSansMono = Noto_Sans_Mono({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  variable: "--font-mono",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "ひろしまダッシュボード",
@@ -36,7 +45,7 @@ export default function RootLayout({
     <html
       lang="ja"
       data-scroll-behavior="smooth"
-      className={notoSansJP.variable}
+      className={`${notoSansJP.variable} ${notoSansMono.variable}`}
     >
       <body>
         <a className="skip-link" href="#main-content">

@@ -217,33 +217,6 @@ nav a {
   text-underline-offset: 5px;
 }
 
-.hero {
-  position: relative;
-  overflow: hidden;
-  color: white;
-  background:
-    radial-gradient(circle at 86% 20%, rgb(223 108 52 / 28%), transparent 28%),
-    linear-gradient(135deg, var(--green-dark), var(--green));
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  right: -8vw;
-  bottom: -220px;
-  width: 520px;
-  height: 520px;
-  border: 1px solid rgb(255 255 255 / 16%);
-  border-radius: 48% 52% 60% 40%;
-  transform: rotate(-18deg);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  padding-block: 88px 96px;
-}
-
 .eyebrow {
   margin: 0 0 10px;
   color: var(--muted);
@@ -263,19 +236,6 @@ h1,
 h2,
 h3 {
   line-height: 1.4;
-}
-
-.hero h1 {
-  max-width: 840px;
-  margin: 0;
-  font-size: var(--text-dsp);
-}
-
-.hero-copy {
-  max-width: 720px;
-  margin: 28px 0 0;
-  color: rgb(255 255 255 / 78%);
-  font-size: var(--text-lg);
 }
 
 .status-note {
@@ -357,7 +317,7 @@ h3 {
 .detail-release small {
   margin-top: 4px;
   color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   font-size: var(--text-sm);
   overflow-wrap: anywhere;
 }
@@ -977,7 +937,7 @@ nav a:focus-visible,
   padding: 2px 6px;
   border-radius: 4px;
   background: var(--paper-strong);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   font-size: 0.92em;
 }
 
@@ -1020,10 +980,6 @@ nav a:focus-visible,
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
-  }
-
-  .hero-content {
-    padding-block: 64px 72px;
   }
 
   .card-grid {
@@ -1093,10 +1049,6 @@ nav a:focus-visible,
 
   nav {
     gap: 18px;
-  }
-
-  .hero h1 {
-    font-size: var(--text-dsp);
   }
 
   .section {
@@ -1189,65 +1141,6 @@ body {
   place-items: center;
   font-size: var(--text-body);
   line-height: 1;
-}
-
-.dashboard-hero {
-  background:
-    radial-gradient(circle at 76% 30%, rgb(217 145 52 / 24%), transparent 27%),
-    linear-gradient(135deg, var(--primary-deep) 0%, var(--primary) 100%);
-}
-
-.dashboard-hero-content {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
-  align-items: end;
-  gap: 64px;
-  padding-block: 66px 72px;
-}
-
-.dashboard-hero h1 {
-  max-width: 760px;
-  font-size: var(--text-dsp);
-}
-
-.dashboard-hero .hero-copy {
-  max-width: 680px;
-  margin-top: 22px;
-  font-size: var(--text-body);
-}
-
-.hero-snapshot-card {
-  padding: 24px;
-  border: 1px solid rgb(255 255 255 / 25%);
-  border-radius: 18px;
-  background: rgb(0 0 0 / 13%);
-  backdrop-filter: blur(10px);
-}
-
-.hero-snapshot-card span,
-.hero-snapshot-card small {
-  display: block;
-}
-
-.hero-snapshot-card span {
-  color: rgb(255 255 255 / 72%);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.hero-snapshot-card strong {
-  display: block;
-  margin: 12px 0 5px;
-  color: white;
-  font-size: var(--text-dsp);
-  line-height: 1.4;
-}
-
-.hero-snapshot-card small {
-  color: rgb(255 255 255 / 66%);
-  font-size: var(--text-sm);
 }
 
 .dashboard-section {
@@ -1877,7 +1770,7 @@ body {
 .table-rank {
   min-width: 20px;
   color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   font-size: var(--text-sm);
   font-weight: 400;
 }
@@ -2237,16 +2130,6 @@ html[data-theme="dark"] .insight-panel {
   .header-actions {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .dashboard-hero-content {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    padding-block: 54px 58px;
-  }
-
-  .hero-snapshot-card {
-    max-width: 360px;
   }
 
   .dashboard-toolbar {
