@@ -47,6 +47,14 @@ test("rates per 1000 state their denominator", () => {
   assert.equal(formatRatePer1000(-10.04), "-10.0（人口千人当たり）");
 });
 
+test("a table column can carry the denominator instead of every cell", () => {
+  assert.equal(formatRatePer1000(-10.04, 1, { withUnitLabel: false }), "-10.0");
+  assert.equal(
+    formatRatePer1000(null, 1, { withUnitLabel: false }),
+    missingLabel,
+  );
+});
+
 test("stock dates are written as a reference date", () => {
   assert.equal(formatAsOfDate("2025-01-01"), "2025年1月1日時点");
   assert.throws(() => formatAsOfDate("2025-1-1"), /ISO date/);

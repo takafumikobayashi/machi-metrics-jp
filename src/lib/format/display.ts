@@ -84,10 +84,15 @@ export function formatSignedRatioAsPercent(
   return withSign(rounded, Math.abs(rounded).toFixed(fractionDigits), "%");
 }
 
-/** 1,000人当たりの率。 */
+/**
+ * 1,000人当たりの率。
+ * 表の列見出しに単位を置く場合は `withUnitLabel: false` で単位を省く。
+ * 単位表示をやめる判断は呼び出し側が持ち、既定では必ず単位を添える。
+ */
 export function formatRatePer1000(
   value: number | null,
   fractionDigits = 1,
+  options: { withUnitLabel?: boolean } = {},
 ): string {
   if (value === null) {
     return missingLabel;
@@ -95,7 +100,11 @@ export function formatRatePer1000(
   if (!Number.isFinite(value)) {
     throw new Error("value must be a finite number.");
   }
-  return `${roundToFixed(value, fractionDigits).toFixed(fractionDigits)}（人口千人当たり）`;
+
+  const rounded = roundToFixed(value, fractionDigits).toFixed(fractionDigits);
+  return options.withUnitLabel === false
+    ? rounded
+    : `${rounded}（人口千人当たり）`;
 }
 
 /** ストックの基準日。「2025年度」のような曖昧な表記を避ける。 */

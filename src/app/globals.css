@@ -808,47 +808,75 @@ h3 {
   color: var(--muted);
 }
 
-.municipality-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  margin: 0;
-  padding: 1px;
-  list-style: none;
-  background: var(--line);
-}
-
-.municipality-grid a {
-  min-height: 88px;
-  padding: 16px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.municipality-table {
+  min-width: 760px;
+  margin-top: 20px;
   background: var(--white);
-  text-decoration: none;
-  transition: background 160ms ease;
 }
 
-.municipality-grid a:hover {
-  background: var(--green-soft);
+.municipality-table thead th {
+  padding: 0;
+  vertical-align: bottom;
 }
 
-.municipality-grid a:focus-visible,
+/* 並べ替えは列見出しのボタンで行う。キーボードでも同じ操作ができる。 */
+.municipality-table thead th button {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 6px;
+  width: 100%;
+  padding: 12px 10px;
+  border: 0;
+  color: var(--muted);
+  background: none;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-align: right;
+  cursor: pointer;
+}
+
+.municipality-table thead th:first-child button {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.municipality-table thead th button:hover {
+  color: var(--ink);
+}
+
+.municipality-table thead th button small {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.municipality-table thead th[aria-sort="ascending"] button,
+.municipality-table thead th[aria-sort="descending"] button {
+  color: var(--ink);
+}
+
+.municipality-table .sort-marker {
+  color: var(--brand-600);
+}
+
+.municipality-table thead th[aria-sort="none"] .sort-marker {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.municipality-table tbody th a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+}
+
+.municipality-table thead th button:focus-visible,
 nav a:focus-visible,
 .text-link:focus-visible,
 .back-link:focus-visible {
   outline: 3px solid var(--orange);
   outline-offset: 3px;
-}
-
-.municipality-grid span {
-  font-weight: 700;
-}
-
-.municipality-grid small {
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
 }
 
 .source-callout {
@@ -1025,10 +1053,6 @@ nav a:focus-visible,
     margin-top: 32px;
   }
 
-  .municipality-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .source-callout {
     align-items: flex-start;
     flex-direction: column;
@@ -1058,10 +1082,6 @@ nav a:focus-visible,
   .heading-row {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .municipality-grid {
-    grid-template-columns: 1fr;
   }
 
   .detail-kicker {

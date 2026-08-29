@@ -5,6 +5,7 @@ import {
   type RegionalFlowPoint,
   type RegionalPopulationPoint,
 } from "@/components/dashboard/DashboardCharts";
+import { MunicipalityTable } from "@/components/dashboard/MunicipalityTable";
 import { hiroshimaMunicipalities, projectConfig } from "@/lib/config";
 import {
   loadHiroshimaSummary,
@@ -307,16 +308,13 @@ export default async function HomePage() {
               町
             </p>
           </div>
-          <ul className="municipality-grid">
-            {hiroshimaMunicipalities.map(({ code, nameJa }) => (
-              <li key={code}>
-                <Link href={`/municipalities/${code}`}>
-                  <span>{nameJa}</span>
-                  <small>{code}</small>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className="section-note">
+            {formatAsOfDate(summary.as_of_date)}
+            の人口と年齢構成、{startYear}〜{endYear}年の増減率、
+            {summary.flow_period_start.slice(0, 4)}
+            年中の人口動態です。列見出しで並べ替えできます。
+          </p>
+          <MunicipalityTable rows={summary.municipalities} />
         </div>
       </section>
 
