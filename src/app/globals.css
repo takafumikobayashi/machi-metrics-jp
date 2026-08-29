@@ -36,11 +36,19 @@
   --increase: #0f6e63;
   --decrease: #b0421f;
 
-  /* 年齢の順序尺度。カテゴリカルではなく単色の濃淡で並び順を示す。 */
+  /*
+   * 年齢の順序尺度。カテゴリカルではなく単色の濃淡で並び順を示す。
+   * 住民区分でパネルを分ける場合は、見出しの色と棒の色みを一致させるため
+   * 外国人住民側を紫の階調にする（色相=住民区分、明度=年齢）。
+   */
   --age-1: #a7c6e4;
   --age-2: #6f9bcb;
   --age-3: #3f6da3;
   --age-4: #1e4372;
+  --age-foreign-1: #bfb0dd;
+  --age-foreign-2: #9b86c6;
+  --age-foreign-3: #6f56a5;
+  --age-foreign-4: #472f74;
 
   /* 旧名の別名。既存ルールを壊さずに新パレットへ寄せる。 */
   --primary: var(--brand-600);
@@ -96,6 +104,10 @@
     --age-2: #416f9c;
     --age-3: #6a9bcd;
     --age-4: #a8caea;
+    --age-foreign-1: #3a2d55;
+    --age-foreign-2: #55437a;
+    --age-foreign-3: #7d67ab;
+    --age-foreign-4: #b7a4dc;
     --shadow: 0 1px 2px rgb(0 0 0 / 40%);
   }
 }
@@ -123,6 +135,10 @@ html[data-theme="dark"] {
   --age-2: #416f9c;
   --age-3: #6a9bcd;
   --age-4: #a8caea;
+  --age-foreign-1: #3a2d55;
+  --age-foreign-2: #55437a;
+  --age-foreign-3: #7d67ab;
+  --age-foreign-4: #b7a4dc;
   --shadow: 0 1px 2px rgb(0 0 0 / 40%);
 }
 
@@ -2104,6 +2120,32 @@ body {
 .age-category-older {
   background: var(--age-4);
   fill: var(--age-4);
+}
+
+.scope-foreign .age-category-minor {
+  background: var(--age-foreign-1);
+  fill: var(--age-foreign-1);
+}
+
+.scope-foreign .age-category-young {
+  background: var(--age-foreign-2);
+  fill: var(--age-foreign-2);
+}
+
+.scope-foreign .age-category-working {
+  background: var(--age-foreign-3);
+  fill: var(--age-foreign-3);
+}
+
+.scope-foreign .age-category-older {
+  background: var(--age-foreign-4);
+  fill: var(--age-foreign-4);
+}
+
+/* パネル内に置く凡例は幅が狭いので、間隔を詰めて2行に収める。 */
+.chart-legend-compact {
+  gap: 6px 12px;
+  margin-top: 12px;
 }
 
 .age-category-missing-note {

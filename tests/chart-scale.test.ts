@@ -19,6 +19,12 @@ test("a zero-based axis keeps its midpoint readable", () => {
   assert.equal(niceAxisMax(950), 1000);
 });
 
+test("a zero-based axis does not leave the bar dwarfed by headroom", () => {
+  // 24,911人に対して上端40,000では余白が過大になるため、25,000へ丸める。
+  assert.equal(niceAxisMax(24911), 25000);
+  assert.equal(niceAxisMax(1130), 1200);
+});
+
 test("a zero-based axis refuses impossible inputs instead of guessing", () => {
   assert.equal(niceAxisMax(0), 1);
   assert.equal(niceAxisMax(Number.NaN), 1);

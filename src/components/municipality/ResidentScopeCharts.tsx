@@ -189,9 +189,12 @@ function ScopeLegend() {
   );
 }
 
-function AgeCategoryLegend() {
+function AgeCategoryLegend({ scopeTone }: { scopeTone?: string }) {
   return (
-    <div className="chart-legend" aria-label="年齢カテゴリの凡例">
+    <div
+      className={`chart-legend${scopeTone ? ` chart-legend-compact ${scopeTone}` : ""}`}
+      aria-label="年齢カテゴリの凡例"
+    >
       {ageCategories.map(({ key, label, rangeLabel, tone }) => (
         <span key={key}>
           <i className={`legend-swatch ${tone}`} aria-hidden="true" />
@@ -748,7 +751,8 @@ function AgeCategoryPanel({
 }) {
   const chartWidth = 360;
   const chartHeight = 340;
-  const plotLeft = 54;
+  // 目盛ラベル（例: 25,000人）が左端で切れないだけの幅を確保する。
+  const plotLeft = 78;
   const plotRight = 332;
   const plotTop = 20;
   const plotBottom = 264;
@@ -787,7 +791,7 @@ function AgeCategoryPanel({
   });
 
   return (
-    <div className="age-category-panel">
+    <div className={`age-category-panel ${scope.tone}`}>
       <div className="age-category-panel-heading">
         <div>
           <span className={`scope-panel-label ${scope.tone}`}>
@@ -801,6 +805,7 @@ function AgeCategoryPanel({
           <small>年齢把握済み人口</small>
         </div>
       </div>
+      <AgeCategoryLegend scopeTone={scope.tone} />
       <div
         className="dashboard-chart-frame interactive-chart"
         ref={frameRef}
@@ -908,7 +913,6 @@ function AgeBandChart({
         。割合ではなく実人数で表示し、日本人住民と外国人住民を別パネルに分けています。
         各カテゴリは5歳階級を集計した本サイト独自の区分で、統計の年齢3区分（0〜14歳・15〜64歳・65歳以上）とは異なります。
       </p>
-      <AgeCategoryLegend />
       <div className="age-category-chart-grid">
         {residentScopes.map((scope) => (
           <AgeCategoryPanel key={scope.key} scope={scope} snapshot={snapshot} />
