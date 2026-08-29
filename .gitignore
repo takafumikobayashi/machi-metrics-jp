@@ -1,0 +1,30 @@
+# Dependencies and build output
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# Local environment
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Downloaded and intermediate statistical data
+data/raw/*
+!data/raw/.gitkeep
+data/staging/*
+!data/staging/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Temporary exports
+tmp/

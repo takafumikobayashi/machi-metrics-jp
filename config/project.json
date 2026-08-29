@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "projectId": "hiroshima-population-dashboard",
+  "datasetReleaseId": "juki-2016-2025-v1",
+  "focusPrefecture": {
+    "code": "34",
+    "nameJa": "広島県"
+  },
+  "excludedCurrentYear": 2026,
+  "populationSnapshots": {
+    "startDate": "2016-01-01",
+    "endDate": "2025-01-01",
+    "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    "residentScope": "total_registered_residents"
+  },
+  "ageGroups": [
+    {
+      "id": "age_0_14",
+      "labelJa": "0〜14歳",
+      "minAge": 0,
+      "maxAge": 14
+    },
+    {
+      "id": "age_15_64",
+      "labelJa": "15〜64歳",
+      "minAge": 15,
+      "maxAge": 64
+    },
+    {
+      "id": "age_65_plus",
+      "labelJa": "65歳以上",
+      "minAge": 65,
+      "maxAge": null
+    }
+  ],
+  "similarity": {
+    "normalization": "median_iqr",
+    "distance": "weighted_euclidean",
+    "resultCount": 5,
+    "features": [
+      {
+        "id": "log_population",
+        "labelJa": "人口規模",
+        "weight": 0.35
+      },
+      {
+        "id": "child_share",
+        "labelJa": "0〜14歳比率",
+        "weight": 0.15
+      },
+      {
+        "id": "elderly_share",
+        "labelJa": "65歳以上比率",
+        "weight": 0.2
+      },
+      {
+        "id": "population_change_rate",
+        "labelJa": "人口増減率",
+        "weight": 0.3
+      }
+    ]
+  }
+}
