@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 import "./globals.css";
+
+/**
+ * デジタル庁デザインシステムに合わせ、和文はNoto Sans JPのN(400)とB(700)だけを使う。
+ * next/fontがビルド時に取得してセルフホストするため、閲覧時に外部への
+ * リクエストは発生しない。
+ */
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-sans",
+  fallback: ["Hiragino Sans", "Yu Gothic", "system-ui", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -19,7 +33,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="ja" data-scroll-behavior="smooth">
+    <html
+      lang="ja"
+      data-scroll-behavior="smooth"
+      className={notoSansJP.variable}
+    >
       <body>
         <a className="skip-link" href="#main-content">
           本文へ移動

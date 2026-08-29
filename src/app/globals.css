@@ -126,12 +126,7 @@ body {
   color: var(--ink);
   background: var(--paper);
   font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    "YuGothic",
-    system-ui,
-    -apple-system,
-    sans-serif;
+    var(--font-sans), "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
   line-height: 1.75;
   text-rendering: optimizeLegibility;
 }
@@ -185,7 +180,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 750;
+  font-weight: 700;
   text-decoration: none;
   letter-spacing: 0.02em;
 }
@@ -196,7 +191,7 @@ a:hover {
   border-radius: 999px;
   color: var(--muted);
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 nav {
@@ -241,7 +236,7 @@ nav a {
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 h1,
@@ -254,14 +249,13 @@ p {
 h1,
 h2,
 h3 {
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .hero h1 {
   max-width: 840px;
   margin: 0;
   font-size: clamp(2.4rem, 6vw, 5rem);
-  letter-spacing: -0.055em;
 }
 
 .hero-copy {
@@ -323,7 +317,6 @@ h3 {
 .detail-heading h1 {
   margin: 0;
   font-size: clamp(2rem, 3.6vw, 2.8rem);
-  letter-spacing: -0.015em;
 }
 
 .detail-heading .lead {
@@ -345,7 +338,7 @@ h3 {
 
 .detail-release span {
   color: var(--orange);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .detail-release small {
@@ -402,7 +395,7 @@ h3 {
 .metric-card > span {
   color: var(--muted);
   font-size: 0.84rem;
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .metric-card-featured > span {
@@ -413,8 +406,7 @@ h3 {
   display: block;
   margin: 12px 0 6px;
   font-size: clamp(1.35rem, 3vw, 2rem);
-  letter-spacing: -0.04em;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .metric-card > small {
@@ -445,7 +437,6 @@ h3 {
 .compact-heading h2 {
   margin: 0;
   font-size: clamp(1.3rem, 2.2vw, 1.65rem);
-  letter-spacing: -0.015em;
 }
 
 .section-note {
@@ -524,11 +515,11 @@ h3 {
 .data-table thead th {
   color: var(--muted);
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .data-table tbody th {
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .data-table tbody tr:last-child th,
@@ -649,14 +640,14 @@ h3 {
   display: block;
   color: var(--orange);
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .similarity-list a {
   display: inline-block;
   margin-top: 10px;
   color: var(--ink);
-  font-weight: 800;
+  font-weight: 700;
   text-underline-offset: 4px;
 }
 
@@ -698,7 +689,7 @@ h3 {
 .source-card a {
   flex: 0 0 auto;
   color: var(--ink);
-  font-weight: 800;
+  font-weight: 700;
   text-underline-offset: 4px;
 }
 
@@ -750,7 +741,7 @@ h3 {
 .overview-summary-card span {
   color: var(--muted);
   font-size: 0.84rem;
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .overview-summary-card strong {
@@ -758,7 +749,6 @@ h3 {
   margin: 8px 0 2px;
   color: var(--green-dark);
   font-size: clamp(1.5rem, 3vw, 2.1rem);
-  letter-spacing: -0.04em;
 }
 
 .overview-summary-card small {
@@ -786,7 +776,6 @@ h3 {
 .prose-page h2 {
   margin: 0;
   font-size: clamp(1.65rem, 3.4vw, 2.7rem);
-  letter-spacing: -0.035em;
 }
 
 .card-grid {
@@ -807,8 +796,8 @@ h3 {
 .card-number {
   color: var(--orange);
   font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .feature-card h3 {
@@ -898,7 +887,7 @@ nav a:focus-visible,
 .text-link,
 .back-link {
   color: var(--ink);
-  font-weight: 750;
+  font-weight: 700;
   text-decoration-thickness: 2px;
   text-underline-offset: 5px;
 }
@@ -923,8 +912,8 @@ nav a:focus-visible,
 .footer-copyright {
   color: var(--ink);
   font-size: 0.78rem;
-  font-weight: 750;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .prose-page,
@@ -939,7 +928,6 @@ nav a:focus-visible,
 .not-found h1 {
   margin: 0 0 20px;
   font-size: clamp(2.3rem, 5vw, 4rem);
-  letter-spacing: -0.05em;
 }
 
 .lead {
@@ -987,7 +975,7 @@ nav a:focus-visible,
 .empty-state > span {
   color: var(--orange);
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .empty-state h2 {
@@ -1222,8 +1210,8 @@ body {
 .hero-snapshot-card span {
   color: rgb(255 255 255 / 72%);
   font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
@@ -1232,8 +1220,7 @@ body {
   margin: 12px 0 5px;
   color: white;
   font-size: clamp(1.75rem, 4vw, 2.6rem);
-  letter-spacing: -0.05em;
-  line-height: 1.1;
+  line-height: 1.4;
 }
 
 .hero-snapshot-card small {
@@ -1258,8 +1245,7 @@ body {
 .dashboard-page-header h1 {
   margin: 0;
   font-size: clamp(1.9rem, 3.4vw, 2.6rem);
-  letter-spacing: -0.015em;
-  line-height: 1.12;
+  line-height: 1.4;
 }
 
 .dashboard-page-header p:not(.eyebrow) {
@@ -1290,8 +1276,7 @@ body {
   margin-top: 14px;
   color: var(--primary-deep);
   font-size: 1.7rem;
-  letter-spacing: -0.045em;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .dashboard-header-aside small {
@@ -1311,7 +1296,6 @@ body {
 .dashboard-toolbar h2 {
   margin: 0;
   font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-  letter-spacing: -0.015em;
 }
 
 .dashboard-toolbar-meta {
@@ -1334,7 +1318,7 @@ body {
   color: var(--primary);
   background: var(--primary-soft);
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .live-badge i {
@@ -1396,7 +1380,6 @@ body {
 .panel-heading h3 {
   margin: 0;
   font-size: 1.22rem;
-  letter-spacing: -0.025em;
 }
 
 .chart-expand-button,
@@ -1411,7 +1394,7 @@ body {
   background: var(--paper);
   font: inherit;
   font-size: 0.74rem;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
   transition:
     border-color 160ms ease,
@@ -1448,7 +1431,7 @@ body {
 .chart-card-menu {
   color: var(--muted);
   font-size: 1.1rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.02em;
 }
 
 .chart-card-note {
@@ -1518,17 +1501,17 @@ body {
   background: rgb(41 30 37 / 94%);
   box-shadow: 0 10px 24px rgb(0 0 0 / 18%);
   pointer-events: none;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .chart-tooltip strong {
   font-size: 0.72rem;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .chart-tooltip span {
   font-size: 0.96rem;
-  font-weight: 800;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
@@ -1575,7 +1558,6 @@ body {
 .chart-modal-header h2 {
   margin: 0;
   font-size: clamp(1.2rem, 2vw, 1.65rem);
-  letter-spacing: -0.03em;
 }
 
 .chart-modal-close {
@@ -1819,7 +1801,7 @@ body {
   width: fit-content;
   padding-top: 12px;
   color: var(--ink);
-  font-weight: 750;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -1875,17 +1857,17 @@ body {
   color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .positive-value {
   color: var(--increase);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .negative-value {
   color: var(--decrease);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .panel-link {
@@ -1893,7 +1875,7 @@ body {
   margin-top: 16px;
   color: var(--ink);
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 700;
   text-underline-offset: 4px;
 }
 
@@ -1944,7 +1926,7 @@ body {
 
 .insight-list small {
   color: var(--primary);
-  font-weight: 800;
+  font-weight: 700;
   text-align: right;
 }
 
@@ -1980,7 +1962,7 @@ body {
 .scope-summary-grid span {
   color: var(--muted);
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .scope-summary-grid strong {
@@ -1988,8 +1970,7 @@ body {
   margin-top: 6px;
   color: var(--series-1);
   font-size: 1.45rem;
-  letter-spacing: -0.04em;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .scope-summary-grid > div:nth-child(2) strong {
@@ -2027,7 +2008,6 @@ body {
 .resident-chart-heading h3 {
   margin: 0;
   font-size: 1.2rem;
-  letter-spacing: -0.025em;
 }
 
 .scope-japanese-line {
@@ -2126,7 +2106,7 @@ body {
   gap: 6px;
   color: var(--muted);
   font-size: 0.76rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .scope-panel-label.scope-japanese {
@@ -2140,7 +2120,6 @@ body {
 .age-category-panel-heading h4 {
   margin: 5px 0 0;
   font-size: 0.98rem;
-  letter-spacing: -0.02em;
 }
 
 .age-category-total {
