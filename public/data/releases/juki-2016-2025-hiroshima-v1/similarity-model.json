@@ -1,0 +1,41 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v1",
+  "normalization": "median_iqr",
+  "distance": "weighted_euclidean",
+  "reference_date": "2025-01-01",
+  "change_start_date": "2016-01-01",
+  "change_end_date": "2025-01-01",
+  "features": [
+    {
+      "id": "log_population",
+      "label_ja": "人口規模",
+      "weight": 0.35,
+      "median": 4.4886916983169405,
+      "iqr": 0.7286420647188656
+    },
+    {
+      "id": "child_share",
+      "label_ja": "0〜14歳比率",
+      "weight": 0.15,
+      "median": 0.09838127788854077,
+      "iqr": 0.03468193631058741
+    },
+    {
+      "id": "elderly_share",
+      "label_ja": "65歳以上比率",
+      "weight": 0.2,
+      "median": 0.36928022712090847,
+      "iqr": 0.12015621787208597
+    },
+    {
+      "id": "population_change_rate",
+      "label_ja": "人口増減率",
+      "weight": 0.3,
+      "median": -0.12299073633334554,
+      "iqr": 0.11045090657037596
+    }
+  ],
+  "candidate_count": 23,
+  "excluded_count": 0,
+  "exclusion_reasons": []
+}

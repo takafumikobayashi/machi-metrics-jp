@@ -1,0 +1,2444 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v1",
+  "result_count": 5,
+  "entries": [
+    {
+      "municipality_code": "34100",
+      "feature_values": {
+        "log_population": 6.069499007288329,
+        "child_share": 0.1242894380521208,
+        "elderly_share": 0.2650077585567806,
+        "population_change_rate": -0.014682249817384953
+      },
+      "similar": [
+        {
+          "municipality_code": "34207",
+          "name_ja": "福山市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.36790549103899794,
+          "contributions": {
+            "log_population": 0.11160834759272882,
+            "child_share": 0.00007259450950622656,
+            "elderly_share": 0.01259793099213501,
+            "population_change_rate": 0.01107557724227615
+          },
+          "feature_values": {
+            "log_population": 5.658038121649084,
+            "child_share": 0.12352646430549329,
+            "elderly_share": 0.29516425362834814,
+            "population_change_rate": -0.035904520164246334
+          }
+        },
+        {
+          "municipality_code": "34212",
+          "name_ja": "東広島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6886207016348624,
+          "contributions": {
+            "log_population": 0.41004173751410405,
+            "child_share": 0.011834377084447486,
+            "elderly_share": 0.00351231208892777,
+            "population_change_rate": 0.048810044032610925
+          },
+          "feature_values": {
+            "log_population": 5.280830952498799,
+            "child_share": 0.13403104064197452,
+            "elderly_share": 0.24908465201062274,
+            "population_change_rate": 0.029869345215618157
+          }
+        },
+        {
+          "municipality_code": "34213",
+          "name_ja": "廿日市市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.8415989211971295,
+          "contributions": {
+            "log_population": 0.6686300414660951,
+            "child_share": 0.0011308340021576285,
+            "elderly_share": 0.038502602877588936,
+            "population_change_rate": 0.000025265814330710326
+          },
+          "feature_values": {
+            "log_population": 5.062397698990753,
+            "child_share": 0.12730075962962642,
+            "elderly_share": 0.3177278672337182,
+            "population_change_rate": -0.015695870136070662
+          }
+        },
+        {
+          "municipality_code": "34202",
+          "name_ja": "呉市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.992940371488546,
+          "contributions": {
+            "log_population": 0.38658770554093724,
+            "child_share": 0.09657460843534758,
+            "elderly_share": 0.14069938383174085,
+            "population_change_rate": 0.36206888352378597
+          },
+          "feature_values": {
+            "log_population": 5.303718624816738,
+            "child_share": 0.09646097733077588,
+            "elderly_share": 0.36578845370250745,
+            "population_change_rate": -0.13602232478265536
+          }
+        },
+        {
+          "municipality_code": "34205",
+          "name_ja": "尾道市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 1.0480830627652356,
+          "contributions": {
+            "log_population": 0.617419008175222,
+            "child_share": 0.08370622041708234,
+            "elderly_share": 0.16073527195565795,
+            "population_change_rate": 0.23661760590739447
+          },
+          "feature_values": {
+            "log_population": 5.101733330232639,
+            "child_share": 0.09838127788854077,
+            "elderly_share": 0.37272540270261717,
+            "population_change_rate": -0.11277393269784224
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34202",
+      "feature_values": {
+        "log_population": 5.303718624816738,
+        "child_share": 0.09646097733077588,
+        "elderly_share": 0.36578845370250745,
+        "population_change_rate": -0.13602232478265536
+      },
+      "similar": [
+        {
+          "municipality_code": "34205",
+          "name_ja": "尾道市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.20325665972688445,
+          "contributions": {
+            "log_population": 0.0268954657452432,
+            "child_share": 0.00045985721249439717,
+            "elderly_share": 0.0006666141061831516,
+            "population_change_rate": 0.013291332659409742
+          },
+          "feature_values": {
+            "log_population": 5.101733330232639,
+            "child_share": 0.09838127788854077,
+            "elderly_share": 0.37272540270261717,
+            "population_change_rate": -0.11277393269784224
+          }
+        },
+        {
+          "municipality_code": "34204",
+          "name_ja": "三原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3301683109317967,
+          "contributions": {
+            "log_population": 0.0872619632144142,
+            "child_share": 0.005337399116194027,
+            "elderly_share": 0.00016337248224213477,
+            "population_change_rate": 0.016248378730705205
+          },
+          "feature_values": {
+            "log_population": 4.939893483130274,
+            "child_share": 0.10300315819695664,
+            "elderly_share": 0.3623542922767729,
+            "population_change_rate": -0.1103175576262874
+          }
+        },
+        {
+          "municipality_code": "34209",
+          "name_ja": "三次市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5360640691241232,
+          "contributions": {
+            "log_population": 0.256152794500948,
+            "child_share": 0.026866829147110846,
+            "elderly_share": 0.0001688999827939885,
+            "population_change_rate": 0.004176162575059795
+          },
+          "feature_values": {
+            "log_population": 4.680371778662958,
+            "child_share": 0.11113894455577822,
+            "elderly_share": 0.36928022712090847,
+            "population_change_rate": -0.12299073633334554
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6332759530516743,
+          "contributions": {
+            "log_population": 0.3791216131444329,
+            "child_share": 0.0064906588806121785,
+            "elderly_share": 0.009659520614677992,
+            "population_change_rate": 0.005766640073783335
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34207",
+          "name_ja": "福山市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6997867281359132,
+          "contributions": {
+            "log_population": 0.08276175019233012,
+            "child_share": 0.09135162504244507,
+            "elderly_share": 0.06909467524177755,
+            "population_change_rate": 0.2464934143986139
+          },
+          "feature_values": {
+            "log_population": 5.658038121649084,
+            "child_share": 0.12352646430549329,
+            "elderly_share": 0.29516425362834814,
+            "population_change_rate": -0.035904520164246334
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34203",
+      "feature_values": {
+        "log_population": 4.3532813395452905,
+        "child_share": 0.07713791727623354,
+        "elderly_share": 0.42988872633772224,
+        "population_change_rate": -0.1713687458673132
+      },
+      "similar": [
+        {
+          "municipality_code": "34215",
+          "name_ja": "江田島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.1236808382677911,
+          "contributions": {
+            "log_population": 0.0009280788507043598,
+            "child_share": 0.007549642401041118,
+            "elderly_share": 0.0060002467267981216,
+            "population_change_rate": 0.0008189817760799015
+          },
+          "feature_values": {
+            "log_population": 4.315760490665735,
+            "child_share": 0.069357177380377,
+            "elderly_share": 0.4507008216529724,
+            "population_change_rate": -0.17713967546929685
+          }
+        },
+        {
+          "municipality_code": "34210",
+          "name_ja": "庄原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.21992005828057834,
+          "contributions": {
+            "log_population": 0.01307750780113922,
+            "child_share": 0.03157797727282998,
+            "elderly_share": 0.0036057219802196473,
+            "population_change_rate": 0.00010362497994412913
+          },
+          "feature_values": {
+            "log_population": 4.494126753736251,
+            "child_share": 0.09305083659208924,
+            "elderly_share": 0.4460221809090326,
+            "population_change_rate": -0.1693159730542908
+          }
+        },
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.23794603117246607,
+          "contributions": {
+            "log_population": 0.0025649507812263287,
+            "child_share": 0.01816034017904634,
+            "elderly_share": 0.005624679937506035,
+            "population_change_rate": 0.030268342852949486
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.26862593380210087,
+          "contributions": {
+            "log_population": 0.02432419055375219,
+            "child_share": 0.01828413914996377,
+            "elderly_share": 0.019682453608985104,
+            "population_change_rate": 0.00986910899834963
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2721817077737898,
+          "contributions": {
+            "log_population": 0.02413638038496792,
+            "child_share": 0.03847771849626633,
+            "elderly_share": 0.000020250555530578195,
+            "population_change_rate": 0.01144853260989189
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34204",
+      "feature_values": {
+        "log_population": 4.939893483130274,
+        "child_share": 0.10300315819695664,
+        "elderly_share": 0.3623542922767729,
+        "population_change_rate": -0.1103175576262874
+      },
+      "similar": [
+        {
+          "municipality_code": "34205",
+          "name_ja": "尾道市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.14686407011758398,
+          "contributions": {
+            "log_population": 0.017266745351872913,
+            "child_share": 0.0026639248878459177,
+            "elderly_share": 0.0014900059857910412,
+            "population_change_rate": 0.00014837886599275825
+          },
+          "feature_values": {
+            "log_population": 5.101733330232639,
+            "child_share": 0.09838127788854077,
+            "elderly_share": 0.37272540270261717,
+            "population_change_rate": -0.11277393269784224
+          }
+        },
+        {
+          "municipality_code": "34209",
+          "name_ja": "三次市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2393091626837591,
+          "contributions": {
+            "log_population": 0.04440040534403455,
+            "child_share": 0.008254364786055126,
+            "elderly_share": 0.0006644989506733028,
+            "population_change_rate": 0.003949606263638898
+          },
+          "feature_values": {
+            "log_population": 4.680371778662958,
+            "child_share": 0.11113894455577822,
+            "elderly_share": 0.36928022712090847,
+            "population_change_rate": -0.12299073633334554
+          }
+        },
+        {
+          "municipality_code": "34202",
+          "name_ja": "呉市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3301683109317967,
+          "contributions": {
+            "log_population": 0.0872619632144142,
+            "child_share": 0.005337399116194027,
+            "elderly_share": 0.00016337248224213477,
+            "population_change_rate": 0.016248378730705205
+          },
+          "feature_values": {
+            "log_population": 5.303718624816738,
+            "child_share": 0.09646097733077588,
+            "elderly_share": 0.36578845370250745,
+            "population_change_rate": -0.13602232478265536
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4241688503367895,
+          "contributions": {
+            "log_population": 0.10260949119059938,
+            "child_share": 0.023599759143691706,
+            "elderly_share": 0.012335341990003539,
+            "population_change_rate": 0.041374621271739104
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34211",
+          "name_ja": "大竹市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.442907771877305,
+          "contributions": {
+            "log_population": 0.18929926763154561,
+            "child_share": 0.00008917389749039375,
+            "elderly_share": 0.00027146216482809685,
+            "population_change_rate": 0.006507390695454769
+          },
+          "feature_values": {
+            "log_population": 4.404029356425098,
+            "child_share": 0.1021575355973652,
+            "elderly_share": 0.36678105155208457,
+            "population_change_rate": -0.09405038413435769
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34205",
+      "feature_values": {
+        "log_population": 5.101733330232639,
+        "child_share": 0.09838127788854077,
+        "elderly_share": 0.37272540270261717,
+        "population_change_rate": -0.11277393269784224
+      },
+      "similar": [
+        {
+          "municipality_code": "34204",
+          "name_ja": "三原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.14686407011758398,
+          "contributions": {
+            "log_population": 0.017266745351872913,
+            "child_share": 0.0026639248878459177,
+            "elderly_share": 0.0014900059857910412,
+            "population_change_rate": 0.00014837886599275825
+          },
+          "feature_values": {
+            "log_population": 4.939893483130274,
+            "child_share": 0.10300315819695664,
+            "elderly_share": 0.3623542922767729,
+            "population_change_rate": -0.1103175576262874
+          }
+        },
+        {
+          "municipality_code": "34202",
+          "name_ja": "呉市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.20325665972688445,
+          "contributions": {
+            "log_population": 0.0268954657452432,
+            "child_share": 0.00045985721249439717,
+            "elderly_share": 0.0006666141061831516,
+            "population_change_rate": 0.013291332659409742
+          },
+          "feature_values": {
+            "log_population": 5.303718624816738,
+            "child_share": 0.09646097733077588,
+            "elderly_share": 0.36578845370250745,
+            "population_change_rate": -0.13602232478265536
+          }
+        },
+        {
+          "municipality_code": "34209",
+          "name_ja": "三次市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3742621822481939,
+          "contributions": {
+            "log_population": 0.11704405897346958,
+            "child_share": 0.02029677735303806,
+            "elderly_share": 0.00016442210999195115,
+            "population_change_rate": 0.0025669226246807513
+          },
+          "feature_values": {
+            "log_population": 4.680371778662958,
+            "child_share": 0.11113894455577822,
+            "elderly_share": 0.36928022712090847,
+            "population_change_rate": -0.12299073633334554
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5062455205932738,
+          "contributions": {
+            "log_population": 0.2040601294216526,
+            "child_share": 0.010405817122012925,
+            "elderly_share": 0.005251029716741013,
+            "population_change_rate": 0.03656755086034822
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34211",
+          "name_ja": "大竹市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5760189897756279,
+          "contributions": {
+            "log_population": 0.320909045119005,
+            "child_share": 0.0017783114959836433,
+            "elderly_share": 0.0004894929142097832,
+            "population_change_rate": 0.008621027052936521
+          },
+          "feature_values": {
+            "log_population": 4.404029356425098,
+            "child_share": 0.1021575355973652,
+            "elderly_share": 0.36678105155208457,
+            "population_change_rate": -0.09405038413435769
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34207",
+      "feature_values": {
+        "log_population": 5.658038121649084,
+        "child_share": 0.12352646430549329,
+        "elderly_share": 0.29516425362834814,
+        "population_change_rate": -0.035904520164246334
+      },
+      "similar": [
+        {
+          "municipality_code": "34100",
+          "name_ja": "広島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.36790549103899794,
+          "contributions": {
+            "log_population": 0.11160834759272882,
+            "child_share": 0.00007259450950622656,
+            "elderly_share": 0.01259793099213501,
+            "population_change_rate": 0.01107557724227615
+          },
+          "feature_values": {
+            "log_population": 6.069499007288329,
+            "child_share": 0.1242894380521208,
+            "elderly_share": 0.2650077585567806,
+            "population_change_rate": -0.014682249817384953
+          }
+        },
+        {
+          "municipality_code": "34212",
+          "name_ja": "東広島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.493316600529349,
+          "contributions": {
+            "log_population": 0.09379926639544793,
+            "child_share": 0.01376073619579203,
+            "elderly_share": 0.029414056867966686,
+            "population_change_rate": 0.10638720889862666
+          },
+          "feature_values": {
+            "log_population": 5.280830952498799,
+            "child_share": 0.13403104064197452,
+            "elderly_share": 0.24908465201062274,
+            "population_change_rate": 0.029869345215618157
+          }
+        },
+        {
+          "municipality_code": "34213",
+          "name_ja": "廿日市市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.502752409141363,
+          "contributions": {
+            "log_population": 0.23388797374320017,
+            "child_share": 0.0017764637277530454,
+            "elderly_share": 0.007052690150901826,
+            "population_change_rate": 0.010042857275589385
+          },
+          "feature_values": {
+            "log_population": 5.062397698990753,
+            "child_share": 0.12730075962962642,
+            "elderly_share": 0.3177278672337182,
+            "population_change_rate": -0.015695870136070662
+          }
+        },
+        {
+          "municipality_code": "34202",
+          "name_ja": "呉市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6997867281359132,
+          "contributions": {
+            "log_population": 0.08276175019233012,
+            "child_share": 0.09135162504244507,
+            "elderly_share": 0.06909467524177755,
+            "population_change_rate": 0.2464934143986139
+          },
+          "feature_values": {
+            "log_population": 5.303718624816738,
+            "child_share": 0.09646097733077588,
+            "elderly_share": 0.36578845370250745,
+            "population_change_rate": -0.13602232478265536
+          }
+        },
+        {
+          "municipality_code": "34205",
+          "name_ja": "尾道市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.7151978121625082,
+          "contributions": {
+            "log_population": 0.2040164405489316,
+            "child_share": 0.07884865792551926,
+            "elderly_share": 0.08333471709165352,
+            "population_change_rate": 0.14530809495593403
+          },
+          "feature_values": {
+            "log_population": 5.101733330232639,
+            "child_share": 0.09838127788854077,
+            "elderly_share": 0.37272540270261717,
+            "population_change_rate": -0.11277393269784224
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34208",
+      "feature_values": {
+        "log_population": 4.545368977370694,
+        "child_share": 0.08924654607605755,
+        "elderly_share": 0.39219484403931065,
+        "population_change_rate": -0.15133567025262903
+      },
+      "similar": [
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.14465742427882675,
+          "contributions": {
+            "log_population": 0.011091628674620267,
+            "child_share": 2.102681900674869e-7,
+            "elderly_share": 0.004263607042090618,
+            "population_change_rate": 0.00557032441408354
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34210",
+          "name_ja": "庄原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.22720658085668732,
+          "contributions": {
+            "log_population": 0.0017309937516407925,
+            "child_share": 0.0018048118570644413,
+            "elderly_share": 0.04013684979254444,
+            "population_change_rate": 0.007950174983336722
+          },
+          "feature_values": {
+            "log_population": 4.494126753736251,
+            "child_share": 0.09305083659208924,
+            "elderly_share": 0.4460221809090326,
+            "population_change_rate": -0.1693159730542908
+          }
+        },
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.26862593380210087,
+          "contributions": {
+            "log_population": 0.02432419055375219,
+            "child_share": 0.01828413914996377,
+            "elderly_share": 0.019682453608985104,
+            "population_change_rate": 0.00986910899834963
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        },
+        {
+          "municipality_code": "34369",
+          "name_ja": "北広島町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2843015821232412,
+          "contributions": {
+            "log_population": 0.06587947783496916,
+            "child_share": 0.0019479773577430117,
+            "elderly_share": 0.000492862122697377,
+            "population_change_rate": 0.012507072282368515
+          },
+          "feature_values": {
+            "log_population": 4.22924656201756,
+            "child_share": 0.09319884386244323,
+            "elderly_share": 0.39815961776676695,
+            "population_change_rate": -0.1287835962793566
+          }
+        },
+        {
+          "municipality_code": "34209",
+          "name_ja": "三次市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3143481882713029,
+          "contributions": {
+            "log_population": 0.01201503735832671,
+            "child_share": 0.059768351186475346,
+            "elderly_share": 0.007273822495525383,
+            "population_change_rate": 0.01975757242912306
+          },
+          "feature_values": {
+            "log_population": 4.680371778662958,
+            "child_share": 0.11113894455577822,
+            "elderly_share": 0.36928022712090847,
+            "population_change_rate": -0.12299073633334554
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34209",
+      "feature_values": {
+        "log_population": 4.680371778662958,
+        "child_share": 0.11113894455577822,
+        "elderly_share": 0.36928022712090847,
+        "population_change_rate": -0.12299073633334554
+      },
+      "similar": [
+        {
+          "municipality_code": "34204",
+          "name_ja": "三原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2393091626837591,
+          "contributions": {
+            "log_population": 0.04440040534403455,
+            "child_share": 0.008254364786055126,
+            "elderly_share": 0.0006644989506733028,
+            "population_change_rate": 0.003949606263638898
+          },
+          "feature_values": {
+            "log_population": 4.939893483130274,
+            "child_share": 0.10300315819695664,
+            "elderly_share": 0.3623542922767729,
+            "population_change_rate": -0.1103175576262874
+          }
+        },
+        {
+          "municipality_code": "34211",
+          "name_ja": "大竹市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2847539251225908,
+          "contributions": {
+            "log_population": 0.05034248916027933,
+            "child_share": 0.010059433644526519,
+            "elderly_share": 0.00008652289249569216,
+            "population_change_rate": 0.020596352175420517
+          },
+          "feature_values": {
+            "log_population": 4.404029356425098,
+            "child_share": 0.1021575355973652,
+            "elderly_share": 0.36678105155208457,
+            "population_change_rate": -0.09405038413435769
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3143481882713029,
+          "contributions": {
+            "log_population": 0.01201503735832671,
+            "child_share": 0.059768351186475346,
+            "elderly_share": 0.007273822495525383,
+            "population_change_rate": 0.01975757242912306
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3649784367962364,
+          "contributions": {
+            "log_population": 0.046194873662838934,
+            "child_share": 0.05999277013449112,
+            "elderly_share": 0.02267524275473168,
+            "population_change_rate": 0.004346372774162616
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34205",
+          "name_ja": "尾道市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3742621822481939,
+          "contributions": {
+            "log_population": 0.11704405897346958,
+            "child_share": 0.02029677735303806,
+            "elderly_share": 0.00016442210999195115,
+            "population_change_rate": 0.0025669226246807513
+          },
+          "feature_values": {
+            "log_population": 5.101733330232639,
+            "child_share": 0.09838127788854077,
+            "elderly_share": 0.37272540270261717,
+            "population_change_rate": -0.11277393269784224
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34210",
+      "feature_values": {
+        "log_population": 4.494126753736251,
+        "child_share": 0.09305083659208924,
+        "elderly_share": 0.4460221809090326,
+        "population_change_rate": -0.1693159730542908
+      },
+      "similar": [
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.21992005828057834,
+          "contributions": {
+            "log_population": 0.01307750780113922,
+            "child_share": 0.03157797727282998,
+            "elderly_share": 0.0036057219802196473,
+            "population_change_rate": 0.00010362497994412913
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        },
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.22576613524391806,
+          "contributions": {
+            "log_population": 0.004059166502645646,
+            "child_share": 0.0018439833635611783,
+            "elderly_share": 0.018237295296103375,
+            "population_change_rate": 0.026829902660664897
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.22720658085668732,
+          "contributions": {
+            "log_population": 0.0017309937516407925,
+            "child_share": 0.0018048118570644413,
+            "elderly_share": 0.04013684979254444,
+            "population_change_rate": 0.007950174983336722
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.29432531229884995,
+          "contributions": {
+            "log_population": 0.07274661691755593,
+            "child_share": 0.00034060356703584626,
+            "elderly_share": 0.0041664089267834875,
+            "population_change_rate": 0.009373760048440276
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        },
+        {
+          "municipality_code": "34215",
+          "name_ja": "江田島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.30461432162137425,
+          "contributions": {
+            "log_population": 0.020973214199340243,
+            "child_share": 0.07000819195859859,
+            "elderly_share": 0.0003032333007929998,
+            "population_change_rate": 0.0015052454781182185
+          },
+          "feature_values": {
+            "log_population": 4.315760490665735,
+            "child_share": 0.069357177380377,
+            "elderly_share": 0.4507008216529724,
+            "population_change_rate": -0.17713967546929685
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34211",
+      "feature_values": {
+        "log_population": 4.404029356425098,
+        "child_share": 0.1021575355973652,
+        "elderly_share": 0.36678105155208457,
+        "population_change_rate": -0.09405038413435769
+      },
+      "similar": [
+        {
+          "municipality_code": "34369",
+          "name_ja": "北広島町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.27102427480241986,
+          "contributions": {
+            "log_population": 0.020138954570933683,
+            "child_share": 0.010008610127736916,
+            "elderly_share": 0.013639664474216478,
+            "population_change_rate": 0.029666928359290506
+          },
+          "feature_values": {
+            "log_population": 4.22924656201756,
+            "child_share": 0.09319884386244323,
+            "elderly_share": 0.39815961776676695,
+            "population_change_rate": -0.1287835962793566
+          }
+        },
+        {
+          "municipality_code": "34209",
+          "name_ja": "三次市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2847539251225908,
+          "contributions": {
+            "log_population": 0.05034248916027933,
+            "child_share": 0.010059433644526519,
+            "elderly_share": 0.00008652289249569216,
+            "population_change_rate": 0.020596352175420517
+          },
+          "feature_values": {
+            "log_population": 4.680371778662958,
+            "child_share": 0.11113894455577822,
+            "elderly_share": 0.36928022712090847,
+            "population_change_rate": -0.12299073633334554
+          }
+        },
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3007290324446103,
+          "contributions": {
+            "log_population": 0.00008913989222249463,
+            "child_share": 0.020920002919734105,
+            "elderly_share": 0.025563142159716452,
+            "population_change_rate": 0.04386566598339843
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34307",
+          "name_ja": "熊野町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3101153817105168,
+          "contributions": {
+            "log_population": 0.0007364615137884547,
+            "child_share": 0.03782729817597526,
+            "elderly_share": 0.006188905919475922,
+            "population_change_rate": 0.05141888436421988
+          },
+          "feature_values": {
+            "log_population": 4.370605600938148,
+            "child_share": 0.11957401490947817,
+            "elderly_share": 0.3456443024494143,
+            "population_change_rate": -0.04832367130173917
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3515723538272786,
+          "contributions": {
+            "log_population": 0.013169443084834665,
+            "child_share": 0.02078756612010676,
+            "elderly_share": 0.00894697976532807,
+            "population_change_rate": 0.08069913100538366
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34212",
+      "feature_values": {
+        "log_population": 5.280830952498799,
+        "child_share": 0.13403104064197452,
+        "elderly_share": 0.24908465201062274,
+        "population_change_rate": 0.029869345215618157
+      },
+      "similar": [
+        {
+          "municipality_code": "34213",
+          "name_ja": "廿日市市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3917039895760226,
+          "contributions": {
+            "log_population": 0.03145408631666305,
+            "child_share": 0.005648732151639668,
+            "elderly_share": 0.06527287339301156,
+            "population_change_rate": 0.05105632358845855
+          },
+          "feature_values": {
+            "log_population": 5.062397698990753,
+            "child_share": 0.12730075962962642,
+            "elderly_share": 0.3177278672337182,
+            "population_change_rate": -0.015695870136070662
+          }
+        },
+        {
+          "municipality_code": "34207",
+          "name_ja": "福山市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.493316600529349,
+          "contributions": {
+            "log_population": 0.09379926639544793,
+            "child_share": 0.01376073619579203,
+            "elderly_share": 0.029414056867966686,
+            "population_change_rate": 0.10638720889862666
+          },
+          "feature_values": {
+            "log_population": 5.658038121649084,
+            "child_share": 0.12352646430549329,
+            "elderly_share": 0.29516425362834814,
+            "population_change_rate": -0.035904520164246334
+          }
+        },
+        {
+          "municipality_code": "34302",
+          "name_ja": "府中町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.49471219068801114,
+          "contributions": {
+            "log_population": 0.20985588125770094,
+            "child_share": 0.0123619201733364,
+            "elderly_share": 0.00004339458176743021,
+            "population_change_rate": 0.02247895560252632
+          },
+          "feature_values": {
+            "log_population": 4.716620938751289,
+            "child_share": 0.14398740254253561,
+            "elderly_share": 0.250854553135922,
+            "population_change_rate": -0.000364732305684065
+          }
+        },
+        {
+          "municipality_code": "34304",
+          "name_ja": "海田町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.675500572563086,
+          "contributions": {
+            "log_population": 0.41365915023540584,
+            "child_share": 0.027617652526817308,
+            "elderly_share": 0.0027020477153760544,
+            "population_change_rate": 0.01232217305545793
+          },
+          "feature_values": {
+            "log_population": 4.4886916983169405,
+            "child_share": 0.14891269068484259,
+            "elderly_share": 0.23511846802986044,
+            "population_change_rate": 0.05225409836065574
+          }
+        },
+        {
+          "municipality_code": "34100",
+          "name_ja": "広島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6886207016348624,
+          "contributions": {
+            "log_population": 0.41004173751410405,
+            "child_share": 0.011834377084447486,
+            "elderly_share": 0.00351231208892777,
+            "population_change_rate": 0.048810044032610925
+          },
+          "feature_values": {
+            "log_population": 6.069499007288329,
+            "child_share": 0.1242894380521208,
+            "elderly_share": 0.2650077585567806,
+            "population_change_rate": -0.014682249817384953
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34213",
+      "feature_values": {
+        "log_population": 5.062397698990753,
+        "child_share": 0.12730075962962642,
+        "elderly_share": 0.3177278672337182,
+        "population_change_rate": -0.015695870136070662
+      },
+      "similar": [
+        {
+          "municipality_code": "34212",
+          "name_ja": "東広島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3917039895760226,
+          "contributions": {
+            "log_population": 0.03145408631666305,
+            "child_share": 0.005648732151639668,
+            "elderly_share": 0.06527287339301156,
+            "population_change_rate": 0.05105632358845855
+          },
+          "feature_values": {
+            "log_population": 5.280830952498799,
+            "child_share": 0.13403104064197452,
+            "elderly_share": 0.24908465201062274,
+            "population_change_rate": 0.029869345215618157
+          }
+        },
+        {
+          "municipality_code": "34302",
+          "name_ja": "府中町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4257614166177455,
+          "contributions": {
+            "log_population": 0.07881904471232694,
+            "child_share": 0.03472342300360722,
+            "elderly_share": 0.06195026795003259,
+            "population_change_rate": 0.005780048214382718
+          },
+          "feature_values": {
+            "log_population": 4.716620938751289,
+            "child_share": 0.14398740254253561,
+            "elderly_share": 0.250854553135922,
+            "population_change_rate": -0.000364732305684065
+          }
+        },
+        {
+          "municipality_code": "34207",
+          "name_ja": "福山市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.502752409141363,
+          "contributions": {
+            "log_population": 0.23388797374320017,
+            "child_share": 0.0017764637277530454,
+            "elderly_share": 0.007052690150901826,
+            "population_change_rate": 0.010042857275589385
+          },
+          "feature_values": {
+            "log_population": 5.658038121649084,
+            "child_share": 0.12352646430549329,
+            "elderly_share": 0.29516425362834814,
+            "population_change_rate": -0.035904520164246334
+          }
+        },
+        {
+          "municipality_code": "34204",
+          "name_ja": "三原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5755667179478678,
+          "contributions": {
+            "log_population": 0.009893310390202577,
+            "child_share": 0.07362264125036183,
+            "elderly_share": 0.027588093637242253,
+            "population_change_rate": 0.22017300153147384
+          },
+          "feature_values": {
+            "log_population": 4.939893483130274,
+            "child_share": 0.10300315819695664,
+            "elderly_share": 0.3623542922767729,
+            "population_change_rate": -0.1103175576262874
+          }
+        },
+        {
+          "municipality_code": "34307",
+          "name_ja": "熊野町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5999284564676219,
+          "contributions": {
+            "log_population": 0.31549374928508367,
+            "child_share": 0.007445223070601331,
+            "elderly_share": 0.010795864298636793,
+            "population_change_rate": 0.026179316225301542
+          },
+          "feature_values": {
+            "log_population": 4.370605600938148,
+            "child_share": 0.11957401490947817,
+            "elderly_share": 0.3456443024494143,
+            "population_change_rate": -0.04832367130173917
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34214",
+      "feature_values": {
+        "log_population": 4.415657657551421,
+        "child_share": 0.08920548366038171,
+        "elderly_share": 0.4097384893053262,
+        "population_change_rate": -0.13628524046434495
+      },
+      "similar": [
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.14465742427882675,
+          "contributions": {
+            "log_population": 0.011091628674620267,
+            "child_share": 2.102681900674869e-7,
+            "elderly_share": 0.004263607042090618,
+            "population_change_rate": 0.00557032441408354
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34369",
+          "name_ja": "北広島町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.16774256504835558,
+          "contributions": {
+            "log_population": 0.022907784176482506,
+            "child_share": 0.0019886646650197053,
+            "elderly_share": 0.001857248292131159,
+            "population_change_rate": 0.001383870995368431
+          },
+          "feature_values": {
+            "log_population": 4.22924656201756,
+            "child_share": 0.09319884386244323,
+            "elderly_share": 0.39815961776676695,
+            "population_change_rate": -0.1287835962793566
+          }
+        },
+        {
+          "municipality_code": "34210",
+          "name_ja": "庄原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.22576613524391806,
+          "contributions": {
+            "log_population": 0.004059166502645646,
+            "child_share": 0.0018439833635611783,
+            "elderly_share": 0.018237295296103375,
+            "population_change_rate": 0.026829902660664897
+          },
+          "feature_values": {
+            "log_population": 4.494126753736251,
+            "child_share": 0.09305083659208924,
+            "elderly_share": 0.4460221809090326,
+            "population_change_rate": -0.1693159730542908
+          }
+        },
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.23593139702882213,
+          "contributions": {
+            "log_population": 0.0424377383450136,
+            "child_share": 0.0037696008878651565,
+            "elderly_share": 0.0049699404385433795,
+            "population_change_rate": 0.004486344432549566
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        },
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.23794603117246607,
+          "contributions": {
+            "log_population": 0.0025649507812263287,
+            "child_share": 0.01816034017904634,
+            "elderly_share": 0.005624679937506035,
+            "population_change_rate": 0.030268342852949486
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34215",
+      "feature_values": {
+        "log_population": 4.315760490665735,
+        "child_share": 0.069357177380377,
+        "elderly_share": 0.4507008216529724,
+        "population_change_rate": -0.17713967546929685
+      },
+      "similar": [
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.1236808382677911,
+          "contributions": {
+            "log_population": 0.0009280788507043598,
+            "child_share": 0.007549642401041118,
+            "elderly_share": 0.0060002467267981216,
+            "population_change_rate": 0.0008189817760799015
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        },
+        {
+          "municipality_code": "34210",
+          "name_ja": "庄原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.30461432162137425,
+          "contributions": {
+            "log_population": 0.020973214199340243,
+            "child_share": 0.07000819195859859,
+            "elderly_share": 0.0003032333007929998,
+            "population_change_rate": 0.0015052454781182185
+          },
+          "feature_values": {
+            "log_population": 4.494126753736251,
+            "child_share": 0.09305083659208924,
+            "elderly_share": 0.4460221809090326,
+            "population_change_rate": -0.1693159730542908
+          }
+        },
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.34640428012540464,
+          "contributions": {
+            "log_population": 0.006578788257068943,
+            "child_share": 0.04912827237529316,
+            "elderly_share": 0.023243785022044414,
+            "population_change_rate": 0.04104507963479328
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3475959936193881,
+          "contributions": {
+            "log_population": 0.015598633509863825,
+            "child_share": 0.08011507217599181,
+            "elderly_share": 0.006717658180653312,
+            "population_change_rate": 0.018391610913740742
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.38454923676800806,
+          "contributions": {
+            "log_population": 0.03475485154057937,
+            "child_share": 0.04933175696958956,
+            "elderly_share": 0.04741742626850837,
+            "population_change_rate": 0.01637408072018023
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34302",
+      "feature_values": {
+        "log_population": 4.716620938751289,
+        "child_share": 0.14398740254253561,
+        "elderly_share": 0.250854553135922,
+        "population_change_rate": -0.000364732305684065
+      },
+      "similar": [
+        {
+          "municipality_code": "34304",
+          "name_ja": "海田町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.32983470641091345,
+          "contributions": {
+            "log_population": 0.03424834988633954,
+            "child_share": 0.0030251566765465776,
+            "elderly_share": 0.003430290398621131,
+            "population_change_rate": 0.06808713659166622
+          },
+          "feature_values": {
+            "log_population": 4.4886916983169405,
+            "child_share": 0.14891269068484259,
+            "elderly_share": 0.23511846802986044,
+            "population_change_rate": 0.05225409836065574
+          }
+        },
+        {
+          "municipality_code": "34213",
+          "name_ja": "廿日市市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4257614166177455,
+          "contributions": {
+            "log_population": 0.07881904471232694,
+            "child_share": 0.03472342300360722,
+            "elderly_share": 0.06195026795003259,
+            "population_change_rate": 0.005780048214382718
+          },
+          "feature_values": {
+            "log_population": 5.062397698990753,
+            "child_share": 0.12730075962962642,
+            "elderly_share": 0.3177278672337182,
+            "population_change_rate": -0.015695870136070662
+          }
+        },
+        {
+          "municipality_code": "34212",
+          "name_ja": "東広島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.49471219068801114,
+          "contributions": {
+            "log_population": 0.20985588125770094,
+            "child_share": 0.0123619201733364,
+            "elderly_share": 0.00004339458176743021,
+            "population_change_rate": 0.02247895560252632
+          },
+          "feature_values": {
+            "log_population": 5.280830952498799,
+            "child_share": 0.13403104064197452,
+            "elderly_share": 0.24908465201062274,
+            "population_change_rate": 0.029869345215618157
+          }
+        },
+        {
+          "municipality_code": "34307",
+          "name_ja": "熊野町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5781731387740084,
+          "contributions": {
+            "log_population": 0.07892784869176873,
+            "child_share": 0.07432598614061986,
+            "elderly_share": 0.12446872638518733,
+            "population_change_rate": 0.05656161718221291
+          },
+          "feature_values": {
+            "log_population": 4.370605600938148,
+            "child_share": 0.11957401490947817,
+            "elderly_share": 0.3456443024494143,
+            "population_change_rate": -0.04832367130173917
+          }
+        },
+        {
+          "municipality_code": "34309",
+          "name_ja": "坂町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.597038657094953,
+          "contributions": {
+            "log_population": 0.2532300652557507,
+            "child_share": 0.01809636536880265,
+            "elderly_share": 0.03418122063436448,
+            "population_change_rate": 0.05094750680682695
+          },
+          "feature_values": {
+            "log_population": 4.09684052033139,
+            "child_share": 0.13194111057769242,
+            "elderly_share": 0.300528084493519,
+            "population_change_rate": -0.04588136498969387
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34304",
+      "feature_values": {
+        "log_population": 4.4886916983169405,
+        "child_share": 0.14891269068484259,
+        "elderly_share": 0.23511846802986044,
+        "population_change_rate": 0.05225409836065574
+      },
+      "similar": [
+        {
+          "municipality_code": "34302",
+          "name_ja": "府中町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.32983470641091345,
+          "contributions": {
+            "log_population": 0.03424834988633954,
+            "child_share": 0.0030251566765465776,
+            "elderly_share": 0.003430290398621131,
+            "population_change_rate": 0.06808713659166622
+          },
+          "feature_values": {
+            "log_population": 4.716620938751289,
+            "child_share": 0.14398740254253561,
+            "elderly_share": 0.250854553135922,
+            "population_change_rate": -0.000364732305684065
+          }
+        },
+        {
+          "municipality_code": "34309",
+          "name_ja": "坂町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6582096595084285,
+          "contributions": {
+            "log_population": 0.10122362324003424,
+            "child_share": 0.03591940574764391,
+            "elderly_share": 0.05926805858380368,
+            "population_change_rate": 0.23682886829871946
+          },
+          "feature_values": {
+            "log_population": 4.09684052033139,
+            "child_share": 0.13194111057769242,
+            "elderly_share": 0.300528084493519,
+            "population_change_rate": -0.04588136498969387
+          }
+        },
+        {
+          "municipality_code": "34212",
+          "name_ja": "東広島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.675500572563086,
+          "contributions": {
+            "log_population": 0.41365915023540584,
+            "child_share": 0.027617652526817308,
+            "elderly_share": 0.0027020477153760544,
+            "population_change_rate": 0.01232217305545793
+          },
+          "feature_values": {
+            "log_population": 5.280830952498799,
+            "child_share": 0.13403104064197452,
+            "elderly_share": 0.24908465201062274,
+            "population_change_rate": 0.029869345215618157
+          }
+        },
+        {
+          "municipality_code": "34213",
+          "name_ja": "廿日市市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6952014984207202,
+          "contributions": {
+            "log_population": 0.21697932309611695,
+            "child_share": 0.05824675471423071,
+            "elderly_share": 0.09453582609504929,
+            "population_change_rate": 0.11354321950101777
+          },
+          "feature_values": {
+            "log_population": 5.062397698990753,
+            "child_share": 0.12730075962962642,
+            "elderly_share": 0.3177278672337182,
+            "population_change_rate": -0.015695870136070662
+          }
+        },
+        {
+          "municipality_code": "34307",
+          "name_ja": "熊野町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.7311103241161993,
+          "contributions": {
+            "log_population": 0.00919257337160257,
+            "child_share": 0.10734099131389643,
+            "elderly_share": 0.16922522527419426,
+            "population_change_rate": 0.2487635160696007
+          },
+          "feature_values": {
+            "log_population": 4.370605600938148,
+            "child_share": 0.11957401490947817,
+            "elderly_share": 0.3456443024494143,
+            "population_change_rate": -0.04832367130173917
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34307",
+      "feature_values": {
+        "log_population": 4.370605600938148,
+        "child_share": 0.11957401490947817,
+        "elderly_share": 0.3456443024494143,
+        "population_change_rate": -0.04832367130173917
+      },
+      "similar": [
+        {
+          "municipality_code": "34211",
+          "name_ja": "大竹市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3101153817105168,
+          "contributions": {
+            "log_population": 0.0007364615137884547,
+            "child_share": 0.03782729817597526,
+            "elderly_share": 0.006188905919475922,
+            "population_change_rate": 0.05141888436421988
+          },
+          "feature_values": {
+            "log_population": 4.404029356425098,
+            "child_share": 0.1021575355973652,
+            "elderly_share": 0.36678105155208457,
+            "population_change_rate": -0.09405038413435769
+          }
+        },
+        {
+          "municipality_code": "34309",
+          "name_ja": "坂町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3111664246913685,
+          "contributions": {
+            "log_population": 0.04940781739784456,
+            "child_share": 0.01907304472068131,
+            "elderly_share": 0.02819699766768117,
+            "population_change_rate": 0.0001466840690020444
+          },
+          "feature_values": {
+            "log_population": 4.09684052033139,
+            "child_share": 0.13194111057769242,
+            "elderly_share": 0.300528084493519,
+            "population_change_rate": -0.04588136498969387
+          }
+        },
+        {
+          "municipality_code": "34209",
+          "name_ja": "三次市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4658000737354219,
+          "contributions": {
+            "log_population": 0.06325684963486691,
+            "child_share": 0.008872826814571279,
+            "elderly_share": 0.007738961581043448,
+            "population_change_rate": 0.13710107066144286
+          },
+          "feature_values": {
+            "log_population": 4.680371778662958,
+            "child_share": 0.11113894455577822,
+            "elderly_share": 0.36928022712090847,
+            "population_change_rate": -0.12299073633334554
+          }
+        },
+        {
+          "municipality_code": "34369",
+          "name_ja": "北広島町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.545277758724454,
+          "contributions": {
+            "log_population": 0.013173061907088716,
+            "child_share": 0.08675113306878272,
+            "elderly_share": 0.03820405408301539,
+            "population_change_rate": 0.1591995851006771
+          },
+          "feature_values": {
+            "log_population": 4.22924656201756,
+            "child_share": 0.09319884386244323,
+            "elderly_share": 0.39815961776676695,
+            "population_change_rate": -0.1287835962793566
+          }
+        },
+        {
+          "municipality_code": "34302",
+          "name_ja": "府中町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5781731387740084,
+          "contributions": {
+            "log_population": 0.07892784869176873,
+            "child_share": 0.07432598614061986,
+            "elderly_share": 0.12446872638518733,
+            "population_change_rate": 0.05656161718221291
+          },
+          "feature_values": {
+            "log_population": 4.716620938751289,
+            "child_share": 0.14398740254253561,
+            "elderly_share": 0.250854553135922,
+            "population_change_rate": -0.000364732305684065
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34309",
+      "feature_values": {
+        "log_population": 4.09684052033139,
+        "child_share": 0.13194111057769242,
+        "elderly_share": 0.300528084493519,
+        "population_change_rate": -0.04588136498969387
+      },
+      "similar": [
+        {
+          "municipality_code": "34307",
+          "name_ja": "熊野町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3111664246913685,
+          "contributions": {
+            "log_population": 0.04940781739784456,
+            "child_share": 0.01907304472068131,
+            "elderly_share": 0.02819699766768117,
+            "population_change_rate": 0.0001466840690020444
+          },
+          "feature_values": {
+            "log_population": 4.370605600938148,
+            "child_share": 0.11957401490947817,
+            "elderly_share": 0.3456443024494143,
+            "population_change_rate": -0.04832367130173917
+          }
+        },
+        {
+          "municipality_code": "34211",
+          "name_ja": "大竹市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5391606790121077,
+          "contributions": {
+            "log_population": 0.062208599198130744,
+            "child_share": 0.1106211675281874,
+            "elderly_share": 0.060806241645324374,
+            "population_change_rate": 0.05705822942115459
+          },
+          "feature_values": {
+            "log_population": 4.404029356425098,
+            "child_share": 0.1021575355973652,
+            "elderly_share": 0.36678105155208457,
+            "population_change_rate": -0.09405038413435769
+          }
+        },
+        {
+          "municipality_code": "34302",
+          "name_ja": "府中町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.597038657094953,
+          "contributions": {
+            "log_population": 0.2532300652557507,
+            "child_share": 0.01809636536880265,
+            "elderly_share": 0.03418122063436448,
+            "population_change_rate": 0.05094750680682695
+          },
+          "feature_values": {
+            "log_population": 4.716620938751289,
+            "child_share": 0.14398740254253561,
+            "elderly_share": 0.250854553135922,
+            "population_change_rate": -0.000364732305684065
+          }
+        },
+        {
+          "municipality_code": "34304",
+          "name_ja": "海田町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6582096595084285,
+          "contributions": {
+            "log_population": 0.10122362324003424,
+            "child_share": 0.03591940574764391,
+            "elderly_share": 0.05926805858380368,
+            "population_change_rate": 0.23682886829871946
+          },
+          "feature_values": {
+            "log_population": 4.4886916983169405,
+            "child_share": 0.14891269068484259,
+            "elderly_share": 0.23511846802986044,
+            "population_change_rate": 0.05225409836065574
+          }
+        },
+        {
+          "municipality_code": "34209",
+          "name_ja": "三次市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.7000967929320312,
+          "contributions": {
+            "log_population": 0.22447491479064136,
+            "child_share": 0.05396369793433353,
+            "elderly_share": 0.06548019602349721,
+            "population_change_rate": 0.14621671072524323
+          },
+          "feature_values": {
+            "log_population": 4.680371778662958,
+            "child_share": 0.11113894455577822,
+            "elderly_share": 0.36928022712090847,
+            "population_change_rate": -0.12299073633334554
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34368",
+      "feature_values": {
+        "log_population": 3.7297315952870354,
+        "child_share": 0.06949878889509968,
+        "elderly_share": 0.5295323271846469,
+        "population_change_rate": -0.2115469369766417
+      },
+      "similar": [
+        {
+          "municipality_code": "34545",
+          "name_ja": "神石高原町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.181458039740659,
+          "contributions": {
+            "log_population": 0.017402401539538783,
+            "child_share": 0.004106346518449711,
+            "elderly_share": 0.008779265362125198,
+            "population_change_rate": 0.002639006766408889
+          },
+          "feature_values": {
+            "log_population": 3.8922059459757725,
+            "child_share": 0.07523711868751602,
+            "elderly_share": 0.5043578569597539,
+            "population_change_rate": -0.20118767277567318
+          }
+        },
+        {
+          "municipality_code": "34431",
+          "name_ja": "大崎上島町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4207879526060831,
+          "contributions": {
+            "log_population": 0.006782768583801477,
+            "child_share": 0.00007147854134860262,
+            "elderly_share": 0.08110322644296969,
+            "population_change_rate": 0.08910502749029947
+          },
+          "feature_values": {
+            "log_population": 3.8311656339094426,
+            "child_share": 0.0687417023159758,
+            "elderly_share": 0.4530166691252397,
+            "population_change_rate": -0.1513520280420631
+          }
+        },
+        {
+          "municipality_code": "34215",
+          "name_ja": "江田島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.5844679372731242,
+          "contributions": {
+            "log_population": 0.22640062732176255,
+            "child_share": 0.0000025008159043314875,
+            "elderly_share": 0.08608691364857683,
+            "population_change_rate": 0.029112727914056898
+          },
+          "feature_values": {
+            "log_population": 4.315760490665735,
+            "child_share": 0.069357177380377,
+            "elderly_share": 0.4507008216529724,
+            "population_change_rate": -0.17713967546929685
+          }
+        },
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6610987501031405,
+          "contributions": {
+            "log_population": 0.1231457306022649,
+            "child_share": 0.07922235671261078,
+            "elderly_share": 0.1409004119702884,
+            "population_change_rate": 0.0937830581027704
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        },
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.6639553806421828,
+          "contributions": {
+            "log_population": 0.2563195760458273,
+            "child_share": 0.007277332258004297,
+            "elderly_share": 0.13754231285955548,
+            "population_change_rate": 0.039697526320318886
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34369",
+      "feature_values": {
+        "log_population": 4.22924656201756,
+        "child_share": 0.09319884386244323,
+        "elderly_share": 0.39815961776676695,
+        "population_change_rate": -0.1287835962793566
+      },
+      "similar": [
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.1643963781770432,
+          "contributions": {
+            "log_population": 0.0029867364221625972,
+            "child_share": 0.0002823283410737747,
+            "elderly_share": 0.012903507810998837,
+            "population_change_rate": 0.010853596583494192
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        },
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.16774256504835558,
+          "contributions": {
+            "log_population": 0.022907784176482506,
+            "child_share": 0.0019886646650197053,
+            "elderly_share": 0.001857248292131159,
+            "population_change_rate": 0.001383870995368431
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34211",
+          "name_ja": "大竹市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.27102427480241986,
+          "contributions": {
+            "log_population": 0.020138954570933683,
+            "child_share": 0.010008610127736916,
+            "elderly_share": 0.013639664474216478,
+            "population_change_rate": 0.029666928359290506
+          },
+          "feature_values": {
+            "log_population": 4.404029356425098,
+            "child_share": 0.1021575355973652,
+            "elderly_share": 0.36678105155208457,
+            "population_change_rate": -0.09405038413435769
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2843015821232412,
+          "contributions": {
+            "log_population": 0.06587947783496916,
+            "child_share": 0.0019479773577430117,
+            "elderly_share": 0.000492862122697377,
+            "population_change_rate": 0.012507072282368515
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        },
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.31757303368955386,
+          "contributions": {
+            "log_population": 0.010142067794192054,
+            "child_share": 0.032168127410843884,
+            "elderly_share": 0.01394611486299409,
+            "population_change_rate": 0.044596321658756474
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34431",
+      "feature_values": {
+        "log_population": 3.8311656339094426,
+        "child_share": 0.0687417023159758,
+        "elderly_share": 0.4530166691252397,
+        "population_change_rate": -0.1513520280420631
+      },
+      "similar": [
+        {
+          "municipality_code": "34545",
+          "name_ja": "神石高原町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3245109618451254,
+          "contributions": {
+            "log_population": 0.0024562527600584783,
+            "child_share": 0.005261366769952008,
+            "elderly_share": 0.03651483318426499,
+            "population_change_rate": 0.06107491164337294
+          },
+          "feature_values": {
+            "log_population": 3.8922059459757725,
+            "child_share": 0.07523711868751602,
+            "elderly_share": 0.5043578569597539,
+            "population_change_rate": -0.20118767277567318
+          }
+        },
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.40551731150362114,
+          "contributions": {
+            "log_population": 0.07212645795019573,
+            "child_share": 0.08405312028430421,
+            "elderly_share": 0.008204873047935947,
+            "population_change_rate": 0.000059838646688972905
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        },
+        {
+          "municipality_code": "34215",
+          "name_ja": "江田島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.41386495874426177,
+          "contributions": {
+            "log_population": 0.1548093424860554,
+            "child_share": 0.000047239523818673434,
+            "elderly_share": 0.00007429462599044536,
+            "population_change_rate": 0.016353327440524975
+          },
+          "feature_values": {
+            "log_population": 4.315760490665735,
+            "child_share": 0.069357177380377,
+            "elderly_share": 0.4507008216529724,
+            "population_change_rate": -0.17713967546929685
+          }
+        },
+        {
+          "municipality_code": "34368",
+          "name_ja": "安芸太田町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4207879526060831,
+          "contributions": {
+            "log_population": 0.006782768583801477,
+            "child_share": 0.00007147854134860262,
+            "elderly_share": 0.08110322644296969,
+            "population_change_rate": 0.08910502749029947
+          },
+          "feature_values": {
+            "log_population": 3.7297315952870354,
+            "child_share": 0.06949878889509968,
+            "elderly_share": 0.5295323271846469,
+            "population_change_rate": -0.2115469369766417
+          }
+        },
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.453612721711315,
+          "contributions": {
+            "log_population": 0.17971034578520836,
+            "child_share": 0.008791271328741874,
+            "elderly_share": 0.007409885632617346,
+            "population_change_rate": 0.009852998551779306
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34462",
+      "feature_values": {
+        "log_population": 4.161936705245781,
+        "child_share": 0.09470349197603141,
+        "elderly_share": 0.4286796611336869,
+        "population_change_rate": -0.14979211805352227
+      },
+      "similar": [
+        {
+          "municipality_code": "34369",
+          "name_ja": "北広島町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.1643963781770432,
+          "contributions": {
+            "log_population": 0.0029867364221625972,
+            "child_share": 0.0002823283410737747,
+            "elderly_share": 0.012903507810998837,
+            "population_change_rate": 0.010853596583494192
+          },
+          "feature_values": {
+            "log_population": 4.22924656201756,
+            "child_share": 0.09319884386244323,
+            "elderly_share": 0.39815961776676695,
+            "population_change_rate": -0.1287835962793566
+          }
+        },
+        {
+          "municipality_code": "34214",
+          "name_ja": "安芸高田市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.23593139702882213,
+          "contributions": {
+            "log_population": 0.0424377383450136,
+            "child_share": 0.0037696008878651565,
+            "elderly_share": 0.0049699404385433795,
+            "population_change_rate": 0.004486344432549566
+          },
+          "feature_values": {
+            "log_population": 4.415657657551421,
+            "child_share": 0.08920548366038171,
+            "elderly_share": 0.4097384893053262,
+            "population_change_rate": -0.13628524046434495
+          }
+        },
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.2721817077737898,
+          "contributions": {
+            "log_population": 0.02413638038496792,
+            "child_share": 0.03847771849626633,
+            "elderly_share": 0.000020250555530578195,
+            "population_change_rate": 0.01144853260989189
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        },
+        {
+          "municipality_code": "34210",
+          "name_ja": "庄原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.29432531229884995,
+          "contributions": {
+            "log_population": 0.07274661691755593,
+            "child_share": 0.00034060356703584626,
+            "elderly_share": 0.0041664089267834875,
+            "population_change_rate": 0.009373760048440276
+          },
+          "feature_values": {
+            "log_population": 4.494126753736251,
+            "child_share": 0.09305083659208924,
+            "elderly_share": 0.4460221809090326,
+            "population_change_rate": -0.1693159730542908
+          }
+        },
+        {
+          "municipality_code": "34208",
+          "name_ja": "府中市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3451563579156861,
+          "contributions": {
+            "log_population": 0.0969207779445432,
+            "child_share": 0.0037135038863303224,
+            "elderly_share": 0.018440039332049386,
+            "population_change_rate": 0.000058590246698293826
+          },
+          "feature_values": {
+            "log_population": 4.545368977370694,
+            "child_share": 0.08924654607605755,
+            "elderly_share": 0.39219484403931065,
+            "population_change_rate": -0.15133567025262903
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34545",
+      "feature_values": {
+        "log_population": 3.8922059459757725,
+        "child_share": 0.07523711868751602,
+        "elderly_share": 0.5043578569597539,
+        "population_change_rate": -0.20118767277567318
+      },
+      "similar": [
+        {
+          "municipality_code": "34368",
+          "name_ja": "安芸太田町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.181458039740659,
+          "contributions": {
+            "log_population": 0.017402401539538783,
+            "child_share": 0.004106346518449711,
+            "elderly_share": 0.008779265362125198,
+            "population_change_rate": 0.002639006766408889
+          },
+          "feature_values": {
+            "log_population": 3.7297315952870354,
+            "child_share": 0.06949878889509968,
+            "elderly_share": 0.5295323271846469,
+            "population_change_rate": -0.2115469369766417
+          }
+        },
+        {
+          "municipality_code": "34431",
+          "name_ja": "大崎上島町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.3245109618451254,
+          "contributions": {
+            "log_population": 0.0024562527600584783,
+            "child_share": 0.005261366769952008,
+            "elderly_share": 0.03651483318426499,
+            "population_change_rate": 0.06107491164337294
+          },
+          "feature_values": {
+            "log_population": 3.8311656339094426,
+            "child_share": 0.0687417023159758,
+            "elderly_share": 0.4530166691252397,
+            "population_change_rate": -0.1513520280420631
+          }
+        },
+        {
+          "municipality_code": "34215",
+          "name_ja": "江田島市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4203352109122223,
+          "contributions": {
+            "log_population": 0.11826555038643653,
+            "child_share": 0.004311521621643134,
+            "elderly_share": 0.039883277700305045,
+            "population_change_rate": 0.014221339824237691
+          },
+          "feature_values": {
+            "log_population": 4.315760490665735,
+            "child_share": 0.069357177380377,
+            "elderly_share": 0.4507008216529724,
+            "population_change_rate": -0.17713967546929685
+          }
+        },
+        {
+          "municipality_code": "34203",
+          "name_ja": "竹原市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4891687916738193,
+          "contributions": {
+            "log_population": 0.14014688732084354,
+            "child_share": 0.0004505643105284419,
+            "elderly_share": 0.0768227879267559,
+            "population_change_rate": 0.021865867189496534
+          },
+          "feature_values": {
+            "log_population": 4.3532813395452905,
+            "child_share": 0.07713791727623354,
+            "elderly_share": 0.42988872633772224,
+            "population_change_rate": -0.1713687458673132
+          }
+        },
+        {
+          "municipality_code": "34462",
+          "name_ja": "世羅町",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.4894015505620564,
+          "contributions": {
+            "log_population": 0.047962356737144836,
+            "child_share": 0.0472557522195222,
+            "elderly_share": 0.07933759586420784,
+            "population_change_rate": 0.0649581728716702
+          },
+          "feature_values": {
+            "log_population": 4.161936705245781,
+            "child_share": 0.09470349197603141,
+            "elderly_share": 0.4286796611336869,
+            "population_change_rate": -0.14979211805352227
+          }
+        }
+      ]
+    }
+  ]
+}

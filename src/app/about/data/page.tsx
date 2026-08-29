@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 
 import { projectConfig } from "@/lib/config";
+import { loadLatestPointer, loadManifest } from "@/lib/data/load";
 
 export const metadata: Metadata = {
   title: "データについて",
 };
 
-export default function DataAboutPage() {
+export default async function DataAboutPage() {
   const { startDate, endDate } = projectConfig.populationSnapshots;
+  const latestPointer = await loadLatestPointer();
+  const manifest = await loadManifest(latestPointer.release_id);
 
   return (
     <article className="shell prose-page">
@@ -34,6 +37,14 @@ export default function DataAboutPage() {
       </section>
 
       <section>
+        <h2>日本人・外国人の拡張データ</h2>
+        <p>
+          詳細画面では、総務省の-07・-08・-11・-12を用いて、日本人住民と外国人住民を分けた人口推移と、5歳階級別人口を表示します。
+          年齢階級の非公表値は0で補完せず、「データなし」として扱います。
+        </p>
+      </section>
+
+      <section>
         <h2>時点と期間を分ける</h2>
         <p>
           人口と年齢構成は「ある日の状態」、出生・死亡・転入・転出は「一定期間に起きたこと」です。
@@ -52,9 +63,10 @@ export default function DataAboutPage() {
       <section>
         <h2>現在の状態</h2>
         <p>
-          データリリース <code>{projectConfig.datasetReleaseId}</code>{" "}
-          は設計中です。
-          実データの検証が終わるまで、架空値や推定値は表示しません。
+          データリリース <code>{manifest.release_id}</code>{" "}
+          を準備版として表示しています。
+          広島県23市町のデータは検証済みですが、類似自治体の候補集合は県内に限られています。
+          全国比較用データの接続が完了するまで、本番MVPとは区別します。
         </p>
       </section>
 

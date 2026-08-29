@@ -77,6 +77,7 @@ tests/                     # 設定、指標、回帰用fixture
 
 - 初期表示: `latest.json` → `hiroshima-summary.json`
 - 詳細表示: `municipality/<code>.json`
+- 拡張詳細: `extended/municipality/<code>.json`（日本人・外国人、5歳階級）
 - 類似検索: 事前計算した `similarity.json`
 - 説明: `manifest.json` と `similarity-model.json`
 

@@ -17,15 +17,16 @@
 
 ## 文書
 
-| 文書                                 | 役割                                     |
-| ------------------------------------ | ---------------------------------------- |
-| [CONCEPT](docs/CONCEPT.md)           | 誰の、どんな問いに答えるか               |
-| [MVP_SPEC](docs/MVP_SPEC.md)         | 初版に含める画面・機能・完了条件         |
-| [DATA_SPEC](docs/DATA_SPEC.md)       | 出典、期間、項目、計算、品質ルール       |
-| [ARCHITECTURE](docs/ARCHITECTURE.md) | 技術構成、データフロー、ディレクトリ責務 |
-| [DEVELOPMENT](docs/DEVELOPMENT.md)   | 開発手順と品質基準                       |
-| [DECISIONS](docs/DECISIONS.md)       | 重要な判断と理由の履歴                   |
-| [ROADMAP](docs/ROADMAP.md)           | MVPから拡張までの順序                    |
+| 文書                                         | 役割                                     |
+| -------------------------------------------- | ---------------------------------------- |
+| [CONCEPT](docs/CONCEPT.md)                   | 誰の、どんな問いに答えるか               |
+| [MVP_SPEC](docs/MVP_SPEC.md)                 | 初版に含める画面・機能・完了条件         |
+| [DATA_SPEC](docs/DATA_SPEC.md)               | 出典、期間、項目、計算、品質ルール       |
+| [SOURCE_INVENTORY](docs/SOURCE_INVENTORY.md) | e-Stat表、配布先、原本ハッシュ、構造確認 |
+| [ARCHITECTURE](docs/ARCHITECTURE.md)         | 技術構成、データフロー、ディレクトリ責務 |
+| [DEVELOPMENT](docs/DEVELOPMENT.md)           | 開発手順と品質基準                       |
+| [DECISIONS](docs/DECISIONS.md)               | 重要な判断と理由の履歴                   |
+| [ROADMAP](docs/ROADMAP.md)                   | MVPから拡張までの順序                    |
 
 仕様の意味を変える実装では、コードと同じ変更で該当文書も更新します。
 

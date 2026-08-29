@@ -199,6 +199,8 @@ public/data/
         ├── hiroshima-summary.json
         ├── municipality/
         │   └── 34214.json
+        ├── extended/
+        │   └── municipality/34214.json
         ├── similarity.json
         └── similarity-model.json
 ```

@@ -1,0 +1,235 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v1",
+  "municipalities": [
+    {
+      "municipality_code": "34100",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "広島市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34202",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "呉市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34203",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "竹原市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34204",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "三原市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34205",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "尾道市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34207",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "福山市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34208",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "府中市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34209",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "三次市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34210",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "庄原市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34211",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "大竹市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34212",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "東広島市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34213",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "廿日市市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34214",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "安芸高田市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34215",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "江田島市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34302",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "府中町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34304",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "海田町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34307",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "熊野町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34309",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "坂町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34368",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "安芸太田町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34369",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "北広島町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34431",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "大崎上島町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34462",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "世羅町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "34545",
+      "prefecture_code": "34",
+      "prefecture_name_ja": "広島県",
+      "name_ja": "神石高原町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2016-01-01",
+      "valid_to": null
+    }
+  ]
+}

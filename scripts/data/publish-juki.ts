@@ -1,0 +1,1049 @@
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
+import { join, resolve } from "node:path";
+
+import { hiroshimaMunicipalities, projectConfig } from "../../src/lib/config";
+import {
+  extendedMunicipalityDetailSchema,
+  type ExtendedMunicipalityDetail,
+} from "../../src/lib/data/extended-schema";
+import {
+  calculateAgeStructure,
+  calculateRatePer1000,
+  compareAgeCoverage,
+  reconcileMigrationChange,
+  reconcileNaturalChange,
+  calculatePopulationChange,
+} from "../../src/lib/metrics/population";
+import {
+  fitSimilarityModel,
+  rankSimilarMunicipalities,
+  type FeatureId,
+  type FeatureValues,
+  type MunicipalityFeatures,
+} from "../../src/lib/similarity/calculate";
+import {
+  latestPointerSchema,
+  manifestSchema,
+  municipalitiesFileSchema,
+  municipalityDetailSchema,
+  similarityFileSchema,
+  similarityModelSchema,
+  summaryFileSchema,
+  type LatestPointer,
+  type Manifest,
+  type MunicipalitiesFile,
+  type MunicipalityDetail,
+  type SimilarityFile,
+  type SimilarityModel,
+  type SummaryFile,
+} from "../../src/lib/data/schema";
+import { loadReleaseBundle } from "../../src/lib/data/load";
+import {
+  validateRelease,
+  type ReleaseExpectation,
+} from "../../src/lib/data/validate";
+import type {
+  ExtendedAgeRecord,
+  ExtendedFlowRecord,
+} from "./normalize-juki-extended";
+
+interface ProcessedSnapshot {
+  municipality_code: string;
+  as_of_date: string;
+  population_total: number;
+  population_japanese: number | null;
+  population_foreign: number | null;
+  households: number | null;
+  source_record_id: string;
+}
+
+interface ProcessedFlow {
+  municipality_code: string;
+  period_start: string;
+  period_end: string;
+  births: number | null;
+  deaths: number | null;
+  move_ins: number | null;
+  move_outs: number | null;
+  natural_change_reported: number | null;
+  migration_change_reported: number | null;
+  adjustment: number | null;
+  source_record_id: string;
+}
+
+interface ProcessedAgePopulation {
+  municipality_code: string;
+  as_of_date: string;
+  age_band_start: number;
+  age_band_end: number | null;
+  population: number | null;
+  resident_scope: "total";
+  source_record_id: string;
+}
+
+interface ProcessedYear {
+  population_snapshots: ProcessedSnapshot[];
+  population_flows: ProcessedFlow[];
+  age_populations: ProcessedAgePopulation[];
+}
+
+interface ExtendedYear {
+  population_records: ExtendedFlowRecord[];
+  age_records: ExtendedAgeRecord[];
+}
+
+interface StagingSource {
+  table: string;
+  fileId: string;
+  rawFile: string;
+  sha256: string;
+  sheetName: string;
+}
+
+interface StagingYear {
+  source: StagingSource[];
+}
+
+interface ExtendedStagingSource {
+  table: string;
+  file_id: string;
+  raw_file: string;
+  sha256: string;
+  sheet_name: string;
+}
+
+interface ExtendedStagingYear {
+  sources: ExtendedStagingSource[];
+}
+
+interface QualityIssue {
+  code: string;
+  message: string;
+  municipality_code: string | null;
+}
+
+interface PublicationFiles {
+  latest: LatestPointer;
+  manifest: Manifest;
+  municipalities: MunicipalitiesFile;
+  summary: SummaryFile;
+  details: MunicipalityDetail[];
+  similarity: SimilarityFile;
+  similarityModel: SimilarityModel;
+  extendedDetails: ExtendedMunicipalityDetail[];
+}
+
+export interface PublishOptions {
+  releaseId: string;
+  years: number[];
+  municipalityCodes: string[];
+  processedRoot: string;
+  extendedRoot: string;
+  rawRoot: string;
+  outputRoot: string;
+}
+
+function readJson<T>(path: string): T {
+  return JSON.parse(readFileSync(path, "utf8")) as T;
+}
+
+function sha256(path: string): string {
+  return createHash("sha256").update(readFileSync(path)).digest("hex");
+}
+
+function gitCommit(): string {
+  try {
+    return execFileSync("git", ["rev-parse", "--short=7", "HEAD"], {
+      encoding: "utf8",
+    }).trim();
+  } catch {
+    return "0000000";
+  }
+}
+
+function sourceFilePath(rawRoot: string, rawFile: string): string {
+  const path = resolve(rawRoot, rawFile);
+  if (!existsSync(path)) {
+    throw new Error(`マニフェスト対象の原本が見つかりません: ${path}`);
+  }
+  return path;
+}
+
+function sourceToManifest(
+  year: number,
+  source: StagingSource,
+  rawRoot: string,
+  generatedAt: string,
+) {
+  const rawPath = sourceFilePath(rawRoot, source.rawFile);
+  const fileStat = statSync(rawPath);
+  const actualSha256 = sha256(rawPath);
+  if (actualSha256 !== source.sha256) {
+    throw new Error(
+      `原本のSHA-256がstagingメタデータと一致しません: ${rawPath}`,
+    );
+  }
+  return {
+    statistic_name: "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+    table_number: `${year}-${source.table}`,
+    table_name: source.sheetName,
+    distribution_url: `https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=${source.fileId}`,
+    // 原本取得時刻を別管理していないため、ローカル原本の更新時刻を記録する。
+    acquired_at: new Date(fileStat.mtimeMs).toISOString() || generatedAt,
+    file_name: source.rawFile,
+    sha256: source.sha256,
+  };
+}
+
+function sumNullable(values: readonly (number | null)[]): number | null {
+  const present = values.filter((value): value is number => value !== null);
+  if (present.length !== values.length) {
+    return null;
+  }
+  return present.reduce((sum, value) => sum + value, 0);
+}
+
+function ageGroups(rows: ProcessedAgePopulation[]): {
+  age_0_14: number | null;
+  age_15_64: number | null;
+  age_65_plus: number | null;
+} {
+  const group = (start: number, end: number | null) =>
+    sumNullable(
+      rows
+        .filter(
+          (row) => row.age_band_start === start && row.age_band_end === end,
+        )
+        .map((row) => row.population),
+    );
+  return {
+    age_0_14: group(0, 14),
+    age_15_64: group(15, 64),
+    age_65_plus: group(65, null),
+  };
+}
+
+const extendedScopes = ["japanese", "foreign"] as const;
+
+function buildExtendedAgeSnapshot(
+  ageRecord: ExtendedAgeRecord,
+): ExtendedMunicipalityDetail["snapshots"][number]["residents"]["japanese"] {
+  const presentBands = ageRecord.age_bands.filter(
+    (band): band is typeof band & { population: number } =>
+      band.population !== null,
+  );
+  return {
+    population_total: ageRecord.population_total,
+    age_population_known:
+      presentBands.length === ageRecord.age_bands.length
+        ? presentBands.reduce((sum, band) => sum + band.population, 0)
+        : null,
+    age_missing_band_count: ageRecord.age_bands.length - presentBands.length,
+    age_bands: ageRecord.age_bands.map(
+      ({ age_band_start, age_band_end, population }) => ({
+        age_band_start,
+        age_band_end,
+        population,
+      }),
+    ),
+  };
+}
+
+function buildExtendedFlow(
+  record: ExtendedFlowRecord,
+): ExtendedMunicipalityDetail["flows"][number]["residents"]["japanese"] {
+  return {
+    population_male: record.population_male,
+    population_female: record.population_female,
+    population_total: record.population_total,
+    households: record.households,
+    move_ins_domestic: record.move_ins_domestic,
+    move_ins_foreign: record.move_ins_foreign,
+    move_ins_total: record.move_ins_total,
+    births: record.births,
+    registrations_other: record.registrations_other,
+    registrations_total: record.registrations_total,
+    move_outs_domestic: record.move_outs_domestic,
+    move_outs_foreign: record.move_outs_foreign,
+    move_outs_total: record.move_outs_total,
+    deaths: record.deaths,
+    deletions_other: record.deletions_other,
+    deletions_total: record.deletions_total,
+    population_change_reported: record.population_change_reported,
+    natural_change_reported: record.natural_change_reported,
+    migration_change_reported: record.migration_change_reported,
+  };
+}
+
+function buildExtendedDetail(
+  releaseId: string,
+  code: string,
+  years: readonly number[],
+  extendedByYear: Map<number, ExtendedYear>,
+): ExtendedMunicipalityDetail {
+  const snapshots = years.map((year) => {
+    const extended = extendedByYear.get(year);
+    if (!extended) {
+      throw new Error(`${year}年の拡張データがありません。`);
+    }
+
+    const residents = Object.fromEntries(
+      extendedScopes.map((scope) => {
+        const ageRecord = extended.age_records.find(
+          (record) =>
+            record.municipality_code === code &&
+            record.resident_scope === scope,
+        );
+        if (!ageRecord) {
+          throw new Error(`${year}年の${scope}年齢データがありません: ${code}`);
+        }
+        return [scope, buildExtendedAgeSnapshot(ageRecord)];
+      }),
+    ) as ExtendedMunicipalityDetail["snapshots"][number]["residents"];
+
+    return {
+      as_of_date: `${year}-01-01`,
+      residents,
+    };
+  });
+
+  const flows = years.map((year) => {
+    const extended = extendedByYear.get(year);
+    if (!extended) {
+      throw new Error(`${year}年の拡張データがありません。`);
+    }
+    const residents = Object.fromEntries(
+      extendedScopes.map((scope) => {
+        const record = extended.population_records.find(
+          (candidate) =>
+            candidate.municipality_code === code &&
+            candidate.resident_scope === scope,
+        );
+        if (!record) {
+          throw new Error(`${year}年の${scope}動態データがありません: ${code}`);
+        }
+        return [scope, buildExtendedFlow(record)];
+      }),
+    ) as ExtendedMunicipalityDetail["flows"][number]["residents"];
+
+    return {
+      period_start: `${year - 1}-01-01`,
+      period_end: `${year - 1}-12-31`,
+      residents,
+    };
+  });
+
+  const municipality = hiroshimaMunicipalities.find(
+    (candidate) => candidate.code === code,
+  );
+  if (!municipality) {
+    throw new Error(`広島県の自治体設定にないコードです: ${code}`);
+  }
+
+  return {
+    release_id: releaseId,
+    municipality_code: code,
+    name_ja: municipality.nameJa,
+    snapshots,
+    flows,
+  };
+}
+
+function buildDetail(
+  releaseId: string,
+  code: string,
+  years: readonly number[],
+  processedByYear: Map<number, ProcessedYear>,
+  extendedByYear: Map<number, ExtendedYear>,
+  warnings: QualityIssue[],
+): MunicipalityDetail {
+  const municipality = hiroshimaMunicipalities.find(
+    (candidate) => candidate.code === code,
+  );
+  if (!municipality) {
+    throw new Error(`広島県の自治体設定にないコードです: ${code}`);
+  }
+
+  const snapshots: MunicipalityDetail["snapshots"] = years.map((year) => {
+    const processed = processedByYear.get(year);
+    if (!processed) {
+      throw new Error(`${year}年のprocessedデータがありません。`);
+    }
+    const snapshot = processed.population_snapshots.find(
+      (record) => record.municipality_code === code,
+    );
+    if (!snapshot) {
+      throw new Error(`${year}年の人口レコードがありません: ${code}`);
+    }
+    const ages = ageGroups(
+      processed.age_populations.filter(
+        (record) => record.municipality_code === code,
+      ),
+    );
+    const structure = calculateAgeStructure(ages);
+    const coverage = compareAgeCoverage(
+      snapshot.population_total,
+      structure?.knownPopulation ?? null,
+    );
+    const extended = extendedByYear.get(year);
+    const scopes = new Map(
+      extended?.population_records
+        .filter((record) => record.municipality_code === code)
+        .map((record) => [record.resident_scope, record.population_total]) ??
+        [],
+    );
+    const populationJapanese = scopes.get("japanese") ?? null;
+    const populationForeign = scopes.get("foreign") ?? null;
+    if (
+      snapshot.population_total !== null &&
+      populationJapanese !== null &&
+      populationForeign !== null &&
+      populationJapanese + populationForeign !== snapshot.population_total
+    ) {
+      warnings.push({
+        code: "resident_scope_gap",
+        message: `${year}年の日本人住民と外国人住民の合計が総人口と一致しません。`,
+        municipality_code: code,
+      });
+    }
+    if (coverage && coverage.difference !== 0) {
+      warnings.push({
+        code: "age_coverage_gap",
+        message: `${year}年の総人口と年齢把握済み人口に差があります。`,
+        municipality_code: code,
+      });
+    }
+    const ageUnknown =
+      snapshot.population_total === null || structure === null
+        ? null
+        : snapshot.population_total - structure.knownPopulation;
+    if (ageUnknown !== null && ageUnknown < 0) {
+      throw new Error(
+        `${year}年の年齢把握済み人口が総人口を超えています: ${code}`,
+      );
+    }
+    return {
+      as_of_date: snapshot.as_of_date,
+      population_total: snapshot.population_total,
+      population_japanese: populationJapanese,
+      population_foreign: populationForeign,
+      households: snapshot.households,
+      age: {
+        age_0_14: ages.age_0_14,
+        age_15_64: ages.age_15_64,
+        age_65_plus: ages.age_65_plus,
+        age_unknown: ageUnknown,
+        population_age_known: structure?.knownPopulation ?? null,
+        shares: structure?.shares ?? null,
+      },
+    };
+  });
+
+  const flows: MunicipalityDetail["flows"] = years.map((year) => {
+    const processed = processedByYear.get(year);
+    if (!processed) {
+      throw new Error(`${year}年のprocessedデータがありません。`);
+    }
+    const flow = processed.population_flows.find(
+      (record) => record.municipality_code === code,
+    );
+    if (!flow) {
+      throw new Error(`${year}年の人口動態レコードがありません: ${code}`);
+    }
+    const currentSnapshot = snapshots.find(
+      (snapshot) => snapshot.as_of_date === `${year}-01-01`,
+    );
+    const startSnapshot = snapshots.find(
+      (snapshot) => snapshot.as_of_date === flow.period_start,
+    );
+    const denominator = startSnapshot ?? currentSnapshot;
+    const natural = reconcileNaturalChange(
+      flow.births,
+      flow.deaths,
+      flow.natural_change_reported,
+    );
+    const migration = reconcileMigrationChange(
+      flow.move_ins,
+      flow.move_outs,
+      flow.migration_change_reported,
+    );
+    if (natural?.difference && natural.difference !== 0) {
+      warnings.push({
+        code: "natural_change_gap",
+        message: `${flow.period_start}〜${flow.period_end}の自然増減に差があります。`,
+        municipality_code: code,
+      });
+    }
+    if (migration?.difference && migration.difference !== 0) {
+      warnings.push({
+        code: "migration_change_gap",
+        message: `${flow.period_start}〜${flow.period_end}の社会増減に調整差があります。`,
+        municipality_code: code,
+      });
+    }
+    return {
+      period_start: flow.period_start,
+      period_end: flow.period_end,
+      births: flow.births,
+      deaths: flow.deaths,
+      natural_change_reported: flow.natural_change_reported,
+      natural_change_calculated: natural?.calculated ?? null,
+      move_ins: flow.move_ins,
+      move_outs: flow.move_outs,
+      migration_change_reported: flow.migration_change_reported,
+      migration_change_simple: migration?.calculated ?? null,
+      adjustment: flow.adjustment,
+      denominator_as_of_date: denominator?.as_of_date ?? null,
+      denominator_population: denominator?.population_total ?? null,
+      natural_rate_per_1000: calculateRatePer1000(
+        natural?.calculated ?? null,
+        denominator?.population_total ?? null,
+      ),
+      migration_rate_per_1000: calculateRatePer1000(
+        migration?.reported ?? null,
+        denominator?.population_total ?? null,
+      ),
+    };
+  });
+
+  const first = snapshots[0];
+  const last = snapshots.at(-1);
+  if (!first || !last) {
+    throw new Error(`人口スナップショットが空です: ${code}`);
+  }
+  const change = calculatePopulationChange(
+    first.population_total,
+    last.population_total,
+  );
+
+  return {
+    release_id: releaseId,
+    municipality: {
+      municipality_code: municipality.code,
+      prefecture_code: projectConfig.focusPrefecture.code,
+      prefecture_name_ja: projectConfig.focusPrefecture.nameJa,
+      name_ja: municipality.nameJa,
+      name_kana: null,
+      municipality_type: municipality.type,
+      valid_from: first.as_of_date,
+      valid_to: null,
+    },
+    snapshots,
+    flows,
+    change_10y: {
+      start_date: first.as_of_date,
+      end_date: last.as_of_date,
+      start_population: first.population_total,
+      end_population: last.population_total,
+      population_change_10y: change?.change ?? null,
+      population_change_rate_10y: change?.rate ?? null,
+    },
+  };
+}
+
+function featuresOf(detail: MunicipalityDetail): FeatureValues {
+  const last = detail.snapshots.at(-1);
+  if (!last || last.population_total === null || last.age.shares === null) {
+    throw new Error(
+      `類似度特徴量に必要な最新人口・年齢構成がありません: ${detail.municipality.municipality_code}`,
+    );
+  }
+  if (detail.change_10y.population_change_rate_10y === null) {
+    throw new Error(
+      `類似度特徴量に必要な人口増減率がありません: ${detail.municipality.municipality_code}`,
+    );
+  }
+  return {
+    log_population: Math.log10(last.population_total),
+    child_share: last.age.shares.age_0_14,
+    elderly_share: last.age.shares.age_65_plus,
+    population_change_rate: detail.change_10y.population_change_rate_10y,
+  };
+}
+
+function buildSimilarity(
+  releaseId: string,
+  details: readonly MunicipalityDetail[],
+): { similarity: SimilarityFile; model: SimilarityModel } {
+  const features: MunicipalityFeatures[] = details.map((detail) => ({
+    code: detail.municipality.municipality_code,
+    values: featuresOf(detail),
+  }));
+  const model = fitSimilarityModel(features);
+  const weights = Object.fromEntries(
+    projectConfig.similarity.features.map((feature) => [
+      feature.id,
+      feature.weight,
+    ]),
+  ) as Record<FeatureId, number>;
+  const resultCount = Math.min(
+    projectConfig.similarity.resultCount,
+    Math.max(1, details.length - 1),
+  );
+  const municipalityByCode = new Map(
+    details.map((detail) => [detail.municipality.municipality_code, detail]),
+  );
+  const entries = features.map((source) => ({
+    municipality_code: source.code,
+    feature_values: source.values,
+    similar: rankSimilarMunicipalities(
+      source,
+      features,
+      model,
+      weights,
+      resultCount,
+    ).map((result) => {
+      const candidate = municipalityByCode.get(result.code);
+      if (!candidate) {
+        throw new Error(`類似候補の自治体詳細がありません: ${result.code}`);
+      }
+      return {
+        municipality_code: result.code,
+        name_ja: candidate.municipality.name_ja,
+        prefecture_code: candidate.municipality.prefecture_code,
+        prefecture_name_ja: candidate.municipality.prefecture_name_ja,
+        distance: result.distance,
+        contributions: result.contributions,
+        feature_values: sourceFeatureValues(features, result.code),
+      };
+    }),
+  }));
+  const modelFeatures = projectConfig.similarity.features.map((feature) => ({
+    id: feature.id,
+    label_ja: feature.labelJa,
+    weight: feature.weight,
+    median: model[feature.id].median,
+    iqr: model[feature.id].iqr,
+  }));
+  return {
+    similarity: {
+      release_id: releaseId,
+      result_count: resultCount,
+      entries,
+    },
+    model: {
+      release_id: releaseId,
+      normalization: "median_iqr",
+      distance: "weighted_euclidean",
+      reference_date: details[0]?.snapshots.at(-1)?.as_of_date ?? "",
+      change_start_date: details[0]?.change_10y.start_date ?? "",
+      change_end_date: details[0]?.change_10y.end_date ?? "",
+      features: modelFeatures,
+      candidate_count: features.length,
+      excluded_count: 0,
+      exclusion_reasons: [],
+    },
+  };
+}
+
+function sourceFeatureValues(
+  features: readonly MunicipalityFeatures[],
+  code: string,
+): FeatureValues {
+  const candidate = features.find((feature) => feature.code === code);
+  if (!candidate) {
+    throw new Error(`類似度特徴量がありません: ${code}`);
+  }
+  return candidate.values;
+}
+
+export function buildPublication(options: PublishOptions): PublicationFiles {
+  const generatedAt = new Date().toISOString();
+  const processedByYear = new Map<number, ProcessedYear>();
+  const extendedByYear = new Map<number, ExtendedYear>();
+  const manifestSources: Array<ReturnType<typeof sourceToManifest>> = [];
+
+  options.years.forEach((year) => {
+    const processedPath = join(
+      options.processedRoot,
+      String(year),
+      "pilot.json",
+    );
+    const extendedPath = join(options.extendedRoot, String(year), "pilot.json");
+    if (!existsSync(processedPath) || !existsSync(extendedPath)) {
+      throw new Error(`${year}年の正規化入力が不足しています。`);
+    }
+    const processed = readJson<ProcessedYear>(processedPath);
+    const extended = readJson<ExtendedYear>(extendedPath);
+    processedByYear.set(year, processed);
+    extendedByYear.set(year, extended);
+    const staging = readJson<StagingYear>(
+      join(
+        options.processedRoot.replace(/processed\/juki$/, "staging/juki"),
+        String(year),
+        "pilot.json",
+      ),
+    );
+    staging.source.forEach((source) =>
+      manifestSources.push(
+        sourceToManifest(year, source, options.rawRoot, generatedAt),
+      ),
+    );
+    const extendedStaging = readJson<ExtendedStagingYear>(extendedPath);
+    extendedStaging.sources.forEach((source) =>
+      manifestSources.push(
+        sourceToManifest(
+          year,
+          {
+            table: source.table,
+            fileId: source.file_id,
+            rawFile: source.raw_file,
+            sha256: source.sha256,
+            sheetName: source.sheet_name,
+          },
+          options.rawRoot,
+          generatedAt,
+        ),
+      ),
+    );
+  });
+
+  const warnings: QualityIssue[] = [];
+  const details = options.municipalityCodes.map((code) =>
+    buildDetail(
+      options.releaseId,
+      code,
+      options.years,
+      processedByYear,
+      extendedByYear,
+      warnings,
+    ),
+  );
+  const extendedDetails = options.municipalityCodes.map((code) =>
+    buildExtendedDetail(options.releaseId, code, options.years, extendedByYear),
+  );
+  const lastDate = `${options.years.at(-1)}-01-01`;
+  const lastFlow = details[0]?.flows.at(-1);
+  if (!lastFlow) {
+    throw new Error("人口動態が空です。");
+  }
+  const summaryRows = details.map((detail) => {
+    const last = detail.snapshots.find(
+      (snapshot) => snapshot.as_of_date === lastDate,
+    );
+    const lastFlow = detail.flows.at(-1);
+    if (!last || !lastFlow) {
+      throw new Error(
+        `概要対象の最新値がありません: ${detail.municipality.municipality_code}`,
+      );
+    }
+    return {
+      municipality_code: detail.municipality.municipality_code,
+      name_ja: detail.municipality.name_ja,
+      municipality_type: detail.municipality.municipality_type,
+      population_total: last.population_total,
+      population_change_10y: detail.change_10y.population_change_10y,
+      population_change_rate_10y: detail.change_10y.population_change_rate_10y,
+      age_shares: last.age.shares,
+      natural_rate_per_1000: lastFlow.natural_rate_per_1000,
+      migration_rate_per_1000: lastFlow.migration_rate_per_1000,
+    };
+  });
+  const summary: SummaryFile = {
+    release_id: options.releaseId,
+    prefecture_code: projectConfig.focusPrefecture.code,
+    prefecture_name_ja: projectConfig.focusPrefecture.nameJa,
+    as_of_date: lastDate,
+    change_start_date: `${options.years[0]}-01-01`,
+    change_end_date: lastDate,
+    flow_period_start: lastFlow.period_start,
+    flow_period_end: lastFlow.period_end,
+    population_total: sumNullable(
+      summaryRows.map((row) => row.population_total),
+    ),
+    municipalities: summaryRows,
+  };
+  const municipalityRecords = details.map((detail) => detail.municipality);
+  const municipalities: MunicipalitiesFile = {
+    release_id: options.releaseId,
+    municipalities: municipalityRecords,
+  };
+  const similarityParts = buildSimilarity(options.releaseId, details);
+  const similarity = similarityParts.similarity;
+  const similarityModel = similarityParts.model;
+  const flowPeriods = [
+    ...new Map(
+      details
+        .flatMap((detail) => detail.flows)
+        .map((flow) => [
+          `${flow.period_start}/${flow.period_end}`,
+          { period_start: flow.period_start, period_end: flow.period_end },
+        ]),
+    ).values(),
+  ];
+  const manifest: Manifest = {
+    release_id: options.releaseId,
+    schema_version: 1,
+    generated_at: generatedAt,
+    coverage: {
+      focus_prefecture_code: projectConfig.focusPrefecture.code,
+      focus_municipality_count: details.length,
+      snapshot_dates: options.years.map((year) => `${year}-01-01`),
+      flow_periods: flowPeriods,
+      national_candidate_count: similarityModel.candidate_count,
+      national_excluded_count: similarityModel.excluded_count,
+    },
+    units: {
+      share: "ratio_0_1",
+      change_rate: "ratio_0_1",
+      flow_rate: "per_1000",
+    },
+    config_files: [
+      {
+        path: "config/project.json",
+        sha256: sha256(resolve("config/project.json")),
+      },
+      {
+        path: "config/municipalities/hiroshima.json",
+        sha256: sha256(resolve("config/municipalities/hiroshima.json")),
+      },
+    ],
+    sources: manifestSources,
+    pipeline: {
+      git_commit: gitCommit(),
+      generated_by: "scripts/data/publish-juki.ts",
+    },
+    quality: {
+      warnings,
+      excluded_municipalities: [],
+    },
+    metric_choices: {
+      migration_change: "reported",
+      natural_change: "reported",
+    },
+    attribution:
+      "総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」の公表データを本プロジェクトが加工したパイロットです。全国候補集合は未接続のため、本番公開には使用しません。",
+    license_note:
+      "一次情報の利用条件と出典表示に従って利用してください。このパイロットは本番公開用ではありません。",
+  };
+  const latest: LatestPointer = {
+    release_id: options.releaseId,
+    published_at: generatedAt,
+  };
+
+  latestPointerSchema.parse(latest);
+  manifestSchema.parse(manifest);
+  municipalitiesFileSchema.parse(municipalities);
+  summaryFileSchema.parse(summary);
+  details.forEach((detail) => municipalityDetailSchema.parse(detail));
+  similarityFileSchema.parse(similarity);
+  similarityModelSchema.parse(similarityModel);
+  extendedDetails.forEach((detail) =>
+    extendedMunicipalityDetailSchema.parse(detail),
+  );
+  return {
+    latest,
+    manifest,
+    municipalities,
+    summary,
+    details,
+    similarity,
+    similarityModel,
+    extendedDetails,
+  };
+}
+
+function writeJson(path: string, value: unknown): void {
+  mkdirSync(resolve(path, ".."), { recursive: true });
+  writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+export async function publishJuki(options: PublishOptions): Promise<void> {
+  const files = buildPublication(options);
+  const outputParent = resolve(options.outputRoot, "..");
+  mkdirSync(outputParent, { recursive: true });
+  const tempRoot = mkdtempSync(join(outputParent, ".juki-publication-"));
+  try {
+    const releaseRoot = join(tempRoot, "releases", options.releaseId);
+    writeJson(join(tempRoot, "latest.json"), files.latest);
+    writeJson(join(releaseRoot, "manifest.json"), files.manifest);
+    writeJson(join(releaseRoot, "municipalities.json"), files.municipalities);
+    writeJson(join(releaseRoot, "hiroshima-summary.json"), files.summary);
+    writeJson(join(releaseRoot, "similarity.json"), files.similarity);
+    writeJson(
+      join(releaseRoot, "similarity-model.json"),
+      files.similarityModel,
+    );
+    files.details.forEach((detail) =>
+      writeJson(
+        join(
+          releaseRoot,
+          "municipality",
+          `${detail.municipality.municipality_code}.json`,
+        ),
+        detail,
+      ),
+    );
+    files.extendedDetails.forEach((detail) =>
+      writeJson(
+        join(
+          releaseRoot,
+          "extended",
+          "municipality",
+          `${detail.municipality_code}.json`,
+        ),
+        detail,
+      ),
+    );
+
+    const bundle = await loadReleaseBundle(options.releaseId, tempRoot);
+    const expectation: ReleaseExpectation = {
+      releaseId: options.releaseId,
+      snapshotDates: options.years.map((year) => `${year}-01-01`),
+      focusMunicipalityCodes: options.municipalityCodes,
+      similarityResultCount: files.similarity.result_count,
+    };
+    const report = validateRelease(bundle, expectation);
+    if (report.errors.length > 0) {
+      const detail = report.errors
+        .map(
+          ({ code, message, municipalityCode }) =>
+            `${municipalityCode ?? ""}[${code}] ${message}`,
+        )
+        .join(" / ");
+      throw new Error(`生成した公開JSONの整合性検証に失敗しました: ${detail}`);
+    }
+    const targetRelease = join(
+      options.outputRoot,
+      "releases",
+      options.releaseId,
+    );
+    if (existsSync(targetRelease)) {
+      throw new Error(`既存の公開先を上書きしません: ${options.outputRoot}`);
+    }
+    if (!existsSync(options.outputRoot)) {
+      renameSync(tempRoot, options.outputRoot);
+    } else {
+      const existingEntries = readdirSync(options.outputRoot).filter(
+        (entry) =>
+          !new Set(["README.md", ".DS_Store", "latest.json", "releases"]).has(
+            entry,
+          ),
+      );
+      if (existingEntries.length > 0) {
+        throw new Error(`既存の公開先を上書きしません: ${options.outputRoot}`);
+      }
+
+      const releasesRoot = join(options.outputRoot, "releases");
+      const latestPath = join(options.outputRoot, "latest.json");
+      const previousLatest = existsSync(latestPath)
+        ? readFileSync(latestPath, "utf8")
+        : null;
+      mkdirSync(releasesRoot, { recursive: true });
+      let installedRelease = false;
+      try {
+        renameSync(
+          join(tempRoot, "releases", options.releaseId),
+          targetRelease,
+        );
+        installedRelease = true;
+        renameSync(join(tempRoot, "latest.json"), latestPath);
+        rmSync(tempRoot, { recursive: true, force: true });
+      } catch (error) {
+        if (installedRelease) {
+          rmSync(targetRelease, { recursive: true, force: true });
+        }
+        if (previousLatest !== null) {
+          writeFileSync(latestPath, previousLatest, "utf8");
+        }
+        throw error;
+      }
+    }
+    console.log(
+      `JSON変換OK: ${options.releaseId} / ${options.municipalityCodes.length}自治体 / ` +
+        `${options.years.length}時点 / 警告${report.warnings.length}件`,
+    );
+  } catch (error) {
+    rmSync(tempRoot, { recursive: true, force: true });
+    throw error;
+  }
+}
+
+function parseList(value: string, label: string): string[] {
+  const values = value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+  if (values.length === 0) {
+    throw new Error(`${label}を1件以上指定してください。`);
+  }
+  return values;
+}
+
+function parseArgs(argv: string[]): PublishOptions {
+  const values = new Map<string, string>();
+  for (let index = 0; index < argv.length; index += 1) {
+    const argument = argv[index];
+    if (argument === "--") {
+      continue;
+    }
+    if (!argument?.startsWith("--")) {
+      throw new Error(`不明な引数です: ${argument ?? ""}`);
+    }
+    const [key, inlineValue] = argument.slice(2).split("=", 2);
+    const value = inlineValue ?? argv[++index];
+    if (!key || typeof value !== "string" || value.length === 0) {
+      throw new Error(`引数の値がありません: --${key ?? ""}`);
+    }
+    values.set(key, value);
+  }
+  const projectRoot = resolve(new URL("../..", import.meta.url).pathname);
+  const years = parseList(values.get("years") ?? "2016,2025", "years").map(
+    (value) => {
+      const year = Number(value);
+      if (!Number.isInteger(year)) {
+        throw new Error(`年が整数ではありません: ${value}`);
+      }
+      return year;
+    },
+  );
+  const municipalityCodes = parseList(
+    values.get("municipalities") ?? "34100,34214",
+    "municipalities",
+  );
+  municipalityCodes.forEach((code) => {
+    if (!/^\d{5}$/.test(code)) {
+      throw new Error(`自治体コードは5桁で指定してください: ${code}`);
+    }
+  });
+  return {
+    releaseId: values.get("release-id") ?? "juki-2016-2025-pilot-v1",
+    years,
+    municipalityCodes,
+    processedRoot: resolve(
+      projectRoot,
+      values.get("processed-root") ?? "data/processed/juki",
+    ),
+    extendedRoot: resolve(
+      projectRoot,
+      values.get("extended-root") ?? "data/staging/juki-extended",
+    ),
+    rawRoot: resolve(projectRoot, values.get("raw-root") ?? "data/raw/juki"),
+    outputRoot: resolve(
+      projectRoot,
+      values.get("output-root") ?? "data/staging/public-juki",
+    ),
+  };
+}
+
+if (
+  process.argv[1] &&
+  resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)
+) {
+  publishJuki(parseArgs(process.argv.slice(2))).catch((error: unknown) => {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+  });
+}
