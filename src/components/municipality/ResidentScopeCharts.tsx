@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import type { FocusEvent, MouseEvent } from "react";
 
-import { niceAxisMax } from "@/lib/charts/scale";
+import { indexAxisBounds, niceAxisMax } from "@/lib/charts/scale";
 import type {
   ExtendedAgeBand,
   ExtendedMunicipalityDetail,
@@ -13,6 +13,7 @@ import {
   formatAsOfDate,
   formatCount,
   formatRatioAsPercent,
+  missingLabel,
 } from "@/lib/format/display";
 
 const residentScopes = [
@@ -219,19 +220,41 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
   const plotRight = 888;
   const plotTop = 24;
   const plotBottom = 248;
-  const values = points.flatMap((point) =>
-    [point.japanese, point.foreign].flatMap((value) =>
-      value === null ? [] : [value],
-    ),
+  /** 基準年（最初に値がある年）を100とした指数。実人数は表と棒グラフで確認する。 */
+  const baseFor = (key: ResidentScopeKey): number | null => {
+    const base = points.find((point) => point[key] !== null)?.[key] ?? null;
+    return base === null || base === 0 ? null : base;
+  };
+  const bases: Record<ResidentScopeKey, number | null> = {
+    japanese: baseFor("japanese"),
+    foreign: baseFor("foreign"),
+  };
+  const indexOf = (
+    point: PopulationScopePoint,
+    key: ResidentScopeKey,
+  ): number | null => {
+    const base = bases[key];
+    const value = point[key];
+    return base === null || value === null ? null : (value / base) * 100;
+  };
+  const indexValues = points.flatMap((point) =>
+    residentScopes.flatMap(({ key }) => {
+      const value = indexOf(point, key);
+      return value === null ? [] : [value];
+    }),
   );
-  const max = Math.max(1, ...values);
-  const chartMax = niceAxisMax(max);
+  const baseDate = points[0]?.as_of_date ?? null;
+  const bounds = indexAxisBounds(
+    Math.min(100, ...indexValues),
+    Math.max(100, ...indexValues),
+  );
+  const range = bounds.max - bounds.min || 1;
   const xFor = (index: number) =>
     plotLeft +
     (index / Math.max(1, points.length - 1)) * (plotRight - plotLeft);
   const yFor = (value: number) =>
-    plotBottom - (value / chartMax) * (plotBottom - plotTop);
-  const yTicks = [chartMax, chartMax / 2, 0];
+    plotBottom - ((value - bounds.min) / range) * (plotBottom - plotTop);
+  const yTicks = [bounds.max, 100, bounds.min];
   const { clearTooltip, frameRef, hovered, showTooltip } = useChartHover();
 
   return (
@@ -239,11 +262,14 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
       <div className="resident-chart-heading">
         <div>
           <p className="eyebrow">住民区分</p>
-          <h3>日本人・外国人住民の人口推移</h3>
+          <h3>日本人・外国人住民の変化</h3>
         </div>
       </div>
       <p className="chart-card-note">
-        各年1月1日時点。ポイントにカーソルを合わせると人数を表示します。
+        {baseDate === null
+          ? null
+          : `${formatAsOfDate(baseDate)}を100とした指数`}
+        。日本人住民と外国人住民では人数の桁が異なるため、変化の大きさを同じ物差しで比べられるようにしています。実人数は下の棒グラフと表で確認できます。
       </p>
       <ScopeLegend />
       <div
@@ -258,9 +284,9 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
           aria-labelledby="resident-scope-chart-heading"
         >
           <title id="resident-scope-chart-heading">
-            日本人・外国人住民の人口推移
+            日本人・外国人住民の変化（基準年を100とした指数）
           </title>
-          <desc>日本人住民と外国人住民の各年人口</desc>
+          <desc>日本人住民と外国人住民の各年の指数</desc>
           {yTicks.map((tick) => (
             <g key={tick}>
               <line
@@ -268,7 +294,11 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
                 x2={plotRight}
                 y1={yFor(tick)}
                 y2={yFor(tick)}
-                className="chart-grid-line"
+                className={
+                  tick === 100
+                    ? "chart-grid-line index-baseline"
+                    : "chart-grid-line"
+                }
               />
               <text
                 x={plotLeft - 12}
@@ -276,16 +306,23 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
                 textAnchor="end"
                 className="chart-axis-label"
               >
-                {formatCount(Math.round(tick))}
+                {tick}
               </text>
             </g>
           ))}
+          <text
+            x={plotRight}
+            y={yFor(100) - 8}
+            textAnchor="end"
+            className="chart-axis-label"
+          >
+            基準（100）
+          </text>
           {residentScopes.map(({ key, tone }) => {
-            const pointsForScope = points.flatMap((point, index) =>
-              point[key] === null
-                ? []
-                : [{ x: xFor(index), y: yFor(point[key]!) }],
-            );
+            const pointsForScope = points.flatMap((point, index) => {
+              const value = indexOf(point, key);
+              return value === null ? [] : [{ x: xFor(index), y: yFor(value) }];
+            });
             const path = pointsForScope
               .map(({ x, y }, index) => `${index === 0 ? "M" : "L"} ${x} ${y}`)
               .join(" ");
@@ -295,35 +332,35 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
                   d={path}
                   className={`dashboard-chart-line ${tone}-line`}
                 />
-                {points.map((point, index) =>
-                  point[key] === null ? null : (
+                {points.map((point, index) => {
+                  const indexValue = indexOf(point, key);
+                  if (indexValue === null) {
+                    return null;
+                  }
+                  const scopeLabel = residentScopes.find(
+                    (scope) => scope.key === key,
+                  )?.label;
+                  const tooltip = {
+                    title: `${yearLabel(point.as_of_date)}・${scopeLabel}`,
+                    value: `${indexValue.toFixed(1)}`,
+                    detail: `基準年=100 / 実人数 ${formatCount(point[key])}`,
+                  };
+                  return (
                     <circle
                       key={`${key}-${point.as_of_date}`}
                       cx={xFor(index)}
-                      cy={yFor(point[key]!)}
+                      cy={yFor(indexValue)}
                       r="5"
                       className={`dashboard-chart-point ${tone}-point`}
                       tabIndex={0}
-                      aria-label={`${yearLabel(point.as_of_date)} ${residentScopes.find((scope) => scope.key === key)?.label} ${formatCount(point[key])}`}
-                      onMouseMove={(event) =>
-                        showTooltip(event, {
-                          title: `${yearLabel(point.as_of_date)}・${residentScopes.find((scope) => scope.key === key)?.label}`,
-                          value: formatCount(point[key]),
-                          detail: "基準日人口",
-                        })
-                      }
-                      onFocus={(event) =>
-                        showTooltip(event, {
-                          title: `${yearLabel(point.as_of_date)}・${residentScopes.find((scope) => scope.key === key)?.label}`,
-                          value: formatCount(point[key]),
-                          detail: "基準日人口",
-                        })
-                      }
+                      aria-label={`${yearLabel(point.as_of_date)} ${scopeLabel} 指数${indexValue.toFixed(1)} 実人数${formatCount(point[key])}`}
+                      onMouseMove={(event) => showTooltip(event, tooltip)}
+                      onFocus={(event) => showTooltip(event, tooltip)}
                       onMouseLeave={clearTooltip}
                       onBlur={clearTooltip}
                     />
-                  ),
-                )}
+                  );
+                })}
               </g>
             );
           })}
@@ -350,17 +387,33 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
               <tr>
                 <th scope="col">基準日</th>
                 <th scope="col">日本人住民</th>
+                <th scope="col">日本人住民 指数</th>
                 <th scope="col">外国人住民</th>
+                <th scope="col">外国人住民 指数</th>
               </tr>
             </thead>
             <tbody>
-              {points.map((point) => (
-                <tr key={point.as_of_date}>
-                  <th scope="row">{yearLabel(point.as_of_date)}</th>
-                  <td>{formatCount(point.japanese)}</td>
-                  <td>{formatCount(point.foreign)}</td>
-                </tr>
-              ))}
+              {points.map((point) => {
+                const japaneseIndex = indexOf(point, "japanese");
+                const foreignIndex = indexOf(point, "foreign");
+                return (
+                  <tr key={point.as_of_date}>
+                    <th scope="row">{yearLabel(point.as_of_date)}</th>
+                    <td>{formatCount(point.japanese)}</td>
+                    <td>
+                      {japaneseIndex === null
+                        ? missingLabel
+                        : japaneseIndex.toFixed(1)}
+                    </td>
+                    <td>{formatCount(point.foreign)}</td>
+                    <td>
+                      {foreignIndex === null
+                        ? missingLabel
+                        : foreignIndex.toFixed(1)}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

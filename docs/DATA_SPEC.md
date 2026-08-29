@@ -196,6 +196,16 @@ population_change_rate_10y = population_change_10y / population(start)
 rate_per_1000 = flow / denominator_population * 1000
 ```
 
+### 指数
+
+住民区分のように桁の違う系列を同じ図で比べる場合、表示用に指数を作ります。
+
+```text
+index = value / value(基準年) × 100
+```
+
+基準年は対象期間の最初の年で、画面に必ず明記します。指数は表示のための派生値であり、公開JSONには保存しません。実人数を別のグラフと表で必ず併記します。
+
 ### 類似度
 
 特徴量、標準化、重みは [MVP_SPEC.md](MVP_SPEC.md#5-類似自治体) を正とします。計算に使った全国中央値、IQR、候補件数、除外件数を `similarity-model.json` に保存します。

@@ -2142,6 +2142,12 @@ body {
   fill: var(--age-foreign-4);
 }
 
+/* 指数の基準線（100）は他の目盛と区別する。 */
+.index-baseline {
+  stroke-dasharray: 4 4;
+  opacity: 0.9;
+}
+
 /* パネル内に置く凡例は幅が狭いので、間隔を詰めて2行に収める。 */
 .chart-legend-compact {
   gap: 6px 12px;

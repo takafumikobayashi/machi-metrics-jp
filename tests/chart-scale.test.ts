@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { niceAxisBounds, niceAxisMax, niceStep } from "../src/lib/charts/scale";
+import {
+  indexAxisBounds,
+  niceAxisBounds,
+  niceAxisMax,
+  niceStep,
+} from "../src/lib/charts/scale";
 
 test("nice steps follow the 1-2-2.5-5-10 series", () => {
   assert.equal(niceStep(1), 1);
@@ -41,4 +46,15 @@ test("a flat series still produces a usable axis", () => {
   const bounds = niceAxisBounds(100, 100);
   assert.ok(bounds.min < 100);
   assert.ok(bounds.max > 100);
+});
+
+test("an index axis always puts the baseline on a gridline", () => {
+  // 日本人住民84.2、外国人住民204.0のとき、刻み20で80〜220になる。
+  const bounds = indexAxisBounds(84.2, 203.97);
+  assert.deepEqual(bounds, { min: 80, max: 220 });
+
+  const step = (bounds.max - bounds.min) / 7;
+  assert.equal(bounds.min % 20, 0);
+  assert.ok(bounds.min <= 100 && bounds.max >= 100);
+  assert.ok(step > 0);
 });

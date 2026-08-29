@@ -63,3 +63,22 @@ export function niceAxisBounds(minValue: number, maxValue: number): AxisBounds {
     max: Math.ceil(maxValue / step) * step,
   };
 }
+
+/**
+ * 指数（基準年=100）の軸。刻みは必ず100を割り切る値になるため、
+ * 基準線100が目盛の上に乗る。
+ */
+export function indexAxisBounds(
+  minValue: number,
+  maxValue: number,
+): AxisBounds {
+  if (!Number.isFinite(minValue) || !Number.isFinite(maxValue)) {
+    return { min: 0, max: 100 };
+  }
+
+  const step = niceStep(Math.max((maxValue - minValue) / 6, 1));
+  return {
+    min: Math.floor(minValue / step) * step,
+    max: Math.ceil(maxValue / step) * step,
+  };
+}
