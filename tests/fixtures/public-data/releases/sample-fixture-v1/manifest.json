@@ -1,0 +1,54 @@
+{
+  "release_id": "sample-fixture-v1",
+  "schema_version": 1,
+  "generated_at": "2026-08-29T00:00:00Z",
+  "coverage": {
+    "focus_prefecture_code": "90",
+    "focus_municipality_count": 2,
+    "snapshot_dates": ["2016-01-01", "2025-01-01"],
+    "flow_periods": [
+      {
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31"
+      }
+    ],
+    "national_candidate_count": 4,
+    "national_excluded_count": 1
+  },
+  "units": {
+    "share": "ratio_0_1",
+    "change_rate": "ratio_0_1",
+    "flow_rate": "per_1000"
+  },
+  "config_files": [
+    {
+      "path": "config/project.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "sources": [
+    {
+      "statistic_name": "テスト用の架空データ",
+      "table_number": "00-00",
+      "table_name": "テスト用表",
+      "distribution_url": "https://example.invalid/fixture",
+      "acquired_at": "2026-08-29T00:00:00Z",
+      "file_name": "fixture.xlsx",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  ],
+  "pipeline": {
+    "git_commit": "0000000",
+    "generated_by": "tests/fixtures"
+  },
+  "quality": {
+    "warnings": [],
+    "excluded_municipalities": []
+  },
+  "metric_choices": {
+    "migration_change": "reported",
+    "natural_change": "reported"
+  },
+  "attribution": "テスト用の架空データ。実在の統計ではありません。",
+  "license_note": "テスト専用。公開しません。"
+}

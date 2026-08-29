@@ -1,0 +1,46 @@
+{
+  "release_id": "sample-fixture-v1",
+  "normalization": "median_iqr",
+  "distance": "weighted_euclidean",
+  "reference_date": "2025-01-01",
+  "change_start_date": "2016-01-01",
+  "change_end_date": "2025-01-01",
+  "features": [
+    {
+      "id": "log_population",
+      "label_ja": "人口規模",
+      "weight": 0.35,
+      "median": 4.2,
+      "iqr": 0.6
+    },
+    {
+      "id": "child_share",
+      "label_ja": "0〜14歳比率",
+      "weight": 0.15,
+      "median": 0.11,
+      "iqr": 0.02
+    },
+    {
+      "id": "elderly_share",
+      "label_ja": "65歳以上比率",
+      "weight": 0.2,
+      "median": 0.34,
+      "iqr": 0.06
+    },
+    {
+      "id": "population_change_rate",
+      "label_ja": "人口増減率",
+      "weight": 0.3,
+      "median": -0.05,
+      "iqr": 0.08
+    }
+  ],
+  "candidate_count": 4,
+  "excluded_count": 1,
+  "exclusion_reasons": [
+    {
+      "reason": "必須特徴量が欠損",
+      "count": 1
+    }
+  ]
+}

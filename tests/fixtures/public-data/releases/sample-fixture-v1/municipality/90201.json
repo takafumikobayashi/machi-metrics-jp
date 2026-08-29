@@ -1,0 +1,80 @@
+{
+  "release_id": "sample-fixture-v1",
+  "municipality": {
+    "municipality_code": "90201",
+    "prefecture_code": "90",
+    "prefecture_name_ja": "見本県",
+    "name_ja": "見本市",
+    "name_kana": null,
+    "municipality_type": "city",
+    "valid_from": "2010-04-01",
+    "valid_to": null
+  },
+  "snapshots": [
+    {
+      "as_of_date": "2016-01-01",
+      "population_total": 30000,
+      "population_japanese": 29500,
+      "population_foreign": 500,
+      "households": 12000,
+      "age": {
+        "age_0_14": 3000,
+        "age_15_64": 17000,
+        "age_65_plus": 9900,
+        "age_unknown": 100,
+        "population_age_known": 29900,
+        "shares": {
+          "age_0_14": 0.10033444816053512,
+          "age_15_64": 0.568561872909699,
+          "age_65_plus": 0.3311036789297659
+        }
+      }
+    },
+    {
+      "as_of_date": "2025-01-01",
+      "population_total": 27000,
+      "population_japanese": 26200,
+      "population_foreign": 800,
+      "households": 11500,
+      "age": {
+        "age_0_14": 2100,
+        "age_15_64": 14500,
+        "age_65_plus": 10300,
+        "age_unknown": 100,
+        "population_age_known": 26900,
+        "shares": {
+          "age_0_14": 0.07806691449814127,
+          "age_15_64": 0.5390334572490706,
+          "age_65_plus": 0.3828996282527881
+        }
+      }
+    }
+  ],
+  "flows": [
+    {
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "births": 100,
+      "deaths": 400,
+      "natural_change_reported": -300,
+      "natural_change_calculated": -300,
+      "move_ins": 900,
+      "move_outs": 1000,
+      "migration_change_reported": -80,
+      "migration_change_simple": -100,
+      "adjustment": 20,
+      "denominator_as_of_date": "2025-01-01",
+      "denominator_population": 27000,
+      "natural_rate_per_1000": -11.11111111111111,
+      "migration_rate_per_1000": -2.962962962962963
+    }
+  ],
+  "change_10y": {
+    "start_date": "2016-01-01",
+    "end_date": "2025-01-01",
+    "start_population": 30000,
+    "end_population": 27000,
+    "population_change_10y": -3000,
+    "population_change_rate_10y": -0.1
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "release_id": "sample-fixture-v1",
+  "municipalities": [
+    {
+      "municipality_code": "90201",
+      "prefecture_code": "90",
+      "prefecture_name_ja": "見本県",
+      "name_ja": "見本市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2010-04-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "90202",
+      "prefecture_code": "90",
+      "prefecture_name_ja": "見本県",
+      "name_ja": "見本町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2010-04-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "91201",
+      "prefecture_code": "91",
+      "prefecture_name_ja": "例示県",
+      "name_ja": "例示市",
+      "name_kana": null,
+      "municipality_type": "city",
+      "valid_from": "2010-04-01",
+      "valid_to": null
+    },
+    {
+      "municipality_code": "91202",
+      "prefecture_code": "91",
+      "prefecture_name_ja": "例示県",
+      "name_ja": "例示町",
+      "name_kana": null,
+      "municipality_type": "town",
+      "valid_from": "2010-04-01",
+      "valid_to": null
+    }
+  ]
+}

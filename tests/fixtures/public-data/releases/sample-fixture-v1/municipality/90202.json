@@ -1,0 +1,76 @@
+{
+  "release_id": "sample-fixture-v1",
+  "municipality": {
+    "municipality_code": "90202",
+    "prefecture_code": "90",
+    "prefecture_name_ja": "見本県",
+    "name_ja": "見本町",
+    "name_kana": null,
+    "municipality_type": "town",
+    "valid_from": "2010-04-01",
+    "valid_to": null
+  },
+  "snapshots": [
+    {
+      "as_of_date": "2016-01-01",
+      "population_total": 8000,
+      "population_japanese": 7900,
+      "population_foreign": 100,
+      "households": 3200,
+      "age": {
+        "age_0_14": 900,
+        "age_15_64": null,
+        "age_65_plus": null,
+        "age_unknown": null,
+        "population_age_known": null,
+        "shares": null
+      }
+    },
+    {
+      "as_of_date": "2025-01-01",
+      "population_total": 8400,
+      "population_japanese": 8200,
+      "population_foreign": 200,
+      "households": 3500,
+      "age": {
+        "age_0_14": 1000,
+        "age_15_64": 4600,
+        "age_65_plus": 2800,
+        "age_unknown": 0,
+        "population_age_known": 8400,
+        "shares": {
+          "age_0_14": 0.11904761904761904,
+          "age_15_64": 0.5476190476190477,
+          "age_65_plus": 0.3333333333333333
+        }
+      }
+    }
+  ],
+  "flows": [
+    {
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "births": 100,
+      "deaths": 400,
+      "natural_change_reported": -300,
+      "natural_change_calculated": -300,
+      "move_ins": 900,
+      "move_outs": 1000,
+      "migration_change_reported": -80,
+      "migration_change_simple": -100,
+      "adjustment": 20,
+      "denominator_as_of_date": "2025-01-01",
+      "denominator_population": 8400,
+      "natural_rate_per_1000": -35.714285714285715,
+      "migration_rate_per_1000": -9.523809523809526
+    }
+  ],
+  "change_10y": {
+    "start_date": "2016-01-01",
+    "end_date": "2025-01-01",
+    "start_population": 8000,
+    "end_population": 8400,
+    "population_change_10y": 400,
+    "population_change_rate_10y": 0.05
+  }
+}

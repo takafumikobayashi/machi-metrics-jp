@@ -205,6 +205,10 @@ public/data/
 
 `latest.json` は現在のリリースIDだけを指します。リリースディレクトリの内容は公開後に上書きせず、訂正は `v2` など新IDで作成します。
 
+公開JSONの機械可読な契約は `src/lib/data/schema.ts` を正とします。フィールド名は本書9の正規化モデルとMVP_SPEC 4の指標IDに合わせたsnake_caseで、人が管理する `config/` のcamelCaseとは別系統です。欠損はキーを省略せず `null` を明示し、比率は0〜1で保持します。想定外のキーを含むJSONはスキーマ違反として公開を止めます。
+
+ファイル間の整合（一覧と詳細の一致、10年増減の再計算、類似結果の件数と参照先など）は `src/lib/data/validate.ts` で検証し、`node --import tsx scripts/data/validate-release.ts` から実行します。
+
 ### マニフェスト必須項目
 
 - `release_id`
