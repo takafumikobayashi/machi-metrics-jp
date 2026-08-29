@@ -254,26 +254,6 @@ h3 {
   line-height: 1.4;
 }
 
-.status-note {
-  width: fit-content;
-  max-width: 760px;
-  margin-top: 40px;
-  padding: 14px 18px;
-  border: 1px solid rgb(255 255 255 / 20%);
-  border-radius: 10px;
-  background: rgb(0 0 0 / 12%);
-}
-
-.status-note strong,
-.status-note span {
-  display: block;
-}
-
-.status-note span {
-  color: rgb(255 255 255 / 72%);
-  font-size: var(--text-body);
-}
-
 .section {
   padding-block: 56px;
 }
@@ -691,10 +671,15 @@ h3 {
   text-underline-offset: 4px;
 }
 
+/*
+ * 背景を白で直書きしていたため、ダークテーマで明るい地に明るい文字となり
+ * リリースIDが読めなくなっていた。トークンで両テーマに追従させる。
+ */
 .source-card code {
   padding: 2px 5px;
   border-radius: 4px;
-  background: rgb(255 255 255 / 65%);
+  color: var(--ink);
+  background: var(--paper-strong);
   font-size: 0.82em;
 }
 
