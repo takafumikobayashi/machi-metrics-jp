@@ -52,6 +52,19 @@
   --amber: var(--series-3);
   --purple: var(--series-4);
 
+  /*
+   * 文字スタイル。デジタル庁デザインシステムに合わせ、本文16px・補足14pxを
+   * 下限とする。グラフのSVG軸ラベルだけは、年ラベルが横に収まらないため12pxを
+   * 例外として許容する。
+   */
+  --text-dsp: 2rem; /* 32px 見出し */
+  --text-h2: 1.5rem; /* 24px */
+  --text-h3: 1.25rem; /* 20px */
+  --text-lg: 1.0625rem; /* 17px 強調本文 */
+  --text-body: 1rem; /* 16px 本文 */
+  --text-sm: 0.875rem; /* 14px 補足・ラベル・密度の高い表 */
+  --text-chart: 12px; /* SVG軸ラベルの例外 */
+
   --shadow: 0 1px 2px rgb(16 20 26 / 6%);
   --radius: 10px;
   --shell: 1180px;
@@ -190,14 +203,14 @@ a:hover {
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: var(--text-sm);
   font-weight: 400;
 }
 
 nav {
   display: flex;
   gap: 24px;
-  font-size: 0.9rem;
+  font-size: var(--text-body);
 }
 
 nav a {
@@ -234,7 +247,7 @@ nav a {
 .eyebrow {
   margin: 0 0 10px;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -255,14 +268,14 @@ h3 {
 .hero h1 {
   max-width: 840px;
   margin: 0;
-  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-size: var(--text-dsp);
 }
 
 .hero-copy {
   max-width: 720px;
   margin: 28px 0 0;
   color: rgb(255 255 255 / 78%);
-  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-size: var(--text-lg);
 }
 
 .status-note {
@@ -282,7 +295,7 @@ h3 {
 
 .status-note span {
   color: rgb(255 255 255 / 72%);
-  font-size: 0.9rem;
+  font-size: var(--text-body);
 }
 
 .section {
@@ -299,7 +312,7 @@ h3 {
   justify-content: space-between;
   gap: 20px;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: var(--text-sm);
 }
 
 .detail-kicker .eyebrow {
@@ -316,7 +329,7 @@ h3 {
 
 .detail-heading h1 {
   margin: 0;
-  font-size: clamp(2rem, 3.6vw, 2.8rem);
+  font-size: var(--text-dsp);
 }
 
 .detail-heading .lead {
@@ -345,7 +358,7 @@ h3 {
   margin-top: 4px;
   color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.72rem;
+  font-size: var(--text-sm);
   overflow-wrap: anywhere;
 }
 
@@ -364,7 +377,7 @@ h3 {
 .preview-note span {
   margin-top: 4px;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: var(--text-body);
 }
 
 .metric-grid {
@@ -394,7 +407,7 @@ h3 {
 
 .metric-card > span {
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -405,13 +418,13 @@ h3 {
 .metric-card > strong {
   display: block;
   margin: 12px 0 6px;
-  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-size: var(--text-h2);
   line-height: 1.4;
 }
 
 .metric-card > small {
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: var(--text-sm);
 }
 
 .metric-card-featured > small {
@@ -436,14 +449,14 @@ h3 {
 
 .compact-heading h2 {
   margin: 0;
-  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  font-size: var(--text-h2);
 }
 
 .section-note {
   max-width: 720px;
   margin: 10px 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: var(--text-body);
 }
 
 .chart-frame {
@@ -481,11 +494,11 @@ h3 {
 .chart-label,
 .chart-value-label {
   fill: var(--muted);
-  font-size: 12px;
+  font-size: var(--text-chart);
 }
 
 .chart-value-label {
-  font-size: 11px;
+  font-size: var(--text-chart);
 }
 
 .table-wrap {
@@ -495,7 +508,7 @@ h3 {
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.88rem;
+  font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
 }
 
@@ -514,7 +527,7 @@ h3 {
 
 .data-table thead th {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -536,10 +549,19 @@ h3 {
   display: block;
 }
 
+/*
+ * 主値と補足が同じ14pxになるため、大きさではなく太さと色で主従を示す。
+ * デジタル庁デザインシステムの下限（14px）を守りつつ階層を保つための扱い。
+ */
+.flow-table td .table-primary-value {
+  font-weight: 700;
+}
+
 .flow-table td small {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: var(--text-sm);
+  font-weight: 400;
 }
 
 .rate-callout {
@@ -578,13 +600,13 @@ h3 {
 
 .age-period h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: var(--text-lg);
 }
 
 .age-period > p {
   margin: 4px 0 24px;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
 }
 
 .age-bar-row + .age-bar-row {
@@ -595,7 +617,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
 }
 
@@ -639,7 +661,7 @@ h3 {
 .similarity-rank {
   display: block;
   color: var(--orange);
-  font-size: 0.75rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -654,7 +676,7 @@ h3 {
 .similarity-list p {
   margin: 4px 0 0;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: var(--text-sm);
 }
 
 .empty-inline {
@@ -676,14 +698,14 @@ h3 {
 
 .source-card h2 {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: var(--text-h2);
 }
 
 .source-card p:not(.eyebrow) {
   max-width: 720px;
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: var(--text-sm);
 }
 
 .source-card a {
@@ -740,7 +762,7 @@ h3 {
 
 .overview-summary-card span {
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -748,12 +770,12 @@ h3 {
   display: block;
   margin: 8px 0 2px;
   color: var(--green-dark);
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-size: var(--text-h2);
 }
 
 .overview-summary-card small {
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: var(--text-sm);
 }
 
 .overview-table-wrap {
@@ -775,7 +797,7 @@ h3 {
 .source-callout h2,
 .prose-page h2 {
   margin: 0;
-  font-size: clamp(1.65rem, 3.4vw, 2.7rem);
+  font-size: var(--text-dsp);
 }
 
 .card-grid {
@@ -795,14 +817,14 @@ h3 {
 
 .card-number {
   color: var(--orange);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .feature-card h3 {
   margin: 54px 0 10px;
-  font-size: 1.25rem;
+  font-size: var(--text-h3);
 }
 
 .feature-card p {
@@ -897,7 +919,7 @@ nav a:focus-visible,
   border-top: 1px solid var(--line);
   color: var(--muted);
   background: var(--paper-strong);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
 }
 
 .site-footer p {
@@ -911,7 +933,7 @@ nav a:focus-visible,
 
 .footer-copyright {
   color: var(--ink);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -927,13 +949,13 @@ nav a:focus-visible,
 .municipality-placeholder > h1,
 .not-found h1 {
   margin: 0 0 20px;
-  font-size: clamp(2.3rem, 5vw, 4rem);
+  font-size: var(--text-dsp);
 }
 
 .lead {
   margin-bottom: 64px;
   color: var(--muted);
-  font-size: 1.15rem;
+  font-size: var(--text-lg);
 }
 
 .prose-page section {
@@ -943,7 +965,7 @@ nav a:focus-visible,
 }
 
 .prose-page h2 {
-  font-size: 1.55rem;
+  font-size: var(--text-h2);
 }
 
 .prose-page a {
@@ -974,7 +996,7 @@ nav a:focus-visible,
 
 .empty-state > span {
   color: var(--orange);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -1074,7 +1096,7 @@ nav a:focus-visible,
   }
 
   .hero h1 {
-    font-size: 2.45rem;
+    font-size: var(--text-dsp);
   }
 
   .section {
@@ -1143,7 +1165,7 @@ body {
   color: var(--ink);
   background: var(--paper);
   font: inherit;
-  font-size: 0.76rem;
+  font-size: var(--text-sm);
   cursor: pointer;
   transition:
     background-color 160ms ease,
@@ -1165,7 +1187,7 @@ body {
   width: 16px;
   height: 16px;
   place-items: center;
-  font-size: 1rem;
+  font-size: var(--text-body);
   line-height: 1;
 }
 
@@ -1185,13 +1207,13 @@ body {
 
 .dashboard-hero h1 {
   max-width: 760px;
-  font-size: clamp(2.35rem, 5vw, 4.6rem);
+  font-size: var(--text-dsp);
 }
 
 .dashboard-hero .hero-copy {
   max-width: 680px;
   margin-top: 22px;
-  font-size: 1rem;
+  font-size: var(--text-body);
 }
 
 .hero-snapshot-card {
@@ -1209,7 +1231,7 @@ body {
 
 .hero-snapshot-card span {
   color: rgb(255 255 255 / 72%);
-  font-size: 0.75rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -1219,13 +1241,13 @@ body {
   display: block;
   margin: 12px 0 5px;
   color: white;
-  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-size: var(--text-dsp);
   line-height: 1.4;
 }
 
 .hero-snapshot-card small {
   color: rgb(255 255 255 / 66%);
-  font-size: 0.76rem;
+  font-size: var(--text-sm);
 }
 
 .dashboard-section {
@@ -1244,7 +1266,7 @@ body {
 
 .dashboard-page-header h1 {
   margin: 0;
-  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-size: var(--text-dsp);
   line-height: 1.4;
 }
 
@@ -1252,7 +1274,7 @@ body {
   max-width: 620px;
   margin: 18px 0 0;
   color: var(--muted);
-  font-size: 0.98rem;
+  font-size: var(--text-body);
 }
 
 .dashboard-header-aside {
@@ -1275,14 +1297,14 @@ body {
 .dashboard-header-aside strong {
   margin-top: 14px;
   color: var(--primary-deep);
-  font-size: 1.7rem;
+  font-size: var(--text-dsp);
   line-height: 1.4;
 }
 
 .dashboard-header-aside small {
   margin-top: 3px;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: var(--text-sm);
 }
 
 .dashboard-toolbar {
@@ -1295,7 +1317,7 @@ body {
 
 .dashboard-toolbar h2 {
   margin: 0;
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-size: var(--text-h2);
 }
 
 .dashboard-toolbar-meta {
@@ -1305,7 +1327,7 @@ body {
   justify-content: flex-end;
   gap: 12px;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
 }
 
 .live-badge {
@@ -1317,7 +1339,7 @@ body {
   border-radius: 999px;
   color: var(--primary);
   background: var(--primary-soft);
-  font-size: 0.72rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -1341,7 +1363,7 @@ body {
 }
 
 .dashboard-metric-grid .metric-card > strong {
-  font-size: clamp(1.2rem, 2.3vw, 1.75rem);
+  font-size: var(--text-h2);
 }
 
 .dashboard-chart-grid {
@@ -1379,7 +1401,7 @@ body {
 .chart-card-header h3,
 .panel-heading h3 {
   margin: 0;
-  font-size: 1.22rem;
+  font-size: var(--text-h3);
 }
 
 .chart-expand-button,
@@ -1393,7 +1415,7 @@ body {
   color: var(--ink);
   background: var(--paper);
   font: inherit;
-  font-size: 0.74rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -1409,7 +1431,7 @@ body {
 
 .chart-expand-button span:last-child {
   color: var(--brand-700);
-  font-size: 1rem;
+  font-size: var(--text-body);
   line-height: 1;
 }
 
@@ -1430,14 +1452,14 @@ body {
 
 .chart-card-menu {
   color: var(--muted);
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   letter-spacing: 0.02em;
 }
 
 .chart-card-note {
   margin: 8px 0 0;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
 }
 
 .chart-legend {
@@ -1446,7 +1468,7 @@ body {
   gap: 14px;
   margin-top: 18px;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: var(--text-sm);
 }
 
 .chart-legend span {
@@ -1505,19 +1527,19 @@ body {
 }
 
 .chart-tooltip strong {
-  font-size: 0.72rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
 .chart-tooltip span {
-  font-size: 0.96rem;
+  font-size: var(--text-body);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
 .chart-tooltip small {
   color: rgb(255 255 255 / 66%);
-  font-size: 0.66rem;
+  font-size: var(--text-sm);
 }
 
 .chart-modal-backdrop {
@@ -1565,7 +1587,7 @@ body {
 }
 
 .chart-modal-close span {
-  font-size: 1.2rem;
+  font-size: var(--text-h3);
   font-weight: 400;
   line-height: 0.8;
 }
@@ -1607,12 +1629,12 @@ body {
 
 .chart-axis-label {
   fill: var(--muted);
-  font-size: 11px;
+  font-size: var(--text-chart);
   font-variant-numeric: tabular-nums;
 }
 
 .chart-year-label {
-  font-size: 11px;
+  font-size: var(--text-chart);
 }
 
 .chart-area {
@@ -1794,7 +1816,7 @@ body {
   margin-top: 4px;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
 }
 
 .chart-data-details summary {
@@ -1828,7 +1850,7 @@ body {
 
 .panel-period {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1856,7 +1878,7 @@ body {
   min-width: 20px;
   color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.68rem;
+  font-size: var(--text-sm);
   font-weight: 400;
 }
 
@@ -1874,7 +1896,7 @@ body {
   display: inline-block;
   margin-top: 16px;
   color: var(--ink);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   text-underline-offset: 4px;
 }
@@ -1892,7 +1914,7 @@ body {
   border-radius: 50%;
   color: var(--white);
   background: var(--brand-600);
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
 }
 
 .insight-list {
@@ -1917,11 +1939,11 @@ body {
 .insight-label,
 .insight-list small {
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: var(--text-sm);
 }
 
 .insight-list strong {
-  font-size: 1.08rem;
+  font-size: var(--text-lg);
 }
 
 .insight-list small {
@@ -1933,7 +1955,7 @@ body {
 .insight-note {
   margin: 22px 0 0;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
 }
 
 .resident-scope-card {
@@ -1961,7 +1983,7 @@ body {
 
 .scope-summary-grid span {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -1969,7 +1991,7 @@ body {
   display: block;
   margin-top: 6px;
   color: var(--series-1);
-  font-size: 1.45rem;
+  font-size: var(--text-h2);
   line-height: 1.4;
 }
 
@@ -1980,7 +2002,7 @@ body {
 .scope-summary-grid small {
   margin-top: 4px;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: var(--text-sm);
 }
 
 .resident-charts-stack {
@@ -2007,7 +2029,7 @@ body {
 
 .resident-chart-heading h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: var(--text-h3);
 }
 
 .scope-japanese-line {
@@ -2075,7 +2097,7 @@ body {
 }
 
 .age-band-label {
-  font-size: 10px;
+  font-size: var(--text-chart);
 }
 
 .age-category-chart-grid {
@@ -2105,7 +2127,7 @@ body {
   align-items: center;
   gap: 6px;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -2119,7 +2141,7 @@ body {
 
 .age-category-panel-heading h4 {
   margin: 5px 0 0;
-  font-size: 0.98rem;
+  font-size: var(--text-body);
 }
 
 .age-category-total {
@@ -2131,7 +2153,7 @@ body {
 
 .age-category-total strong {
   color: var(--ink);
-  font-size: 0.98rem;
+  font-size: var(--text-body);
   font-variant-numeric: tabular-nums;
   line-height: 1.3;
 }
@@ -2139,7 +2161,7 @@ body {
 .age-category-total small,
 .age-category-missing-note {
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: var(--text-sm);
 }
 
 .age-category-chart {
@@ -2178,6 +2200,13 @@ body {
 
 html[data-theme="dark"] .insight-panel {
   background: var(--white);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --text-dsp: 1.625rem;
+    --text-h2: 1.375rem;
+  }
 }
 
 @media (max-width: 960px) {
