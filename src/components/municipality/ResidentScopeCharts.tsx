@@ -151,12 +151,9 @@ function ScopePopulationChart({ points }: { points: PopulationScopePoint[] }) {
     <div className="resident-chart-block">
       <div className="resident-chart-heading">
         <div>
-          <p className="eyebrow">Resident scope</p>
+          <p className="eyebrow">住民区分</p>
           <h3>日本人・外国人住民の人口推移</h3>
         </div>
-        <span className="chart-card-menu" aria-hidden="true">
-          ···
-        </span>
       </div>
       <p className="chart-card-note">
         各年1月1日時点。ポイントにカーソルを合わせると人数を表示します。
@@ -321,12 +318,9 @@ function AgeBandChart({
     <div className="resident-chart-block">
       <div className="resident-chart-heading">
         <div>
-          <p className="eyebrow">Age distribution</p>
+          <p className="eyebrow">年齢階級別</p>
           <h3>年齢階級別人口（最新時点）</h3>
         </div>
-        <span className="chart-card-menu" aria-hidden="true">
-          ···
-        </span>
       </div>
       <p className="chart-card-note">
         {formatAsOfDate(snapshot.as_of_date)}
@@ -487,7 +481,7 @@ export function ResidentScopeCharts({
       aria-labelledby="resident-scope-heading"
     >
       <div className="section-heading compact-heading">
-        <p className="eyebrow">Resident composition</p>
+        <p className="eyebrow">住民区分の内訳</p>
         <h2 id="resident-scope-heading">日本人・外国人住民の内訳</h2>
         <p className="section-note">
           -07〜-12の拡張データを使用。総人口とは異なる住民区分の動きと、5歳階級別の構成を確認できます。

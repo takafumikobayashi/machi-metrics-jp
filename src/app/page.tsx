@@ -115,7 +115,7 @@ export default async function HomePage() {
       >
         <div className="dashboard-page-header">
           <div>
-            <p className="eyebrow">PUBLIC STATISTICS / HIROSHIMA</p>
+            <p className="eyebrow">住民基本台帳 / 2016〜2025年</p>
             <h1>ひろしまダッシュボード</h1>
             <p>
               広島県23市町の人口、年齢構成、人口動態を、基準日と集計期間を分けて確認できます。
@@ -132,7 +132,7 @@ export default async function HomePage() {
 
         <div className="dashboard-toolbar">
           <div>
-            <p className="eyebrow">Overview</p>
+            <p className="eyebrow">県内の概況</p>
             <h2 id="overview-heading">広島県23市町の現在地</h2>
           </div>
           <div className="dashboard-toolbar-meta">
@@ -152,7 +152,7 @@ export default async function HomePage() {
             <strong>{formatCount(currentPopulation)}</strong>
             <small>{formatAsOfDate(summary.as_of_date)}</small>
           </div>
-          <div className="metric-card metric-card-teal">
+          <div className="metric-card">
             <span>
               {startYear}〜{endYear}年の増減
             </span>
@@ -161,14 +161,14 @@ export default async function HomePage() {
               {formatSignedRatioAsPercent(populationChangeRate)} / 両端比較
             </small>
           </div>
-          <div className="metric-card metric-card-amber">
+          <div className="metric-card">
             <span>直近の自然増減</span>
             <strong>
               {formatSignedCount(latestFlow?.natural_change ?? null)}
             </strong>
             <small>出生・死亡 / {latestFlow?.period_end.slice(0, 4)}年中</small>
           </div>
-          <div className="metric-card metric-card-blue">
+          <div className="metric-card">
             <span>直近の社会増減</span>
             <strong>
               {formatSignedCount(latestFlow?.migration_change ?? null)}
@@ -189,7 +189,7 @@ export default async function HomePage() {
           >
             <div className="panel-heading">
               <div>
-                <p className="eyebrow">Performance</p>
+                <p className="eyebrow">ランキング</p>
                 <h3 id="ranking-heading">10年間の変化率</h3>
               </div>
               <span className="panel-period">
@@ -248,7 +248,7 @@ export default async function HomePage() {
           >
             <div className="panel-heading">
               <div>
-                <p className="eyebrow">Quick read</p>
+                <p className="eyebrow">要点</p>
                 <h3 id="insight-heading">まず見るポイント</h3>
               </div>
               <span className="insight-mark" aria-hidden="true">
@@ -291,7 +291,7 @@ export default async function HomePage() {
         <div className="shell section">
           <div className="section-heading heading-row">
             <div>
-              <p className="eyebrow">Explore municipalities</p>
+              <p className="eyebrow">自治体を選ぶ</p>
               <h2 id="municipality-heading">広島県の23市町</h2>
             </div>
             <p>
@@ -325,7 +325,7 @@ export default async function HomePage() {
         aria-labelledby="source-heading"
       >
         <div>
-          <p className="eyebrow">Data policy</p>
+          <p className="eyebrow">データ方針</p>
           <h2 id="source-heading">どの数字かを、数字と一緒に。</h2>
           <p>
             基準日、集計期間、日本人・外国人住民の範囲、計算式、欠損の扱いを公開します。元データから表示値まで追跡できる設計です。

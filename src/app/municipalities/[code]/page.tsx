@@ -82,7 +82,7 @@ export default async function MunicipalityPage({
         <span aria-hidden="true">←</span> 23市町の一覧へ
       </Link>
       <div className="detail-kicker">
-        <p className="eyebrow">Municipality detail</p>
+        <p className="eyebrow">自治体詳細</p>
         <span>自治体コード {municipality.code}</span>
       </div>
       <div className="detail-heading">
@@ -157,7 +157,7 @@ export default async function MunicipalityPage({
 
       <section className="data-card" aria-labelledby="flow-heading">
         <div className="section-heading compact-heading">
-          <p className="eyebrow">Population movement</p>
+          <p className="eyebrow">人口動態</p>
           <h2 id="flow-heading">人口動態の推移</h2>
           <p className="section-note">
             人口は基準日時点、人口動態は前年1年間です。社会増減は報告値と単純計算値を分けて表示します。
@@ -228,7 +228,7 @@ export default async function MunicipalityPage({
 
       <section className="data-card" aria-labelledby="similarity-heading">
         <div className="section-heading compact-heading">
-          <p className="eyebrow">Similarity preview</p>
+          <p className="eyebrow">類似自治体（準備版）</p>
           <h2 id="similarity-heading">似ている自治体</h2>
           <p className="section-note">
             人口規模、年齢構成、期間人口増減率の距離です。距離が小さいほど特徴量が近く、優劣を示す順位ではありません。
@@ -258,7 +258,7 @@ export default async function MunicipalityPage({
 
       <section className="source-card" aria-labelledby="source-heading">
         <div>
-          <p className="eyebrow">Source & release</p>
+          <p className="eyebrow">出典とリリース</p>
           <h2 id="source-heading">数字の出典</h2>
           <p>
             総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」を加工しています。

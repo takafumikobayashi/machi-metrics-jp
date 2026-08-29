@@ -119,7 +119,7 @@ export function PopulationTrend({
   return (
     <section className="data-card" aria-labelledby="population-trend-heading">
       <div className="section-heading compact-heading">
-        <p className="eyebrow">Population trend</p>
+        <p className="eyebrow">人口推移</p>
         <h2 id="population-trend-heading">人口の推移</h2>
         <p className="section-note">
           各年1月1日時点。数値を正確に読む場合は下の値一覧をご利用ください。
@@ -281,7 +281,7 @@ export function AgeComparison({ snapshots }: AgeComparisonProps) {
   return (
     <section className="data-card" aria-labelledby="age-comparison-heading">
       <div className="section-heading compact-heading">
-        <p className="eyebrow">Age structure</p>
+        <p className="eyebrow">年齢構成</p>
         <h2 id="age-comparison-heading">年齢構成の変化</h2>
         <p className="section-note">
           構成比は年齢把握済み人口を分母にしています。総人口との差は年齢不詳・定義差として残します。

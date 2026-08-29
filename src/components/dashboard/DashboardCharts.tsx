@@ -104,9 +104,6 @@ function ChartCard({
           <p className="eyebrow">{eyebrow}</p>
           <h3 id={headingId}>{title}</h3>
         </div>
-        <span className="chart-card-menu" aria-hidden="true">
-          ···
-        </span>
       </div>
       <p className="chart-card-note">{note}</p>
       {children}
@@ -119,8 +116,9 @@ function yearLabel(date: string): string {
 }
 
 function compactPopulation(value: number): string {
-  if (value >= 1_000_000) {
-    return `${(value / 1_000_000).toFixed(2)}百万人`;
+  // 「2.88百万人」より「288万人」の方が日本語では読み取りやすい。
+  if (value >= 10_000) {
+    return `${Math.round(value / 10_000).toLocaleString("ja-JP")}万人`;
   }
   return formatCount(Math.round(value));
 }
@@ -187,7 +185,7 @@ export function RegionalPopulationChart({
   return (
     <ChartCard
       headingId="regional-population-chart-heading"
-      eyebrow="Audience overview"
+      eyebrow="総人口"
       title="広島県23市町の人口推移"
       note="毎年1月1日時点の総人口。地域全体の変化をひと目で確認できます。"
     >
@@ -340,7 +338,7 @@ export function RegionalFlowChart({
   return (
     <ChartCard
       headingId="regional-flow-chart-heading"
-      eyebrow="Acquisition & retention"
+      eyebrow="自然増減・社会増減"
       title="人口動態の推移"
       note="自然増減と社会増減を分けて表示。0を境に増加・減少を読み分けます。"
     >

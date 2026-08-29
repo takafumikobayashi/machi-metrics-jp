@@ -14,7 +14,7 @@ export default async function DataAboutPage() {
 
   return (
     <article className="shell prose-page">
-      <p className="eyebrow">Data & methodology</p>
+      <p className="eyebrow">データと作成方法</p>
       <h1>データについて</h1>
       <p className="lead">
         このサイトは、総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」を中心に、公表された自治体別統計を加工します。
