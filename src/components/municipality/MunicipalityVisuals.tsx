@@ -3,12 +3,8 @@
 import { useRef, useState } from "react";
 import type { FocusEvent, MouseEvent } from "react";
 
-import type { MunicipalityDetail, PopulationSnapshot } from "@/lib/data/schema";
-import {
-  formatAsOfDate,
-  formatCount,
-  formatRatioAsPercent,
-} from "@/lib/format/display";
+import type { MunicipalityDetail } from "@/lib/data/schema";
+import { formatAsOfDate, formatCount } from "@/lib/format/display";
 
 interface PopulationTrendProps {
   municipalityName: string;
@@ -226,80 +222,6 @@ export function PopulationTrend({
             ))}
           </tbody>
         </table>
-      </div>
-    </section>
-  );
-}
-
-interface AgeComparisonProps {
-  snapshots: MunicipalityDetail["snapshots"];
-}
-
-const ageBands = [
-  { key: "age_0_14", label: "0〜14歳" },
-  { key: "age_15_64", label: "15〜64歳" },
-  { key: "age_65_plus", label: "65歳以上" },
-] as const satisfies ReadonlyArray<{
-  key: "age_0_14" | "age_15_64" | "age_65_plus";
-  label: string;
-}>;
-
-function AgeShareBars({ snapshot }: { snapshot: PopulationSnapshot }) {
-  return (
-    <div className="age-bars">
-      {ageBands.map(({ key, label }) => {
-        const count = snapshot.age[key];
-        const share = snapshot.age.shares?.[key] ?? null;
-        return (
-          <div className="age-bar-row" key={key}>
-            <div className="age-bar-heading">
-              <span>{label}</span>
-              <span>
-                {formatCount(count)} / {formatRatioAsPercent(share)}
-              </span>
-            </div>
-            <div className="age-bar-track" aria-hidden="true">
-              <span
-                className="age-bar-fill"
-                style={{ width: share === null ? "0%" : `${share * 100}%` }}
-              />
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-export function AgeComparison({ snapshots }: AgeComparisonProps) {
-  const first = snapshots[0];
-  const last = snapshots.at(-1);
-  if (!first || !last) {
-    return null;
-  }
-
-  return (
-    <section className="data-card" aria-labelledby="age-comparison-heading">
-      <div className="section-heading compact-heading">
-        <p className="eyebrow">年齢構成</p>
-        <h2 id="age-comparison-heading">年齢構成の変化</h2>
-        <p className="section-note">
-          構成比は年齢把握済み人口を分母にしています。総人口との差は年齢不詳・定義差として残します。
-        </p>
-      </div>
-      <div className="age-comparison-grid">
-        {[first, last].map((snapshot) => (
-          <div className="age-period" key={snapshot.as_of_date}>
-            <h3>{formatAsOfDate(snapshot.as_of_date)}</h3>
-            <p>
-              年齢把握済み {formatCount(snapshot.age.population_age_known)}
-              {snapshot.age.age_unknown === null
-                ? ""
-                : ` / 年齢不詳等 ${formatCount(snapshot.age.age_unknown)}`}
-            </p>
-            <AgeShareBars snapshot={snapshot} />
-          </div>
-        ))}
       </div>
     </section>
   );

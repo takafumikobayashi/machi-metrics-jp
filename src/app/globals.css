@@ -1385,6 +1385,52 @@ body {
   letter-spacing: -0.025em;
 }
 
+.chart-expand-button,
+.chart-modal-close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.chart-expand-button {
+  padding: 7px 11px 7px 13px;
+}
+
+.chart-expand-button span:last-child {
+  color: var(--brand-700);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.chart-expand-button:hover,
+.chart-expand-button:focus-visible,
+.chart-modal-close:hover,
+.chart-modal-close:focus-visible {
+  border-color: var(--brand-600);
+  color: var(--brand-700);
+  background: var(--brand-50);
+  outline: none;
+}
+
+.chart-expand-button:active,
+.chart-modal-close:active {
+  transform: translateY(1px);
+}
+
 .chart-card-menu {
   color: var(--muted);
   font-size: 1.1rem;
@@ -1469,6 +1515,73 @@ body {
 .chart-tooltip small {
   color: rgb(255 255 255 / 66%);
   font-size: 0.66rem;
+}
+
+.chart-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(16 20 26 / 72%);
+  animation: chart-modal-fade-in 180ms ease both;
+}
+
+.chart-modal {
+  width: min(1180px, 100%);
+  max-height: min(900px, calc(100vh - 48px));
+  overflow: auto;
+  padding: 24px 26px 26px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: 0 24px 70px rgb(0 0 0 / 28%);
+  animation: chart-modal-slide-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.chart-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.chart-modal-header .eyebrow {
+  margin-bottom: 6px;
+}
+
+.chart-modal-header h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  letter-spacing: -0.03em;
+}
+
+.chart-modal-close {
+  padding: 8px 12px 8px 14px;
+}
+
+.chart-modal-close span {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 0.8;
+}
+
+.chart-modal-body {
+  margin-top: 18px;
+}
+
+.chart-modal-body .chart-legend {
+  margin-top: 0;
+}
+
+.chart-modal-body .dashboard-chart-frame {
+  margin-inline: 0;
+}
+
+.chart-modal-body .dashboard-chart {
+  min-width: 760px;
 }
 
 .dashboard-chart {
@@ -1626,6 +1739,28 @@ body {
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes chart-modal-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes chart-modal-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -1883,6 +2018,14 @@ body {
   stroke: var(--teal);
 }
 
+.legend-swatch.scope-japanese {
+  background: var(--series-1);
+}
+
+.legend-swatch.scope-foreign {
+  background: var(--teal);
+}
+
 .scope-japanese-point {
   fill: var(--series-1);
 }
@@ -1899,6 +2042,33 @@ body {
   fill: var(--teal);
 }
 
+.scope-bar-chart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.scope-bar-chart-panel {
+  min-width: 0;
+  padding: 15px 13px 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.scope-bar-chart-heading {
+  padding-inline: 4px;
+}
+
+.scope-population-bar-chart {
+  min-width: 0;
+}
+
+.age-category-trend-chart {
+  min-width: 620px;
+}
+
 .flow-bar.is-missing {
   opacity: 0;
   pointer-events: none;
@@ -1906,6 +2076,105 @@ body {
 
 .age-band-label {
   font-size: 10px;
+}
+
+.age-category-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.age-category-panel {
+  min-width: 0;
+  padding: 17px 15px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.age-category-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.scope-panel-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.scope-panel-label.scope-japanese {
+  color: var(--series-1);
+}
+
+.scope-panel-label.scope-foreign {
+  color: var(--teal);
+}
+
+.age-category-panel-heading h4 {
+  margin: 5px 0 0;
+  font-size: 0.98rem;
+  letter-spacing: -0.02em;
+}
+
+.age-category-total {
+  display: grid;
+  justify-items: end;
+  gap: 1px;
+  text-align: right;
+}
+
+.age-category-total strong {
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+
+.age-category-total small,
+.age-category-missing-note {
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.age-category-chart {
+  min-width: 0;
+}
+
+.age-category-segment {
+  stroke: var(--white);
+  stroke-width: 1.5;
+}
+
+.age-category-minor {
+  background: #5b8fbd;
+  fill: #5b8fbd;
+}
+
+.age-category-young {
+  background: #3d9b91;
+  fill: #3d9b91;
+}
+
+.age-category-working {
+  background: #c48a2c;
+  fill: #c48a2c;
+}
+
+.age-category-older {
+  background: #80639e;
+  fill: #80639e;
+}
+
+.age-category-missing-note {
+  margin: 2px 0 0;
+  line-height: 1.5;
 }
 
 html[data-theme="dark"] .insight-panel {
@@ -1929,7 +2198,9 @@ html[data-theme="dark"] .insight-panel {
   .dashboard-chart-point,
   .flow-bar,
   .population-chart .chart-line,
-  .population-chart .chart-point {
+  .population-chart .chart-point,
+  .chart-modal-backdrop,
+  .chart-modal {
     animation: none;
   }
 }
@@ -2007,6 +2278,18 @@ html[data-theme="dark"] .insight-panel {
     grid-template-columns: 1fr;
   }
 
+  .age-category-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scope-bar-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .age-category-chart {
+    min-width: 0;
+  }
+
   .dashboard-ranking-table {
     min-width: 430px;
   }
@@ -2015,5 +2298,34 @@ html[data-theme="dark"] .insight-panel {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .chart-card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chart-expand-button {
+    align-self: flex-start;
+  }
+
+  .chart-modal-backdrop {
+    padding: 12px;
+  }
+
+  .chart-modal {
+    max-height: calc(100vh - 24px);
+    padding: 18px 14px 20px;
+    border-radius: 13px;
+  }
+
+  .chart-modal-header {
+    gap: 12px;
+  }
+
+  .chart-modal-close {
+    padding: 7px 9px 7px 11px;
   }
 }

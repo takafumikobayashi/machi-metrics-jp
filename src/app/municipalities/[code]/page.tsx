@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { PopulationTrend } from "@/components/municipality/MunicipalityVisuals";
 import {
-  AgeComparison,
-  PopulationTrend,
-} from "@/components/municipality/MunicipalityVisuals";
-import { ResidentScopeCharts } from "@/components/municipality/ResidentScopeCharts";
+  AgeCategoryTrend,
+  ResidentScopeCharts,
+} from "@/components/municipality/ResidentScopeCharts";
+import { RegionalFlowChart } from "@/components/dashboard/DashboardCharts";
 import { hiroshimaMunicipalities } from "@/lib/config";
 import { loadExtendedMunicipalityDetail } from "@/lib/data/extended-load";
 import {
@@ -151,14 +152,23 @@ export default async function MunicipalityPage({
         snapshots={detail.snapshots}
       />
 
-      <AgeComparison snapshots={detail.snapshots} />
+      <AgeCategoryTrend detail={extendedDetail} />
 
-      <ResidentScopeCharts detail={extendedDetail} />
+      <RegionalFlowChart
+        headingId="municipality-flow-chart-heading"
+        subjectLabel={municipality.nameJa}
+        title={`${municipality.nameJa}の人口動態`}
+        points={detail.flows.map((flow) => ({
+          period_end: flow.period_end,
+          natural_change: flow.natural_change_reported,
+          migration_change: flow.migration_change_reported,
+        }))}
+      />
 
       <section className="data-card" aria-labelledby="flow-heading">
         <div className="section-heading compact-heading">
           <p className="eyebrow">人口動態</p>
-          <h2 id="flow-heading">人口動態の推移</h2>
+          <h2 id="flow-heading">人口動態の数値一覧</h2>
           <p className="section-note">
             人口は基準日時点、人口動態は前年1年間です。社会増減は報告値と単純計算値を分けて表示します。
           </p>
@@ -225,6 +235,8 @@ export default async function MunicipalityPage({
           </small>
         </div>
       </section>
+
+      <ResidentScopeCharts detail={extendedDetail} />
 
       <section className="data-card" aria-labelledby="similarity-heading">
         <div className="section-heading compact-heading">
