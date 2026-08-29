@@ -1,5 +1,6 @@
 import type { ReleaseBundle } from "./load";
 import type { MunicipalityDetail, SummaryRow } from "./schema";
+import { featureIds } from "../similarity/calculate";
 
 /**
  * 公開JSONの整合性検証（DATA_SPEC 12）。
@@ -461,10 +462,6 @@ function validateSimilarity(
   knownCodes: Set<string>,
   error: Report,
 ): void {
-  const entries = new Map(
-    bundle.similarity.entries.map((entry) => [entry.municipality_code, entry]),
-  );
-
   if (bundle.similarity.result_count !== expectation.similarityResultCount) {
     error(
       "similarity_result_count_mismatch",
@@ -472,17 +469,68 @@ function validateSimilarity(
     );
   }
 
+  validateSimilarityEntries(
+    bundle.similarity.entries,
+    expectation,
+    knownCodes,
+    error,
+    "",
+  );
+
+  featureIds.forEach((featureId) => {
+    const entries = bundle.similarity.single_feature_entries?.[featureId];
+    if (!entries) {
+      if (bundle.similarity.single_feature_entries) {
+        error(
+          "similarity_single_feature_missing",
+          `${featureId}単独の類似自治体データがありません。`,
+        );
+      }
+      return;
+    }
+    validateSimilarityEntries(
+      entries,
+      expectation,
+      knownCodes,
+      error,
+      `${featureId}単独の`,
+    );
+  });
+}
+
+function validateSimilarityEntries(
+  similarityEntries: readonly {
+    municipality_code: string;
+    similar: readonly {
+      municipality_code: string;
+      distance: number;
+      contributions: Record<string, number>;
+    }[];
+  }[],
+  expectation: ReleaseExpectation,
+  knownCodes: Set<string>,
+  error: Report,
+  label: string,
+): void {
+  const entries = new Map(
+    similarityEntries.map((entry) => [entry.municipality_code, entry]),
+  );
+
   expectation.focusMunicipalityCodes.forEach((code) => {
     const entry = entries.get(code);
     if (!entry) {
-      error("similarity_entry_missing", "類似自治体の結果がありません。", code);
+      error(
+        "similarity_entry_missing",
+        `${label}類似自治体の結果がありません。`,
+        code,
+      );
       return;
     }
 
     if (entry.similar.length < expectation.similarityResultCount) {
       error(
         "similarity_result_insufficient",
-        `類似自治体が${expectation.similarityResultCount}件に足りません。`,
+        `${label}類似自治体が${expectation.similarityResultCount}件に足りません。`,
         code,
       );
     }
@@ -494,7 +542,7 @@ function validateSimilarity(
     if (codes.includes(code)) {
       error(
         "similarity_self_reference",
-        "自分自身が類似自治体に含まれています。",
+        `${label}自分自身が類似自治体に含まれています。`,
         code,
       );
     }
@@ -502,7 +550,7 @@ function validateSimilarity(
     if (new Set(codes).size !== codes.length) {
       error(
         "similarity_duplicated",
-        "同じ自治体が類似結果に重複しています。",
+        `${label}同じ自治体が類似結果に重複しています。`,
         code,
       );
     }
@@ -512,7 +560,7 @@ function validateSimilarity(
       .forEach(() => {
         error(
           "similarity_unknown_municipality",
-          "類似結果にmunicipalities.jsonへ載っていない自治体があります。",
+          `${label}類似結果にmunicipalities.jsonへ載っていない自治体があります。`,
           code,
         );
       });
@@ -522,7 +570,7 @@ function validateSimilarity(
     if (distances.some((value, index) => value !== sorted[index])) {
       error(
         "similarity_not_sorted",
-        "類似自治体が距離の昇順に並んでいません。",
+        `${label}類似自治体が距離の昇順に並んでいません。`,
         code,
       );
     }
@@ -535,7 +583,7 @@ function validateSimilarity(
       if (!nearlyEqual(contributionSum, candidate.distance ** 2)) {
         error(
           "similarity_contribution_mismatch",
-          `${candidate.municipality_code} の寄与内訳の合計が距離と整合しません。`,
+          `${label}${candidate.municipality_code} の寄与内訳の合計が距離と整合しません。`,
           code,
         );
       }
@@ -563,6 +611,17 @@ function validateSimilarityModel(bundle: ReleaseBundle, error: Report): void {
     error(
       "similarity_candidate_empty",
       "全国候補集合が空です。除外条件を確認してください。",
+    );
+  }
+
+  const exclusionReasonTotal = bundle.similarityModel.exclusion_reasons.reduce(
+    (sum, { count }) => sum + count,
+    0,
+  );
+  if (exclusionReasonTotal !== excluded_count) {
+    error(
+      "similarity_exclusion_reason_mismatch",
+      "類似度モデルの除外理由件数の合計が除外件数と一致しません。",
     );
   }
 

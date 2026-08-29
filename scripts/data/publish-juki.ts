@@ -27,11 +27,14 @@ import {
   calculatePopulationChange,
 } from "../../src/lib/metrics/population";
 import {
+  featureIds,
   fitSimilarityModel,
   rankSimilarMunicipalities,
+  rankSimilarMunicipalitiesByFeature,
   type FeatureId,
   type FeatureValues,
   type MunicipalityFeatures,
+  type SimilarityResult,
 } from "../../src/lib/similarity/calculate";
 import {
   latestPointerSchema,
@@ -58,6 +61,10 @@ import type {
   ExtendedAgeRecord,
   ExtendedFlowRecord,
 } from "./normalize-juki-extended";
+import {
+  loadNationalCandidateSet,
+  type NationalCandidateSet,
+} from "./national-candidates";
 
 interface ProcessedSnapshot {
   municipality_code: string;
@@ -576,11 +583,23 @@ function featuresOf(detail: MunicipalityDetail): FeatureValues {
 function buildSimilarity(
   releaseId: string,
   details: readonly MunicipalityDetail[],
+  national: NationalCandidateSet,
 ): { similarity: SimilarityFile; model: SimilarityModel } {
-  const features: MunicipalityFeatures[] = details.map((detail) => ({
+  const features = national.features;
+  const sourceFeatures: MunicipalityFeatures[] = details.map((detail) => ({
     code: detail.municipality.municipality_code,
     values: featuresOf(detail),
   }));
+  const featureByCode = new Map(
+    features.map((candidate) => [candidate.code, candidate]),
+  );
+  sourceFeatures.forEach((source) => {
+    if (!featureByCode.has(source.code)) {
+      throw new Error(
+        `広島県の類似度特徴量が全国候補にありません: ${source.code}`,
+      );
+    }
+  });
   const model = fitSimilarityModel(features);
   const weights = Object.fromEntries(
     projectConfig.similarity.features.map((feature) => [
@@ -590,12 +609,30 @@ function buildSimilarity(
   ) as Record<FeatureId, number>;
   const resultCount = Math.min(
     projectConfig.similarity.resultCount,
-    Math.max(1, details.length - 1),
+    Math.max(1, features.length - 1),
   );
   const municipalityByCode = new Map(
-    details.map((detail) => [detail.municipality.municipality_code, detail]),
+    national.municipalities.map((municipality) => [
+      municipality.municipality_code,
+      municipality,
+    ]),
   );
-  const entries = features.map((source) => ({
+  const toPublicSimilar = (result: SimilarityResult) => {
+    const candidate = municipalityByCode.get(result.code);
+    if (!candidate) {
+      throw new Error(`類似候補の自治体詳細がありません: ${result.code}`);
+    }
+    return {
+      municipality_code: result.code,
+      name_ja: candidate.name_ja,
+      prefecture_code: candidate.prefecture_code,
+      prefecture_name_ja: candidate.prefecture_name_ja,
+      distance: result.distance,
+      contributions: result.contributions,
+      feature_values: sourceFeatureValues(features, result.code),
+    };
+  };
+  const entries = sourceFeatures.map((source) => ({
     municipality_code: source.code,
     feature_values: source.values,
     similar: rankSimilarMunicipalities(
@@ -604,22 +641,23 @@ function buildSimilarity(
       model,
       weights,
       resultCount,
-    ).map((result) => {
-      const candidate = municipalityByCode.get(result.code);
-      if (!candidate) {
-        throw new Error(`類似候補の自治体詳細がありません: ${result.code}`);
-      }
-      return {
-        municipality_code: result.code,
-        name_ja: candidate.municipality.name_ja,
-        prefecture_code: candidate.municipality.prefecture_code,
-        prefecture_name_ja: candidate.municipality.prefecture_name_ja,
-        distance: result.distance,
-        contributions: result.contributions,
-        feature_values: sourceFeatureValues(features, result.code),
-      };
-    }),
+    ).map(toPublicSimilar),
   }));
+  const singleFeatureEntries = Object.fromEntries(
+    featureIds.map((featureId) => [
+      featureId,
+      sourceFeatures.map((source) => ({
+        municipality_code: source.code,
+        similar: rankSimilarMunicipalitiesByFeature(
+          source,
+          features,
+          model,
+          featureId,
+          resultCount,
+        ).map(toPublicSimilar),
+      })),
+    ]),
+  ) as NonNullable<SimilarityFile["single_feature_entries"]>;
   const modelFeatures = projectConfig.similarity.features.map((feature) => ({
     id: feature.id,
     label_ja: feature.labelJa,
@@ -632,6 +670,7 @@ function buildSimilarity(
       release_id: releaseId,
       result_count: resultCount,
       entries,
+      single_feature_entries: singleFeatureEntries,
     },
     model: {
       release_id: releaseId,
@@ -642,8 +681,17 @@ function buildSimilarity(
       change_end_date: details[0]?.change_10y.end_date ?? "",
       features: modelFeatures,
       candidate_count: features.length,
-      excluded_count: 0,
-      exclusion_reasons: [],
+      excluded_count: national.exclusions.length,
+      exclusion_reasons: [
+        ...new Set(national.exclusions.map(({ reason }) => reason)),
+      ]
+        .sort((left, right) => left.localeCompare(right, "ja"))
+        .map((reason) => ({
+          reason,
+          count: national.exclusions.filter(
+            (exclusion) => exclusion.reason === reason,
+          ).length,
+        })),
     },
   };
 }
@@ -724,6 +772,16 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
   const extendedDetails = options.municipalityCodes.map((code) =>
     buildExtendedDetail(options.releaseId, code, options.years, extendedByYear),
   );
+  const startYear = options.years[0];
+  const endYear = options.years.at(-1);
+  if (startYear === undefined || endYear === undefined) {
+    throw new Error("対象年が空です。");
+  }
+  const nationalCandidates = loadNationalCandidateSet(
+    options.rawRoot,
+    startYear,
+    endYear,
+  );
   const lastDate = `${options.years.at(-1)}-01-01`;
   const lastFlow = details[0]?.flows.at(-1);
   if (!lastFlow) {
@@ -765,12 +823,16 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     ),
     municipalities: summaryRows,
   };
-  const municipalityRecords = details.map((detail) => detail.municipality);
+  const municipalityRecords = nationalCandidates.municipalities;
   const municipalities: MunicipalitiesFile = {
     release_id: options.releaseId,
     municipalities: municipalityRecords,
   };
-  const similarityParts = buildSimilarity(options.releaseId, details);
+  const similarityParts = buildSimilarity(
+    options.releaseId,
+    details,
+    nationalCandidates,
+  );
   const similarity = similarityParts.similarity;
   const similarityModel = similarityParts.model;
   const flowPeriods = [
@@ -817,14 +879,19 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     },
     quality: {
       warnings,
-      excluded_municipalities: [],
+      excluded_municipalities: nationalCandidates.exclusions.map(
+        ({ municipality, reason }) => ({
+          municipality_code: municipality.municipality_code,
+          reason,
+        }),
+      ),
     },
     metric_choices: {
       migration_change: "reported",
       natural_change: "reported",
     },
     attribution:
-      "総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」の公表データを本プロジェクトが加工したパイロットです。全国候補集合は未接続のため、本番公開には使用しません。",
+      "総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」の公表データを本プロジェクトが加工したものです。全国の市・町・村と東京都特別区を類似候補とし、政令指定都市の行政区は除外しています。",
     license_note:
       "一次情報の利用条件と出典表示に従って利用してください。このパイロットは本番公開用ではありません。",
   };
@@ -1000,17 +1067,19 @@ function parseArgs(argv: string[]): PublishOptions {
     values.set(key, value);
   }
   const projectRoot = resolve(new URL("../..", import.meta.url).pathname);
-  const years = parseList(values.get("years") ?? "2016,2025", "years").map(
-    (value) => {
-      const year = Number(value);
-      if (!Number.isInteger(year)) {
-        throw new Error(`年が整数ではありません: ${value}`);
-      }
-      return year;
-    },
-  );
+  const years = parseList(
+    values.get("years") ?? projectConfig.populationSnapshots.years.join(","),
+    "years",
+  ).map((value) => {
+    const year = Number(value);
+    if (!Number.isInteger(year)) {
+      throw new Error(`年が整数ではありません: ${value}`);
+    }
+    return year;
+  });
   const municipalityCodes = parseList(
-    values.get("municipalities") ?? "34100,34214",
+    values.get("municipalities") ??
+      hiroshimaMunicipalities.map(({ code }) => code).join(","),
     "municipalities",
   );
   municipalityCodes.forEach((code) => {

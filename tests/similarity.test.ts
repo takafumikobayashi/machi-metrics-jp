@@ -6,6 +6,7 @@ import {
   fitSimilarityModel,
   quantile,
   rankSimilarMunicipalities,
+  rankSimilarMunicipalitiesByFeature,
   type FeatureWeights,
   type MunicipalityFeatures,
 } from "../src/lib/similarity/calculate";
@@ -95,4 +96,27 @@ test("ranking excludes the source and puts the closest candidate first", () => {
     ["10002", "10003"],
   );
   assert.ok(results[0]!.distance < results[1]!.distance);
+});
+
+test("single-feature ranking uses only the selected feature", () => {
+  const model = fitSimilarityModel(municipalities);
+  const results = rankSimilarMunicipalitiesByFeature(
+    municipalities[0]!,
+    municipalities,
+    model,
+    "log_population",
+    2,
+  );
+
+  assert.deepEqual(
+    results.map(({ code }) => code),
+    ["10002", "10003"],
+  );
+  assert.equal(results[0]!.contributions.child_share, 0);
+  assert.equal(results[0]!.contributions.elderly_share, 0);
+  assert.equal(results[0]!.contributions.population_change_rate, 0);
+  assert.equal(
+    results[0]!.contributions.log_population,
+    results[0]!.distance ** 2,
+  );
 });

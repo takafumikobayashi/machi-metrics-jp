@@ -298,21 +298,33 @@ export const similarMunicipalitySchema = z
   })
   .strict();
 
+const similarityEntrySchema = z
+  .object({
+    municipality_code: municipalityCodeSchema,
+    feature_values: featureValuesSchema,
+    similar: z.array(similarMunicipalitySchema),
+  })
+  .strict();
+
+const singleFeatureSimilarityEntrySchema = z
+  .object({
+    municipality_code: municipalityCodeSchema,
+    similar: z.array(similarMunicipalitySchema),
+  })
+  .strict();
+
 export const similarityFileSchema = z
   .object({
     release_id: releaseIdSchema,
     result_count: z.number().int().positive(),
-    entries: z
-      .array(
-        z
-          .object({
-            municipality_code: municipalityCodeSchema,
-            feature_values: featureValuesSchema,
-            similar: z.array(similarMunicipalitySchema),
-          })
-          .strict(),
+    entries: z.array(similarityEntrySchema).min(1),
+    /** 互換性のため任意。v5以降では4特徴量単独のランキングを収録する。 */
+    single_feature_entries: z
+      .record(
+        featureIdSchema,
+        z.array(singleFeatureSimilarityEntrySchema).min(1),
       )
-      .min(1),
+      .optional(),
   })
   .strict();
 
@@ -358,3 +370,7 @@ export type SummaryRow = z.infer<typeof summaryRowSchema>;
 export type SummaryFile = z.infer<typeof summaryFileSchema>;
 export type SimilarityFile = z.infer<typeof similarityFileSchema>;
 export type SimilarityModel = z.infer<typeof similarityModelSchema>;
+export type SimilarityEntry = z.infer<typeof similarityEntrySchema>;
+export type SingleFeatureSimilarityEntry = z.infer<
+  typeof singleFeatureSimilarityEntrySchema
+>;

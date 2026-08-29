@@ -132,6 +132,19 @@ export function calculateDistance(
   return { distance, contributions };
 }
 
+/** 1つの特徴量だけを比較するときの、中央値・IQR標準化後の距離。 */
+export function calculateFeatureDistance(
+  source: FeatureValues,
+  candidate: FeatureValues,
+  model: SimilarityModel,
+  featureId: FeatureId,
+): number {
+  return Math.abs(
+    robustScale(source[featureId], model[featureId]) -
+      robustScale(candidate[featureId], model[featureId]),
+  );
+}
+
 export function rankSimilarMunicipalities(
   source: MunicipalityFeatures,
   candidates: readonly MunicipalityFeatures[],
@@ -149,6 +162,39 @@ export function rankSimilarMunicipalities(
       code,
       ...calculateDistance(source.values, values, model, weights),
     }))
+    .sort((a, b) => a.distance - b.distance || a.code.localeCompare(b.code))
+    .slice(0, resultCount);
+}
+
+/** 指定した1特徴量だけで候補を再ランキングする。 */
+export function rankSimilarMunicipalitiesByFeature(
+  source: MunicipalityFeatures,
+  candidates: readonly MunicipalityFeatures[],
+  model: SimilarityModel,
+  featureId: FeatureId,
+  resultCount: number,
+): SimilarityResult[] {
+  if (!Number.isInteger(resultCount) || resultCount <= 0) {
+    throw new Error("resultCount must be a positive integer.");
+  }
+
+  return candidates
+    .filter(({ code }) => code !== source.code)
+    .map(({ code, values }) => {
+      const distance = calculateFeatureDistance(
+        source.values,
+        values,
+        model,
+        featureId,
+      );
+      const contributions = Object.fromEntries(
+        featureIds.map((candidateFeatureId) => [
+          candidateFeatureId,
+          candidateFeatureId === featureId ? distance ** 2 : 0,
+        ]),
+      ) as Record<FeatureId, number>;
+      return { code, distance, contributions };
+    })
     .sort((a, b) => a.distance - b.distance || a.code.localeCompare(b.code))
     .slice(0, resultCount);
 }

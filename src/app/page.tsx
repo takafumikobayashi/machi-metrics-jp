@@ -122,13 +122,6 @@ export default async function HomePage() {
               広島県23市町の人口、年齢構成、人口動態を、基準日と集計期間を分けて確認できます。
             </p>
           </div>
-          <div className="dashboard-header-aside">
-            <span className="live-badge">
-              <i aria-hidden="true" /> 地域プレビュー版
-            </span>
-            <strong>{formatCount(currentPopulation)}</strong>
-            <small>{formatAsOfDate(summary.as_of_date)} / 23市町の合計</small>
-          </div>
         </div>
 
         <div className="dashboard-toolbar">
@@ -138,7 +131,7 @@ export default async function HomePage() {
           </div>
           <div className="dashboard-toolbar-meta">
             <span className="live-badge">
-              <i aria-hidden="true" /> 地域プレビュー版
+              <i aria-hidden="true" /> 準備版
             </span>
             <span>{formatAsOfDate(summary.as_of_date)}</span>
           </div>

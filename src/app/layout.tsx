@@ -4,6 +4,12 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import {
+  pageOpenGraph,
+  siteDescription,
+  siteName,
+  siteUrl,
+} from "@/lib/site/metadata";
 
 import "./globals.css";
 
@@ -30,12 +36,18 @@ const notoSansMono = Noto_Sans_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl(),
   title: {
-    default: "ひろしまダッシュボード",
-    template: "%s | ひろしまダッシュボード",
+    default: siteName,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "広島県23市町の人口推移、年齢構成、自然増減・社会増減を公的統計から見るプロジェクトです。",
+  description: siteDescription,
+  applicationName: siteName,
+  ...pageOpenGraph({
+    title: siteName,
+    description: siteDescription,
+    path: "/",
+  }),
 };
 
 export default function RootLayout({

@@ -20,7 +20,7 @@ MVPの主データは、総務省「住民基本台帳に基づく人口、人�
 
 主要リンク:
 
-- [総務省｜住民基本台帳等](https://www.soumu.go.jp/main_sosiki/jichi_gyousei/daityo/index.html)
+- [総務省｜住民基本台帳等](https://www.soumu.go.jp/main_sosiki/jichi_gyousei/daityo/gaiyou.html)
 - [e-Stat](https://www.e-stat.go.jp/)
 - [総務省｜全国地方公共団体コード](https://www.soumu.go.jp/denshijiti/code.html)
 - [国土数値情報ダウンロードサイト](https://nlftp.mlit.go.jp/ksj/)
@@ -210,6 +210,10 @@ index = value / value(基準年) × 100
 
 特徴量、標準化、重みは [MVP_SPEC.md](MVP_SPEC.md#5-類似自治体) を正とします。計算に使った全国中央値、IQR、候補件数、除外件数を `similarity-model.json` に保存します。
 
+候補マスターは2025年-03の現行自治体行から作り、全国の市・町・村と東京都特別区を含めます。政令指定都市の行政区、都道府県・郡などの集計行は含めません。2016年との対応は同じ5桁の自治体コードによる直接突合とし、合併・分割を推定して値を合算しません。必須4特徴量（2025年人口、2025年年齢構成、2016〜2025年人口増減率）が一つでも欠ける候補は除外理由とともに記録します。
+
+`similarity.json` の `entries` は4特徴量を重み付けした総合ランキングです。v5以降は `single_feature_entries` に、4特徴量それぞれを単独で標準化して再ランキングした結果も保存します。既存の `entries` は互換性のため維持します。
+
 ## 11. 公開JSON
 
 ```text
@@ -227,6 +231,8 @@ public/data/
         ├── similarity.json
         └── similarity-model.json
 ```
+
+`municipalities.json` は類似度候補を含む全国自治体マスターです。詳細JSONは主役である広島県23市町分だけを収録し、全国候補は `similarity.json` に上位結果と特徴量の寄与を収録します。
 
 `latest.json` は現在のリリースIDだけを指します。リリースディレクトリの内容は公開後に上書きせず、訂正は `v2` など新IDで作成します。
 

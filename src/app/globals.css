@@ -597,6 +597,33 @@ h3 {
   background: var(--green);
 }
 
+.similarity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-strong);
+}
+
+.similarity-controls label {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.similarity-controls select {
+  min-width: 210px;
+  padding: 9px 32px 9px 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+}
+
 .similarity-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -629,8 +656,21 @@ h3 {
   text-underline-offset: 4px;
 }
 
+.similarity-name {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--ink);
+}
+
 .similarity-list p {
   margin: 4px 0 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.similarity-reason {
+  display: block;
+  margin-top: 12px;
   color: var(--muted);
   font-size: var(--text-sm);
 }
@@ -962,6 +1002,25 @@ nav a:focus-visible,
   text-underline-offset: 4px;
 }
 
+/* 計算式は等幅で、行の対応が崩れないように折り返さず横スクロールさせる。 */
+.formula {
+  margin: 16px 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-strong);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.formula code {
+  color: var(--ink);
+  background: none;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  white-space: pre;
+}
+
 .prose-page code {
   padding: 2px 6px;
   border-radius: 4px;
@@ -1039,6 +1098,15 @@ nav a:focus-visible,
 
   .similarity-list {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .similarity-controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .similarity-controls select {
+    width: 100%;
   }
 
   .source-card {
@@ -1169,10 +1237,6 @@ body {
 }
 
 .dashboard-page-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
-  align-items: end;
-  gap: 48px;
   margin-bottom: 40px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--line);
@@ -1189,36 +1253,6 @@ body {
   margin: 18px 0 0;
   color: var(--muted);
   font-size: var(--text-body);
-}
-
-.dashboard-header-aside {
-  padding: 20px 22px;
-  border: 1px solid var(--primary-soft);
-  border-radius: 14px;
-  background: var(--primary-soft);
-}
-
-.dashboard-header-aside .live-badge,
-.dashboard-header-aside strong,
-.dashboard-header-aside small {
-  display: block;
-}
-
-.dashboard-header-aside .live-badge {
-  width: fit-content;
-}
-
-.dashboard-header-aside strong {
-  margin-top: 14px;
-  color: var(--primary-deep);
-  font-size: var(--text-dsp);
-  line-height: 1.4;
-}
-
-.dashboard-header-aside small {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: var(--text-sm);
 }
 
 .dashboard-toolbar {
@@ -2195,13 +2229,7 @@ html[data-theme="dark"] .insight-panel {
   }
 
   .dashboard-page-header {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    margin-bottom: 46px;
-  }
-
-  .dashboard-header-aside {
-    max-width: 360px;
+    margin-bottom: 32px;
   }
 }
 

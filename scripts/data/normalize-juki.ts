@@ -153,7 +153,7 @@ interface ProcessedOutput {
   quality: QualityRecord[];
 }
 
-const ESTAT_FILE_IDS: Record<number, { "03": string; "04": string }> = {
+export const ESTAT_FILE_IDS: Record<number, { "03": string; "04": string }> = {
   2016: { "03": "000031430150", "04": "000031429218" },
   2017: { "03": "000031598538", "04": "000031598539" },
   2018: { "03": "000031736913", "04": "000031736914" },
@@ -403,7 +403,7 @@ function sha256(path: string): string {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
 }
 
-function sourceFilePath(
+export function sourceFilePath(
   rawRoot: string,
   year: number,
   table: "03" | "04",
@@ -420,7 +420,7 @@ function sourceFilePath(
   return found;
 }
 
-function convertToCsv(rawPath: string): {
+export function convertToCsv(rawPath: string): {
   csvPath: string;
   cleanup: () => void;
 } {

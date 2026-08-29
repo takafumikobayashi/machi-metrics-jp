@@ -6,7 +6,7 @@
 acquire → normalize → validate → derive → publish
 ```
 
-現時点では、対象期間・23市町・類似度設定の検証、全60原本の正規化、公開JSONのstaging検証まで実装しています。
+現時点では、対象期間・23市町・類似度設定の検証、全60原本の正規化、全国類似度候補の生成、公開JSONの検証まで実装しています。
 
 ```bash
 pnpm validate:data
@@ -16,6 +16,7 @@ pnpm validate:data
 
 2016年・2025年の`-03`・`-04`原本から、広島市（`34100`）と安芸高田市（`34214`）を抽出します。
 旧Excel形式（`.xls`）と新Excel形式（`.xlsx`）の両方を扱うため、ローカルにLibreOfficeの`soffice`が必要です。
+`publish:data`も全国候補を原本から読むため同じ依存があります。`soffice`がない環境では公開JSONを再生成できません。
 原本は変更せず、一時CSVへ変換してから解析します。
 
 ```bash
@@ -37,12 +38,11 @@ pnpm normalize:data -- --years 2016,2025 --municipalities 34100,34214
 
 ```bash
 pnpm publish:data -- \
-  --years 2016,2025 \
-  --municipalities 34100,34214 \
-  --release-id juki-2016-2025-pilot-v1
+  --release-id juki-2016-2025-hiroshima-v5
 ```
 
-既定の出力先は`data/staging/public-juki`です。`public/data`や本番用の`latest.json`は変更しません。現段階では2自治体・2時点のパイロットであり、類似自治体の候補集合も選択自治体内に限定されるため、全国公開用には使用しません。
+既定の年は`config/project.json`の2016〜2025年、自治体は`config/municipalities/hiroshima.json`の23市町です。公開処理では追加で2016年・2025年の`-03`・`-04`原本から、全国の市・町・村と東京都特別区を候補として生成します。政令指定都市の行政区は除外し、必須4特徴量が揃わない候補は理由を記録します。
+既定の出力先は`data/staging/public-juki`です。`public/data`へ配置する場合も、既存リリースを上書きせず、新しいリリースIDと`latest.json`だけを追加・更新します。
 
 ## 拡張データの公開
 

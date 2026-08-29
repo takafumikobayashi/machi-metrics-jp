@@ -1,0 +1,2444 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v3",
+  "result_count": 5,
+  "entries": [
+    {
+      "municipality_code": "34100",
+      "feature_values": {
+        "log_population": 6.069499007288329,
+        "child_share": 0.1242894380521208,
+        "elderly_share": 0.2650077585567806,
+        "population_change_rate": -0.014682249817384953
+      },
+      "similar": [
+        {
+          "municipality_code": "33100",
+          "name_ja": "岡山市",
+          "prefecture_code": "33",
+          "prefecture_name_ja": "岡山県",
+          "distance": 0.1471129405624395,
+          "contributions": {
+            "log_population": 0.02082868265197231,
+            "child_share": 0.00003729450206403126,
+            "elderly_share": 0.0006806792607581477,
+            "population_change_rate": 0.00009556086613337276
+          },
+          "feature_values": {
+            "log_population": 5.842415760758782,
+            "child_share": 0.12378789403326194,
+            "elderly_share": 0.2717747847460794,
+            "population_change_rate": -0.016852384418080454
+          }
+        },
+        {
+          "municipality_code": "43100",
+          "name_ja": "熊本市",
+          "prefecture_code": "43",
+          "prefecture_name_ja": "熊本県",
+          "distance": 0.16889363964349186,
+          "contributions": {
+            "log_population": 0.01703841381493001,
+            "child_share": 0.008364931007382635,
+            "elderly_share": 0.0013387954801445158,
+            "population_change_rate": 0.0017829212095685203
+          },
+          "feature_values": {
+            "log_population": 5.864113982891763,
+            "child_share": 0.13180078514379945,
+            "elderly_share": 0.27449814106061415,
+            "population_change_rate": -0.005308514024106611
+          }
+        },
+        {
+          "municipality_code": "04100",
+          "name_ja": "仙台市",
+          "prefecture_code": "04",
+          "prefecture_name_ja": "宮城県",
+          "distance": 0.17005835160894178,
+          "contributions": {
+            "log_population": 0.0007295543955164804,
+            "child_share": 0.01626721616919827,
+            "elderly_share": 0.0021799353919838304,
+            "population_change_rate": 0.009743136995251889
+          },
+          "feature_values": {
+            "log_population": 6.026999584445506,
+            "child_share": 0.11381469766253,
+            "elderly_share": 0.25289763960073,
+            "population_change_rate": 0.007230457462023297
+          }
+        },
+        {
+          "municipality_code": "22130",
+          "name_ja": "浜松市",
+          "prefecture_code": "22",
+          "prefecture_name_ja": "静岡県",
+          "distance": 0.1794744911741917,
+          "contributions": {
+            "log_population": 0.012401778840826877,
+            "child_share": 0.005704180556404413,
+            "elderly_share": 0.008683252825912128,
+            "population_change_rate": 0.005421880759091597
+          },
+          "feature_values": {
+            "log_population": 5.89427396066846,
+            "child_share": 0.1180867022823641,
+            "elderly_share": 0.2891772671840638,
+            "population_change_rate": -0.031028630688468988
+          }
+        },
+        {
+          "municipality_code": "27140",
+          "name_ja": "堺市",
+          "prefecture_code": "27",
+          "prefecture_name_ja": "大阪府",
+          "distance": 0.19595275311927504,
+          "contributions": {
+            "log_population": 0.010333377651559315,
+            "child_share": 0.01005181959676475,
+            "elderly_share": 0.004849229911939132,
+            "population_change_rate": 0.013163054294760359
+          },
+          "feature_values": {
+            "log_population": 5.9095522853070905,
+            "child_share": 0.11605547352125824,
+            "elderly_share": 0.2830696399344328,
+            "population_change_rate": -0.040152016643812946
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34202",
+      "feature_values": {
+        "log_population": 5.303718624816738,
+        "child_share": 0.09646097733077588,
+        "elderly_share": 0.36578845370250745,
+        "population_change_rate": -0.13602232478265536
+      },
+      "similar": [
+        {
+          "municipality_code": "01206",
+          "name_ja": "釧路市",
+          "prefecture_code": "01",
+          "prefecture_name_ja": "北海道",
+          "distance": 0.12493269488577263,
+          "contributions": {
+            "log_population": 0.005382221765657399,
+            "child_share": 0.007746583894822164,
+            "elderly_share": 0.0005690836010953899,
+            "population_change_rate": 0.0019102889898466064
+          },
+          "feature_values": {
+            "log_population": 5.188284294671914,
+            "child_share": 0.08923258421868012,
+            "elderly_share": 0.35960096194359276,
+            "population_change_rate": -0.1263195451250453
+          }
+        },
+        {
+          "municipality_code": "08202",
+          "name_ja": "日立市",
+          "prefecture_code": "08",
+          "prefecture_name_ja": "茨城県",
+          "distance": 0.14331603749304503,
+          "contributions": {
+            "log_population": 0.0032180658942400587,
+            "child_share": 0.005180936713186061,
+            "elderly_share": 0.008288669525738125,
+            "population_change_rate": 0.003851814469543646
+          },
+          "feature_values": {
+            "log_population": 5.214459698323083,
+            "child_share": 0.090549571267279,
+            "elderly_share": 0.3421744835372738,
+            "population_change_rate": -0.12224454265434578
+          }
+        },
+        {
+          "municipality_code": "01202",
+          "name_ja": "函館市",
+          "prefecture_code": "01",
+          "prefecture_name_ja": "北海道",
+          "distance": 0.15908415403527243,
+          "contributions": {
+            "log_population": 0.001987119273325302,
+            "child_share": 0.017132483904496502,
+            "elderly_share": 0.000654600518489208,
+            "population_change_rate": 0.00553356436880727
+          },
+          "feature_values": {
+            "log_population": 5.373858689304904,
+            "child_share": 0.08571126567025347,
+            "elderly_share": 0.37242458195040484,
+            "population_change_rate": -0.11950844510957981
+          }
+        },
+        {
+          "municipality_code": "35201",
+          "name_ja": "下関市",
+          "prefecture_code": "35",
+          "prefecture_name_ja": "山口県",
+          "distance": 0.1677725833844252,
+          "contributions": {
+            "log_population": 0.0027585754036923717,
+            "child_share": 0.007396022753795901,
+            "elderly_share": 0.000006030198460781281,
+            "population_change_rate": 0.01798701137953485
+          },
+          "feature_values": {
+            "log_population": 5.386359826346106,
+            "child_share": 0.10352392142041393,
+            "elderly_share": 0.36642538472282704,
+            "population_change_rate": -0.10624908209722426
+          }
+        },
+        {
+          "municipality_code": "34205",
+          "name_ja": "尾道市",
+          "prefecture_code": "34",
+          "prefecture_name_ja": "広島県",
+          "distance": 0.1694347735673998,
+          "contributions": {
+            "log_population": 0.01647901002973671,
+            "child_share": 0.0005467201969989768,
+            "elderly_share": 0.000715292723713632,
+            "population_change_rate": 0.01096711954338673
+          },
+          "feature_values": {
+            "log_population": 5.101733330232639,
+            "child_share": 0.09838127788854077,
+            "elderly_share": 0.37272540270261717,
+            "population_change_rate": -0.11277393269784224
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34203",
+      "feature_values": {
+        "log_population": 4.3532813395452905,
+        "child_share": 0.07713791727623354,
+        "elderly_share": 0.42988872633772224,
+        "population_change_rate": -0.1713687458673132
+      },
+      "similar": [
+        {
+          "municipality_code": "22219",
+          "name_ja": "下田市",
+          "prefecture_code": "22",
+          "prefecture_name_ja": "静岡県",
+          "distance": 0.06079930441307548,
+          "contributions": {
+            "log_population": 0.0018748173785392793,
+            "child_share": 0.0014057407247429657,
+            "elderly_share": 0.00016832127509452206,
+            "population_change_rate": 0.0002476760387370521
+          },
+          "feature_values": {
+            "log_population": 4.285152078525091,
+            "child_share": 0.07405870760294575,
+            "elderly_share": 0.43325381184524425,
+            "population_change_rate": -0.16787502157776626
+          }
+        },
+        {
+          "municipality_code": "01228",
+          "name_ja": "深川市",
+          "prefecture_code": "01",
+          "prefecture_name_ja": "北海道",
+          "distance": 0.07254355602836082,
+          "contributions": {
+            "log_population": 0.003282097433126008,
+            "child_share": 0.000278900377827688,
+            "elderly_share": 0.00043865412633879855,
+            "population_change_rate": 0.0012629155839474322
+          },
+          "feature_values": {
+            "log_population": 4.263138771218142,
+            "child_share": 0.07850946587375197,
+            "elderly_share": 0.43532107589066504,
+            "population_change_rate": -0.16347953082926384
+          }
+        },
+        {
+          "municipality_code": "29212",
+          "name_ja": "宇陀市",
+          "prefecture_code": "29",
+          "prefecture_name_ja": "奈良県",
+          "distance": 0.07725221717149591,
+          "contributions": {
+            "log_population": 0.0021602811455414704,
+            "child_share": 0.00002463156494476311,
+            "elderly_share": 0.0037069640800312096,
+            "population_change_rate": 0.00007602826739452584
+          },
+          "feature_values": {
+            "log_population": 4.426413656131688,
+            "child_share": 0.07754551584625759,
+            "elderly_share": 0.4456806773057616,
+            "population_change_rate": -0.1733044286156705
+          }
+        },
+        {
+          "municipality_code": "39206",
+          "name_ja": "須崎市",
+          "prefecture_code": "39",
+          "prefecture_name_ja": "高知県",
+          "distance": 0.08789279072596602,
+          "contributions": {
+            "log_population": 0.0018219512239143817,
+            "child_share": 0.0028219108255923098,
+            "elderly_share": 0.002342545798072031,
+            "population_change_rate": 0.0007387348140197361
+          },
+          "feature_values": {
+            "log_population": 4.2861195025903625,
+            "child_share": 0.0815006468305304,
+            "elderly_share": 0.41733505821474776,
+            "population_change_rate": -0.1653349457953613
+          }
+        },
+        {
+          "municipality_code": "33210",
+          "name_ja": "新見市",
+          "prefecture_code": "33",
+          "prefecture_name_ja": "岡山県",
+          "distance": 0.08992489738813343,
+          "contributions": {
+            "log_population": 0.0014868482849927742,
+            "child_share": 0.00564948734316456,
+            "elderly_share": 0.000938566690904632,
+            "population_change_rate": 0.000011584851204360931
+          },
+          "feature_values": {
+            "log_population": 4.413953229155415,
+            "child_share": 0.08331084467404294,
+            "elderly_share": 0.4378349203901461,
+            "population_change_rate": -0.17212434571683902
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34204",
+      "feature_values": {
+        "log_population": 4.939893483130274,
+        "child_share": 0.10300315819695664,
+        "elderly_share": 0.3623542922767729,
+        "population_change_rate": -0.1103175576262874
+      },
+      "similar": [
+        {
+          "municipality_code": "03215",
+          "name_ja": "奥州市",
+          "prefecture_code": "03",
+          "prefecture_name_ja": "岩手県",
+          "distance": 0.06636040757003295,
+          "contributions": {
+            "log_population": 0.0034722614523817136,
+            "child_share": 0.0006205234040208798,
+            "elderly_share": 0.0002958644255316406,
+            "population_change_rate": 0.000015054410926652245
+          },
+          "feature_values": {
+            "log_population": 5.032610703364437,
+            "child_share": 0.10095734614742388,
+            "elderly_share": 0.3668157108666209,
+            "population_change_rate": -0.11117890536105934
+          }
+        },
+        {
+          "municipality_code": "38213",
+          "name_ja": "四国中央市",
+          "prefecture_code": "38",
+          "prefecture_name_ja": "愛媛県",
+          "distance": 0.08747948587950928,
+          "contributions": {
+            "log_population": 0.0004032369330373707,
+            "child_share": 0.0007113625567648535,
+            "elderly_share": 0.005391747116120816,
+            "population_change_rate": 0.001146313843820224
+          },
+          "feature_values": {
+            "log_population": 4.908297320214084,
+            "child_share": 0.1051936021737788,
+            "elderly_share": 0.34330883715185573,
+            "population_change_rate": -0.1028013563529177
+          }
+        },
+        {
+          "municipality_code": "24216",
+          "name_ja": "伊賀市",
+          "prefecture_code": "24",
+          "prefecture_name_ja": "三重県",
+          "distance": 0.08895595697256885,
+          "contributions": {
+            "log_population": 0.00006318993440992607,
+            "child_share": 0.0009080500211965165,
+            "elderly_share": 0.006708063830049439,
+            "population_change_rate": 0.0002338584952496392
+          },
+          "feature_values": {
+            "log_population": 4.9273857632795135,
+            "child_share": 0.10052835005850856,
+            "elderly_share": 0.34111083531316855,
+            "population_change_rate": -0.10692268715956593
+          }
+        },
+        {
+          "municipality_code": "28209",
+          "name_ja": "豊岡市",
+          "prefecture_code": "28",
+          "prefecture_name_ja": "兵庫県",
+          "distance": 0.09131430038775604,
+          "contributions": {
+            "log_population": 0.0016445556713993164,
+            "child_share": 0.004661406152442403,
+            "elderly_share": 0.001797553252905827,
+            "population_change_rate": 0.00023478637855779642
+          },
+          "feature_values": {
+            "log_population": 4.876084990845182,
+            "child_share": 0.1086103462495178,
+            "elderly_share": 0.35135746305385956,
+            "population_change_rate": -0.11371915636089268
+          }
+        },
+        {
+          "municipality_code": "06203",
+          "name_ja": "鶴岡市",
+          "prefecture_code": "06",
+          "prefecture_name_ja": "山形県",
+          "distance": 0.09156488676846443,
+          "contributions": {
+            "log_population": 0.006544835975320107,
+            "child_share": 0.0009640511723807594,
+            "elderly_share": 0.0005925626097858916,
+            "population_change_rate": 0.00028267873143495413
+          },
+          "feature_values": {
+            "log_population": 5.067186206011897,
+            "child_share": 0.1004531786757588,
+            "elderly_share": 0.3686681344287293,
+            "population_change_rate": -0.1140500007589672
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34205",
+      "feature_values": {
+        "log_population": 5.101733330232639,
+        "child_share": 0.09838127788854077,
+        "elderly_share": 0.37272540270261717,
+        "population_change_rate": -0.11277393269784224
+      },
+      "similar": [
+        {
+          "municipality_code": "06203",
+          "name_ja": "鶴岡市",
+          "prefecture_code": "06",
+          "prefecture_name_ja": "山形県",
+          "distance": 0.03736651379161565,
+          "contributions": {
+            "log_population": 0.0004820758960030981,
+            "child_share": 0.0006364504716511797,
+            "elderly_share": 0.00024468889176784827,
+            "population_change_rate": 0.0000330410935168768
+          },
+          "feature_values": {
+            "log_population": 5.067186206011897,
+            "child_share": 0.1004531786757588,
+            "elderly_share": 0.3686681344287293,
+            "population_change_rate": -0.1140500007589672
+          }
+        },
+        {
+          "municipality_code": "03215",
+          "name_ja": "奥州市",
+          "prefecture_code": "03",
+          "prefecture_name_ja": "岩手県",
+          "distance": 0.059029820448497264,
+          "contributions": {
+            "log_population": 0.0019298878970616961,
+            "child_share": 0.000983878419424514,
+            "elderly_share": 0.0005191304146225396,
+            "population_change_rate": 0.00005162297107307614
+          },
+          "feature_values": {
+            "log_population": 5.032610703364437,
+            "child_share": 0.10095734614742388,
+            "elderly_share": 0.3668157108666209,
+            "population_change_rate": -0.11117890536105934
+          }
+        },
+        {
+          "municipality_code": "38202",
+          "name_ja": "今治市",
+          "prefecture_code": "38",
+          "prefecture_name_ja": "愛媛県",
+          "distance": 0.0800070249962623,
+          "contributions": {
+            "log_population": 0.0018486994899856066,
+            "child_share": 0.00035916037602468293,
+            "elderly_share": 0.002478599427458494,
+            "population_change_rate": 0.0017146647552837577
+          },
+          "feature_values": {
+            "log_population": 5.169386376036954,
+            "child_share": 0.09993771242095571,
+            "elderly_share": 0.3598123248161839,
+            "population_change_rate": -0.10358137756495457
+          }
+        },
+        {
+          "municipality_code": "04202",
+          "name_ja": "石巻市",
+          "prefecture_code": "04",
+          "prefecture_name_ja": "宮城県",
+          "distance": 0.08686061263742201,
+          "contributions": {
+            "log_population": 0.00016659422661104514,
+            "child_share": 0.0010850467746048584,
+            "elderly_share": 0.006124037741483793,
+            "population_change_rate": 0.00016908728504857836
+          },
+          "feature_values": {
+            "log_population": 5.122042125727239,
+            "child_share": 0.09567600625155723,
+            "elderly_share": 0.3524277635582535,
+            "population_change_rate": -0.10988722966706542
+          }
+        },
+        {
+          "municipality_code": "27216",
+          "name_ja": "河内長野市",
+          "prefecture_code": "27",
+          "prefecture_name_ja": "大阪府",
+          "distance": 0.08816063003995832,
+          "contributions": {
+            "log_population": 0.004967460341978775,
+            "child_share": 0.0019021528514904713,
+            "elderly_share": 0.000024114602080462143,
+            "population_change_rate": 0.0008785688934926924
+          },
+          "feature_values": {
+            "log_population": 4.990835921776678,
+            "child_share": 0.09479941171664352,
+            "elderly_share": 0.37399910123376096,
+            "population_change_rate": -0.10619380163403168
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34207",
+      "feature_values": {
+        "log_population": 5.658038121649084,
+        "child_share": 0.12352646430549329,
+        "elderly_share": 0.29516425362834814,
+        "population_change_rate": -0.035904520164246334
+      },
+      "similar": [
+        {
+          "municipality_code": "37201",
+          "name_ja": "高松市",
+          "prefecture_code": "37",
+          "prefecture_name_ja": "香川県",
+          "distance": 0.05961980628627163,
+          "contributions": {
+            "log_population": 0.0005594138364034601,
+            "child_share": 0.0008230511228257798,
+            "elderly_share": 0.0007237193678754129,
+            "population_change_rate": 0.0014483369745079007
+          },
+          "feature_values": {
+            "log_population": 5.620822884144432,
+            "child_share": 0.12117032993343868,
+            "elderly_share": 0.2881865632332519,
+            "population_change_rate": -0.027455984501142155
+          }
+        },
+        {
+          "municipality_code": "38201",
+          "name_ja": "松山市",
+          "prefecture_code": "38",
+          "prefecture_name_ja": "愛媛県",
+          "distance": 0.07718633294066025,
+          "contributions": {
+            "log_population": 0.0005840633593604021,
+            "child_share": 0.005090983481495939,
+            "elderly_share": 0.000029530789681760636,
+            "population_change_rate": 0.00025315236228835267
+          },
+          "feature_values": {
+            "log_population": 5.696064430746607,
+            "child_share": 0.1176666008947663,
+            "elderly_share": 0.2937547567177943,
+            "population_change_rate": -0.03943665785396968
+          }
+        },
+        {
+          "municipality_code": "28201",
+          "name_ja": "姫路市",
+          "prefecture_code": "28",
+          "prefecture_name_ja": "兵庫県",
+          "distance": 0.08514570831034551,
+          "contributions": {
+            "log_population": 0.0014840045717831756,
+            "child_share": 0.00008959200251351981,
+            "elderly_share": 0.005588426721422627,
+            "population_change_rate": 0.00008776834795111747
+          },
+          "feature_values": {
+            "log_population": 5.718651963632365,
+            "child_share": 0.12274910594994849,
+            "elderly_share": 0.2757745407421141,
+            "population_change_rate": -0.033824748798238956
+          }
+        },
+        {
+          "municipality_code": "45201",
+          "name_ja": "宮崎市",
+          "prefecture_code": "45",
+          "prefecture_name_ja": "宮崎県",
+          "distance": 0.09285831591955813,
+          "contributions": {
+            "log_population": 0.0015519895604536647,
+            "child_share": 0.005649817585850987,
+            "elderly_share": 0.000004985807091790506,
+            "population_change_rate": 0.0014158738820200208
+          },
+          "feature_values": {
+            "log_population": 5.59605141101596,
+            "child_share": 0.12969957212094174,
+            "elderly_share": 0.29458509926388576,
+            "population_change_rate": -0.02755120402483725
+          }
+        },
+        {
+          "municipality_code": "27210",
+          "name_ja": "枚方市",
+          "prefecture_code": "27",
+          "prefecture_name_ja": "大阪府",
+          "distance": 0.1002973157281036,
+          "contributions": {
+            "log_population": 0.0016746054880467608,
+            "child_share": 0.008083367216105128,
+            "elderly_share": 0.00022730704006297217,
+            "population_change_rate": 0.00007427179804803992
+          },
+          "feature_values": {
+            "log_population": 5.593649304335377,
+            "child_share": 0.11614261536265574,
+            "elderly_share": 0.29125374686486816,
+            "population_change_rate": -0.03399132796399209
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34208",
+      "feature_values": {
+        "log_population": 4.545368977370694,
+        "child_share": 0.08924654607605755,
+        "elderly_share": 0.39219484403931065,
+        "population_change_rate": -0.15133567025262903
+      },
+      "similar": [
+        {
+          "municipality_code": "07211",
+          "name_ja": "田村市",
+          "prefecture_code": "07",
+          "prefecture_name_ja": "福島県",
+          "distance": 0.03998502824862058,
+          "contributions": {
+            "log_population": 0.0002964649993333496,
+            "child_share": 0.0008607632454302557,
+            "elderly_share": 0.00043474854712115496,
+            "population_change_rate": 0.000006825692158225249
+          },
+          "feature_values": {
+            "log_population": 4.518276987349374,
+            "child_share": 0.0916560548177794,
+            "elderly_share": 0.3867867321569341,
+            "population_change_rate": -0.1519156595525842
+          }
+        },
+        {
+          "municipality_code": "15225",
+          "name_ja": "魚沼市",
+          "prefecture_code": "15",
+          "prefecture_name_ja": "新潟県",
+          "distance": 0.06009742413349835,
+          "contributions": {
+            "log_population": 0.0004449912194305585,
+            "child_share": 0.0025745630655406677,
+            "elderly_share": 0.0004111346150940316,
+            "population_change_rate": 0.0001810114874163323
+          },
+          "feature_values": {
+            "log_population": 4.512177245478473,
+            "child_share": 0.09341368919500646,
+            "elderly_share": 0.39745403111739747,
+            "population_change_rate": -0.1483489145520727
+          }
+        },
+        {
+          "municipality_code": "08225",
+          "name_ja": "常陸大宮市",
+          "prefecture_code": "08",
+          "prefecture_name_ja": "茨城県",
+          "distance": 0.061317586924252786,
+          "contributions": {
+            "log_population": 0.0004351619253716278,
+            "child_share": 0.0012055807317428004,
+            "elderly_share": 0.00027588570355690725,
+            "population_change_rate": 0.0018432181055419608
+          },
+          "feature_values": {
+            "log_population": 4.578192080540258,
+            "child_share": 0.08639497107841843,
+            "elderly_share": 0.39650299780777054,
+            "population_change_rate": -0.14180474646961488
+          }
+        },
+        {
+          "municipality_code": "03203",
+          "name_ja": "大船渡市",
+          "prefecture_code": "03",
+          "prefecture_name_ja": "岩手県",
+          "distance": 0.07741930762925224,
+          "contributions": {
+            "log_population": 0.0006276289225329479,
+            "child_share": 0.0005220000195650529,
+            "elderly_share": 0.0007232517456922298,
+            "population_change_rate": 0.004120868506002563
+          },
+          "feature_values": {
+            "log_population": 4.5059499715036155,
+            "child_share": 0.08737016126516735,
+            "elderly_share": 0.39917027979662495,
+            "population_change_rate": -0.16558652820072356
+          }
+        },
+        {
+          "municipality_code": "04206",
+          "name_ja": "白石市",
+          "prefecture_code": "04",
+          "prefecture_name_ja": "宮城県",
+          "distance": 0.08128771076022323,
+          "contributions": {
+            "log_population": 0.001458355594785216,
+            "child_share": 0.0017886715322805139,
+            "elderly_share": 0.0012560586638694828,
+            "population_change_rate": 0.0021046061297025
+          },
+          "feature_values": {
+            "log_population": 4.485281231935597,
+            "child_share": 0.08577316889659459,
+            "elderly_share": 0.3830023880401714,
+            "population_change_rate": -0.14115134998454754
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34209",
+      "feature_values": {
+        "log_population": 4.680371778662958,
+        "child_share": 0.11113894455577822,
+        "elderly_share": 0.36928022712090847,
+        "population_change_rate": -0.12299073633334554
+      },
+      "similar": [
+        {
+          "municipality_code": "44204",
+          "name_ja": "日田市",
+          "prefecture_code": "44",
+          "prefecture_name_ja": "大分県",
+          "distance": 0.06654514850653927,
+          "contributions": {
+            "log_population": 0.0039808263574655,
+            "child_share": 0.0002794460289202583,
+            "elderly_share": 0.000004669615344276442,
+            "population_change_rate": 0.0001633147880273311
+          },
+          "feature_values": {
+            "log_population": 4.779646987680404,
+            "child_share": 0.11251183417210624,
+            "elderly_share": 0.3698407161957912,
+            "population_change_rate": -0.12015373598912742
+          }
+        },
+        {
+          "municipality_code": "45205",
+          "name_ja": "小林市",
+          "prefecture_code": "45",
+          "prefecture_name_ja": "宮崎県",
+          "distance": 0.07934253799896193,
+          "contributions": {
+            "log_population": 0.001282458417850662,
+            "child_share": 0.0006909182057105573,
+            "elderly_share": 0.003575241939680841,
+            "population_change_rate": 0.0007466197728746581
+          },
+          "feature_values": {
+            "log_population": 4.624024124647861,
+            "child_share": 0.11329768270944741,
+            "elderly_share": 0.38478906714200833,
+            "population_change_rate": -0.11692482055156782
+          }
+        },
+        {
+          "municipality_code": "42213",
+          "name_ja": "雲仙市",
+          "prefecture_code": "42",
+          "prefecture_name_ja": "長崎県",
+          "distance": 0.08144314431075886,
+          "contributions": {
+            "log_population": 0.0020087821820945085,
+            "child_share": 0.000425345927682168,
+            "elderly_share": 0.0000030901158661510133,
+            "population_change_rate": 0.0041957675295802655
+          },
+          "feature_values": {
+            "log_population": 4.609850428773941,
+            "child_share": 0.11283272762989884,
+            "elderly_share": 0.368824280522542,
+            "population_change_rate": -0.10861095302718557
+          }
+        },
+        {
+          "municipality_code": "15226",
+          "name_ja": "南魚沼市",
+          "prefecture_code": "15",
+          "prefecture_name_ja": "新潟県",
+          "distance": 0.08996707189810094,
+          "contributions": {
+            "log_population": 0.0006068361704943739,
+            "child_share": 0.000778432995278281,
+            "elderly_share": 0.0037276264628020917,
+            "population_change_rate": 0.0029811783973433146
+          },
+          "feature_values": {
+            "log_population": 4.7191323279139405,
+            "child_share": 0.10884756376966549,
+            "elderly_share": 0.35344432564533373,
+            "population_change_rate": -0.11086967592985554
+          }
+        },
+        {
+          "municipality_code": "28224",
+          "name_ja": "南あわじ市",
+          "prefecture_code": "28",
+          "prefecture_name_ja": "兵庫県",
+          "distance": 0.0925784036375565,
+          "contributions": {
+            "log_population": 0.0006325243596645097,
+            "child_share": 0.005416458565681236,
+            "elderly_share": 0.00020742206506116234,
+            "population_change_rate": 0.0023143558296714268
+          },
+          "feature_values": {
+            "log_population": 4.640799339432712,
+            "child_share": 0.10509466752035124,
+            "elderly_share": 0.3655446812402817,
+            "population_change_rate": -0.11231097127778342
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34210",
+      "feature_values": {
+        "log_population": 4.494126753736251,
+        "child_share": 0.09305083659208924,
+        "elderly_share": 0.4460221809090326,
+        "population_change_rate": -0.1693159730542908
+      },
+      "similar": [
+        {
+          "municipality_code": "38214",
+          "name_ja": "西予市",
+          "prefecture_code": "38",
+          "prefecture_name_ja": "愛媛県",
+          "distance": 0.040207867970095165,
+          "contributions": {
+            "log_population": 0.0004607323182112447,
+            "child_share": 0.0008931881967588946,
+            "elderly_share": 0.000020204101902761144,
+            "population_change_rate": 0.00024254802982770447
+          },
+          "feature_values": {
+            "log_population": 4.527900445194766,
+            "child_share": 0.09059636428338425,
+            "elderly_share": 0.44485632098692207,
+            "population_change_rate": -0.16585860584772177
+          }
+        },
+        {
+          "municipality_code": "44212",
+          "name_ja": "豊後大野市",
+          "prefecture_code": "44",
+          "prefecture_name_ja": "大分県",
+          "distance": 0.08737397197021571,
+          "contributions": {
+            "log_population": 0.00004883907407316696,
+            "child_share": 0.004256069787850581,
+            "elderly_share": 0.0014421972177975472,
+            "population_change_rate": 0.0018871048981307437
+          },
+          "feature_values": {
+            "log_population": 4.50512283406652,
+            "child_share": 0.08769298081130071,
+            "elderly_share": 0.45587224201512594,
+            "population_change_rate": -0.1596722516938915
+          }
+        },
+        {
+          "municipality_code": "46217",
+          "name_ja": "曽於市",
+          "prefecture_code": "46",
+          "prefecture_name_ja": "鹿児島県",
+          "distance": 0.10966705927885084,
+          "contributions": {
+            "log_population": 0.0000739059094704861,
+            "child_share": 0.00939157254191342,
+            "elderly_share": 0.0015458955976410487,
+            "population_change_rate": 0.0010154898418460324
+          },
+          "feature_values": {
+            "log_population": 4.507653513464988,
+            "child_share": 0.10100978716793538,
+            "elderly_share": 0.4358241416809073,
+            "population_change_rate": -0.16224165755635378
+          }
+        },
+        {
+          "municipality_code": "03208",
+          "name_ja": "遠野市",
+          "prefecture_code": "03",
+          "prefecture_name_ja": "岩手県",
+          "distance": 0.12181285777938095,
+          "contributions": {
+            "log_population": 0.005358908503400655,
+            "child_share": 0.0032888145319655356,
+            "elderly_share": 0.005963425755541756,
+            "population_change_rate": 0.0002272235294717412
+          },
+          "feature_values": {
+            "log_population": 4.378942698613438,
+            "child_share": 0.0883409945674885,
+            "elderly_share": 0.42599247806101126,
+            "population_change_rate": -0.1659696082531716
+          }
+        },
+        {
+          "municipality_code": "43212",
+          "name_ja": "上天草市",
+          "prefecture_code": "43",
+          "prefecture_name_ja": "熊本県",
+          "distance": 0.12647989102669177,
+          "contributions": {
+            "log_population": 0.0059491788059956065,
+            "child_share": 0.0017587372950686802,
+            "elderly_share": 0.000021776621170387205,
+            "population_change_rate": 0.008267470111889151
+          },
+          "feature_values": {
+            "log_population": 4.372764759543742,
+            "child_share": 0.0896066463207867,
+            "elderly_share": 0.4448118006103764,
+            "population_change_rate": -0.18950116806376255
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34211",
+      "feature_values": {
+        "log_population": 4.404029356425098,
+        "child_share": 0.1021575355973652,
+        "elderly_share": 0.36678105155208457,
+        "population_change_rate": -0.09405038413435769
+      },
+      "similar": [
+        {
+          "municipality_code": "04505",
+          "name_ja": "美里町",
+          "prefecture_code": "04",
+          "prefecture_name_ja": "宮城県",
+          "distance": 0.05158588686750768,
+          "contributions": {
+            "log_population": 0.0008398710348555155,
+            "child_share": 0.0009854375941557884,
+            "elderly_share": 0.0008328105345803502,
+            "population_change_rate": 0.0000029845603156474143
+          },
+          "feature_values": {
+            "log_population": 4.358429812930043,
+            "child_share": 0.0995794269692456,
+            "elderly_share": 0.37426618768071496,
+            "population_change_rate": -0.09366686519753822
+          }
+        },
+        {
+          "municipality_code": "26213",
+          "name_ja": "南丹市",
+          "prefecture_code": "26",
+          "prefecture_name_ja": "京都府",
+          "distance": 0.05699106017573229,
+          "contributions": {
+            "log_population": 0.0017727504698576621,
+            "child_share": 0.0001132888551524911,
+            "elderly_share": 0.00004682084601523561,
+            "population_change_rate": 0.0013151207689285505
+          },
+          "feature_values": {
+            "log_population": 4.470278153606752,
+            "child_share": 0.10128339710812366,
+            "elderly_share": 0.3650062646032982,
+            "population_change_rate": -0.10210100641551886
+          }
+        },
+        {
+          "municipality_code": "18208",
+          "name_ja": "あわら市",
+          "prefecture_code": "18",
+          "prefecture_name_ja": "福井県",
+          "distance": 0.06964355506768748,
+          "contributions": {
+            "log_population": 0.00010373196096173987,
+            "child_share": 0.0001637248907972737,
+            "elderly_share": 0.0045164380988938725,
+            "population_change_rate": 0.00006632981181313297
+          },
+          "feature_values": {
+            "log_population": 4.420054815778764,
+            "child_share": 0.10320839352239033,
+            "elderly_share": 0.3493499581844446,
+            "population_change_rate": -0.09585839491321532
+          }
+        },
+        {
+          "municipality_code": "02210",
+          "name_ja": "平川市",
+          "prefecture_code": "02",
+          "prefecture_name_ja": "青森県",
+          "distance": 0.08181017642396525,
+          "contributions": {
+            "log_population": 0.0016350151714006327,
+            "child_share": 0.00310688677592283,
+            "elderly_share": 0.0019260062621517743,
+            "population_change_rate": 0.000024996757045082797
+          },
+          "feature_values": {
+            "log_population": 4.467652494573867,
+            "child_share": 0.10673525704357306,
+            "elderly_share": 0.3553980853745784,
+            "population_change_rate": -0.09516029593094945
+          }
+        },
+        {
+          "municipality_code": "06213",
+          "name_ja": "南陽市",
+          "prefecture_code": "06",
+          "prefecture_name_ja": "山形県",
+          "distance": 0.08306102665577764,
+          "contributions": {
+            "log_population": 0.0014259151710133682,
+            "child_share": 0.0007476576591572633,
+            "elderly_share": 0.0019309258461871121,
+            "population_change_rate": 0.00279463547275406
+          },
+          "feature_values": {
+            "log_population": 4.463445031770428,
+            "child_share": 0.1044031647746818,
+            "elderly_share": 0.35538355693154455,
+            "population_change_rate": -0.10578609000584453
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34212",
+      "feature_values": {
+        "log_population": 5.280830952498799,
+        "child_share": 0.13403104064197452,
+        "elderly_share": 0.24908465201062274,
+        "population_change_rate": 0.029869345215618157
+      },
+      "similar": [
+        {
+          "municipality_code": "27211",
+          "name_ja": "茨木市",
+          "prefecture_code": "27",
+          "prefecture_name_ja": "大阪府",
+          "distance": 0.12086077179257504,
+          "contributions": {
+            "log_population": 0.012454748603757046,
+            "child_share": 0.0005980777272264808,
+            "elderly_share": 0.0008047408573207935,
+            "population_change_rate": 0.0007497589699925819
+          },
+          "feature_values": {
+            "log_population": 5.456429805957866,
+            "child_share": 0.13202257011208143,
+            "elderly_share": 0.24172673942987394,
+            "population_change_rate": 0.023790690599330696
+          }
+        },
+        {
+          "municipality_code": "13211",
+          "name_ja": "小平市",
+          "prefecture_code": "13",
+          "prefecture_name_ja": "東京都",
+          "distance": 0.12921768621417531,
+          "contributions": {
+            "log_population": 0.00007029243807656008,
+            "child_share": 0.011380032367992904,
+            "elderly_share": 0.0015192775755113316,
+            "population_change_rate": 0.0037276080489642817
+          },
+          "feature_values": {
+            "log_population": 5.294022887308812,
+            "child_share": 0.12526994547736522,
+            "elderly_share": 0.2389747915385749,
+            "population_change_rate": 0.04342316644486743
+          }
+        },
+        {
+          "municipality_code": "23212",
+          "name_ja": "安城市",
+          "prefecture_code": "23",
+          "prefecture_name_ja": "愛知県",
+          "distance": 0.1391190798350527,
+          "contributions": {
+            "log_population": 0.00002240435206695667,
+            "child_share": 0.000015122537254287747,
+            "elderly_share": 0.011257240923016222,
+            "population_change_rate": 0.0080593505618143
+          },
+          "feature_values": {
+            "log_population": 5.273383283147577,
+            "child_share": 0.133711667066315,
+            "elderly_share": 0.22156502277995363,
+            "population_change_rate": 0.009939833600619962
+          }
+        },
+        {
+          "municipality_code": "27220",
+          "name_ja": "箕面市",
+          "prefecture_code": "27",
+          "prefecture_name_ja": "大阪府",
+          "distance": 0.15011186855068331,
+          "contributions": {
+            "log_population": 0.00748982526512397,
+            "child_share": 0.01437857639084554,
+            "elderly_share": 0.0006518415577760005,
+            "population_change_rate": 0.000013329866032122174
+          },
+          "feature_values": {
+            "log_population": 5.144658256472615,
+            "child_share": 0.1438789624947143,
+            "elderly_share": 0.25570678076644665,
+            "population_change_rate": 0.02905883307396727
+          }
+        },
+        {
+          "municipality_code": "23207",
+          "name_ja": "豊川市",
+          "prefecture_code": "23",
+          "prefecture_name_ja": "愛知県",
+          "distance": 0.15890538597902806,
+          "contributions": {
+            "log_population": 0.000053898055274543526,
+            "child_share": 0.007209849044776587,
+            "elderly_share": 0.003753677779924681,
+            "population_change_rate": 0.014233496813168075
+          },
+          "feature_values": {
+            "log_population": 5.269279389771898,
+            "child_share": 0.1270575578267886,
+            "elderly_share": 0.2649757934373319,
+            "population_change_rate": 0.003384195214629223
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34213",
+      "feature_values": {
+        "log_population": 5.062397698990753,
+        "child_share": 0.12730075962962642,
+        "elderly_share": 0.3177278672337182,
+        "population_change_rate": -0.015695870136070662
+      },
+      "similar": [
+        {
+          "municipality_code": "20217",
+          "name_ja": "佐久市",
+          "prefecture_code": "20",
+          "prefecture_name_ja": "長野県",
+          "distance": 0.08727996940027793,
+          "contributions": {
+            "log_population": 0.0022075405594311217,
+            "child_share": 0.003964321475308818,
+            "elderly_share": 0.000171052266522232,
+            "population_change_rate": 0.0012748787572512796
+          },
+          "feature_values": {
+            "log_population": 4.988469770209876,
+            "child_share": 0.12212980078044773,
+            "elderly_share": 0.3143355925241323,
+            "population_change_rate": -0.023622363038421433
+          }
+        },
+        {
+          "municipality_code": "37202",
+          "name_ja": "丸亀市",
+          "prefecture_code": "37",
+          "prefecture_name_ja": "香川県",
+          "distance": 0.11698641431672994,
+          "contributions": {
+            "log_population": 0.0001286418112732814,
+            "child_share": 0.00006489384828144768,
+            "elderly_share": 0.0119159430847967,
+            "population_change_rate": 0.00157634239033417
+          },
+          "feature_values": {
+            "log_population": 5.044551519109087,
+            "child_share": 0.12663917041957348,
+            "elderly_share": 0.2894145465375486,
+            "population_change_rate": -0.024509847077570496
+          }
+        },
+        {
+          "municipality_code": "22213",
+          "name_ja": "掛川市",
+          "prefecture_code": "22",
+          "prefecture_name_ja": "静岡県",
+          "distance": 0.11897787839395743,
+          "contributions": {
+            "log_population": 6.054183168805606e-7,
+            "child_share": 0.000034614263915995304,
+            "elderly_share": 0.01352521328123342,
+            "population_change_rate": 0.0005953025836610274
+          },
+          "feature_values": {
+            "log_population": 5.061173415561871,
+            "child_share": 0.12681757378871844,
+            "elderly_share": 0.28756319163351457,
+            "population_change_rate": -0.02111232983870282
+          }
+        },
+        {
+          "municipality_code": "29209",
+          "name_ja": "生駒市",
+          "prefecture_code": "29",
+          "prefecture_name_ja": "奈良県",
+          "distance": 0.12537368081035116,
+          "contributions": {
+            "log_population": 0.000006875416371688761,
+            "child_share": 0.0010848947600493025,
+            "elderly_share": 0.006007515844673589,
+            "population_change_rate": 0.008619273818841231
+          },
+          "feature_values": {
+            "log_population": 5.06652345646387,
+            "child_share": 0.12459567750293858,
+            "elderly_share": 0.2976242567758874,
+            "population_change_rate": -0.03630605900251356
+          }
+        },
+        {
+          "municipality_code": "35206",
+          "name_ja": "防府市",
+          "prefecture_code": "35",
+          "prefecture_name_ja": "山口県",
+          "distance": 0.12558750808811606,
+          "contributions": {
+            "log_population": 0.00003103926673134176,
+            "child_share": 0.0039002680208761846,
+            "elderly_share": 0.000995651652033561,
+            "population_change_rate": 0.010845263248141529
+          },
+          "feature_values": {
+            "log_population": 5.053631528366029,
+            "child_share": 0.12217174573994202,
+            "elderly_share": 0.30954359046878316,
+            "population_change_rate": -0.03881474433579978
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34214",
+      "feature_values": {
+        "log_population": 4.415657657551421,
+        "child_share": 0.08920548366038171,
+        "elderly_share": 0.4097384893053262,
+        "population_change_rate": -0.13628524046434495
+      },
+      "similar": [
+        {
+          "municipality_code": "06207",
+          "name_ja": "上山市",
+          "prefecture_code": "06",
+          "prefecture_name_ja": "山形県",
+          "distance": 0.054950844674720827,
+          "contributions": {
+            "log_population": 0.0002524394748055807,
+            "child_share": 0.002561033968386473,
+            "elderly_share": 0.000049283093063912034,
+            "population_change_rate": 0.00015683879420932864
+          },
+          "feature_values": {
+            "log_population": 4.440657244144619,
+            "child_share": 0.08504930394431555,
+            "elderly_share": 0.40791763341067283,
+            "population_change_rate": -0.1335050574857071
+          }
+        },
+        {
+          "municipality_code": "36207",
+          "name_ja": "美馬市",
+          "prefecture_code": "36",
+          "prefecture_name_ja": "徳島県",
+          "distance": 0.06031804425965902,
+          "contributions": {
+            "log_population": 0.000005539222419413844,
+            "child_share": 0.00029595167164974155,
+            "elderly_share": 0.00009208828780224074,
+            "population_change_rate": 0.003244687281438788
+          },
+          "feature_values": {
+            "log_population": 4.419360869721284,
+            "child_share": 0.0906183368869936,
+            "elderly_share": 0.4072494669509595,
+            "population_change_rate": -0.14893065456902138
+          }
+        },
+        {
+          "municipality_code": "33215",
+          "name_ja": "美作市",
+          "prefecture_code": "33",
+          "prefecture_name_ja": "岡山県",
+          "distance": 0.06614318785888051,
+          "contributions": {
+            "log_population": 0.00015679671695067036,
+            "child_share": 0.000011622276497527422,
+            "elderly_share": 0.0013509571253027366,
+            "population_change_rate": 0.002855545181384224
+          },
+          "feature_values": {
+            "log_population": 4.395955096788144,
+            "child_share": 0.08892550028128265,
+            "elderly_share": 0.4192718797717592,
+            "population_change_rate": -0.14814814814814814
+          }
+        },
+        {
+          "municipality_code": "17207",
+          "name_ja": "羽咋市",
+          "prefecture_code": "17",
+          "prefecture_name_ja": "石川県",
+          "distance": 0.08928167929946446,
+          "contributions": {
+            "log_population": 0.006184011560541602,
+            "child_share": 0.001490096659312976,
+            "elderly_share": 0.00001592499975248436,
+            "population_change_rate": 0.00028118503892535696
+          },
+          "feature_values": {
+            "log_population": 4.291923575883884,
+            "child_share": 0.08603523104416645,
+            "elderly_share": 0.410773551187133,
+            "population_change_rate": -0.13256267162724777
+          }
+        },
+        {
+          "municipality_code": "03213",
+          "name_ja": "二戸市",
+          "prefecture_code": "03",
+          "prefecture_name_ja": "岩手県",
+          "distance": 0.0905058088292918,
+          "contributions": {
+            "log_population": 0.00042965243572272335,
+            "child_share": 0.001038588310519235,
+            "elderly_share": 0.0014434673936243767,
+            "population_change_rate": 0.005279593291977978
+          },
+          "feature_values": {
+            "log_population": 4.383042999305744,
+            "child_share": 0.08655876143560873,
+            "elderly_share": 0.3998840915676615,
+            "population_change_rate": -0.15241570471211535
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34215",
+      "feature_values": {
+        "log_population": 4.315760490665735,
+        "child_share": 0.069357177380377,
+        "elderly_share": 0.4507008216529724,
+        "population_change_rate": -0.17713967546929685
+      },
+      "similar": [
+        {
+          "municipality_code": "19206",
+          "name_ja": "大月市",
+          "prefecture_code": "19",
+          "prefecture_name_ja": "山梨県",
+          "distance": 0.06695457283391439,
+          "contributions": {
+            "log_population": 0.0000672623460155763,
+            "child_share": 0.0006112920941868167,
+            "elderly_share": 0.0036334913302320335,
+            "population_change_rate": 0.00017086905293751899
+          },
+          "feature_values": {
+            "log_population": 4.328664961441525,
+            "child_share": 0.0673266397672891,
+            "elderly_share": 0.43506615370179225,
+            "population_change_rate": -0.1800415480495499
+          }
+        },
+        {
+          "municipality_code": "05215",
+          "name_ja": "仙北市",
+          "prefecture_code": "05",
+          "prefecture_name_ja": "秋田県",
+          "distance": 0.06874811443197297,
+          "contributions": {
+            "log_population": 0.000757184906856512,
+            "child_share": 0.0022255095453702443,
+            "elderly_share": 0.00006950437234653204,
+            "population_change_rate": 0.0016741044133783628
+          },
+          "feature_values": {
+            "log_population": 4.35905722763489,
+            "child_share": 0.07323154993656765,
+            "elderly_share": 0.45286320486460474,
+            "population_change_rate": -0.18622285510857955
+          }
+        },
+        {
+          "municipality_code": "17384",
+          "name_ja": "志賀町",
+          "prefecture_code": "17",
+          "prefecture_name_ja": "石川県",
+          "distance": 0.08641727866853538,
+          "contributions": {
+            "log_population": 0.0019806499962646495,
+            "child_share": 0.0003155494185697089,
+            "elderly_share": 0.003034803383879344,
+            "population_change_rate": 0.002136943253761598
+          },
+          "feature_values": {
+            "log_population": 4.245734693456585,
+            "child_share": 0.07081605996933386,
+            "elderly_share": 0.4649894940087455,
+            "population_change_rate": -0.18740193816335948
+          }
+        },
+        {
+          "municipality_code": "22219",
+          "name_ja": "下田市",
+          "prefecture_code": "22",
+          "prefecture_name_ja": "静岡県",
+          "distance": 0.09960920078090266,
+          "contributions": {
+            "log_population": 0.0003784192450112385,
+            "child_share": 0.003277216752561733,
+            "elderly_share": 0.004524689840135639,
+            "population_change_rate": 0.001741667042501569
+          },
+          "feature_values": {
+            "log_population": 4.285152078525091,
+            "child_share": 0.07405870760294575,
+            "elderly_share": 0.43325381184524425,
+            "population_change_rate": -0.16787502157776626
+          }
+        },
+        {
+          "municipality_code": "35213",
+          "name_ja": "美祢市",
+          "prefecture_code": "35",
+          "prefecture_name_ja": "山口県",
+          "distance": 0.1001182872093652,
+          "contributions": {
+            "log_population": 0.000009391539830349305,
+            "child_share": 3.2432199569046115e-7,
+            "elderly_share": 0.000388008037956375,
+            "population_change_rate": 0.009625947533954527
+          },
+          "feature_values": {
+            "log_population": 4.320582439473552,
+            "child_share": 0.06940394818603317,
+            "elderly_share": 0.455809951723149,
+            "population_change_rate": -0.19892020217491194
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34302",
+      "feature_values": {
+        "log_population": 4.716620938751289,
+        "child_share": 0.14398740254253561,
+        "elderly_share": 0.250854553135922,
+        "population_change_rate": -0.000364732305684065
+      },
+      "similar": [
+        {
+          "municipality_code": "40343",
+          "name_ja": "志免町",
+          "prefecture_code": "40",
+          "prefecture_name_ja": "福岡県",
+          "distance": 0.10536533411122707,
+          "contributions": {
+            "log_population": 0.0010219271986863872,
+            "child_share": 0.0016136661155533526,
+            "elderly_share": 0.0017233445206891929,
+            "population_change_rate": 0.0067429157974415775
+          },
+          "feature_values": {
+            "log_population": 4.666321380370017,
+            "child_share": 0.14728648741887493,
+            "elderly_share": 0.24008710838957287,
+            "population_change_rate": 0.01786458904861187
+          }
+        },
+        {
+          "municipality_code": "40211",
+          "name_ja": "筑後市",
+          "prefecture_code": "40",
+          "prefecture_name_ja": "福岡県",
+          "distance": 0.13200634998775138,
+          "contributions": {
+            "log_population": 0.00025729397236103925,
+            "child_share": 0.0024979018006717757,
+            "elderly_share": 0.014669077357297385,
+            "population_change_rate": 0.0000014033067585028224
+          },
+          "feature_values": {
+            "log_population": 4.691382121497204,
+            "child_share": 0.13988276956893395,
+            "elderly_share": 0.28226889730125776,
+            "population_change_rate": -0.00010175217240888092
+          }
+        },
+        {
+          "municipality_code": "36403",
+          "name_ja": "藍住町",
+          "prefecture_code": "36",
+          "prefecture_name_ja": "徳島県",
+          "distance": 0.13502802607783476,
+          "contributions": {
+            "log_population": 0.011481747999545369,
+            "child_share": 0.0012764349878215226,
+            "elderly_share": 0.001885699518775225,
+            "population_change_rate": 0.003588685320334312
+          },
+          "feature_values": {
+            "log_population": 4.548020694905531,
+            "child_share": 0.14105322763306907,
+            "elderly_share": 0.2621177802944507,
+            "population_change_rate": 0.012934124867360694
+          }
+        },
+        {
+          "municipality_code": "29210",
+          "name_ja": "香芝市",
+          "prefecture_code": "29",
+          "prefecture_name_ja": "奈良県",
+          "distance": 0.1372861797667766,
+          "contributions": {
+            "log_population": 0.012693497749655946,
+            "child_share": 0.005445268545782562,
+            "elderly_share": 0.0006251270177814193,
+            "population_change_rate": 0.00008360184173576887
+          },
+          "feature_values": {
+            "log_population": 4.893894858743601,
+            "child_share": 0.13792707216178948,
+            "elderly_share": 0.24436954190286503,
+            "population_change_rate": -0.0023945384145098838
+          }
+        },
+        {
+          "municipality_code": "29426",
+          "name_ja": "広陵町",
+          "prefecture_code": "29",
+          "prefecture_name_ja": "奈良県",
+          "distance": 0.1426816872757364,
+          "contributions": {
+            "log_population": 0.011991854511875163,
+            "child_share": 0.00038507961666453105,
+            "elderly_share": 0.007953594103452165,
+            "population_change_rate": 0.000027535651859183737
+          },
+          "feature_values": {
+            "log_population": 4.544316141747427,
+            "child_share": 0.14237578526556255,
+            "elderly_share": 0.27398629354654486,
+            "population_change_rate": 0.000800182898948331
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34304",
+      "feature_values": {
+        "log_population": 4.4886916983169405,
+        "child_share": 0.14891269068484259,
+        "elderly_share": 0.23511846802986044,
+        "population_change_rate": 0.05225409836065574
+      },
+      "similar": [
+        {
+          "municipality_code": "21302",
+          "name_ja": "岐南町",
+          "prefecture_code": "21",
+          "prefecture_name_ja": "岐阜県",
+          "distance": 0.10543073444130642,
+          "contributions": {
+            "log_population": 0.00184839371010792,
+            "child_share": 0.006851242204041658,
+            "elderly_share": 0.0015603258012085832,
+            "population_change_rate": 0.0008556780494751158
+          },
+          "feature_values": {
+            "log_population": 4.421044247742048,
+            "child_share": 0.14211484487597664,
+            "elderly_share": 0.22487294242585149,
+            "population_change_rate": 0.05874794201501827
+          }
+        },
+        {
+          "municipality_code": "23501",
+          "name_ja": "幸田町",
+          "prefecture_code": "23",
+          "prefecture_name_ja": "愛知県",
+          "distance": 0.11523290404261427,
+          "contributions": {
+            "log_population": 0.007339077385631574,
+            "child_share": 0.0031676622912312456,
+            "elderly_share": 0.0026716573817613053,
+            "population_change_rate": 0.00010022511547022045
+          },
+          "feature_values": {
+            "log_population": 4.623487053232678,
+            "child_share": 0.15353496894557742,
+            "elderly_share": 0.22171191966304166,
+            "population_change_rate": 0.05447656328415136
+          }
+        },
+        {
+          "municipality_code": "43403",
+          "name_ja": "大津町",
+          "prefecture_code": "43",
+          "prefecture_name_ja": "熊本県",
+          "distance": 0.11837508467322191,
+          "contributions": {
+            "log_population": 0.002078174846535309,
+            "child_share": 0.007886666430136337,
+            "elderly_share": 0.00009301075975762548,
+            "population_change_rate": 0.003954808634963187
+          },
+          "feature_values": {
+            "log_population": 4.5604207740911615,
+            "child_share": 0.15620614698841592,
+            "elderly_share": 0.23261701015326197,
+            "population_change_rate": 0.06621486827436485
+          }
+        },
+        {
+          "municipality_code": "23424",
+          "name_ja": "大治町",
+          "prefecture_code": "23",
+          "prefecture_name_ja": "愛知県",
+          "distance": 0.1436696840789285,
+          "contributions": {
+            "log_population": 0.0005591930227659099,
+            "child_share": 0.006105658795204122,
+            "elderly_share": 0.010997053380832107,
+            "population_change_rate": 0.0029790729245369827
+          },
+          "feature_values": {
+            "log_population": 4.5258995902372385,
+            "child_share": 0.1424953822320205,
+            "elderly_share": 0.20791872728356076,
+            "population_change_rate": 0.06437087772704211
+          }
+        },
+        {
+          "municipality_code": "36402",
+          "name_ja": "北島町",
+          "prefecture_code": "36",
+          "prefecture_name_ja": "徳島県",
+          "distance": 0.1651042096134645,
+          "contributions": {
+            "log_population": 0.0052745002351266565,
+            "child_share": 0.0009374723139834372,
+            "elderly_share": 0.01051688119104489,
+            "population_change_rate": 0.010530546291931842
+          },
+          "feature_values": {
+            "log_population": 4.374418376779159,
+            "child_share": 0.14639810826788277,
+            "elderly_share": 0.26171776032429694,
+            "population_change_rate": 0.029473135106937925
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34307",
+      "feature_values": {
+        "log_population": 4.370605600938148,
+        "child_share": 0.11957401490947817,
+        "elderly_share": 0.3456443024494143,
+        "population_change_rate": -0.04832367130173917
+      },
+      "similar": [
+        {
+          "municipality_code": "40382",
+          "name_ja": "水巻町",
+          "prefecture_code": "40",
+          "prefecture_name_ja": "福岡県",
+          "distance": 0.07431442929803245,
+          "contributions": {
+            "log_population": 0.0019351268859867385,
+            "child_share": 0.0008782808020905483,
+            "elderly_share": 0.0016713602790973646,
+            "population_change_rate": 0.0010378664347176108
+          },
+          "feature_values": {
+            "log_population": 4.439821986424003,
+            "child_share": 0.12200791834659111,
+            "elderly_share": 0.3350404998002252,
+            "population_change_rate": -0.05547550432276657
+          }
+        },
+        {
+          "municipality_code": "37341",
+          "name_ja": "三木町",
+          "prefecture_code": "37",
+          "prefecture_name_ja": "香川県",
+          "distance": 0.0896239775271957,
+          "contributions": {
+            "log_population": 0.0013953389032785614,
+            "child_share": 0.00003059423696397782,
+            "elderly_share": 0.0031924000365209293,
+            "population_change_rate": 0.0034141241710318095
+          },
+          "feature_values": {
+            "log_population": 4.429380791310483,
+            "child_share": 0.12002827696543512,
+            "elderly_share": 0.33098932172489487,
+            "population_change_rate": -0.06129505448449288
+          }
+        },
+        {
+          "municipality_code": "36341",
+          "name_ja": "石井町",
+          "prefecture_code": "36",
+          "prefecture_name_ja": "徳島県",
+          "distance": 0.09909433542540251,
+          "contributions": {
+            "log_population": 0.00015749724746398638,
+            "child_share": 0.0014030616116283735,
+            "elderly_share": 0.00047205019764390467,
+            "population_change_rate": 0.00778707825666592
+          },
+          "feature_values": {
+            "log_population": 4.390352125833223,
+            "child_share": 0.11649774087190133,
+            "elderly_share": 0.3400089551023731,
+            "population_change_rate": -0.06791364722844026
+          }
+        },
+        {
+          "municipality_code": "40384",
+          "name_ja": "遠賀町",
+          "prefecture_code": "40",
+          "prefecture_name_ja": "福岡県",
+          "distance": 0.11151712186947896,
+          "contributions": {
+            "log_population": 0.003579934101199722,
+            "child_share": 0.0000819454545186914,
+            "elderly_share": 0.00016685599720466887,
+            "population_change_rate": 0.00860733291712914
+          },
+          "feature_values": {
+            "log_population": 4.276461804173244,
+            "child_share": 0.12031746031746032,
+            "elderly_share": 0.34899470899470897,
+            "population_change_rate": -0.02772776377385668
+          }
+        },
+        {
+          "municipality_code": "44213",
+          "name_ja": "由布市",
+          "prefecture_code": "44",
+          "prefecture_name_ja": "大分県",
+          "distance": 0.11265983324330386,
+          "contributions": {
+            "log_population": 0.009667986833871536,
+            "child_share": 0.001988394764549357,
+            "elderly_share": 0.000802771847238724,
+            "population_change_rate": 0.00023308458074941781
+          },
+          "feature_values": {
+            "log_population": 4.525316966044274,
+            "child_share": 0.12323618030488351,
+            "elderly_share": 0.3382953969153665,
+            "population_change_rate": -0.05171291974313276
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34309",
+      "feature_values": {
+        "log_population": 4.09684052033139,
+        "child_share": 0.13194111057769242,
+        "elderly_share": 0.300528084493519,
+        "population_change_rate": -0.04588136498969387
+      },
+      "similar": [
+        {
+          "municipality_code": "07342",
+          "name_ja": "鏡石町",
+          "prefecture_code": "07",
+          "prefecture_name_ja": "福島県",
+          "distance": 0.06954307536467723,
+          "contributions": {
+            "log_population": 0.000009947496151033254,
+            "child_share": 0.0022621637944584038,
+            "elderly_share": 0.002000022946326587,
+            "population_change_rate": 0.0005641050942411532
+          },
+          "feature_values": {
+            "log_population": 4.091877899629413,
+            "child_share": 0.12803496277112333,
+            "elderly_share": 0.28892845581094206,
+            "population_change_rate": -0.04060874291482258
+          }
+        },
+        {
+          "municipality_code": "24461",
+          "name_ja": "玉城町",
+          "prefecture_code": "24",
+          "prefecture_name_ja": "三重県",
+          "distance": 0.0931168808796015,
+          "contributions": {
+            "log_population": 0.0026020847625662737,
+            "child_share": 0.00043436477462360903,
+            "elderly_share": 0.0056235783219507895,
+            "population_change_rate": 0.000010725645605222806
+          },
+          "feature_values": {
+            "log_population": 4.177103432436536,
+            "child_share": 0.1302294645826405,
+            "elderly_share": 0.2810774858663119,
+            "population_change_rate": -0.04515432490791312
+          }
+        },
+        {
+          "municipality_code": "33622",
+          "name_ja": "勝央町",
+          "prefecture_code": "33",
+          "prefecture_name_ja": "岡山県",
+          "distance": 0.09647641451099123,
+          "contributions": {
+            "log_population": 0.0017571986926147628,
+            "child_share": 0.0018912673765582129,
+            "elderly_share": 0.005273171254068701,
+            "population_change_rate": 0.000386061233654923
+          },
+          "feature_values": {
+            "log_population": 4.030882953109667,
+            "child_share": 0.13551271304833754,
+            "elderly_share": 0.3193629505448449,
+            "population_change_rate": -0.05024325519681557
+          }
+        },
+        {
+          "municipality_code": "40522",
+          "name_ja": "大木町",
+          "prefecture_code": "40",
+          "prefecture_name_ja": "福岡県",
+          "distance": 0.09662993565234262,
+          "contributions": {
+            "log_population": 0.0005952136117053135,
+            "child_share": 0.007270414058965574,
+            "elderly_share": 0.000009456955835839303,
+            "population_change_rate": 0.0014622598376691494
+          },
+          "feature_values": {
+            "log_population": 4.135228090226056,
+            "child_share": 0.13894382187065113,
+            "elderly_share": 0.3013257159598623,
+            "population_change_rate": -0.05437041141432331
+          }
+        },
+        {
+          "municipality_code": "01453",
+          "name_ja": "東神楽町",
+          "prefecture_code": "01",
+          "prefecture_name_ja": "北海道",
+          "distance": 0.1065023683383726,
+          "contributions": {
+            "log_population": 0.0046005928733436055,
+            "child_share": 0.002905897228364088,
+            "elderly_share": 0.00048198252259886874,
+            "population_change_rate": 0.0033542818373758273
+          },
+          "feature_values": {
+            "log_population": 3.990116766067904,
+            "child_share": 0.13636828644501278,
+            "elderly_share": 0.29483375959079283,
+            "population_change_rate": -0.058738565238324505
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34368",
+      "feature_values": {
+        "log_population": 3.7297315952870354,
+        "child_share": 0.06949878889509968,
+        "elderly_share": 0.5295323271846469,
+        "population_change_rate": -0.2115469369766417
+      },
+      "similar": [
+        {
+          "municipality_code": "03302",
+          "name_ja": "葛巻町",
+          "prefecture_code": "03",
+          "prefecture_name_ja": "岩手県",
+          "distance": 0.09065799068392726,
+          "contributions": {
+            "log_population": 0.000014685313101966633,
+            "child_share": 0.0026967220625722823,
+            "elderly_share": 0.005299534444995703,
+            "population_change_rate": 0.0002079294541770895
+          },
+          "feature_values": {
+            "log_population": 3.723701893991268,
+            "child_share": 0.06523392925066565,
+            "elderly_share": 0.5106504374286801,
+            "population_change_rate": -0.20834579718815435
+          }
+        },
+        {
+          "municipality_code": "36342",
+          "name_ja": "神山町",
+          "prefecture_code": "36",
+          "prefecture_name_ja": "徳島県",
+          "distance": 0.09466022929247928,
+          "contributions": {
+            "log_population": 0.0014606898305923014,
+            "child_share": 0.0021434059600381975,
+            "elderly_share": 0.0002589570725566196,
+            "population_change_rate": 0.005097506146517633
+          },
+          "feature_values": {
+            "log_population": 3.6695957810243134,
+            "child_share": 0.06569655467579713,
+            "elderly_share": 0.5253584421142735,
+            "population_change_rate": -0.19569707401032702
+          }
+        },
+        {
+          "municipality_code": "36368",
+          "name_ja": "那賀町",
+          "prefecture_code": "36",
+          "prefecture_name_ja": "徳島県",
+          "distance": 0.10029705209842442,
+          "contributions": {
+            "log_population": 0.0057268917848644196,
+            "child_share": 0.0006906007745335463,
+            "elderly_share": 0.0000929545891312976,
+            "population_change_rate": 0.0035490515111047992
+          },
+          "feature_values": {
+            "log_population": 3.8488047010518036,
+            "child_share": 0.06734054669703872,
+            "elderly_share": 0.5320330296127562,
+            "population_change_rate": -0.22477215328867903
+          }
+        },
+        {
+          "municipality_code": "39401",
+          "name_ja": "中土佐町",
+          "prefecture_code": "39",
+          "prefecture_name_ja": "高知県",
+          "distance": 0.11710742079936019,
+          "contributions": {
+            "log_population": 0.0004070495868950175,
+            "child_share": 0.000007354613626557357,
+            "elderly_share": 0.012812485168966003,
+            "population_change_rate": 0.0004872586367908408
+          },
+          "feature_values": {
+            "log_population": 3.7614767795447017,
+            "child_share": 0.06927606511950121,
+            "elderly_share": 0.5001731901627987,
+            "population_change_rate": -0.2164472791423531
+          }
+        },
+        {
+          "municipality_code": "23561",
+          "name_ja": "設楽町",
+          "prefecture_code": "23",
+          "prefecture_name_ja": "愛知県",
+          "distance": 0.12713510734236091,
+          "contributions": {
+            "log_population": 0.006028595643476652,
+            "child_share": 0.0015003700088069985,
+            "elderly_share": 0.0002351741605571173,
+            "population_change_rate": 0.008399195706112866
+          },
+          "feature_values": {
+            "log_population": 3.607562243183588,
+            "child_share": 0.06631762652705062,
+            "elderly_share": 0.5255547245076041,
+            "population_change_rate": -0.23189230185817217
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34369",
+      "feature_values": {
+        "log_population": 4.22924656201756,
+        "child_share": 0.09319884386244323,
+        "elderly_share": 0.39815961776676695,
+        "population_change_rate": -0.1287835962793566
+      },
+      "similar": [
+        {
+          "municipality_code": "06321",
+          "name_ja": "河北町",
+          "prefecture_code": "06",
+          "prefecture_name_ja": "山形県",
+          "distance": 0.027189326146300697,
+          "contributions": {
+            "log_population": 0.000005543628872772563,
+            "child_share": 0.0000013089069762353098,
+            "elderly_share": 0.00009132846020489474,
+            "population_change_rate": 0.000641078460236008
+          },
+          "feature_values": {
+            "log_population": 4.225541877187231,
+            "child_share": 0.09310488428817895,
+            "elderly_share": 0.39568088524004996,
+            "population_change_rate": -0.1344044492507338
+          }
+        },
+        {
+          "municipality_code": "19346",
+          "name_ja": "市川三郷町",
+          "prefecture_code": "19",
+          "prefecture_name_ja": "山梨県",
+          "distance": 0.05659460786329568,
+          "contributions": {
+            "log_population": 0.001971274250484911,
+            "child_share": 0.0009342016019336777,
+            "elderly_share": 0.0002925639072385255,
+            "population_change_rate": 0.000004909879543095498
+          },
+          "feature_values": {
+            "log_population": 4.159386700961755,
+            "child_share": 0.0906886517943744,
+            "elderly_share": 0.39372315366495775,
+            "population_change_rate": -0.12927550220184594
+          }
+        },
+        {
+          "municipality_code": "02408",
+          "name_ja": "東北町",
+          "prefecture_code": "02",
+          "prefecture_name_ja": "青森県",
+          "distance": 0.058225787166707996,
+          "contributions": {
+            "log_population": 0.0002522637429064409,
+            "child_share": 0.001467430325409201,
+            "elderly_share": 0.0002343116451293647,
+            "population_change_rate": 0.0014362365777377708
+          },
+          "feature_values": {
+            "log_population": 4.204255678480151,
+            "child_share": 0.09634489222118088,
+            "elderly_share": 0.3941893158388004,
+            "population_change_rate": -0.13719676549865228
+          }
+        },
+        {
+          "municipality_code": "03301",
+          "name_ja": "雫石町",
+          "prefecture_code": "03",
+          "prefecture_name_ja": "岩手県",
+          "distance": 0.06280352231922721,
+          "contributions": {
+            "log_population": 0.0011474863551127487,
+            "child_share": 0.0009782077185814533,
+            "elderly_share": 0.0008381155324262861,
+            "population_change_rate": 0.0009804728095811836
+          },
+          "feature_values": {
+            "log_population": 4.175946470095546,
+            "child_share": 0.09063021007002334,
+            "elderly_share": 0.40566855618539516,
+            "population_change_rate": -0.13573487031700288
+          }
+        },
+        {
+          "municipality_code": "30341",
+          "name_ja": "かつらぎ町",
+          "prefecture_code": "30",
+          "prefecture_name_ja": "和歌山県",
+          "distance": 0.0727783189171525,
+          "contributions": {
+            "log_population": 0.000802860833071565,
+            "child_share": 0.0027718643073883593,
+            "elderly_share": 0.00026466349627189705,
+            "population_change_rate": 0.0014572950676749361
+          },
+          "feature_values": {
+            "log_population": 4.18466304462968,
+            "child_share": 0.09752271390286947,
+            "elderly_share": 0.40237924047323353,
+            "population_change_rate": -0.13725821913945752
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34431",
+      "feature_values": {
+        "log_population": 3.8311656339094426,
+        "child_share": 0.0687417023159758,
+        "elderly_share": 0.4530166691252397,
+        "population_change_rate": -0.1513520280420631
+      },
+      "similar": [
+        {
+          "municipality_code": "12426",
+          "name_ja": "長柄町",
+          "prefecture_code": "12",
+          "prefecture_name_ja": "千葉県",
+          "distance": 0.03504839684940625,
+          "contributions": {
+            "log_population": 0.0005371895827623879,
+            "child_share": 0.0001596034486463463,
+            "elderly_share": 0.00023253510767586114,
+            "population_change_rate": 0.0002990619826288747
+          },
+          "feature_values": {
+            "log_population": 3.7946971268919985,
+            "child_share": 0.06770415530242259,
+            "elderly_share": 0.4490614471362105,
+            "population_change_rate": -0.15519110870154512
+          }
+        },
+        {
+          "municipality_code": "20583",
+          "name_ja": "信濃町",
+          "prefecture_code": "20",
+          "prefecture_name_ja": "長野県",
+          "distance": 0.07575874607432408,
+          "contributions": {
+            "log_population": 0.0009058256234885421,
+            "child_share": 0.0032347871599719678,
+            "elderly_share": 0.001378598423176016,
+            "population_change_rate": 0.00022017640011738707
+          },
+          "feature_values": {
+            "log_population": 3.8785217955012063,
+            "child_share": 0.07341269841269842,
+            "elderly_share": 0.4433862433862434,
+            "population_change_rate": -0.1546460919154646
+          }
+        },
+        {
+          "municipality_code": "14383",
+          "name_ja": "真鶴町",
+          "prefecture_code": "14",
+          "prefecture_name_ja": "神奈川県",
+          "distance": 0.08434675972074378,
+          "contributions": {
+            "log_population": 0.00008758499425170159,
+            "child_share": 0.00652248741027664,
+            "elderly_share": 0.00045817780756492567,
+            "population_change_rate": 0.0000461256632956156
+          },
+          "feature_values": {
+            "log_population": 3.816440167956139,
+            "child_share": 0.0621089577292843,
+            "elderly_share": 0.45856859453685334,
+            "population_change_rate": -0.1498443175921121
+          }
+        },
+        {
+          "municipality_code": "01668",
+          "name_ja": "白糠町",
+          "prefecture_code": "01",
+          "prefecture_name_ja": "北海道",
+          "distance": 0.09364253170937588,
+          "contributions": {
+            "log_population": 0.00008051341821515453,
+            "child_share": 0.0018297606688425633,
+            "elderly_share": 0.003902874186978513,
+            "population_change_rate": 0.002955775470905235
+          },
+          "feature_values": {
+            "log_population": 3.8452841263479915,
+            "child_share": 0.0722547479651578,
+            "elderly_share": 0.43681279451663574,
+            "population_change_rate": -0.16342133556325408
+          }
+        },
+        {
+          "municipality_code": "07303",
+          "name_ja": "国見町",
+          "prefecture_code": "07",
+          "prefecture_name_ja": "福島県",
+          "distance": 0.10229680327961532,
+          "contributions": {
+            "log_population": 0.0023980080896168765,
+            "child_share": 0.002544564354895695,
+            "elderly_share": 0.004846511134291842,
+            "population_change_rate": 0.0006755523824239003
+          },
+          "feature_values": {
+            "log_population": 3.9082168530893924,
+            "child_share": 0.07288449660284126,
+            "elderly_share": 0.4349598517603459,
+            "population_change_rate": -0.15712203248646398
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34462",
+      "feature_values": {
+        "log_population": 4.161936705245781,
+        "child_share": 0.09470349197603141,
+        "elderly_share": 0.4286796611336869,
+        "population_change_rate": -0.14979211805352227
+      },
+      "similar": [
+        {
+          "municipality_code": "38422",
+          "name_ja": "内子町",
+          "prefecture_code": "38",
+          "prefecture_name_ja": "愛媛県",
+          "distance": 0.06034091611439496,
+          "contributions": {
+            "log_population": 0.000012743463067799708,
+            "child_share": 0.00005427476692798072,
+            "elderly_share": 0.0007434933146585222,
+            "population_change_rate": 0.0028305146128701467
+          },
+          "feature_values": {
+            "log_population": 4.1675536211968245,
+            "child_share": 0.09409844982322546,
+            "elderly_share": 0.4216072885504487,
+            "population_change_rate": -0.1616029185430086
+          }
+        },
+        {
+          "municipality_code": "40625",
+          "name_ja": "みやこ町",
+          "prefecture_code": "40",
+          "prefecture_name_ja": "福岡県",
+          "distance": 0.06361056188754867,
+          "contributions": {
+            "log_population": 0.003006980215024226,
+            "child_share": 0.0009657044067491401,
+            "elderly_share": 0.0000011457095518016209,
+            "population_change_rate": 0.00007247325232449091
+          },
+          "feature_values": {
+            "log_population": 4.2482185611900745,
+            "child_share": 0.09215132693393563,
+            "elderly_share": 0.42840203274985883,
+            "population_change_rate": -0.1479022324865281
+          }
+        },
+        {
+          "municipality_code": "07447",
+          "name_ja": "会津美里町",
+          "prefecture_code": "07",
+          "prefecture_name_ja": "福島県",
+          "distance": 0.0769825978177318,
+          "contributions": {
+            "log_population": 0.003734103820948474,
+            "child_share": 0.00029934911904689693,
+            "elderly_share": 0.0007699436603564496,
+            "population_change_rate": 0.0011229237664148236
+          },
+          "feature_values": {
+            "log_population": 4.258086284327979,
+            "child_share": 0.09328255229894575,
+            "elderly_share": 0.42148258541701167,
+            "population_change_rate": -0.15723124156859097
+          }
+        },
+        {
+          "municipality_code": "39208",
+          "name_ja": "宿毛市",
+          "prefecture_code": "39",
+          "prefecture_name_ja": "高知県",
+          "distance": 0.10468391107541786,
+          "contributions": {
+            "log_population": 0.004263500461592496,
+            "child_share": 0.0005360624637158584,
+            "elderly_share": 0.006116787010648021,
+            "population_change_rate": 0.0000423713020896178
+          },
+          "feature_values": {
+            "log_population": 4.264676182148825,
+            "child_share": 0.09280200065238665,
+            "elderly_share": 0.40839404153528325,
+            "population_change_rate": -0.14834706917307158
+          }
+        },
+        {
+          "municipality_code": "44462",
+          "name_ja": "玖珠町",
+          "prefecture_code": "44",
+          "prefecture_name_ja": "大分県",
+          "distance": 0.11496701202911809,
+          "contributions": {
+            "log_population": 0.00019206167703067744,
+            "child_share": 0.001598147014993087,
+            "elderly_share": 0.009398674241264077,
+            "population_change_rate": 0.0020285309216155427
+          },
+          "feature_values": {
+            "log_population": 4.140130778371135,
+            "child_share": 0.09798667439165701,
+            "elderly_share": 0.4035341830822711,
+            "population_change_rate": -0.15979067786296702
+          }
+        }
+      ]
+    },
+    {
+      "municipality_code": "34545",
+      "feature_values": {
+        "log_population": 3.8922059459757725,
+        "child_share": 0.07523711868751602,
+        "elderly_share": 0.5043578569597539,
+        "population_change_rate": -0.20118767277567318
+      },
+      "similar": [
+        {
+          "municipality_code": "32501",
+          "name_ja": "津和野町",
+          "prefecture_code": "32",
+          "prefecture_name_ja": "島根県",
+          "distance": 0.08662343389395538,
+          "contributions": {
+            "log_population": 0.0031181288357566834,
+            "child_share": 0.003179730983083495,
+            "elderly_share": 0.000005084704841048136,
+            "population_change_rate": 0.0012006747758992325
+          },
+          "feature_values": {
+            "log_population": 3.8043439184798657,
+            "child_share": 0.07986819394319787,
+            "elderly_share": 0.50494272713008,
+            "population_change_rate": -0.19349531764110353
+          }
+        },
+        {
+          "municipality_code": "30304",
+          "name_ja": "紀美野町",
+          "prefecture_code": "30",
+          "prefecture_name_ja": "和歌山県",
+          "distance": 0.0944201219778085,
+          "contributions": {
+            "log_population": 0.000010486278567988175,
+            "child_share": 0.004643396612280351,
+            "elderly_share": 0.00385028610877651,
+            "population_change_rate": 0.0004109904346793863
+          },
+          "feature_values": {
+            "log_population": 3.8871107031248835,
+            "child_share": 0.06964077292180003,
+            "elderly_share": 0.48826351964725717,
+            "population_change_rate": -0.19668715491197
+          }
+        },
+        {
+          "municipality_code": "43348",
+          "name_ja": "美里町",
+          "prefecture_code": "43",
+          "prefecture_name_ja": "熊本県",
+          "distance": 0.12734087245933545,
+          "contributions": {
+            "log_population": 0.0007786265091720783,
+            "child_share": 0.007759331986875287,
+            "elderly_share": 0.007633737530647258,
+            "population_change_rate": 0.000044001772010113044
+          },
+          "feature_values": {
+            "log_population": 3.9361114316748544,
+            "child_share": 0.06800278035217794,
+            "elderly_share": 0.48169601482854496,
+            "population_change_rate": -0.20266026233142434
+          }
+        },
+        {
+          "municipality_code": "39401",
+          "name_ja": "中土佐町",
+          "prefecture_code": "39",
+          "prefecture_name_ja": "高知県",
+          "distance": 0.13098286963034772,
+          "contributions": {
+            "log_population": 0.006902979727293675,
+            "child_share": 0.005268327334576281,
+            "elderly_share": 0.00026029664486092413,
+            "population_change_rate": 0.004724908429869789
+          },
+          "feature_values": {
+            "log_population": 3.7614767795447017,
+            "child_share": 0.06927606511950121,
+            "elderly_share": 0.5001731901627987,
+            "population_change_rate": -0.2164472791423531
+          }
+        },
+        {
+          "municipality_code": "07405",
+          "name_ja": "西会津町",
+          "prefecture_code": "07",
+          "prefecture_name_ja": "福島県",
+          "distance": 0.13196124620747843,
+          "contributions": {
+            "log_population": 0.01023316613501686,
+            "child_share": 0.0005276864053175045,
+            "elderly_share": 0.000005938590866774499,
+            "population_change_rate": 0.006646979369429598
+          },
+          "feature_values": {
+            "log_population": 3.7330366829335797,
+            "child_share": 0.077123695976155,
+            "elderly_share": 0.503725782414307,
+            "population_change_rate": -0.21928684856359174
+          }
+        }
+      ]
+    }
+  ]
+}

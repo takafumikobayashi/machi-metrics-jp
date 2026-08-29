@@ -7,6 +7,7 @@ import {
   AgeCategoryTrend,
   ResidentScopeCharts,
 } from "@/components/municipality/ResidentScopeCharts";
+import { SimilarityExplorer } from "@/components/municipality/SimilarityExplorer";
 import { RegionalFlowChart } from "@/components/dashboard/DashboardCharts";
 import { hiroshimaMunicipalities } from "@/lib/config";
 import { loadExtendedMunicipalityDetail } from "@/lib/data/extended-load";
@@ -15,6 +16,7 @@ import {
   loadManifest,
   loadMunicipalityDetail,
   loadSimilarity,
+  loadSimilarityModel,
 } from "@/lib/data/load";
 import {
   formatAsOfDate,
@@ -25,6 +27,7 @@ import {
   formatSignedCount,
   formatSignedRatioAsPercent,
 } from "@/lib/format/display";
+import { pageOpenGraph } from "@/lib/site/metadata";
 
 interface MunicipalityPageProps {
   params: Promise<{ code: string }>;
@@ -41,7 +44,32 @@ export async function generateMetadata({
   const municipality = hiroshimaMunicipalities.find(
     (item) => item.code === code,
   );
-  return municipality ? { title: municipality.nameJa } : {};
+  if (!municipality) {
+    return {};
+  }
+
+  const latestPointer = await loadLatestPointer();
+  const detail = await loadMunicipalityDetail(latestPointer.release_id, code);
+  const latest = detail.snapshots.at(-1);
+  const change = detail.change_10y;
+  const description = [
+    `${municipality.nameJa}の人口は`,
+    latest ? `${formatAsOfDate(latest.as_of_date)}で` : "",
+    latest ? `${formatCount(latest.population_total)}。` : "",
+    `${change.start_date.slice(0, 4)}年からの増減は`,
+    `${formatSignedRatioAsPercent(change.population_change_rate_10y)}です。`,
+    "年齢構成と人口動態、全国の似ている自治体もあわせて確認できます。",
+  ].join("");
+
+  return {
+    title: municipality.nameJa,
+    description,
+    ...pageOpenGraph({
+      title: `${municipality.nameJa}の人口 | ひろしまダッシュボード`,
+      description,
+      path: `/municipalities/${code}`,
+    }),
+  };
 }
 
 export default async function MunicipalityPage({
@@ -57,12 +85,14 @@ export default async function MunicipalityPage({
   }
 
   const latestPointer = await loadLatestPointer();
-  const [detail, manifest, similarity, extendedDetail] = await Promise.all([
-    loadMunicipalityDetail(latestPointer.release_id, code),
-    loadManifest(latestPointer.release_id),
-    loadSimilarity(latestPointer.release_id),
-    loadExtendedMunicipalityDetail(latestPointer.release_id, code),
-  ]);
+  const [detail, manifest, similarity, similarityModel, extendedDetail] =
+    await Promise.all([
+      loadMunicipalityDetail(latestPointer.release_id, code),
+      loadManifest(latestPointer.release_id),
+      loadSimilarity(latestPointer.release_id),
+      loadSimilarityModel(latestPointer.release_id),
+      loadExtendedMunicipalityDetail(latestPointer.release_id, code),
+    ]);
   const latestSnapshot = detail.snapshots.at(-1);
   const latestFlow = detail.flows.at(-1);
   const similarityEntry = similarity.entries.find(
@@ -96,15 +126,15 @@ export default async function MunicipalityPage({
           </p>
         </div>
         <div className="detail-release">
-          <span>地域プレビュー版</span>
+          <span>準備版</span>
           <small>{manifest.release_id}</small>
         </div>
       </div>
 
       <div className="preview-note" role="status">
-        <strong>広島県23市町の準備版データを表示しています。</strong>
+        <strong>広島県23市町の詳細データを表示しています。</strong>
         <span>
-          類似自治体は現在、広島県内の候補のみです。全国比較用データを接続するまで本番MVPには使用しません。
+          類似自治体は全国の市・町・村と東京都特別区から計算しています。政令指定都市の行政区は候補から除外しています。
         </span>
       </div>
 
@@ -238,35 +268,16 @@ export default async function MunicipalityPage({
 
       <ResidentScopeCharts detail={extendedDetail} />
 
-      <section className="data-card" aria-labelledby="similarity-heading">
-        <div className="section-heading compact-heading">
-          <p className="eyebrow">類似自治体（準備版）</p>
-          <h2 id="similarity-heading">似ている自治体</h2>
-          <p className="section-note">
-            人口規模、年齢構成、期間人口増減率の距離です。距離が小さいほど特徴量が近く、優劣を示す順位ではありません。
-          </p>
-        </div>
-        {similarityEntry && similarityEntry.similar.length > 0 ? (
-          <ol className="similarity-list">
-            {similarityEntry.similar.map((candidate, index) => (
-              <li key={candidate.municipality_code}>
-                <span className="similarity-rank">{index + 1}</span>
-                <div>
-                  <Link href={`/municipalities/${candidate.municipality_code}`}>
-                    {candidate.name_ja}
-                  </Link>
-                  <p>
-                    {candidate.prefecture_name_ja}・距離{" "}
-                    {candidate.distance.toFixed(2)}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p className="empty-inline">類似候補はデータなし</p>
+      <SimilarityExplorer
+        sourceCode={code}
+        similarityEntry={similarityEntry}
+        singleFeatureEntries={similarity.single_feature_entries}
+        features={similarityModel.features}
+        candidateCount={similarityModel.candidate_count}
+        focusCodes={hiroshimaMunicipalities.map(
+          ({ code: focusCode }) => focusCode,
         )}
-      </section>
+      />
 
       <section className="source-card" aria-labelledby="source-heading">
         <div>
