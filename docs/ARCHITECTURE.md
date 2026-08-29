@@ -63,7 +63,9 @@ src/app/                   # ルート、レイアウト、メタデータ
 src/components/            # 分野非依存UI
 src/features/              # overview, municipality, similarityなど
 src/lib/data/              # 公開JSONの型、読み込み、形式変換
+src/lib/metrics/           # 増減、年齢構成、動態検算の純粋計算
 src/lib/similarity/        # 類似度の純粋計算
+src/lib/format/            # 表示直前の数値・日付整形
 tests/                     # 設定、指標、回帰用fixture
 ```
 
