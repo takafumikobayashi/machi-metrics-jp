@@ -1274,20 +1274,38 @@ nav a:focus-visible,
   left: 20px;
   z-index: 1100;
   display: flex;
-  align-items: end;
+  /*
+   * end揃えのままだと、はみ出した分が上端の外側へ出てスクロールでは
+   * 到達できない。上端から並べ、ボタンだけを下端へ寄せる。
+   */
+  align-items: flex-start;
   justify-content: space-between;
   gap: 28px;
   max-width: 1060px;
+  /*
+   * 画面が低いとき（横向きの端末や拡大表示）にパネルの上端が画面外へ出て、
+   * 収集内容を読めないまま選ばされることがある。高さを画面に収め、
+   * 中でスクロールできるようにする。背面のページは動かさない。
+   */
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
   margin-inline: auto;
   padding: 22px 24px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--white);
   box-shadow: 0 12px 36px rgb(16 20 26 / 20%);
 }
 
 .analytics-consent-copy {
   max-width: 760px;
+}
+
+.analytics-consent-actions {
+  flex-shrink: 0;
+  align-self: flex-end;
 }
 
 .analytics-consent-copy .eyebrow {
