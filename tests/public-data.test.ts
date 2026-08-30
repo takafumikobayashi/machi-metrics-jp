@@ -110,6 +110,23 @@ test("the overview list and the detail page must agree", async () => {
   assert.ok(codesOf(report.errors).includes("summary_population_mismatch"));
 });
 
+test("population density stays reproducible from population and area", async () => {
+  const bundle = await loadFixtureBundle();
+  bundle.density.entries[0]!.population_density_per_km2 = 999;
+
+  const report = validateRelease(bundle, expectation);
+  assert.ok(codesOf(report.errors).includes("density_value_mismatch"));
+});
+
+test("industry shares stay reproducible from the published counts", async () => {
+  const bundle = await loadFixtureBundle();
+  bundle.industry.entries[0]!.primary_industry_share = 0.2;
+
+  const report = validateRelease(bundle, expectation);
+
+  assert.ok(codesOf(report.errors).includes("industry_share_inconsistent"));
+});
+
 test("the ten-year rate must be reproducible from both endpoints", async () => {
   const bundle = await loadFixtureBundle();
   bundle.details[0]!.change_10y.population_change_rate_10y = -0.2;

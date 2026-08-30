@@ -44,6 +44,32 @@ export function formatCount(value: number | null, unit = "人"): string {
   return `${integerFormat.format(value)}${unit}`;
 }
 
+/** 人口密度。面積の単位は列見出しや補足で示すため、ここでは値に添える。 */
+export function formatPopulationDensity(value: number | null): string {
+  if (value === null) {
+    return missingLabel;
+  }
+  if (!Number.isFinite(value)) {
+    throw new Error("value must be a finite number.");
+  }
+  return `${value.toLocaleString("ja-JP", {
+    maximumFractionDigits: 1,
+  })}人/km²`;
+}
+
+/** 行政区域面積。国土地理院の公表単位である平方キロメートルを示す。 */
+export function formatAreaKm2(value: number | null): string {
+  if (value === null) {
+    return missingLabel;
+  }
+  if (!Number.isFinite(value)) {
+    throw new Error("value must be a finite number.");
+  }
+  return `${value.toLocaleString("ja-JP", {
+    maximumFractionDigits: 2,
+  })}km²`;
+}
+
 /** 増減数。符号と「増」「減」を併記する。 */
 export function formatSignedCount(value: number | null, unit = "人"): string {
   if (value === null) {

@@ -15,6 +15,24 @@ import { join, resolve } from "node:path";
 
 import { hiroshimaMunicipalities, projectConfig } from "../../src/lib/config";
 import {
+  calculatePopulationDensity,
+  roundPopulationDensity,
+} from "../../src/lib/metrics/density";
+import {
+  densityFileSchema,
+  type DensityFile,
+} from "../../src/lib/data/density-schema";
+import {
+  industryFileSchema,
+  type IndustryFile,
+} from "../../src/lib/data/industry-schema";
+import {
+  structureSimilarityFileSchema,
+  structureSimilarityModelSchema,
+  type StructureSimilarityFile,
+  type StructureSimilarityModel,
+} from "../../src/lib/data/structure-similarity-schema";
+import {
   extendedMunicipalityDetailSchema,
   type ExtendedMunicipalityDetail,
 } from "../../src/lib/data/extended-schema";
@@ -65,6 +83,17 @@ import {
   loadNationalCandidateSet,
   type NationalCandidateSet,
 } from "./national-candidates";
+import type { ProcessedArea } from "./normalize-area";
+import {
+  structureFeatureLabels,
+  structureModelDefinitions,
+  fitStructureModel,
+  rankStructureMunicipalities,
+  type StructureFeatureId,
+  type StructureFeatureValues,
+  type StructureModelId,
+  type StructureMunicipalityFeatures,
+} from "../../src/lib/similarity/structure";
 
 interface ProcessedSnapshot {
   municipality_code: string;
@@ -149,6 +178,10 @@ interface PublicationFiles {
   details: MunicipalityDetail[];
   similarity: SimilarityFile;
   similarityModel: SimilarityModel;
+  density: DensityFile;
+  industry: IndustryFile;
+  structureSimilarity: StructureSimilarityFile;
+  structureSimilarityModel: StructureSimilarityModel;
   extendedDetails: ExtendedMunicipalityDetail[];
 }
 
@@ -159,6 +192,10 @@ export interface PublishOptions {
   processedRoot: string;
   extendedRoot: string;
   rawRoot: string;
+  areaProcessedRoot: string;
+  areaRawRoot: string;
+  industryProcessedRoot: string;
+  industryRawRoot: string;
   outputRoot: string;
 }
 
@@ -707,11 +744,431 @@ function sourceFeatureValues(
   return candidate.values;
 }
 
+function buildDensity(
+  releaseId: string,
+  details: readonly MunicipalityDetail[],
+  area: ProcessedArea,
+): DensityFile {
+  const areaByCode = new Map(
+    area.areas.map((entry) => [entry.municipality_code, entry]),
+  );
+  const populationAsOfDate = area.coverage.area_as_of_date;
+  const entries = details.map((detail) => {
+    const code = detail.municipality.municipality_code;
+    const areaEntry = areaByCode.get(code);
+    if (!areaEntry) {
+      throw new Error(`人口密度に必要な面積がありません: ${code}`);
+    }
+    const snapshot = detail.snapshots.find(
+      ({ as_of_date }) => as_of_date === populationAsOfDate,
+    );
+    if (!snapshot) {
+      throw new Error(
+        `人口密度に必要な人口基準日がありません: ${code} / ${populationAsOfDate}`,
+      );
+    }
+    return {
+      municipality_code: code,
+      name_ja: detail.municipality.name_ja,
+      population_as_of_date: populationAsOfDate,
+      area_as_of_date: populationAsOfDate,
+      population_total: snapshot.population_total,
+      area_km2: areaEntry.area_km2,
+      population_density_per_km2: roundPopulationDensity(
+        calculatePopulationDensity(
+          snapshot.population_total,
+          areaEntry.area_km2,
+        ),
+      ),
+    };
+  });
+
+  return {
+    release_id: releaseId,
+    dataset: "density",
+    unit: "persons_per_km2",
+    population_as_of_date: populationAsOfDate,
+    area_as_of_date: populationAsOfDate,
+    source: {
+      title: area.source.title,
+      url: area.source.url,
+      file_name: area.source.raw_file,
+      sha256: area.source.sha256,
+    },
+    entries,
+  };
+}
+
+type ProcessedIndustry = Omit<IndustryFile, "release_id">;
+
+function buildIndustry(
+  releaseId: string,
+  processed: ProcessedIndustry,
+  focusCodes: readonly string[],
+): IndustryFile {
+  const entryCodes = new Set(
+    processed.entries.map((entry) => entry.municipality_code),
+  );
+  const missingFocus = focusCodes.filter((code) => !entryCodes.has(code));
+  if (missingFocus.length > 0) {
+    throw new Error(
+      `産業構造の対象自治体データがありません: ${missingFocus.join(", ")}`,
+    );
+  }
+  const industry = { release_id: releaseId, ...processed };
+  return industryFileSchema.parse(industry);
+}
+
+type StructureExclusion = { reason: string; count: number };
+
+function structureValues(
+  populationTotal: number | null | undefined,
+  areaKm2: number | null | undefined,
+  industry: IndustryFile["entries"][number] | undefined,
+): StructureFeatureValues | null {
+  if (
+    populationTotal === null ||
+    populationTotal === undefined ||
+    populationTotal <= 0 ||
+    areaKm2 === null ||
+    areaKm2 === undefined ||
+    areaKm2 <= 0 ||
+    industry?.primary_industry_share === null ||
+    industry?.primary_industry_share === undefined ||
+    industry?.secondary_industry_share === null ||
+    industry?.secondary_industry_share === undefined ||
+    industry?.tertiary_industry_share === null ||
+    industry?.tertiary_industry_share === undefined
+  ) {
+    return null;
+  }
+
+  return {
+    log_population_density: Math.log10(populationTotal / areaKm2),
+    primary_industry_share: industry.primary_industry_share,
+    secondary_industry_share: industry.secondary_industry_share,
+    tertiary_industry_share: industry.tertiary_industry_share,
+  };
+}
+
+function countStructureExclusions(
+  reasons: readonly (string | null)[],
+): StructureExclusion[] {
+  const counts = new Map<string, number>();
+  reasons.forEach((reason) => {
+    if (reason) counts.set(reason, (counts.get(reason) ?? 0) + 1);
+  });
+  return [...counts.entries()]
+    .sort(([left], [right]) => left.localeCompare(right, "ja"))
+    .map(([reason, count]) => ({ reason, count }));
+}
+
+function buildStructureSimilarity(
+  releaseId: string,
+  details: readonly MunicipalityDetail[],
+  national: NationalCandidateSet,
+  area: ProcessedArea,
+  industry: IndustryFile,
+): {
+  similarity: StructureSimilarityFile;
+  model: StructureSimilarityModel;
+} {
+  const areaByCode = new Map(
+    area.areas.map((entry) => [entry.municipality_code, entry]),
+  );
+  const industryByCode = new Map(
+    industry.entries.map((entry) => [entry.municipality_code, entry]),
+  );
+  const municipalityByCode = new Map(
+    national.municipalities.map((municipality) => [
+      municipality.municipality_code,
+      municipality,
+    ]),
+  );
+  const nationalCodes = national.features.map(({ code }) => code);
+  const densityExclusionReasons = nationalCodes.map((code) => {
+    const areaEntry = areaByCode.get(code);
+    const populationTotal = national.populationTotals.get(code);
+    return !areaEntry
+      ? "2025年の人口密度に必要な面積データなし"
+      : populationTotal && populationTotal > 0
+        ? null
+        : "2025年の人口密度に必要な人口データなし";
+  });
+  const industryExclusionReasons = nationalCodes.map((code) => {
+    const entry = industryByCode.get(code);
+    return entry &&
+      entry.primary_industry_share !== null &&
+      entry.secondary_industry_share !== null &&
+      entry.tertiary_industry_share !== null
+      ? null
+      : "2020年の産業構造データなし";
+  });
+
+  const publicValuesByCode = new Map<
+    string,
+    {
+      log_population_density: number | null;
+      primary_industry_share: number | null;
+      secondary_industry_share: number | null;
+      tertiary_industry_share: number | null;
+    }
+  >();
+  const densityCandidates: StructureMunicipalityFeatures[] = [];
+  const industryCandidates: StructureMunicipalityFeatures[] = [];
+  const regionalCandidates: StructureMunicipalityFeatures[] = [];
+  national.features.forEach(({ code, values }) => {
+    const areaEntry = areaByCode.get(code);
+    const populationTotal = national.populationTotals.get(code);
+    const industryEntry = industryByCode.get(code);
+    const densityValues =
+      areaEntry && populationTotal && populationTotal > 0
+        ? {
+            log_population_density:
+              values.log_population - Math.log10(areaEntry.area_km2),
+            primary_industry_share: 0,
+            secondary_industry_share: 0,
+            tertiary_industry_share: 0,
+          }
+        : null;
+    const industryValues =
+      industryEntry &&
+      industryEntry.primary_industry_share !== null &&
+      industryEntry.secondary_industry_share !== null &&
+      industryEntry.tertiary_industry_share !== null
+        ? {
+            log_population_density: densityValues?.log_population_density ?? 0,
+            primary_industry_share: industryEntry.primary_industry_share,
+            secondary_industry_share: industryEntry.secondary_industry_share,
+            tertiary_industry_share: industryEntry.tertiary_industry_share,
+          }
+        : null;
+    if (densityValues || industryValues) {
+      publicValuesByCode.set(code, {
+        log_population_density: densityValues?.log_population_density ?? null,
+        primary_industry_share: industryValues?.primary_industry_share ?? null,
+        secondary_industry_share:
+          industryValues?.secondary_industry_share ?? null,
+        tertiary_industry_share:
+          industryValues?.tertiary_industry_share ?? null,
+      });
+    }
+    if (densityValues) {
+      densityCandidates.push({ code, values: densityValues });
+    }
+    if (industryValues) {
+      industryCandidates.push({ code, values: industryValues });
+    }
+    if (densityValues && industryValues) {
+      regionalCandidates.push({ code, values: industryValues });
+    }
+  });
+
+  const candidatesByModel: Record<
+    StructureModelId,
+    StructureMunicipalityFeatures[]
+  > = {
+    density: densityCandidates,
+    regional_structure: regionalCandidates,
+    industry_structure: industryCandidates,
+  };
+  const exclusionReasonsByModel: Record<
+    StructureModelId,
+    StructureExclusion[]
+  > = {
+    density: countStructureExclusions(densityExclusionReasons),
+    regional_structure: countStructureExclusions(
+      nationalCodes.map((code, index) =>
+        densityExclusionReasons[index]
+          ? densityExclusionReasons[index]
+          : (industryExclusionReasons[index] ?? null),
+      ),
+    ),
+    industry_structure: countStructureExclusions(industryExclusionReasons),
+  };
+
+  const sourceValuesByCode = new Map<string, StructureFeatureValues>();
+  details.forEach((detail) => {
+    const code = detail.municipality.municipality_code;
+    const latest = detail.snapshots.at(-1);
+    const values = structureValues(
+      latest?.population_total,
+      areaByCode.get(code)?.area_km2,
+      industryByCode.get(code),
+    );
+    if (!values) {
+      throw new Error(`構造比較に必要なデータがありません: ${code}`);
+    }
+    sourceValuesByCode.set(code, values);
+  });
+
+  const modelResults = new Map<
+    StructureModelId,
+    ReturnType<typeof fitStructureModel>
+  >();
+  (Object.keys(structureModelDefinitions) as StructureModelId[]).forEach(
+    (modelId) => {
+      const definition = structureModelDefinitions[modelId];
+      const activeFeatureIds = [
+        ...definition.featureIds,
+      ] as StructureFeatureId[];
+      modelResults.set(
+        modelId,
+        fitStructureModel(candidatesByModel[modelId], activeFeatureIds),
+      );
+    },
+  );
+
+  const resultCount = Math.min(
+    projectConfig.similarity.resultCount,
+    Math.max(
+      1,
+      Math.min(
+        ...Object.values(candidatesByModel).map((items) => items.length),
+      ) - 1,
+    ),
+  );
+  const toPublicSimilar = (
+    result: ReturnType<typeof rankStructureMunicipalities>[number],
+  ) => {
+    const municipality = municipalityByCode.get(result.code);
+    const featureValues = publicValuesByCode.get(result.code);
+    if (!municipality || !featureValues) {
+      throw new Error(`構造比較の候補データがありません: ${result.code}`);
+    }
+    return {
+      municipality_code: result.code,
+      name_ja: municipality.name_ja,
+      prefecture_code: municipality.prefecture_code,
+      prefecture_name_ja: municipality.prefecture_name_ja,
+      distance: result.distance,
+      contributions: result.contributions,
+      feature_values: featureValues,
+    };
+  };
+
+  const entries = details.map((detail) => {
+    const code = detail.municipality.municipality_code;
+    const source = sourceValuesByCode.get(code);
+    if (!source) throw new Error(`構造比較の対象自治体がありません: ${code}`);
+    const sourceFeatures = { code, values: source };
+    const rankings = Object.fromEntries(
+      (Object.keys(structureModelDefinitions) as StructureModelId[]).map(
+        (modelId) => {
+          const definition = structureModelDefinitions[modelId];
+          const activeFeatureIds = [
+            ...definition.featureIds,
+          ] as StructureFeatureId[];
+          const ranked = rankStructureMunicipalities(
+            sourceFeatures,
+            candidatesByModel[modelId],
+            modelResults.get(modelId)!,
+            activeFeatureIds,
+            definition.weights as Partial<Record<StructureFeatureId, number>>,
+            resultCount,
+          ).map(toPublicSimilar);
+          return [modelId, { similar: ranked }];
+        },
+      ),
+    ) as StructureSimilarityFile["entries"][number]["rankings"];
+    return {
+      municipality_code: code,
+      feature_values: source,
+      rankings,
+    };
+  });
+
+  const models = (
+    Object.keys(structureModelDefinitions) as StructureModelId[]
+  ).map((modelId) => {
+    const definition = structureModelDefinitions[modelId];
+    const fitted = modelResults.get(modelId)!;
+    const activeFeatureIds = [...definition.featureIds] as StructureFeatureId[];
+    const activeWeights = definition.weights as Partial<
+      Record<StructureFeatureId, number>
+    >;
+    return {
+      id: modelId,
+      label_ja: definition.labelJa,
+      features: activeFeatureIds.map((featureId) => ({
+        id: featureId,
+        label_ja: structureFeatureLabels[featureId],
+        weight: activeWeights[featureId]!,
+        median: fitted[featureId].median,
+        iqr: fitted[featureId].iqr,
+      })),
+      candidate_count: candidatesByModel[modelId].length,
+      excluded_count:
+        national.features.length - candidatesByModel[modelId].length,
+      exclusion_reasons: exclusionReasonsByModel[modelId],
+    };
+  });
+  const referenceDate = details[0]?.snapshots.at(-1)?.as_of_date;
+  if (!referenceDate) throw new Error("構造比較の人口基準日がありません。");
+
+  return {
+    similarity: {
+      release_id: releaseId,
+      result_count: resultCount,
+      entries,
+    },
+    model: {
+      release_id: releaseId,
+      normalization: "median_iqr",
+      distance: "weighted_euclidean",
+      reference_dates: {
+        population_as_of_date: referenceDate,
+        density_area_as_of_date: area.coverage.area_as_of_date,
+        industry_reference_date: industry.reference_date,
+      },
+      models,
+    },
+  };
+}
+
 export function buildPublication(options: PublishOptions): PublicationFiles {
   const generatedAt = new Date().toISOString();
   const processedByYear = new Map<number, ProcessedYear>();
   const extendedByYear = new Map<number, ExtendedYear>();
   const manifestSources: Array<ReturnType<typeof sourceToManifest>> = [];
+  const areaPath = join(options.areaProcessedRoot, "pilot.json");
+  if (!existsSync(areaPath)) {
+    throw new Error(`面積の正規化入力がありません: ${areaPath}`);
+  }
+  const area = readJson<ProcessedArea>(areaPath);
+  const areaRawPath = join(options.areaRawRoot, area.source.raw_file);
+  if (!existsSync(areaRawPath)) {
+    throw new Error(`面積原本がありません: ${areaRawPath}`);
+  }
+  if (sha256(areaRawPath) !== area.source.sha256) {
+    throw new Error(
+      `面積原本のSHA-256が正規化メタデータと一致しません: ${areaRawPath}`,
+    );
+  }
+  const industryPath = join(options.industryProcessedRoot, "pilot.json");
+  if (!existsSync(industryPath)) {
+    throw new Error(`産業構造の正規化入力がありません: ${industryPath}`);
+  }
+  const processedIndustry = readJson<ProcessedIndustry>(industryPath);
+  const industryRawPath = sourceFilePath(
+    options.industryRawRoot,
+    processedIndustry.source.raw_file,
+  );
+  const industryStat = statSync(industryRawPath);
+  if (sha256(industryRawPath) !== processedIndustry.source.sha256) {
+    throw new Error(
+      `産業構造原本のSHA-256が正規化メタデータと一致しません: ${industryRawPath}`,
+    );
+  }
+  manifestSources.push({
+    statistic_name: "令和2年国勢調査",
+    table_number: processedIndustry.source.table_number,
+    table_name: processedIndustry.source.title,
+    distribution_url: processedIndustry.source.url,
+    acquired_at: new Date(industryStat.mtimeMs).toISOString() || generatedAt,
+    file_name: processedIndustry.source.raw_file,
+    sha256: processedIndustry.source.sha256,
+  });
 
   options.years.forEach((year) => {
     const processedPath = join(
@@ -835,6 +1292,21 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
   );
   const similarity = similarityParts.similarity;
   const similarityModel = similarityParts.model;
+  const density = buildDensity(options.releaseId, details, area);
+  const industry = buildIndustry(
+    options.releaseId,
+    processedIndustry,
+    options.municipalityCodes,
+  );
+  const structureSimilarityParts = buildStructureSimilarity(
+    options.releaseId,
+    details,
+    nationalCandidates,
+    area,
+    industry,
+  );
+  const structureSimilarity = structureSimilarityParts.similarity;
+  const structureSimilarityModel = structureSimilarityParts.model;
   const flowPeriods = [
     ...new Map(
       details
@@ -907,6 +1379,10 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
   details.forEach((detail) => municipalityDetailSchema.parse(detail));
   similarityFileSchema.parse(similarity);
   similarityModelSchema.parse(similarityModel);
+  densityFileSchema.parse(density);
+  industryFileSchema.parse(industry);
+  structureSimilarityFileSchema.parse(structureSimilarity);
+  structureSimilarityModelSchema.parse(structureSimilarityModel);
   extendedDetails.forEach((detail) =>
     extendedMunicipalityDetailSchema.parse(detail),
   );
@@ -918,6 +1394,10 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     details,
     similarity,
     similarityModel,
+    density,
+    industry,
+    structureSimilarity,
+    structureSimilarityModel,
     extendedDetails,
   };
 }
@@ -942,6 +1422,16 @@ export async function publishJuki(options: PublishOptions): Promise<void> {
     writeJson(
       join(releaseRoot, "similarity-model.json"),
       files.similarityModel,
+    );
+    writeJson(join(releaseRoot, "density.json"), files.density);
+    writeJson(join(releaseRoot, "industry.json"), files.industry);
+    writeJson(
+      join(releaseRoot, "similarity-structure.json"),
+      files.structureSimilarity,
+    );
+    writeJson(
+      join(releaseRoot, "similarity-structure-model.json"),
+      files.structureSimilarityModel,
     );
     files.details.forEach((detail) =>
       writeJson(
@@ -1100,6 +1590,22 @@ function parseArgs(argv: string[]): PublishOptions {
       values.get("extended-root") ?? "data/staging/juki-extended",
     ),
     rawRoot: resolve(projectRoot, values.get("raw-root") ?? "data/raw/juki"),
+    areaProcessedRoot: resolve(
+      projectRoot,
+      values.get("area-processed-root") ?? "data/processed/area",
+    ),
+    areaRawRoot: resolve(
+      projectRoot,
+      values.get("area-raw-root") ?? "data/raw/area",
+    ),
+    industryProcessedRoot: resolve(
+      projectRoot,
+      values.get("industry-processed-root") ?? "data/processed/industry/2020",
+    ),
+    industryRawRoot: resolve(
+      projectRoot,
+      values.get("industry-raw-root") ?? "data/raw",
+    ),
     outputRoot: resolve(
       projectRoot,
       values.get("output-root") ?? "data/staging/public-juki",

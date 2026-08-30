@@ -1,0 +1,280 @@
+{
+  "release_id": "sample-fixture-v1",
+  "result_count": 2,
+  "entries": [
+    {
+      "municipality_code": "90201",
+      "feature_values": {
+        "log_population_density": 2.1,
+        "primary_industry_share": 0.1,
+        "secondary_industry_share": 0.2,
+        "tertiary_industry_share": 0.7
+      },
+      "rankings": {
+        "density": {
+          "similar": [
+            {
+              "municipality_code": "91201",
+              "name_ja": "例示市",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 2.1,
+                "primary_industry_share": 0.1,
+                "secondary_industry_share": 0.2,
+                "tertiary_industry_share": 0.7
+              }
+            },
+            {
+              "municipality_code": "91202",
+              "name_ja": "例示町",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0.1,
+              "contributions": {
+                "log_population_density": 0.01,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 2.2,
+                "primary_industry_share": 0.1,
+                "secondary_industry_share": 0.2,
+                "tertiary_industry_share": 0.7
+              }
+            }
+          ]
+        },
+        "regional_structure": {
+          "similar": [
+            {
+              "municipality_code": "91201",
+              "name_ja": "例示市",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 2.1,
+                "primary_industry_share": 0.1,
+                "secondary_industry_share": 0.2,
+                "tertiary_industry_share": 0.7
+              }
+            },
+            {
+              "municipality_code": "91202",
+              "name_ja": "例示町",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0.1,
+              "contributions": {
+                "log_population_density": 0.01,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 2.2,
+                "primary_industry_share": 0.1,
+                "secondary_industry_share": 0.2,
+                "tertiary_industry_share": 0.7
+              }
+            }
+          ]
+        },
+        "industry_structure": {
+          "similar": [
+            {
+              "municipality_code": "91201",
+              "name_ja": "例示市",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": null,
+                "primary_industry_share": 0.1,
+                "secondary_industry_share": 0.2,
+                "tertiary_industry_share": 0.7
+              }
+            },
+            {
+              "municipality_code": "91202",
+              "name_ja": "例示町",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0.1,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0.01,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": null,
+                "primary_industry_share": 0.1,
+                "secondary_industry_share": 0.2,
+                "tertiary_industry_share": 0.7
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "municipality_code": "90202",
+      "feature_values": {
+        "log_population_density": 1.1,
+        "primary_industry_share": 0.2,
+        "secondary_industry_share": 0.3,
+        "tertiary_industry_share": 0.5
+      },
+      "rankings": {
+        "density": {
+          "similar": [
+            {
+              "municipality_code": "91202",
+              "name_ja": "例示町",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 1.1,
+                "primary_industry_share": 0.2,
+                "secondary_industry_share": 0.3,
+                "tertiary_industry_share": 0.5
+              }
+            },
+            {
+              "municipality_code": "91201",
+              "name_ja": "例示市",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0.1,
+              "contributions": {
+                "log_population_density": 0.01,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 1.2,
+                "primary_industry_share": 0.2,
+                "secondary_industry_share": 0.3,
+                "tertiary_industry_share": 0.5
+              }
+            }
+          ]
+        },
+        "regional_structure": {
+          "similar": [
+            {
+              "municipality_code": "91202",
+              "name_ja": "例示町",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 1.1,
+                "primary_industry_share": 0.2,
+                "secondary_industry_share": 0.3,
+                "tertiary_industry_share": 0.5
+              }
+            },
+            {
+              "municipality_code": "91201",
+              "name_ja": "例示市",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0.1,
+              "contributions": {
+                "log_population_density": 0.01,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": 1.2,
+                "primary_industry_share": 0.2,
+                "secondary_industry_share": 0.3,
+                "tertiary_industry_share": 0.5
+              }
+            }
+          ]
+        },
+        "industry_structure": {
+          "similar": [
+            {
+              "municipality_code": "91202",
+              "name_ja": "例示町",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": null,
+                "primary_industry_share": 0.2,
+                "secondary_industry_share": 0.3,
+                "tertiary_industry_share": 0.5
+              }
+            },
+            {
+              "municipality_code": "91201",
+              "name_ja": "例示市",
+              "prefecture_code": "91",
+              "prefecture_name_ja": "例示県",
+              "distance": 0.1,
+              "contributions": {
+                "log_population_density": 0,
+                "primary_industry_share": 0.01,
+                "secondary_industry_share": 0,
+                "tertiary_industry_share": 0
+              },
+              "feature_values": {
+                "log_population_density": null,
+                "primary_industry_share": 0.2,
+                "secondary_industry_share": 0.3,
+                "tertiary_industry_share": 0.5
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -3,6 +3,14 @@ import path from "node:path";
 
 import type { z } from "zod";
 
+import { densityFileSchema, type DensityFile } from "./density-schema";
+import { industryFileSchema, type IndustryFile } from "./industry-schema";
+import {
+  structureSimilarityFileSchema,
+  structureSimilarityModelSchema,
+  type StructureSimilarityFile,
+  type StructureSimilarityModel,
+} from "./structure-similarity-schema";
 import {
   latestPointerSchema,
   manifestSchema,
@@ -141,6 +149,49 @@ export async function loadSimilarityModel(
   );
 }
 
+export async function loadDensity(
+  releaseId: string,
+  root: string = defaultPublicDataRoot(),
+): Promise<DensityFile> {
+  return readJsonFile(
+    path.join(releaseDirectory(root, releaseId), "density.json"),
+    densityFileSchema,
+  );
+}
+
+export async function loadIndustry(
+  releaseId: string,
+  root: string = defaultPublicDataRoot(),
+): Promise<IndustryFile> {
+  return readJsonFile(
+    path.join(releaseDirectory(root, releaseId), "industry.json"),
+    industryFileSchema,
+  );
+}
+
+export async function loadStructureSimilarity(
+  releaseId: string,
+  root: string = defaultPublicDataRoot(),
+): Promise<StructureSimilarityFile> {
+  return readJsonFile(
+    path.join(releaseDirectory(root, releaseId), "similarity-structure.json"),
+    structureSimilarityFileSchema,
+  );
+}
+
+export async function loadStructureSimilarityModel(
+  releaseId: string,
+  root: string = defaultPublicDataRoot(),
+): Promise<StructureSimilarityModel> {
+  return readJsonFile(
+    path.join(
+      releaseDirectory(root, releaseId),
+      "similarity-structure-model.json",
+    ),
+    structureSimilarityModelSchema,
+  );
+}
+
 export async function loadMunicipalityDetail(
   releaseId: string,
   municipalityCode: string,
@@ -175,6 +226,10 @@ export interface ReleaseBundle {
   summary: SummaryFile;
   similarity: SimilarityFile;
   similarityModel: SimilarityModel;
+  density: DensityFile;
+  industry: IndustryFile;
+  structureSimilarity: StructureSimilarityFile;
+  structureSimilarityModel: StructureSimilarityModel;
   details: MunicipalityDetail[];
 }
 
@@ -186,14 +241,27 @@ export async function loadReleaseBundle(
   releaseId: string,
   root: string = defaultPublicDataRoot(),
 ): Promise<ReleaseBundle> {
-  const [manifest, municipalities, summary, similarity, similarityModel] =
-    await Promise.all([
-      loadManifest(releaseId, root),
-      loadMunicipalities(releaseId, root),
-      loadHiroshimaSummary(releaseId, root),
-      loadSimilarity(releaseId, root),
-      loadSimilarityModel(releaseId, root),
-    ]);
+  const [
+    manifest,
+    municipalities,
+    summary,
+    similarity,
+    similarityModel,
+    density,
+    industry,
+    structureSimilarity,
+    structureSimilarityModel,
+  ] = await Promise.all([
+    loadManifest(releaseId, root),
+    loadMunicipalities(releaseId, root),
+    loadHiroshimaSummary(releaseId, root),
+    loadSimilarity(releaseId, root),
+    loadSimilarityModel(releaseId, root),
+    loadDensity(releaseId, root),
+    loadIndustry(releaseId, root),
+    loadStructureSimilarity(releaseId, root),
+    loadStructureSimilarityModel(releaseId, root),
+  ]);
 
   const details = await Promise.all(
     summary.municipalities.map(({ municipality_code }) =>
@@ -208,6 +276,10 @@ export async function loadReleaseBundle(
     summary,
     similarity,
     similarityModel,
+    density,
+    industry,
+    structureSimilarity,
+    structureSimilarityModel,
     details,
   };
 }

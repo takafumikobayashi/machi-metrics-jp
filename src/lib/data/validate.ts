@@ -1,6 +1,11 @@
 import type { ReleaseBundle } from "./load";
 import type { MunicipalityDetail, SummaryRow } from "./schema";
 import { featureIds } from "../similarity/calculate";
+import { calculatePopulationDensity } from "../metrics/density";
+import {
+  structureModelDefinitions,
+  type StructureModelId,
+} from "../similarity/structure";
 
 /**
  * 公開JSONの整合性検証（DATA_SPEC 12）。
@@ -70,8 +75,12 @@ export function validateRelease(
   const knownCodes = validateMunicipalityMaster(bundle, error);
   const detailByCode = validateDetails(bundle, expectation, error, warn);
   validateSummary(bundle, expectation, detailByCode, error);
+  validateDensity(bundle, expectation, detailByCode, error);
+  validateIndustry(bundle, expectation, error);
   validateSimilarity(bundle, expectation, knownCodes, error);
   validateSimilarityModel(bundle, error);
+  validateStructureSimilarity(bundle, expectation, knownCodes, error);
+  validateStructureSimilarityModel(bundle, error);
 
   return { errors, warnings };
 }
@@ -93,6 +102,13 @@ function validateReleaseIds(
     ["hiroshima-summary.json", bundle.summary.release_id],
     ["similarity.json", bundle.similarity.release_id],
     ["similarity-model.json", bundle.similarityModel.release_id],
+    ["density.json", bundle.density.release_id],
+    ["industry.json", bundle.industry.release_id],
+    ["similarity-structure.json", bundle.structureSimilarity.release_id],
+    [
+      "similarity-structure-model.json",
+      bundle.structureSimilarityModel.release_id,
+    ],
     ...bundle.details.map((detail): [string, string] => [
       `municipality/${detail.municipality.municipality_code}.json`,
       detail.release_id,
@@ -106,6 +122,181 @@ function validateReleaseIds(
         `${fileName} のrelease_idが ${expectation.releaseId} と一致しません。`,
       );
     }
+  });
+}
+
+function validateDensity(
+  bundle: ReleaseBundle,
+  expectation: ReleaseExpectation,
+  detailByCode: Map<string, MunicipalityDetail>,
+  error: Report,
+): void {
+  const entries = bundle.density.entries;
+  const byCode = new Map(
+    entries.map((entry) => [entry.municipality_code, entry]),
+  );
+  if (byCode.size !== entries.length) {
+    error(
+      "density_code_duplicated",
+      "density.jsonに自治体コードの重複があります。",
+    );
+  }
+  if (bundle.density.population_as_of_date !== bundle.density.area_as_of_date) {
+    error(
+      "density_date_mismatch",
+      "人口密度データの人口基準日と面積基準日が一致していません。",
+    );
+  }
+  expectation.focusMunicipalityCodes.forEach((code) => {
+    const entry = byCode.get(code);
+    const detail = detailByCode.get(code);
+    if (!entry) {
+      error(
+        "density_entry_missing",
+        "人口密度の対象自治体データがありません。",
+        code,
+      );
+      return;
+    }
+    const snapshot = detail?.snapshots.find(
+      ({ as_of_date }) => as_of_date === bundle.density.population_as_of_date,
+    );
+    if (!snapshot) {
+      error(
+        "density_snapshot_missing",
+        "人口密度と突合する人口基準日がありません。",
+        code,
+      );
+      return;
+    }
+    if (entry.population_total !== snapshot.population_total) {
+      error(
+        "density_population_mismatch",
+        "人口密度の人口が詳細データと一致しません。",
+        code,
+      );
+    }
+    const expected = calculatePopulationDensity(
+      entry.population_total,
+      entry.area_km2,
+    );
+    if (
+      expected === null
+        ? entry.population_density_per_km2 !== null
+        : entry.population_density_per_km2 === null ||
+          Math.abs(entry.population_density_per_km2 - expected) >
+            0.05 + tolerance
+    ) {
+      error(
+        "density_value_mismatch",
+        "人口密度を人口÷面積から再計算できません。",
+        code,
+      );
+    }
+  });
+}
+
+function validateIndustry(
+  bundle: ReleaseBundle,
+  expectation: ReleaseExpectation,
+  error: Report,
+): void {
+  const entries = bundle.industry.entries;
+  const byCode = new Map(
+    entries.map((entry) => [entry.municipality_code, entry]),
+  );
+  if (byCode.size !== entries.length) {
+    error(
+      "industry_code_duplicated",
+      "industry.jsonに自治体コードの重複があります。",
+    );
+  }
+  if (bundle.industry.coverage.municipality_count !== entries.length) {
+    error(
+      "industry_coverage_mismatch",
+      "industry.jsonの自治体件数とentriesの件数が一致しません。",
+    );
+  }
+  if (bundle.industry.reference_date !== entries[0]?.reference_date) {
+    error(
+      "industry_reference_date_mismatch",
+      "産業構造ファイルと自治体レコードの基準日が一致していません。",
+    );
+  }
+
+  expectation.focusMunicipalityCodes.forEach((code) => {
+    if (!byCode.has(code)) {
+      error(
+        "industry_entry_missing",
+        "産業構造の対象自治体データがありません。",
+        code,
+      );
+    }
+  });
+
+  entries.forEach((entry) => {
+    const classified =
+      entry.primary_industry_population +
+      entry.secondary_industry_population +
+      entry.tertiary_industry_population;
+    if (classified !== entry.industry_classified_population) {
+      error(
+        "industry_classified_mismatch",
+        "産業3部門の合計が産業分類可能人口と一致しません。",
+        entry.municipality_code,
+      );
+    }
+    if (
+      entry.industry_classified_population +
+        entry.industry_unknown_population !==
+      entry.employed_population_15_plus
+    ) {
+      error(
+        "industry_total_mismatch",
+        "産業分類可能人口と産業分類不能人口の合計が15歳以上就業者数と一致しません。",
+        entry.municipality_code,
+      );
+    }
+
+    const shares = [
+      [
+        "agriculture_share",
+        entry.agriculture_share,
+        entry.agriculture_population,
+      ],
+      [
+        "primary_industry_share",
+        entry.primary_industry_share,
+        entry.primary_industry_population,
+      ],
+      [
+        "secondary_industry_share",
+        entry.secondary_industry_share,
+        entry.secondary_industry_population,
+      ],
+      [
+        "tertiary_industry_share",
+        entry.tertiary_industry_share,
+        entry.tertiary_industry_population,
+      ],
+    ] as const;
+    shares.forEach(([label, value, population]) => {
+      const expected =
+        entry.industry_classified_population === 0
+          ? null
+          : population / entry.industry_classified_population;
+      if (
+        expected === null
+          ? value !== null
+          : value === null || !nearlyEqual(value, expected)
+      ) {
+        error(
+          "industry_share_inconsistent",
+          `${label}が人数と産業分類可能人口から再計算できません。`,
+          entry.municipality_code,
+        );
+      }
+    });
   });
 }
 
@@ -511,12 +702,13 @@ function validateSimilarityEntries(
   knownCodes: Set<string>,
   error: Report,
   label: string,
+  focusCodes: readonly string[] = expectation.focusMunicipalityCodes,
 ): void {
   const entries = new Map(
     similarityEntries.map((entry) => [entry.municipality_code, entry]),
   );
 
-  expectation.focusMunicipalityCodes.forEach((code) => {
+  focusCodes.forEach((code) => {
     const entry = entries.get(code);
     if (!entry) {
       error(
@@ -634,4 +826,149 @@ function validateSimilarityModel(bundle: ReleaseBundle, error: Report): void {
       "マニフェストとsimilarity-model.jsonで候補件数・除外件数が一致しません。",
     );
   }
+}
+
+function validateStructureSimilarity(
+  bundle: ReleaseBundle,
+  expectation: ReleaseExpectation,
+  knownCodes: Set<string>,
+  error: Report,
+): void {
+  if (
+    bundle.structureSimilarity.result_count !==
+    expectation.similarityResultCount
+  ) {
+    error(
+      "structure_similarity_result_count_mismatch",
+      "similarity-structure.jsonのresult_countが設定と一致しません。",
+    );
+  }
+
+  const modelIds = Object.keys(structureModelDefinitions) as StructureModelId[];
+  const entries = new Map(
+    bundle.structureSimilarity.entries.map((entry) => [
+      entry.municipality_code,
+      entry,
+    ]),
+  );
+  if (entries.size !== bundle.structureSimilarity.entries.length) {
+    error(
+      "structure_similarity_entry_duplicated",
+      "similarity-structure.jsonに自治体コードの重複があります。",
+    );
+  }
+
+  expectation.focusMunicipalityCodes.forEach((code) => {
+    const entry = entries.get(code);
+    if (!entry) {
+      error(
+        "structure_similarity_entry_missing",
+        "構造比較の類似自治体結果がありません。",
+        code,
+      );
+      return;
+    }
+    modelIds.forEach((modelId) => {
+      const ranking = entry.rankings[modelId];
+      validateSimilarityEntries(
+        [{ municipality_code: code, similar: ranking.similar }],
+        expectation,
+        knownCodes,
+        error,
+        `${modelId}の構造比較・`,
+        [code],
+      );
+    });
+  });
+}
+
+function validateStructureSimilarityModel(
+  bundle: ReleaseBundle,
+  error: Report,
+): void {
+  const model = bundle.structureSimilarityModel;
+  if (
+    model.reference_dates.population_as_of_date !==
+    bundle.density.population_as_of_date
+  ) {
+    error(
+      "structure_similarity_population_date_mismatch",
+      "構造比較モデルと人口密度の人口基準日が一致していません。",
+    );
+  }
+  if (
+    model.reference_dates.density_area_as_of_date !==
+    bundle.density.area_as_of_date
+  ) {
+    error(
+      "structure_similarity_area_date_mismatch",
+      "構造比較モデルと人口密度の面積基準日が一致していません。",
+    );
+  }
+  if (
+    model.reference_dates.industry_reference_date !==
+    bundle.industry.reference_date
+  ) {
+    error(
+      "structure_similarity_industry_date_mismatch",
+      "構造比較モデルと産業構造データの基準日が一致していません。",
+    );
+  }
+
+  const expectedIds = Object.keys(structureModelDefinitions).sort();
+  const actualIds = model.models.map(({ id }) => id).sort();
+  if (JSON.stringify(actualIds) !== JSON.stringify(expectedIds)) {
+    error(
+      "structure_similarity_model_missing",
+      "構造比較モデルの種類が設定と一致しません。",
+    );
+  }
+
+  model.models.forEach((modelDefinition) => {
+    const totalWeight = modelDefinition.features.reduce(
+      (sum, feature) => sum + feature.weight,
+      0,
+    );
+    if (!nearlyEqual(totalWeight, 1)) {
+      error(
+        "structure_similarity_weight_sum_invalid",
+        `${modelDefinition.id}の構造比較特徴量の重み合計が1ではありません。`,
+      );
+    }
+    const ids = modelDefinition.features.map(({ id }) => id);
+    if (new Set(ids).size !== ids.length) {
+      error(
+        "structure_similarity_feature_duplicated",
+        `${modelDefinition.id}の構造比較特徴量が重複しています。`,
+      );
+    }
+    const expectedFeatureIds = [
+      ...structureModelDefinitions[modelDefinition.id].featureIds,
+    ].sort();
+    if (JSON.stringify(ids.sort()) !== JSON.stringify(expectedFeatureIds)) {
+      error(
+        "structure_similarity_feature_mismatch",
+        `${modelDefinition.id}の構造比較特徴量が設定と一致しません。`,
+      );
+    }
+    const exclusionReasonTotal = modelDefinition.exclusion_reasons.reduce(
+      (sum, { count }) => sum + count,
+      0,
+    );
+    if (exclusionReasonTotal !== modelDefinition.excluded_count) {
+      error(
+        "structure_similarity_exclusion_mismatch",
+        `${modelDefinition.id}の除外理由件数と除外件数が一致しません。`,
+      );
+    }
+    if (
+      modelDefinition.candidate_count + modelDefinition.excluded_count !==
+      bundle.similarityModel.candidate_count
+    ) {
+      error(
+        "structure_similarity_coverage_mismatch",
+        `${modelDefinition.id}の候補件数と除外件数が人口類似度の候補件数と一致しません。`,
+      );
+    }
+  });
 }

@@ -10,6 +10,7 @@ import { hiroshimaMunicipalities, projectConfig } from "@/lib/config";
 import {
   loadHiroshimaSummary,
   loadLatestPointer,
+  loadDensity,
   loadMunicipalityDetail,
 } from "@/lib/data/load";
 import {
@@ -78,8 +79,9 @@ function aggregateRegionalSeries(
 
 export default async function HomePage() {
   const latestPointer = await loadLatestPointer();
-  const [summary, details] = await Promise.all([
+  const [summary, density, details] = await Promise.all([
     loadHiroshimaSummary(latestPointer.release_id),
+    loadDensity(latestPointer.release_id),
     Promise.all(
       hiroshimaMunicipalities.map(({ code }) =>
         loadMunicipalityDetail(latestPointer.release_id, code),
@@ -307,7 +309,10 @@ export default async function HomePage() {
             {summary.flow_period_start.slice(0, 4)}
             年中の人口動態です。列見出しで並べ替えできます。
           </p>
-          <MunicipalityTable rows={summary.municipalities} />
+          <MunicipalityTable
+            rows={summary.municipalities}
+            densityEntries={density.entries}
+          />
         </div>
       </section>
 

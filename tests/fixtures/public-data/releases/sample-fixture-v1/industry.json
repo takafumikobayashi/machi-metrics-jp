@@ -1,0 +1,56 @@
+{
+  "release_id": "sample-fixture-v1",
+  "schema_version": 1,
+  "dataset": "industry",
+  "reference_date": "2020-10-01",
+  "scope": "employed_population_15_plus",
+  "share_denominator": "industry_classified_population",
+  "source": {
+    "title": "fixture industry source",
+    "url": "https://example.invalid/industry",
+    "table_number": "fixture-5-3",
+    "raw_file": "fixture-industry.xlsx",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "coverage": {
+    "municipality_count": 2
+  },
+  "entries": [
+    {
+      "municipality_code": "90201",
+      "prefecture_code": "90",
+      "prefecture_name_ja": "栃木県",
+      "name_ja": "宇都宮市",
+      "reference_date": "2020-10-01",
+      "employed_population_15_plus": 1000,
+      "industry_classified_population": 950,
+      "industry_unknown_population": 50,
+      "agriculture_population": 50,
+      "primary_industry_population": 50,
+      "secondary_industry_population": 100,
+      "tertiary_industry_population": 800,
+      "agriculture_share": 0.05263157894736842,
+      "primary_industry_share": 0.05263157894736842,
+      "secondary_industry_share": 0.10526315789473684,
+      "tertiary_industry_share": 0.8421052631578947
+    },
+    {
+      "municipality_code": "90202",
+      "prefecture_code": "90",
+      "prefecture_name_ja": "栃木県",
+      "name_ja": "足利市",
+      "reference_date": "2020-10-01",
+      "employed_population_15_plus": 500,
+      "industry_classified_population": 500,
+      "industry_unknown_population": 0,
+      "agriculture_population": 100,
+      "primary_industry_population": 120,
+      "secondary_industry_population": 180,
+      "tertiary_industry_population": 200,
+      "agriculture_share": 0.2,
+      "primary_industry_share": 0.24,
+      "secondary_industry_share": 0.36,
+      "tertiary_industry_share": 0.4
+    }
+  ]
+}

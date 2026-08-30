@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PopulationTrend } from "@/components/municipality/MunicipalityVisuals";
+import { DensityPanel } from "@/components/municipality/DensityPanel";
+import { IndustryStructurePanel } from "@/components/municipality/IndustryStructurePanel";
 import {
   AgeCategoryTrend,
   ResidentScopeCharts,
@@ -13,10 +15,14 @@ import { hiroshimaMunicipalities } from "@/lib/config";
 import { loadExtendedMunicipalityDetail } from "@/lib/data/extended-load";
 import {
   loadLatestPointer,
+  loadDensity,
+  loadIndustry,
   loadManifest,
   loadMunicipalityDetail,
   loadSimilarity,
   loadSimilarityModel,
+  loadStructureSimilarity,
+  loadStructureSimilarityModel,
 } from "@/lib/data/load";
 import {
   formatAsOfDate,
@@ -85,17 +91,33 @@ export default async function MunicipalityPage({
   }
 
   const latestPointer = await loadLatestPointer();
-  const [detail, manifest, similarity, similarityModel, extendedDetail] =
-    await Promise.all([
-      loadMunicipalityDetail(latestPointer.release_id, code),
-      loadManifest(latestPointer.release_id),
-      loadSimilarity(latestPointer.release_id),
-      loadSimilarityModel(latestPointer.release_id),
-      loadExtendedMunicipalityDetail(latestPointer.release_id, code),
-    ]);
+  const [
+    detail,
+    density,
+    industry,
+    manifest,
+    similarity,
+    similarityModel,
+    structureSimilarity,
+    structureSimilarityModel,
+    extendedDetail,
+  ] = await Promise.all([
+    loadMunicipalityDetail(latestPointer.release_id, code),
+    loadDensity(latestPointer.release_id),
+    loadIndustry(latestPointer.release_id),
+    loadManifest(latestPointer.release_id),
+    loadSimilarity(latestPointer.release_id),
+    loadSimilarityModel(latestPointer.release_id),
+    loadStructureSimilarity(latestPointer.release_id),
+    loadStructureSimilarityModel(latestPointer.release_id),
+    loadExtendedMunicipalityDetail(latestPointer.release_id, code),
+  ]);
   const latestSnapshot = detail.snapshots.at(-1);
   const latestFlow = detail.flows.at(-1);
   const similarityEntry = similarity.entries.find(
+    ({ municipality_code }) => municipality_code === code,
+  );
+  const structureSimilarityEntry = structureSimilarity.entries.find(
     ({ municipality_code }) => municipality_code === code,
   );
   if (!latestSnapshot || !latestFlow) {
@@ -105,6 +127,20 @@ export default async function MunicipalityPage({
   const source = manifest.sources.find(
     ({ table_number }) =>
       table_number === `${latestSnapshot.as_of_date.slice(0, 4)}-03`,
+  );
+  const densityEntry =
+    density.entries.find(
+      ({ municipality_code }) => municipality_code === code,
+    ) ?? null;
+  const industryEntry =
+    industry.entries.find(
+      ({ municipality_code }) => municipality_code === code,
+    ) ?? null;
+  const focusCodes = new Set(
+    hiroshimaMunicipalities.map(({ code: focusCode }) => focusCode),
+  );
+  const industryComparison = industry.entries.filter(({ municipality_code }) =>
+    focusCodes.has(municipality_code),
   );
 
   return (
@@ -180,6 +216,18 @@ export default async function MunicipalityPage({
       <PopulationTrend
         municipalityName={municipality.nameJa}
         snapshots={detail.snapshots}
+      />
+
+      <DensityPanel
+        municipalityName={municipality.nameJa}
+        entry={densityEntry}
+        comparison={density.entries}
+      />
+
+      <IndustryStructurePanel
+        municipalityName={municipality.nameJa}
+        entry={industryEntry}
+        comparison={industryComparison}
       />
 
       <AgeCategoryTrend detail={extendedDetail} />
@@ -274,6 +322,8 @@ export default async function MunicipalityPage({
         singleFeatureEntries={similarity.single_feature_entries}
         features={similarityModel.features}
         candidateCount={similarityModel.candidate_count}
+        structureSimilarityEntry={structureSimilarityEntry}
+        structureSimilarityModel={structureSimilarityModel}
         focusCodes={hiroshimaMunicipalities.map(
           ({ code: focusCode }) => focusCode,
         )}

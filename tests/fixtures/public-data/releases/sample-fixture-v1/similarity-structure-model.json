@@ -1,0 +1,95 @@
+{
+  "release_id": "sample-fixture-v1",
+  "normalization": "median_iqr",
+  "distance": "weighted_euclidean",
+  "reference_dates": {
+    "population_as_of_date": "2025-01-01",
+    "density_area_as_of_date": "2025-01-01",
+    "industry_reference_date": "2020-10-01"
+  },
+  "models": [
+    {
+      "id": "density",
+      "label_ja": "人口密度",
+      "features": [
+        {
+          "id": "log_population_density",
+          "label_ja": "人口密度",
+          "weight": 1,
+          "median": 2,
+          "iqr": 1
+        }
+      ],
+      "candidate_count": 4,
+      "excluded_count": 0,
+      "exclusion_reasons": []
+    },
+    {
+      "id": "regional_structure",
+      "label_ja": "地域構造",
+      "features": [
+        {
+          "id": "log_population_density",
+          "label_ja": "人口密度",
+          "weight": 0.25,
+          "median": 2,
+          "iqr": 1
+        },
+        {
+          "id": "primary_industry_share",
+          "label_ja": "第一次産業比率",
+          "weight": 0.25,
+          "median": 0.1,
+          "iqr": 0.1
+        },
+        {
+          "id": "secondary_industry_share",
+          "label_ja": "第二次産業比率",
+          "weight": 0.25,
+          "median": 0.2,
+          "iqr": 0.1
+        },
+        {
+          "id": "tertiary_industry_share",
+          "label_ja": "第三次産業比率",
+          "weight": 0.25,
+          "median": 0.7,
+          "iqr": 0.1
+        }
+      ],
+      "candidate_count": 4,
+      "excluded_count": 0,
+      "exclusion_reasons": []
+    },
+    {
+      "id": "industry_structure",
+      "label_ja": "産業構造",
+      "features": [
+        {
+          "id": "primary_industry_share",
+          "label_ja": "第一次産業比率",
+          "weight": 0.3333333333333333,
+          "median": 0.1,
+          "iqr": 0.1
+        },
+        {
+          "id": "secondary_industry_share",
+          "label_ja": "第二次産業比率",
+          "weight": 0.3333333333333333,
+          "median": 0.2,
+          "iqr": 0.1
+        },
+        {
+          "id": "tertiary_industry_share",
+          "label_ja": "第三次産業比率",
+          "weight": 0.3333333333333333,
+          "median": 0.7,
+          "iqr": 0.1
+        }
+      ],
+      "candidate_count": 4,
+      "excluded_count": 0,
+      "exclusion_reasons": []
+    }
+  ]
+}

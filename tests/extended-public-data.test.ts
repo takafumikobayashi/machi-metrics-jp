@@ -70,4 +70,30 @@ test("latest release uses the national municipality candidate set", async () => 
     assert.ok(entry);
     assert.equal(entry.similar.length, bundle.similarity.result_count);
   });
+
+  assert.deepEqual(
+    bundle.structureSimilarityModel.models.map(({ id }) => id).sort(),
+    ["density", "industry_structure", "regional_structure"],
+  );
+  const structureEntry = bundle.structureSimilarity.entries.find(
+    ({ municipality_code }) => municipality_code === "34214",
+  );
+  assert.ok(structureEntry);
+  assert.equal(
+    structureEntry.rankings.density.similar.length,
+    bundle.structureSimilarity.result_count,
+  );
+  assert.equal(
+    structureEntry.rankings.regional_structure.similar.length,
+    bundle.structureSimilarity.result_count,
+  );
+  assert.equal(
+    structureEntry.rankings.industry_structure.similar.length,
+    bundle.structureSimilarity.result_count,
+  );
+  assert.ok(
+    bundle.structureSimilarityModel.models.every(
+      (model) => model.candidate_count >= 1,
+    ),
+  );
 });

@@ -32,6 +32,9 @@
   --series-3: #b8730f;
   --series-4: #6a4fa3;
 
+  /* 注目していない行の色。地色と紛れない程度に見える濃さにする。 */
+  --chart-muted: #d6dce4;
+
   /* 増減の意味色 */
   --increase: #0f6e63;
   --decrease: #b0421f;
@@ -98,6 +101,7 @@
     --series-1: #7fb0e8;
     --series-3: #e0a34e;
     --series-4: #b09ce0;
+    --chart-muted: #3a424f;
     --increase: #4fbfae;
     --decrease: #f08a63;
     --age-1: #2b4a6b;
@@ -129,6 +133,7 @@ html[data-theme="dark"] {
   --series-1: #7fb0e8;
   --series-3: #e0a34e;
   --series-4: #b09ce0;
+  --chart-muted: #3a424f;
   --increase: #4fbfae;
   --decrease: #f08a63;
   --age-1: #2b4a6b;
@@ -426,6 +431,283 @@ h3 {
   min-width: 660px;
   height: auto;
   overflow: visible;
+}
+
+.density-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 26px;
+}
+
+.density-summary > div {
+  padding: 17px 19px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.density-summary span,
+.density-summary small {
+  display: block;
+}
+
+.density-summary span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.density-summary strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--brand-700);
+  font-size: var(--text-h2);
+  line-height: 1.4;
+}
+
+.density-summary small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.density-chart-frame {
+  padding: 10px 0 2px;
+  overflow-x: auto;
+}
+
+.density-chart {
+  display: block;
+  width: 100%;
+  min-width: 680px;
+  height: auto;
+  overflow: visible;
+}
+
+.density-label,
+.density-value-label {
+  fill: var(--muted);
+  font-size: var(--text-chart);
+  /* ラベルの上でも棒のツールチップが出るように、判定を透過させる。 */
+  pointer-events: none;
+}
+
+.density-value-label {
+  fill: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.density-bar {
+  fill: var(--series-1);
+  opacity: 0.85;
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: density-bar-grow 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.density-bar:hover,
+.density-bar:focus-visible {
+  fill: var(--series-1);
+  opacity: 1;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.industry-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 26px;
+}
+
+.industry-summary > div {
+  padding: 17px 19px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.industry-summary span,
+.industry-summary small {
+  display: block;
+}
+
+.industry-summary span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.industry-summary strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--brand-700);
+  font-size: var(--text-h2);
+  line-height: 1.4;
+}
+
+.industry-summary small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.industry-chart-frame {
+  padding: 10px 0 2px;
+  overflow-x: auto;
+}
+
+.industry-chart {
+  display: block;
+  width: 100%;
+  min-width: 680px;
+  height: auto;
+  overflow: visible;
+}
+
+.industry-label {
+  fill: var(--muted);
+  font-size: var(--text-chart);
+  pointer-events: none;
+}
+
+.industry-row-focus .industry-label {
+  fill: var(--ink);
+  font-weight: 700;
+}
+
+/*
+ * focus + context。いま見ている市町だけ色を残し、ほかの行は分布を示す
+ * 背景として落とす。選択状態の印だけはブランド色を使う（系列色ではない）。
+ */
+.chart-row-muted .density-bar,
+.chart-row-muted .industry-bar-segment {
+  fill: var(--chart-muted);
+}
+
+.chart-row-muted .density-label,
+.chart-row-muted .industry-label,
+.chart-row-muted .density-value-label {
+  fill: var(--muted);
+  opacity: 0.75;
+}
+
+.chart-row-focus .density-label,
+.chart-row-focus .industry-label {
+  fill: var(--ink);
+  font-weight: 700;
+}
+
+.chart-row-focus .density-value-label {
+  fill: var(--ink);
+  font-weight: 700;
+}
+
+.chart-focus-marker {
+  fill: var(--brand-600);
+}
+
+/* 注目行の値は棒の内側に置く。地色が系列色なので、白黒はテーマで反転させる。 */
+.industry-focus-value {
+  fill: var(--white);
+  font-size: var(--text-chart);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+/*
+ * 棒の内側に入れた値ラベル。地色が変わるので、注目行だけ反転色にする。
+ * .chart-row-* より後に置いて、詳細度が同じでも勝つようにする。
+ */
+.density-value-label-inside {
+  fill: var(--muted);
+}
+
+.chart-row-focus .density-value-label-inside {
+  fill: var(--white);
+}
+
+.chart-focus-value {
+  fill: var(--ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-chart);
+}
+
+.industry-bar-segment {
+  stroke: var(--white);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: industry-bar-grow 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.industry-bar-segment:hover {
+  stroke: var(--ink);
+  stroke-opacity: 0.3;
+  stroke-width: 1.5;
+  filter: brightness(1.06);
+}
+
+/* キーボード操作の位置は見失うと困るため、輪郭を残す。 */
+.industry-bar-segment:focus-visible {
+  stroke: var(--ink);
+  stroke-opacity: 1;
+  stroke-width: 2;
+}
+
+.industry-primary {
+  fill: var(--series-1);
+}
+
+.industry-secondary {
+  fill: var(--series-3);
+}
+
+.industry-tertiary {
+  fill: var(--series-4);
+}
+
+.industry-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 26px;
+}
+
+.industry-detail-grid > div {
+  display: grid;
+  gap: 3px;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.industry-detail-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.industry-detail-label .legend-swatch {
+  flex: 0 0 auto;
+}
+
+.industry-detail-grid strong {
+  color: var(--ink);
+  font-size: var(--text-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.industry-detail-grid small {
+  color: var(--muted);
+  font-size: var(--text-sm);
 }
 
 .chart-axis {
@@ -1163,6 +1445,10 @@ nav a:focus-visible,
     grid-template-columns: 1fr;
   }
 
+  .density-summary {
+    grid-template-columns: 1fr;
+  }
+
   .similarity-list {
     grid-template-columns: 1fr;
   }
@@ -1437,6 +1723,18 @@ body {
   height: 9px;
   border-radius: 3px;
   background: var(--series-1);
+}
+
+.legend-swatch.industry-primary {
+  background: var(--series-1);
+}
+
+.legend-swatch.industry-secondary {
+  background: var(--series-3);
+}
+
+.legend-swatch.industry-tertiary {
+  background: var(--series-4);
 }
 
 .legend-swatch.natural {
@@ -1757,6 +2055,30 @@ body {
   to {
     opacity: 0.46;
     transform: scaleY(1);
+  }
+}
+
+@keyframes density-bar-grow {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 0.88;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes industry-bar-grow {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
   }
 }
 
@@ -2208,7 +2530,9 @@ html[data-theme="dark"] .insight-panel {
   .population-chart .chart-line,
   .population-chart .chart-point,
   .chart-modal-backdrop,
-  .chart-modal {
+  .chart-modal,
+  .density-bar,
+  .industry-bar-segment {
     animation: none;
   }
 }
@@ -2267,6 +2591,11 @@ html[data-theme="dark"] .insight-panel {
   }
 
   .scope-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .industry-summary,
+  .industry-detail-grid {
     grid-template-columns: 1fr;
   }
 

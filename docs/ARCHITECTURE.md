@@ -1,7 +1,7 @@
 # 技術構成
 
-最終更新: 2026-08-29  
-状態: MVP初期構成
+最終更新: 2026-08-30  
+状態: MVP + 人口密度・産業構造拡張
 
 ## 1. 方針
 
@@ -25,19 +25,19 @@ Next.js（概要 / 自治体詳細 / データ説明）
 
 ## 2. 採用技術
 
-| 領域       | 技術                                    | 理由                                                            |
-| ---------- | --------------------------------------- | --------------------------------------------------------------- |
-| Web        | Next.js App Router + React + TypeScript | 静的生成、ルーティング、メタデータ、将来のAPI追加を一つに保てる |
-| スタイル   | CSS Modules / global CSSから開始        | MVPでデザインシステム依存を増やさず、必要時に段階導入できる     |
-| データ契約 | TypeScript型 + Zod                      | ビルド時と実行時の両方で公開JSONを検証できる                    |
-| データ処理 | Node.js + TypeScript                    | MVPを単一言語・単一パッケージ管理にし、実装速度を優先           |
-| テスト     | Node test runner（`tsx --test`）        | 小さな純粋関数の検証から始め、追加フレームワークを避ける        |
-| 可視化     | SVG/軽量チャートを比較後に決定          | グラフ要件とアクセシビリティを固める前に依存を固定しない        |
-| 地図       | GeoJSON + 描画ライブラリを比較後に決定  | 23市町ならSVGも候補。境界ライセンスとサイズを先に検証           |
-| 配信       | Vercel等のNode/静的配信を想定           | 公開JSONが静的なので特定のDBを必要としない                      |
-| CI         | GitHub Actions                          | lint、型、テスト、データ設定、ビルドを自動確認                  |
+| 領域       | 技術                                    | 理由                                                                           |
+| ---------- | --------------------------------------- | ------------------------------------------------------------------------------ |
+| Web        | Next.js App Router + React + TypeScript | 静的生成、ルーティング、メタデータ、将来のAPI追加を一つに保てる                |
+| スタイル   | CSS Modules / global CSSから開始        | MVPでデザインシステム依存を増やさず、必要時に段階導入できる                    |
+| データ契約 | TypeScript型 + Zod                      | ビルド時と実行時の両方で公開JSONを検証できる                                   |
+| データ処理 | Node.js + TypeScript / Python           | 通常処理はNode.js、国勢調査の大規模Excel XML解析だけPython標準ライブラリを使用 |
+| テスト     | Node test runner（`tsx --test`）        | 小さな純粋関数の検証から始め、追加フレームワークを避ける                       |
+| 可視化     | SVG/軽量チャートを比較後に決定          | グラフ要件とアクセシビリティを固める前に依存を固定しない                       |
+| 地図       | GeoJSON + 描画ライブラリを比較後に決定  | 23市町ならSVGも候補。境界ライセンスとサイズを先に検証                          |
+| 配信       | Vercel等のNode/静的配信を想定           | 公開JSONが静的なので特定のDBを必要としない                                     |
+| CI         | GitHub Actions                          | lint、型、テスト、データ設定、ビルドを自動確認                                 |
 
-PythonはMVPの必須要件にしません。Excel原本の解析や統計処理がTypeScriptで著しく複雑になった時点で、データ処理だけをPythonへ分離する判断を記録します。
+通常のMVP処理はNode.js + TypeScriptで行います。産業構造の原本は1シート約30万行・大規模なExcel XMLであるため、`normalize-industry.py`だけは追加ライブラリ不要のPython標準ライブラリでストリーム解析します。採用理由は処理をWeb実行時へ持ち込まず、Excel原本の保存・再生成手順を保つためです。
 
 ## 3. ディレクトリ責務
 
@@ -63,7 +63,7 @@ src/app/                   # ルート、レイアウト、メタデータ
 src/components/            # 分野非依存UI
 src/features/              # overview, municipality, similarityなど
 src/lib/data/              # 公開JSONの型、読み込み、形式変換
-src/lib/metrics/           # 増減、年齢構成、動態検算の純粋計算
+src/lib/metrics/           # 増減、年齢構成、動態検算、人口密度の純粋計算
 src/lib/similarity/        # 類似度の純粋計算
 src/lib/format/            # 表示直前の数値・日付整形
 tests/                     # 設定、指標、回帰用fixture
@@ -78,8 +78,9 @@ tests/                     # 設定、指標、回帰用fixture
 - 初期表示: `latest.json` → `hiroshima-summary.json`
 - 詳細表示: `municipality/<code>.json`
 - 拡張詳細: `extended/municipality/<code>.json`（日本人・外国人、5歳階級）
-- 類似検索: 事前計算した `similarity.json`
-- 説明: `manifest.json` と `similarity-model.json`
+- 類似検索: 事前計算した `similarity.json` と `similarity-structure.json`
+- 地域構造: `density.json`（行政区域面積と人口密度）、`industry.json`（産業・農業構造）
+- 説明: `manifest.json`、`similarity-model.json`、`similarity-structure-model.json`
 
 類似度はクライアントで全自治体を毎回計算せず、データリリース作成時に決定的に計算します。表示側は特徴量差を説明するだけにします。
 

@@ -23,6 +23,8 @@ export interface NationalCandidateExclusion {
 export interface NationalCandidateSet {
   municipalities: MunicipalityRecord[];
   features: MunicipalityFeatures[];
+  /** 終点年の総人口。人口密度の全国比較を作るときに再利用する。 */
+  populationTotals: Map<string, number | null>;
   exclusions: NationalCandidateExclusion[];
 }
 
@@ -202,6 +204,12 @@ export function loadNationalCandidateSet(
 
   const municipalities: MunicipalityRecord[] = [];
   const features: MunicipalityFeatures[] = [];
+  const populationTotals = new Map(
+    endRecords.map((record) => [
+      record.municipalityCode,
+      record.populationTotal,
+    ]),
+  );
   const exclusions: NationalCandidateExclusion[] = [];
 
   endRecords.forEach((record) => {
@@ -239,5 +247,5 @@ export function loadNationalCandidateSet(
     throw new Error("全国類似度の候補が2自治体未満です。");
   }
 
-  return { municipalities, features, exclusions };
+  return { municipalities, features, populationTotals, exclusions };
 }

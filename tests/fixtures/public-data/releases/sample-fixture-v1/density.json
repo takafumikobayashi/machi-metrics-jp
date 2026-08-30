@@ -1,0 +1,33 @@
+{
+  "release_id": "sample-fixture-v1",
+  "dataset": "density",
+  "unit": "persons_per_km2",
+  "population_as_of_date": "2025-01-01",
+  "area_as_of_date": "2025-01-01",
+  "source": {
+    "title": "テスト用の面積データ",
+    "url": "https://example.invalid/area",
+    "file_name": "fixture-area.csv",
+    "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "entries": [
+    {
+      "municipality_code": "90201",
+      "name_ja": "見本市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 27000,
+      "area_km2": 100,
+      "population_density_per_km2": 270
+    },
+    {
+      "municipality_code": "90202",
+      "name_ja": "見本町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 8400,
+      "area_km2": 40,
+      "population_density_per_km2": 210
+    }
+  ]
+}

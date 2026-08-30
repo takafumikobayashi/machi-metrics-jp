@@ -1,0 +1,110 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v8",
+  "normalization": "median_iqr",
+  "distance": "weighted_euclidean",
+  "reference_dates": {
+    "population_as_of_date": "2025-01-01",
+    "density_area_as_of_date": "2025-01-01",
+    "industry_reference_date": "2020-10-01"
+  },
+  "models": [
+    {
+      "id": "density",
+      "label_ja": "人口密度",
+      "features": [
+        {
+          "id": "log_population_density",
+          "label_ja": "人口密度",
+          "weight": 1,
+          "median": 2.438556735709765,
+          "iqr": 1.154167065778696
+        }
+      ],
+      "candidate_count": 1265,
+      "excluded_count": 474,
+      "exclusion_reasons": [
+        {
+          "reason": "2025年の人口密度に必要な面積データなし",
+          "count": 474
+        }
+      ]
+    },
+    {
+      "id": "regional_structure",
+      "label_ja": "地域構造",
+      "features": [
+        {
+          "id": "log_population_density",
+          "label_ja": "人口密度",
+          "weight": 0.25,
+          "median": 2.438556735709765,
+          "iqr": 1.154167065778696
+        },
+        {
+          "id": "primary_industry_share",
+          "label_ja": "第一次産業比率",
+          "weight": 0.25,
+          "median": 0.053748093839439307,
+          "iqr": 0.0997124278051037
+        },
+        {
+          "id": "secondary_industry_share",
+          "label_ja": "第二次産業比率",
+          "weight": 0.25,
+          "median": 0.2506477732793522,
+          "iqr": 0.11524895501214447
+        },
+        {
+          "id": "tertiary_industry_share",
+          "label_ja": "第三次産業比率",
+          "weight": 0.25,
+          "median": 0.6540265241288891,
+          "iqr": 0.13492866507679024
+        }
+      ],
+      "candidate_count": 1265,
+      "excluded_count": 474,
+      "exclusion_reasons": [
+        {
+          "reason": "2025年の人口密度に必要な面積データなし",
+          "count": 474
+        }
+      ]
+    },
+    {
+      "id": "industry_structure",
+      "label_ja": "産業構造",
+      "features": [
+        {
+          "id": "primary_industry_share",
+          "label_ja": "第一次産業比率",
+          "weight": 0.3333333333333333,
+          "median": 0.07445250466712044,
+          "iqr": 0.12597904960601142
+        },
+        {
+          "id": "secondary_industry_share",
+          "label_ja": "第二次産業比率",
+          "weight": 0.3333333333333333,
+          "median": 0.25060943539780534,
+          "iqr": 0.11877276034753315
+        },
+        {
+          "id": "tertiary_industry_share",
+          "label_ja": "第三次産業比率",
+          "weight": 0.3333333333333333,
+          "median": 0.6377128141974331,
+          "iqr": 0.13962736909257456
+        }
+      ],
+      "candidate_count": 1738,
+      "excluded_count": 1,
+      "exclusion_reasons": [
+        {
+          "reason": "2020年の産業構造データなし",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

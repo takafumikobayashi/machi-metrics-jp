@@ -17,6 +17,8 @@
     "test": "node --import tsx --test tests/**/*.test.ts",
     "validate:data": "node --import tsx scripts/data/validate-config.ts",
     "normalize:data": "node --import tsx scripts/data/normalize-juki.ts",
+    "normalize:area": "node --import tsx scripts/data/normalize-area.ts",
+    "normalize:industry": "python3 scripts/data/normalize-industry.py",
     "publish:data": "node --import tsx scripts/data/publish-juki.ts",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm validate:data"
   },

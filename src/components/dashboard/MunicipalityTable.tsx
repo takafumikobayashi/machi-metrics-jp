@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import type { DensityEntry } from "@/lib/data/density-schema";
 import type { SummaryRow } from "@/lib/data/schema";
 import {
   formatCount,
+  formatPopulationDensity,
   formatRatePer1000,
   formatRatioAsPercent,
   formatSignedRatioAsPercent,
@@ -23,7 +25,8 @@ type SortKey =
   | "age_0_14_share"
   | "age_65_plus_share"
   | "natural_rate_per_1000"
-  | "migration_rate_per_1000";
+  | "migration_rate_per_1000"
+  | "population_density_per_km2";
 
 type SortDirection = "ascending" | "descending";
 
@@ -34,9 +37,13 @@ interface ColumnDefinition {
   unit?: string;
   numeric: boolean;
   defaultDirection: SortDirection;
-  valueOf: (row: SummaryRow) => number | string | null;
-  render: (row: SummaryRow) => string;
+  valueOf: (row: MunicipalityTableRow) => number | string | null;
+  render: (row: MunicipalityTableRow) => string;
 }
+
+type MunicipalityTableRow = SummaryRow & {
+  density: DensityEntry | null;
+};
 
 const columns: ColumnDefinition[] = [
   {
@@ -47,6 +54,16 @@ const columns: ColumnDefinition[] = [
     defaultDirection: "ascending",
     valueOf: (row) => row.municipality_code,
     render: (row) => row.name_ja,
+  },
+  {
+    key: "population_density_per_km2",
+    label: "人口密度",
+    unit: "人/km²・2025年1月1日時点",
+    numeric: true,
+    defaultDirection: "descending",
+    valueOf: (row) => row.density?.population_density_per_km2 ?? null,
+    render: (row) =>
+      formatPopulationDensity(row.density?.population_density_per_km2 ?? null),
   },
   {
     key: "population_total",
@@ -113,8 +130,8 @@ const directionLabels: Record<SortDirection, string> = {
 
 /** 欠損は並べ替えの向きにかかわらず末尾へ置く。0として扱わない。 */
 function compareRows(
-  a: SummaryRow,
-  b: SummaryRow,
+  a: MunicipalityTableRow,
+  b: MunicipalityTableRow,
   column: ColumnDefinition,
   direction: SortDirection,
 ): number {
@@ -139,13 +156,26 @@ function compareRows(
   return direction === "ascending" ? order : -order;
 }
 
-export function MunicipalityTable({ rows }: { rows: readonly SummaryRow[] }) {
+export function MunicipalityTable({
+  rows,
+  densityEntries,
+}: {
+  rows: readonly SummaryRow[];
+  densityEntries: readonly DensityEntry[];
+}) {
   const [sortKey, setSortKey] = useState<SortKey>("population_total");
   const [direction, setDirection] = useState<SortDirection>("descending");
+  const densityByCode = new Map(
+    densityEntries.map((entry) => [entry.municipality_code, entry]),
+  );
+  const tableRows: MunicipalityTableRow[] = rows.map((row) => ({
+    ...row,
+    density: densityByCode.get(row.municipality_code) ?? null,
+  }));
 
   const activeColumn =
     columns.find((column) => column.key === sortKey) ?? columns[0]!;
-  const sortedRows = [...rows].sort((a, b) =>
+  const sortedRows = [...tableRows].sort((a, b) =>
     compareRows(a, b, activeColumn, direction),
   );
 
