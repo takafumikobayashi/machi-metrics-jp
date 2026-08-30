@@ -2,10 +2,11 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { getAnalyticsRuntimeConfig } from "@/lib/site/analytics";
 
-const googleAnalyticsId = "G-QJV17LQ46L";
 const consentStorageKey = "hiroshima-population-dashboard-analytics-consent";
-const isProduction = process.env.NODE_ENV === "production";
+const { enabled: analyticsEnabled, measurementId: googleAnalyticsId } =
+  getAnalyticsRuntimeConfig();
 
 type ConsentState = "unknown" | "granted" | "denied";
 
@@ -15,6 +16,8 @@ type AnalyticsWindow = Window & {
 };
 
 function setAnalyticsDisabled(disabled: boolean): void {
+  if (!googleAnalyticsId) return;
+
   const analyticsWindow = window as AnalyticsWindow;
   Reflect.set(analyticsWindow, `ga-disable-${googleAnalyticsId}`, disabled);
   if (disabled) {
@@ -38,7 +41,7 @@ export function AnalyticsConsent() {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
-    if (!isProduction) return;
+    if (!analyticsEnabled) return;
 
     const saved = readConsent();
     if (saved === "denied") {
@@ -48,7 +51,7 @@ export function AnalyticsConsent() {
     return () => window.clearTimeout(syncState);
   }, []);
 
-  if (!isProduction) return null;
+  if (!analyticsEnabled) return null;
 
   function updateConsent(next: Exclude<ConsentState, "unknown">): void {
     try {
@@ -59,7 +62,7 @@ export function AnalyticsConsent() {
 
     if (next === "denied") {
       setAnalyticsDisabled(true);
-    } else {
+    } else if (googleAnalyticsId) {
       const analyticsWindow = window as AnalyticsWindow;
       Reflect.set(analyticsWindow, `ga-disable-${googleAnalyticsId}`, false);
     }
