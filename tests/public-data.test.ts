@@ -18,6 +18,9 @@ import {
 const fixtureRoot = fileURLToPath(
   new URL("./fixtures/public-data", import.meta.url),
 );
+const repositoryDataRoot = fileURLToPath(
+  new URL("../public/data", import.meta.url),
+);
 
 const releaseId = "sample-fixture-v1";
 
@@ -39,6 +42,16 @@ function codesOf(issues: { code: string }[]): string[] {
 test("latest.json points at a published release", async () => {
   const pointer = await loadLatestPointer(fixtureRoot);
   assert.equal(pointer.release_id, releaseId);
+});
+
+test("v9 remains loadable as an immutable rollback release", async () => {
+  const bundle = await loadReleaseBundle(
+    "juki-2016-2025-hiroshima-v9",
+    repositoryDataRoot,
+  );
+
+  assert.equal(bundle.density.source.acquired_at, undefined);
+  assert.equal(bundle.industry.source.acquired_at, undefined);
 });
 
 test("a release that satisfies the data contract passes validation", async () => {

@@ -13,7 +13,8 @@ const industrySourceSchema = z
     title: z.string().min(1),
     url: z.url(),
     table_number: z.string().min(1),
-    acquired_at: isoDateTimeSchema,
+    // v9以前の公開リリースにはこの項目がないため、読み込み時だけ任意とする。
+    acquired_at: isoDateTimeSchema.optional(),
     raw_file: z.string().min(1),
     sha256: z.string().regex(/^[0-9a-f]{64}$/),
   })
@@ -52,6 +53,15 @@ export const industryFileSchema = z
     coverage: z.object({ municipality_count: countSchema }).strict(),
     entries: z.array(industryEntrySchema).min(1),
   })
+  .strict();
+
+const currentIndustrySourceSchema = industrySourceSchema.extend({
+  acquired_at: isoDateTimeSchema,
+});
+
+/** 新規公開データの生成時に使う、取得日時必須のスキーマ。 */
+export const currentIndustryFileSchema = industryFileSchema
+  .extend({ source: currentIndustrySourceSchema })
   .strict();
 
 export type IndustryEntry = z.infer<typeof industryEntrySchema>;

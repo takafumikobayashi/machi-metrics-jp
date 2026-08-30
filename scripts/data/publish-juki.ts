@@ -19,10 +19,11 @@ import {
   roundPopulationDensity,
 } from "../../src/lib/metrics/density";
 import {
-  densityFileSchema,
+  currentDensityFileSchema,
   type DensityFile,
 } from "../../src/lib/data/density-schema";
 import {
+  currentIndustryFileSchema,
   industryFileSchema,
   type IndustryFile,
 } from "../../src/lib/data/industry-schema";
@@ -1169,12 +1170,18 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
       `産業構造原本のSHA-256が正規化メタデータと一致しません: ${industryRawPath}`,
     );
   }
+  const industryAcquiredAt = processedIndustry.source.acquired_at;
+  if (!industryAcquiredAt) {
+    throw new Error(
+      `産業構造の取得日時が正規化メタデータにありません: ${industryPath}`,
+    );
+  }
   manifestSources.push({
     statistic_name: "令和2年国勢調査",
     table_number: processedIndustry.source.table_number,
     table_name: processedIndustry.source.title,
     distribution_url: processedIndustry.source.url,
-    acquired_at: processedIndustry.source.acquired_at,
+    acquired_at: industryAcquiredAt,
     file_name: processedIndustry.source.raw_file,
     sha256: processedIndustry.source.sha256,
   });
@@ -1388,8 +1395,8 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
   details.forEach((detail) => municipalityDetailSchema.parse(detail));
   similarityFileSchema.parse(similarity);
   similarityModelSchema.parse(similarityModel);
-  densityFileSchema.parse(density);
-  industryFileSchema.parse(industry);
+  currentDensityFileSchema.parse(density);
+  currentIndustryFileSchema.parse(industry);
   structureSimilarityFileSchema.parse(structureSimilarity);
   structureSimilarityModelSchema.parse(structureSimilarityModel);
   extendedDetails.forEach((detail) =>
