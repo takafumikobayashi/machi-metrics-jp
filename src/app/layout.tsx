@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Sans_Mono } from "next/font/google";
-import Script from "next/script";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { AnalyticsConsent } from "@/components/privacy/AnalyticsConsent";
 import {
   pageOpenGraph,
   siteDescription,
@@ -35,10 +35,6 @@ const notoSansMono = Noto_Sans_Mono({
   variable: "--font-mono",
   fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
-
-// 測定IDは秘密情報ではないため、サイト共通レイアウトで管理する。
-// 開発環境のアクセスを本番計測へ混ぜないよう、タグは本番ビルドだけで読み込む。
-const googleAnalyticsId = "G-QJV17LQ46L";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl(),
@@ -90,22 +86,9 @@ export default function RootLayout({
             <p>
               公的統計を加工したプロジェクトです。総務省・自治体の公式サイトではありません。
             </p>
+            <AnalyticsConsent />
           </div>
         </footer>
-        {process.env.NODE_ENV === "production" ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){window.dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${googleAnalyticsId}');`}
-            </Script>
-          </>
-        ) : null}
       </body>
     </html>
   );
