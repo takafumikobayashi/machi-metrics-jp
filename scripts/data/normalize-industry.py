@@ -13,6 +13,7 @@ import json
 import re
 import sys
 import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
@@ -74,6 +75,15 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def acquired_at(path: Path) -> str:
+    """原本の取得記録がない場合に使う、ローカル原本の更新時刻。"""
+    return (
+        datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
+        .isoformat(timespec="milliseconds")
+        .replace("+00:00", "Z")
+    )
 
 
 def raw_file_name(path: Path) -> str:
@@ -248,6 +258,7 @@ def main() -> int:
             "title": SOURCE_TITLE,
             "url": SOURCE_URL,
             "table_number": TABLE_NUMBER,
+            "acquired_at": acquired_at(input_path),
             "raw_file": raw_file_name(input_path),
             "sha256": sha256(input_path),
         },

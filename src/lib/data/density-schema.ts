@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import {
   isoDateSchema,
+  isoDateTimeSchema,
   municipalityCodeSchema,
   releaseIdSchema,
   sha256Schema,
@@ -38,6 +39,7 @@ export const densityFileSchema = z
       .object({
         title: z.string().min(1),
         url: z.url(),
+        acquired_at: isoDateTimeSchema,
         file_name: z.string().min(1),
         sha256: sha256Schema,
       })
