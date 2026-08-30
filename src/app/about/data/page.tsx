@@ -85,7 +85,13 @@ export default async function DataAboutPage() {
       <div className="preview-note" role="note">
         <strong>非公式の可視化プロジェクトです。</strong>
         <span>
-          総務省・広島県・各自治体の公式サイトではありません。出典と加工方法を確認できるよう、使用した統計と計算方法を公開しています。
+          総務省・広島県・各自治体の公式サイトではなく、これらの団体とは一切関係がありません。出典と加工方法を確認できるよう、使用した統計と計算方法を公開しています。
+        </span>
+      </div>
+      <div className="preview-note" role="note">
+        <strong>ご利用にあたって</strong>
+        <span>
+          掲載情報は公表資料をもとに作成していますが、誤り・欠損・更新前の情報が含まれる可能性があります。重要な判断や手続きに利用する場合は、必ず出典元の最新情報をご確認のうえ、ご自身の責任でご利用ください。
         </span>
       </div>
 
