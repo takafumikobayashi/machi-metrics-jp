@@ -10,7 +10,10 @@ import {
   loadSimilarityModel,
   loadStructureSimilarityModel,
 } from "@/lib/data/load";
-import { getAnalyticsRuntimeConfig } from "@/lib/site/analytics";
+import {
+  enhancedMeasurementDisabled,
+  getAnalyticsRuntimeConfig,
+} from "@/lib/site/analytics";
 import { pageOpenGraph } from "@/lib/site/metadata";
 
 const aboutTitle = "データについて";
@@ -99,7 +102,9 @@ export default async function DataAboutPage() {
                 収集項目：ページURL・ページタイトル・参照元・アクセス日時、ブラウザや端末の技術情報
               </li>
               <li>
-                送信イベント：ページ表示のみ。広告配信や個人の評価には使いません
+                {enhancedMeasurementDisabled
+                  ? "送信イベント：ページ表示のみ。広告配信や個人の評価には使いません"
+                  : "送信イベント：ページ表示のほか、Google Analyticsが自動で記録するスクロールや外部リンクのクリックなど。広告配信や個人の評価には使いません"}
               </li>
               <li>保存期間：Google Analyticsの設定で14か月を上限とします</li>
               <li>

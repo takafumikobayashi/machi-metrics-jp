@@ -2,7 +2,11 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { getAnalyticsRuntimeConfig } from "@/lib/site/analytics";
+import {
+  applyAnalyticsConsent,
+  enhancedMeasurementDisabled,
+  getAnalyticsRuntimeConfig,
+} from "@/lib/site/analytics";
 
 const consentStorageKey = "hiroshima-population-dashboard-analytics-consent";
 const { enabled: analyticsEnabled, measurementId: googleAnalyticsId } =
@@ -15,16 +19,8 @@ type AnalyticsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
 };
 
-function setAnalyticsDisabled(disabled: boolean): void {
-  if (!googleAnalyticsId) return;
-
-  const analyticsWindow = window as AnalyticsWindow;
-  Reflect.set(analyticsWindow, `ga-disable-${googleAnalyticsId}`, disabled);
-  if (disabled) {
-    analyticsWindow.gtag?.("consent", "update", {
-      analytics_storage: "denied",
-    });
-  }
+function syncAnalyticsConsent(granted: boolean): void {
+  applyAnalyticsConsent(window as AnalyticsWindow, googleAnalyticsId, granted);
 }
 
 function readConsent(): ConsentState {
@@ -45,7 +41,7 @@ export function AnalyticsConsent() {
 
     const saved = readConsent();
     if (saved === "denied") {
-      setAnalyticsDisabled(true);
+      syncAnalyticsConsent(false);
     }
     const syncState = window.setTimeout(() => setConsent(saved), 0);
     return () => window.clearTimeout(syncState);
@@ -60,12 +56,8 @@ export function AnalyticsConsent() {
       // 保存できない環境でも、このページでの選択は即時反映する。
     }
 
-    if (next === "denied") {
-      setAnalyticsDisabled(true);
-    } else if (googleAnalyticsId) {
-      const analyticsWindow = window as AnalyticsWindow;
-      Reflect.set(analyticsWindow, `ga-disable-${googleAnalyticsId}`, false);
-    }
+    // 許可と拒否の両方で同じ経路を通し、再度の許可でも計測が戻るようにする。
+    syncAnalyticsConsent(next === "granted");
     setConsent(next);
     setSettingsOpen(false);
   }
@@ -107,7 +99,9 @@ gtag('config', '${googleAnalyticsId}');`}
                 収集項目：ページURL・ページタイトル・参照元・アクセス日時、ブラウザや端末の技術情報
               </li>
               <li>
-                送信イベント：ページ表示のみ。入力フォームやログイン機能はありません
+                {enhancedMeasurementDisabled
+                  ? "送信イベント：ページ表示のみ。入力フォームやログイン機能はありません"
+                  : "送信イベント：ページ表示のほか、Google Analyticsが自動で記録するスクロールや外部リンクのクリックなど"}
               </li>
               <li>保存期間：Google Analyticsの設定で14か月を上限とします</li>
             </ul>
