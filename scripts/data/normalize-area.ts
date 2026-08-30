@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, resolve } from "node:path";
 
 import { parseCsv } from "./normalize-juki";
@@ -18,8 +18,11 @@ export interface ProcessedArea {
     municipality_count: number;
   };
   source: {
+    statistic_name: string;
+    table_number: string;
     title: string;
     url: string;
+    acquired_at: string;
     raw_file: string;
     sha256: string;
   };
@@ -27,6 +30,8 @@ export interface ProcessedArea {
 }
 
 const sourceTitle = "令和8年全国都道府県市区町村別面積調（令和7年1月1日時点）";
+const sourceStatisticName = "全国都道府県市区町村別面積調";
+const sourceTableNumber = "2025-面積調";
 const sourceUrl = "https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm";
 
 function cell(row: string[], index: number): string {
@@ -51,6 +56,7 @@ function findAreaColumn(header: string[]): number {
 
 function parseArea(rawPath: string): ProcessedArea {
   const raw = readFileSync(rawPath);
+  const acquiredAt = new Date(statSync(rawPath).mtimeMs).toISOString();
   const text = new TextDecoder("shift_jis").decode(raw);
   const rows = parseCsv(text);
   const headerRow = findHeaderRow(rows);
@@ -93,8 +99,11 @@ function parseArea(rawPath: string): ProcessedArea {
       municipality_count: areas.length,
     },
     source: {
+      statistic_name: sourceStatisticName,
+      table_number: sourceTableNumber,
       title: sourceTitle,
       url: sourceUrl,
+      acquired_at: acquiredAt,
       raw_file: basename(rawPath),
       sha256: createHash("sha256").update(raw).digest("hex"),
     },

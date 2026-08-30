@@ -2,12 +2,28 @@ import { z } from "zod";
 
 import {
   isoDateSchema,
+  isoDateTimeSchema,
   municipalityCodeSchema,
   releaseIdSchema,
   sha256Schema,
 } from "./schema";
 
 const nullableCountSchema = z.number().int().nonnegative().nullable();
+
+const densitySourceSchema = z
+  .object({
+    title: z.string().min(1),
+    url: z.url(),
+    // v9以前の公開リリースにはこの項目がないため、読み込み時だけ任意とする。
+    acquired_at: isoDateTimeSchema.optional(),
+    file_name: z.string().min(1),
+    sha256: sha256Schema,
+  })
+  .strict();
+
+const currentDensitySourceSchema = densitySourceSchema.extend({
+  acquired_at: isoDateTimeSchema,
+});
 
 /**
  * 人口密度の独立データセット。
@@ -34,16 +50,14 @@ export const densityFileSchema = z
     unit: z.literal("persons_per_km2"),
     population_as_of_date: isoDateSchema,
     area_as_of_date: isoDateSchema,
-    source: z
-      .object({
-        title: z.string().min(1),
-        url: z.url(),
-        file_name: z.string().min(1),
-        sha256: sha256Schema,
-      })
-      .strict(),
+    source: densitySourceSchema,
     entries: z.array(densityEntrySchema).min(1),
   })
+  .strict();
+
+/** 新規公開データの生成時に使う、取得日時必須のスキーマ。 */
+export const currentDensityFileSchema = densityFileSchema
+  .extend({ source: currentDensitySourceSchema })
   .strict();
 
 export type DensityEntry = z.infer<typeof densityEntrySchema>;

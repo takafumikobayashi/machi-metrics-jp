@@ -1,7 +1,7 @@
 # データ仕様
 
 最終更新: 2026-08-30  
-対象リリース: `juki-2016-2025-hiroshima-v9`
+対象リリース: `juki-2016-2025-hiroshima-v10`
 
 ## 1. 基本方針
 
@@ -226,7 +226,7 @@ index = value / value(基準年) × 100
 population_density_per_km2 = population_total / area_km2
 ```
 
-現在の公開データでは、2025年1月1日時点の人口と、同日時点の行政区域面積を使用します。行政区域面積は居住可能地面積ではなく、山林・水面などを含むため、居住地の密度とは区別して表示します。計算値は `density.json` に収録し、原本のファイル名とSHA-256を同ファイルの `source` に残します。
+現在の公開データでは、2025年1月1日時点の人口と、同日時点の行政区域面積を使用します。行政区域面積は居住可能地面積ではなく、山林・水面などを含むため、居住地の密度とは区別して表示します。計算値は `density.json` に収録し、原本のファイル名、取得日時、SHA-256を同ファイルの `source` に残します。
 
 ### 産業・農業構造
 
@@ -244,7 +244,7 @@ population_density_per_km2 = population_total / area_km2
 農業比率 = 「うち農業」の就業者数 ÷ 産業分類可能な15歳以上就業者数
 ```
 
-産業分類不能の就業者は `industry_unknown_population` として分離します。0人と分類不能を混同せず、3部門の構成比には配分しません。現行の公開データは全国1,741自治体分で、`industry.json` は将来の全国比較に使えるよう県内23市町以外も収録します。
+産業分類不能の就業者は `industry_unknown_population` として分離します。0人と分類不能を混同せず、3部門の構成比には配分しません。現行の公開データは全国1,741自治体分で、`industry.json` は将来の全国比較に使えるよう県内23市町以外も収録します。`industry.json` の `source` には原本の取得日時も記録します。
 
 ## 11. 公開JSON
 
@@ -252,7 +252,7 @@ population_density_per_km2 = population_total / area_km2
 public/data/
 ├── latest.json
 └── releases/
-    └── juki-2016-2025-hiroshima-v9/
+    └── juki-2016-2025-hiroshima-v10/
         ├── manifest.json
         ├── municipalities.json
         ├── hiroshima-summary.json
@@ -288,6 +288,8 @@ public/data/
 - 品質検証結果と除外件数
 - 比率フィールドの単位（0〜1の比率であること）
 - ライセンス・出典表示文
+
+`manifest.json` の原本情報は全リリースで取得日時を必須とする。`density.json` と `industry.json` の `source.acquired_at` はv10以降の新規生成データでは必須とし、v9以前の既存リリースでは後方互換のため省略を許容する。これにより、過去リリースをロールバック先として読み込める状態を維持する。
 
 ## 12. 品質検証
 

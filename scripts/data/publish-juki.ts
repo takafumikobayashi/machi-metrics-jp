@@ -19,10 +19,11 @@ import {
   roundPopulationDensity,
 } from "../../src/lib/metrics/density";
 import {
-  densityFileSchema,
+  currentDensityFileSchema,
   type DensityFile,
 } from "../../src/lib/data/density-schema";
 import {
+  currentIndustryFileSchema,
   industryFileSchema,
   type IndustryFile,
 } from "../../src/lib/data/industry-schema";
@@ -792,6 +793,7 @@ function buildDensity(
     source: {
       title: area.source.title,
       url: area.source.url,
+      acquired_at: area.source.acquired_at,
       file_name: area.source.raw_file,
       sha256: area.source.sha256,
     },
@@ -1145,6 +1147,15 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
       `面積原本のSHA-256が正規化メタデータと一致しません: ${areaRawPath}`,
     );
   }
+  manifestSources.push({
+    statistic_name: area.source.statistic_name,
+    table_number: area.source.table_number,
+    table_name: area.source.title,
+    distribution_url: area.source.url,
+    acquired_at: area.source.acquired_at,
+    file_name: area.source.raw_file,
+    sha256: area.source.sha256,
+  });
   const industryPath = join(options.industryProcessedRoot, "pilot.json");
   if (!existsSync(industryPath)) {
     throw new Error(`産業構造の正規化入力がありません: ${industryPath}`);
@@ -1154,10 +1165,15 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     options.industryRawRoot,
     processedIndustry.source.raw_file,
   );
-  const industryStat = statSync(industryRawPath);
   if (sha256(industryRawPath) !== processedIndustry.source.sha256) {
     throw new Error(
       `産業構造原本のSHA-256が正規化メタデータと一致しません: ${industryRawPath}`,
+    );
+  }
+  const industryAcquiredAt = processedIndustry.source.acquired_at;
+  if (!industryAcquiredAt) {
+    throw new Error(
+      `産業構造の取得日時が正規化メタデータにありません: ${industryPath}`,
     );
   }
   manifestSources.push({
@@ -1165,7 +1181,7 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     table_number: processedIndustry.source.table_number,
     table_name: processedIndustry.source.title,
     distribution_url: processedIndustry.source.url,
-    acquired_at: new Date(industryStat.mtimeMs).toISOString() || generatedAt,
+    acquired_at: industryAcquiredAt,
     file_name: processedIndustry.source.raw_file,
     sha256: processedIndustry.source.sha256,
   });
@@ -1365,7 +1381,7 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     attribution:
       "総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」の公表データを本プロジェクトが加工したものです。全国の市・町・村と東京都特別区を類似候補とし、政令指定都市の行政区は除外しています。",
     license_note:
-      "一次情報の利用条件と出典表示に従って利用してください。このパイロットは本番公開用ではありません。",
+      "一次情報の利用条件と出典表示に従って利用してください。公開データは非公式の可視化プロジェクトによる加工・集計結果です。",
   };
   const latest: LatestPointer = {
     release_id: options.releaseId,
@@ -1379,8 +1395,8 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
   details.forEach((detail) => municipalityDetailSchema.parse(detail));
   similarityFileSchema.parse(similarity);
   similarityModelSchema.parse(similarityModel);
-  densityFileSchema.parse(density);
-  industryFileSchema.parse(industry);
+  currentDensityFileSchema.parse(density);
+  currentIndustryFileSchema.parse(industry);
   structureSimilarityFileSchema.parse(structureSimilarity);
   structureSimilarityModelSchema.parse(structureSimilarityModel);
   extendedDetails.forEach((detail) =>

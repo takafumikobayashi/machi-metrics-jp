@@ -10,6 +10,10 @@ import {
   loadSimilarityModel,
   loadStructureSimilarityModel,
 } from "@/lib/data/load";
+import {
+  enhancedMeasurementDisabled,
+  getAnalyticsRuntimeConfig,
+} from "@/lib/site/analytics";
 import { pageOpenGraph } from "@/lib/site/metadata";
 
 const aboutTitle = "データについて";
@@ -28,6 +32,8 @@ export const metadata: Metadata = {
 
 export default async function DataAboutPage() {
   const { startDate, endDate } = projectConfig.populationSnapshots;
+  /** 同意パネルと同じ判定を使い、説明と実際の動作を一致させる。 */
+  const { enabled: analyticsEnabled } = getAnalyticsRuntimeConfig();
   const latestPointer = await loadLatestPointer();
   const [
     manifest,
@@ -82,6 +88,41 @@ export default async function DataAboutPage() {
           総務省・広島県・各自治体の公式サイトではありません。出典と加工方法を確認できるよう、使用した統計と計算方法を公開しています。
         </span>
       </div>
+
+      <section id="analytics-privacy">
+        <h2>アクセス解析とプライバシー</h2>
+        {analyticsEnabled ? (
+          <>
+            <p>
+              サイトのページ構成やグラフを改善するため、Google Analytics
+              4を利用します。初回訪問時に許可するまで解析スクリプトは読み込まず、「利用しない」を選べます。
+            </p>
+            <ul>
+              <li>
+                収集項目：ページURL・ページタイトル・参照元・アクセス日時、ブラウザや端末の技術情報
+              </li>
+              <li>
+                {enhancedMeasurementDisabled
+                  ? "送信イベント：ページ表示のみ。広告配信や個人の評価には使いません"
+                  : "送信イベント：ページ表示のほか、Google Analyticsが自動で記録するスクロールや外部リンクのクリックなど。広告配信や個人の評価には使いません"}
+              </li>
+              <li>保存期間：Google Analyticsの設定で14か月を上限とします</li>
+              <li>
+                無効化：画面下部の「アクセス解析の設定」からいつでも変更できます
+              </li>
+            </ul>
+          </>
+        ) : (
+          <p>
+            このビルドではアクセス解析を利用していません。解析スクリプトを読み込まず、外部への送信も行いません。
+            公開サイトでは、閲覧者が許可した場合にかぎりGoogle Analytics
+            4を利用します。
+          </p>
+        )}
+        <p>
+          このサイトには入力フォームやログイン機能がなく、氏名・住所・メールアドレスなどの個人を直接識別する情報は送信しません。本プロジェクトは解析データを独自に保存しません。
+        </p>
+      </section>
 
       <section>
         <h2>対象期間</h2>

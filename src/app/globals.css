@@ -1249,6 +1249,173 @@ nav a:focus-visible,
   letter-spacing: 0.02em;
 }
 
+.analytics-settings-button {
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  color: var(--muted);
+  background: transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.analytics-settings-button:hover,
+.analytics-settings-button:focus-visible {
+  color: var(--ink);
+}
+
+.analytics-consent-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1100;
+  display: flex;
+  /*
+   * end揃えのままだと、はみ出した分が上端の外側へ出てスクロールでは
+   * 到達できない。上端から並べ、ボタンだけを下端へ寄せる。
+   */
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  max-width: 1060px;
+  /*
+   * 画面が低いとき（横向きの端末や拡大表示）にパネルの上端が画面外へ出て、
+   * 収集内容を読めないまま選ばされることがある。高さを画面に収め、
+   * 中でスクロールできるようにする。背面のページは動かさない。
+   */
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+  margin-inline: auto;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--white);
+  box-shadow: 0 12px 36px rgb(16 20 26 / 20%);
+}
+
+.analytics-consent-copy {
+  max-width: 760px;
+}
+
+.analytics-consent-actions {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.analytics-consent-copy .eyebrow {
+  margin-bottom: 4px;
+}
+
+.analytics-consent-copy h2 {
+  margin: 0 0 8px;
+  font-size: var(--text-h3);
+}
+
+.analytics-consent-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.analytics-consent-copy ul {
+  margin: 10px 0 0;
+  padding-left: 1.2em;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.analytics-consent-copy li + li {
+  margin-top: 3px;
+}
+
+.analytics-consent-note {
+  margin-top: 9px !important;
+}
+
+.analytics-consent-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.analytics-consent-actions button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.analytics-consent-allow {
+  border-color: var(--brand-700) !important;
+  color: var(--white);
+  background: var(--brand-700);
+}
+
+.analytics-consent-allow:hover,
+.analytics-consent-allow:focus-visible {
+  background: var(--brand-600);
+}
+
+.analytics-consent-deny,
+.analytics-consent-close {
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.analytics-consent-deny:hover,
+.analytics-consent-deny:focus-visible,
+.analytics-consent-close:hover,
+.analytics-consent-close:focus-visible {
+  border-color: var(--ink);
+}
+
+@media (max-width: 800px) {
+  .analytics-consent-panel {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .analytics-consent-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-consent-panel {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .analytics-consent-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .analytics-consent-actions button {
+    width: 100%;
+  }
+
+  .analytics-consent-close {
+    grid-column: 1 / -1;
+  }
+}
+
 .prose-page,
 .municipality-placeholder,
 .not-found {

@@ -9,6 +9,7 @@
     "title": "fixture industry source",
     "url": "https://example.invalid/industry",
     "table_number": "fixture-5-3",
+    "acquired_at": "2025-01-02T00:00:00.000Z",
     "raw_file": "fixture-industry.xlsx",
     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
   },

@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { AnalyticsConsent } from "@/components/privacy/AnalyticsConsent";
 import {
   pageOpenGraph,
   siteDescription,
@@ -85,6 +86,7 @@ export default function RootLayout({
             <p>
               公的統計を加工したプロジェクトです。総務省・自治体の公式サイトではありません。
             </p>
+            <AnalyticsConsent />
           </div>
         </footer>
       </body>

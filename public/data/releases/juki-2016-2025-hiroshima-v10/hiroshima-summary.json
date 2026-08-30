@@ -1,0 +1,358 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v10",
+  "prefecture_code": "34",
+  "prefecture_name_ja": "広島県",
+  "as_of_date": "2025-01-01",
+  "change_start_date": "2016-01-01",
+  "change_end_date": "2025-01-01",
+  "flow_period_start": "2024-01-01",
+  "flow_period_end": "2024-12-31",
+  "population_total": 2728771,
+  "municipalities": [
+    {
+      "municipality_code": "34100",
+      "name_ja": "広島市",
+      "municipality_type": "city",
+      "population_total": 1173543,
+      "population_change_10y": -17487,
+      "population_change_rate_10y": -0.014682249817384953,
+      "age_shares": {
+        "age_0_14": 0.1242894380521208,
+        "age_15_64": 0.6107028033910986,
+        "age_65_plus": 0.2650077585567806
+      },
+      "natural_rate_per_1000": -4.338409515657383,
+      "migration_rate_per_1000": -0.09840741177478615
+    },
+    {
+      "municipality_code": "34202",
+      "name_ja": "呉市",
+      "municipality_type": "city",
+      "population_total": 201242,
+      "population_change_10y": -31683,
+      "population_change_rate_10y": -0.13602232478265536,
+      "age_shares": {
+        "age_0_14": 0.09646097733077588,
+        "age_15_64": 0.5377505689667167,
+        "age_65_plus": 0.36578845370250745
+      },
+      "natural_rate_per_1000": -13.29930995524692,
+      "migration_rate_per_1000": -6.700787439919357
+    },
+    {
+      "municipality_code": "34203",
+      "name_ja": "竹原市",
+      "municipality_type": "city",
+      "population_total": 22557,
+      "population_change_10y": -4665,
+      "population_change_rate_10y": -0.1713687458673132,
+      "age_shares": {
+        "age_0_14": 0.07713791727623354,
+        "age_15_64": 0.4929733563860442,
+        "age_65_plus": 0.42988872633772224
+      },
+      "natural_rate_per_1000": -18.383628165105794,
+      "migration_rate_per_1000": -3.5986819285466525
+    },
+    {
+      "municipality_code": "34204",
+      "name_ja": "三原市",
+      "municipality_type": "city",
+      "population_total": 87075,
+      "population_change_10y": -10797,
+      "population_change_rate_10y": -0.1103175576262874,
+      "age_shares": {
+        "age_0_14": 0.10300315819695664,
+        "age_15_64": 0.5346425495262704,
+        "age_65_plus": 0.3623542922767729
+      },
+      "natural_rate_per_1000": -12.527233115468409,
+      "migration_rate_per_1000": 0.5787037037037037
+    },
+    {
+      "municipality_code": "34205",
+      "name_ja": "尾道市",
+      "municipality_type": "city",
+      "population_total": 126396,
+      "population_change_10y": -16066,
+      "population_change_rate_10y": -0.11277393269784224,
+      "age_shares": {
+        "age_0_14": 0.09838127788854077,
+        "age_15_64": 0.5288933194088421,
+        "age_65_plus": 0.37272540270261717
+      },
+      "natural_rate_per_1000": -13.933480876531279,
+      "migration_rate_per_1000": -1.0909884355225834
+    },
+    {
+      "municipality_code": "34207",
+      "name_ja": "福山市",
+      "municipality_type": "city",
+      "population_total": 455028,
+      "population_change_10y": -16946,
+      "population_change_rate_10y": -0.035904520164246334,
+      "age_shares": {
+        "age_0_14": 0.12352646430549329,
+        "age_15_64": 0.5813092820661586,
+        "age_65_plus": 0.29516425362834814
+      },
+      "natural_rate_per_1000": -6.1109753116597405,
+      "migration_rate_per_1000": -0.7944267905157664
+    },
+    {
+      "municipality_code": "34208",
+      "name_ja": "府中市",
+      "municipality_type": "city",
+      "population_total": 35105,
+      "population_change_10y": -6260,
+      "population_change_rate_10y": -0.15133567025262903,
+      "age_shares": {
+        "age_0_14": 0.08924654607605755,
+        "age_15_64": 0.5185586098846319,
+        "age_65_plus": 0.39219484403931065
+      },
+      "natural_rate_per_1000": -14.450302675258738,
+      "migration_rate_per_1000": -6.248779535247023
+    },
+    {
+      "municipality_code": "34209",
+      "name_ja": "三次市",
+      "municipality_type": "city",
+      "population_total": 47904,
+      "population_change_10y": -6718,
+      "population_change_rate_10y": -0.12299073633334554,
+      "age_shares": {
+        "age_0_14": 0.11113894455577822,
+        "age_15_64": 0.5195808283233133,
+        "age_65_plus": 0.36928022712090847
+      },
+      "natural_rate_per_1000": -14.189632545931758,
+      "migration_rate_per_1000": -3.5269028871391077
+    },
+    {
+      "municipality_code": "34210",
+      "name_ja": "庄原市",
+      "municipality_type": "city",
+      "population_total": 31198,
+      "population_change_10y": -6359,
+      "population_change_rate_10y": -0.1693159730542908,
+      "age_shares": {
+        "age_0_14": 0.09305083659208924,
+        "age_15_64": 0.46092698249887815,
+        "age_65_plus": 0.4460221809090326
+      },
+      "natural_rate_per_1000": -17.59100140603031,
+      "migration_rate_per_1000": -7.623808779878144
+    },
+    {
+      "municipality_code": "34211",
+      "name_ja": "大竹市",
+      "municipality_type": "city",
+      "population_total": 25353,
+      "population_change_10y": -2632,
+      "population_change_rate_10y": -0.09405038413435769,
+      "age_shares": {
+        "age_0_14": 0.1021575355973652,
+        "age_15_64": 0.5310614128505502,
+        "age_65_plus": 0.36678105155208457
+      },
+      "natural_rate_per_1000": -11.615710345363429,
+      "migration_rate_per_1000": -3.4575191329008197
+    },
+    {
+      "municipality_code": "34212",
+      "name_ja": "東広島市",
+      "municipality_type": "city",
+      "population_total": 190911,
+      "population_change_10y": 5537,
+      "population_change_rate_10y": 0.029869345215618157,
+      "age_shares": {
+        "age_0_14": 0.13403104064197452,
+        "age_15_64": 0.6168843073474027,
+        "age_65_plus": 0.24908465201062274
+      },
+      "natural_rate_per_1000": -3.033865922022297,
+      "migration_rate_per_1000": 5.107182598836843
+    },
+    {
+      "municipality_code": "34213",
+      "name_ja": "廿日市市",
+      "municipality_type": "city",
+      "population_total": 115451,
+      "population_change_10y": -1841,
+      "population_change_rate_10y": -0.015695870136070662,
+      "age_shares": {
+        "age_0_14": 0.12730075962962642,
+        "age_15_64": 0.5549713731366553,
+        "age_65_plus": 0.3177278672337182
+      },
+      "natural_rate_per_1000": -6.084895496660202,
+      "migration_rate_per_1000": 1.1376858435681965
+    },
+    {
+      "municipality_code": "34214",
+      "name_ja": "安芸高田市",
+      "municipality_type": "city",
+      "population_total": 26041,
+      "population_change_10y": -4109,
+      "population_change_rate_10y": -0.13628524046434495,
+      "age_shares": {
+        "age_0_14": 0.08920548366038171,
+        "age_15_64": 0.5010560270342921,
+        "age_65_plus": 0.4097384893053262
+      },
+      "natural_rate_per_1000": -16.985457141783474,
+      "migration_rate_per_1000": -4.434256510465597
+    },
+    {
+      "municipality_code": "34215",
+      "name_ja": "江田島市",
+      "municipality_type": "city",
+      "population_total": 20690,
+      "population_change_10y": -4454,
+      "population_change_rate_10y": -0.17713967546929685,
+      "age_shares": {
+        "age_0_14": 0.069357177380377,
+        "age_15_64": 0.4799420009666506,
+        "age_65_plus": 0.4507008216529724
+      },
+      "natural_rate_per_1000": -19.527529053152982,
+      "migration_rate_per_1000": 4.953324442751001
+    },
+    {
+      "municipality_code": "34302",
+      "name_ja": "府中町",
+      "municipality_type": "town",
+      "population_total": 52074,
+      "population_change_10y": -19,
+      "population_change_rate_10y": -0.000364732305684065,
+      "age_shares": {
+        "age_0_14": 0.14398740254253561,
+        "age_15_64": 0.6051580443215424,
+        "age_65_plus": 0.250854553135922
+      },
+      "natural_rate_per_1000": -1.4817066220888264,
+      "migration_rate_per_1000": -9.308156984916986
+    },
+    {
+      "municipality_code": "34304",
+      "name_ja": "海田町",
+      "municipality_type": "town",
+      "population_total": 30810,
+      "population_change_10y": 1530,
+      "population_change_rate_10y": 0.05225409836065574,
+      "age_shares": {
+        "age_0_14": 0.14891269068484259,
+        "age_15_64": 0.6159688412852969,
+        "age_65_plus": 0.23511846802986044
+      },
+      "natural_rate_per_1000": -1.1348897535667966,
+      "migration_rate_per_1000": 0.1621271076523995
+    },
+    {
+      "municipality_code": "34307",
+      "name_ja": "熊野町",
+      "municipality_type": "town",
+      "population_total": 23475,
+      "population_change_10y": -1192,
+      "population_change_rate_10y": -0.04832367130173917,
+      "age_shares": {
+        "age_0_14": 0.11957401490947817,
+        "age_15_64": 0.5347816826411076,
+        "age_65_plus": 0.3456443024494143
+      },
+      "natural_rate_per_1000": -8.495454931611588,
+      "migration_rate_per_1000": 5.649477529521706
+    },
+    {
+      "municipality_code": "34309",
+      "name_ja": "坂町",
+      "municipality_type": "town",
+      "population_total": 12498,
+      "population_change_10y": -601,
+      "population_change_rate_10y": -0.04588136498969387,
+      "age_shares": {
+        "age_0_14": 0.13194111057769242,
+        "age_15_64": 0.5675308049287886,
+        "age_65_plus": 0.300528084493519
+      },
+      "natural_rate_per_1000": -7.176656151419558,
+      "migration_rate_per_1000": -7.176656151419558
+    },
+    {
+      "municipality_code": "34368",
+      "name_ja": "安芸太田町",
+      "municipality_type": "town",
+      "population_total": 5367,
+      "population_change_10y": -1440,
+      "population_change_rate_10y": -0.2115469369766417,
+      "age_shares": {
+        "age_0_14": 0.06949878889509968,
+        "age_15_64": 0.4009688839202534,
+        "age_65_plus": 0.5295323271846469
+      },
+      "natural_rate_per_1000": -24.504504504504503,
+      "migration_rate_per_1000": -8.468468468468469
+    },
+    {
+      "municipality_code": "34369",
+      "name_ja": "北広島町",
+      "municipality_type": "town",
+      "population_total": 16953,
+      "population_change_10y": -2506,
+      "population_change_rate_10y": -0.1287835962793566,
+      "age_shares": {
+        "age_0_14": 0.09319884386244323,
+        "age_15_64": 0.5086415383707898,
+        "age_65_plus": 0.39815961776676695
+      },
+      "natural_rate_per_1000": -13.574924260079236,
+      "migration_rate_per_1000": 1.281752505243533
+    },
+    {
+      "municipality_code": "34431",
+      "name_ja": "大崎上島町",
+      "municipality_type": "town",
+      "population_total": 6779,
+      "population_change_10y": -1209,
+      "population_change_rate_10y": -0.1513520280420631,
+      "age_shares": {
+        "age_0_14": 0.0687417023159758,
+        "age_15_64": 0.4782416285587845,
+        "age_65_plus": 0.4530166691252397
+      },
+      "natural_rate_per_1000": -25.043427909669948,
+      "migration_rate_per_1000": 6.369426751592357
+    },
+    {
+      "municipality_code": "34462",
+      "name_ja": "世羅町",
+      "municipality_type": "town",
+      "population_total": 14519,
+      "population_change_10y": -2558,
+      "population_change_rate_10y": -0.14979211805352227,
+      "age_shares": {
+        "age_0_14": 0.09470349197603141,
+        "age_15_64": 0.4766168468902817,
+        "age_65_plus": 0.4286796611336869
+      },
+      "natural_rate_per_1000": -17.99070143521326,
+      "migration_rate_per_1000": -3.705949733845428
+    },
+    {
+      "municipality_code": "34545",
+      "name_ja": "神石高原町",
+      "municipality_type": "town",
+      "population_total": 7802,
+      "population_change_10y": -1965,
+      "population_change_rate_10y": -0.20118767277567318,
+      "age_shares": {
+        "age_0_14": 0.07523711868751602,
+        "age_15_64": 0.4204050243527301,
+        "age_65_plus": 0.5043578569597539
+      },
+      "natural_rate_per_1000": -20.786656708986808,
+      "migration_rate_per_1000": -8.090614886731391
+    }
+  ]
+}
