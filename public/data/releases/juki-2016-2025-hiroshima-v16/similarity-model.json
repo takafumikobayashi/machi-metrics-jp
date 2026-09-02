@@ -1,0 +1,50 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v16",
+  "normalization": "median_iqr",
+  "distance": "weighted_euclidean",
+  "reference_date": "2025-01-01",
+  "change_start_date": "2016-01-01",
+  "change_end_date": "2025-01-01",
+  "features": [
+    {
+      "id": "log_population",
+      "label_ja": "人口規模",
+      "weight": 0.35,
+      "median": 4.351429087847701,
+      "iqr": 0.9308682447024204
+    },
+    {
+      "id": "child_share",
+      "label_ja": "0〜14歳比率",
+      "weight": 0.15,
+      "median": 0.10282222612976966,
+      "iqr": 0.03180770087923565
+    },
+    {
+      "id": "elderly_share",
+      "label_ja": "65歳以上比率",
+      "weight": 0.2,
+      "median": 0.35813647630127976,
+      "iqr": 0.11599562140932479
+    },
+    {
+      "id": "population_change_rate",
+      "label_ja": "人口増減率",
+      "weight": 0.3,
+      "median": -0.10480445290757287,
+      "iqr": 0.12159263221113727
+    }
+  ],
+  "candidate_count": 1739,
+  "excluded_count": 8,
+  "exclusion_reasons": [
+    {
+      "reason": "2016年の人口が0（増減率の分母が作れない）",
+      "count": 6
+    },
+    {
+      "reason": "2016年の同一自治体コードなし",
+      "count": 2
+    }
+  ]
+}

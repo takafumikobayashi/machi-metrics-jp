@@ -28,6 +28,18 @@ import {
   type IndustryFile,
 } from "../../src/lib/data/industry-schema";
 import {
+  migrationAgeFieldKeys,
+  migrationFlowFileSchema,
+  type MigrationFlowFile,
+} from "../../src/lib/data/migration-schema";
+import {
+  migrationSummaryFileSchema,
+  migrationSummaryNotes,
+  regionDefinitions,
+  summarizeMigrationAreas,
+  type MigrationSummaryFile,
+} from "../../src/lib/data/migration-summary";
+import {
   structureSimilarityFileSchema,
   structureSimilarityModelSchema,
   type StructureSimilarityFile,
@@ -165,6 +177,61 @@ interface ExtendedStagingYear {
   sources: ExtendedStagingSource[];
 }
 
+interface MigrationSource {
+  direction: "inbound" | "outbound";
+  table_number: "1" | "2" | "3" | "4";
+  table_name: string;
+  file_id: string;
+  file_kind: number;
+  raw_file: string;
+  sha256: string;
+  sheet_name: string;
+}
+
+interface MigrationArea {
+  area_code: string;
+  area_name_ja: string;
+  area_type:
+    | "total"
+    | "prefecture"
+    | "municipality"
+    | "other_municipalities"
+    | "other_wards"
+    | "other_prefectures";
+  all_nationalities: number | null;
+  japanese: number | null;
+  foreign: number | null;
+  age_0_9?: number | null;
+  age_10_19?: number | null;
+  age_20_29?: number | null;
+  age_30_39?: number | null;
+  age_40_49?: number | null;
+  age_50_59?: number | null;
+  age_60_plus?: number | null;
+  age_unknown_other?: number | null;
+  source_row: number;
+}
+
+interface MigrationStagingEntry {
+  municipality_code: string;
+  name_ja: string;
+  inbound: MigrationArea[];
+  outbound: MigrationArea[];
+}
+
+interface ProcessedMigrationYear {
+  schema_version: 1;
+  coverage: {
+    year: number;
+    period_start: string;
+    period_end: string;
+    focus_prefecture_code: string;
+    municipality_codes: string[];
+  };
+  sources: MigrationSource[];
+  entries: MigrationStagingEntry[];
+}
+
 interface QualityIssue {
   code: string;
   message: string;
@@ -181,6 +248,8 @@ interface PublicationFiles {
   similarityModel: SimilarityModel;
   density: DensityFile;
   industry: IndustryFile;
+  migrationFlow: MigrationFlowFile;
+  migrationSummary: MigrationSummaryFile;
   structureSimilarity: StructureSimilarityFile;
   structureSimilarityModel: StructureSimilarityModel;
   extendedDetails: ExtendedMunicipalityDetail[];
@@ -189,6 +258,7 @@ interface PublicationFiles {
 export interface PublishOptions {
   releaseId: string;
   years: number[];
+  migrationYears: number[];
   municipalityCodes: string[];
   processedRoot: string;
   extendedRoot: string;
@@ -197,6 +267,8 @@ export interface PublishOptions {
   areaRawRoot: string;
   industryProcessedRoot: string;
   industryRawRoot: string;
+  migrationProcessedRoot: string;
+  migrationRawRoot: string;
   outputRoot: string;
 }
 
@@ -821,6 +893,182 @@ function buildIndustry(
   return industryFileSchema.parse(industry);
 }
 
+function migrationSourceToManifest(
+  year: number,
+  source: MigrationSource,
+  rawRoot: string,
+): ReturnType<typeof sourceToManifest> {
+  const rawPath = sourceFilePath(rawRoot, source.raw_file);
+  const actualSha256 = sha256(rawPath);
+  if (actualSha256 !== source.sha256) {
+    throw new Error(
+      `移動元・移動先原本のSHA-256が正規化メタデータと一致しません: ${rawPath}`,
+    );
+  }
+  return {
+    statistic_name: "住民基本台帳人口移動報告",
+    table_number: `${year}-参考表${source.table_number}`,
+    table_name: source.table_name,
+    distribution_url: `https://www.e-stat.go.jp/stat-search/file-download?fileKind=${source.file_kind}&statInfId=${source.file_id}`,
+    acquired_at: new Date(statSync(rawPath).mtimeMs).toISOString(),
+    file_name: source.raw_file,
+    sha256: source.sha256,
+  };
+}
+
+function publicMigrationAreas(
+  areas: readonly MigrationArea[],
+): MigrationFlowFile["entries"][number]["inbound"] {
+  return areas.map((area) => {
+    const ageFields = Object.fromEntries(
+      migrationAgeFieldKeys
+        .filter((field) => field in area)
+        .map((field) => [field, area[field] ?? null]),
+    );
+    return {
+      area_code: area.area_code,
+      area_name_ja: area.area_name_ja,
+      area_type: area.area_type,
+      all_nationalities: area.all_nationalities,
+      japanese: area.japanese,
+      foreign: area.foreign,
+      ...ageFields,
+    };
+  });
+}
+
+function buildMigrationFlow(
+  releaseId: string,
+  years: readonly number[],
+  focusCodes: readonly string[],
+  processedRoot: string,
+): {
+  file: MigrationFlowFile;
+  sources: Array<{ year: number; source: MigrationSource }>;
+} {
+  const processedYears = years.map((year) => {
+    const processedPath = join(processedRoot, String(year), "pilot.json");
+    if (!existsSync(processedPath)) {
+      throw new Error(`${year}年の転入元・転出先正規化入力がありません。`);
+    }
+    return readJson<ProcessedMigrationYear>(processedPath);
+  });
+  const byYear = new Map(
+    processedYears.map((processed) => [processed.coverage.year, processed]),
+  );
+  const sources = processedYears.flatMap((processed) =>
+    processed.sources.map((source) => ({
+      year: processed.coverage.year,
+      source,
+    })),
+  );
+  const entries: MigrationFlowFile["entries"] = [];
+
+  focusCodes.forEach((code) => {
+    years.forEach((year) => {
+      const processed = byYear.get(year);
+      const sourceEntry = processed?.entries.find(
+        (entry) => entry.municipality_code === code,
+      );
+      if (!processed || !sourceEntry) {
+        throw new Error(`${year}年の転入元・転出先データがありません: ${code}`);
+      }
+      entries.push({
+        municipality_code: sourceEntry.municipality_code,
+        name_ja: sourceEntry.name_ja,
+        year: processed.coverage.year,
+        period_start: processed.coverage.period_start,
+        period_end: processed.coverage.period_end,
+        inbound: publicMigrationAreas(sourceEntry.inbound),
+        outbound: publicMigrationAreas(sourceEntry.outbound),
+      });
+    });
+  });
+
+  return {
+    file: migrationFlowFileSchema.parse({
+      release_id: releaseId,
+      schema_version: 1,
+      dataset: "migration_origin_destination",
+      statistic_name: "住民基本台帳人口移動報告",
+      coverage: {
+        focus_prefecture_code: projectConfig.focusPrefecture.code,
+        focus_prefecture_name_ja: projectConfig.focusPrefecture.nameJa,
+        focus_municipality_count: focusCodes.length,
+        available_years: [...years],
+      },
+      entries,
+    }),
+    sources,
+  };
+}
+
+function buildMigrationSummary(
+  releaseId: string,
+  years: readonly number[],
+  focusCodes: readonly string[],
+  processedRoot: string,
+): MigrationSummaryFile {
+  const processedYears = years.map((year) => {
+    const processedPath = join(processedRoot, String(year), "pilot.json");
+    if (!existsSync(processedPath)) {
+      throw new Error(`${year}年の転入元・転出先正規化入力がありません。`);
+    }
+    return readJson<ProcessedMigrationYear>(processedPath);
+  });
+  const byYear = new Map(
+    processedYears.map((processed) => [processed.coverage.year, processed]),
+  );
+  const entries: MigrationSummaryFile["entries"] = [];
+
+  focusCodes.forEach((code) => {
+    years.forEach((year) => {
+      const processed = byYear.get(year);
+      const sourceEntry = processed?.entries.find(
+        (entry) => entry.municipality_code === code,
+      );
+      if (!processed || !sourceEntry) {
+        throw new Error(`${year}年の転入元・転出先データがありません: ${code}`);
+      }
+      entries.push({
+        municipality_code: sourceEntry.municipality_code,
+        name_ja: sourceEntry.name_ja,
+        year: processed.coverage.year,
+        period_start: processed.coverage.period_start,
+        period_end: processed.coverage.period_end,
+        inbound: summarizeMigrationAreas(
+          sourceEntry.inbound,
+          sourceEntry.municipality_code,
+        ),
+        outbound: summarizeMigrationAreas(
+          sourceEntry.outbound,
+          sourceEntry.municipality_code,
+        ),
+      });
+    });
+  });
+
+  return migrationSummaryFileSchema.parse({
+    release_id: releaseId,
+    schema_version: 1,
+    dataset: "migration_origin_destination_summary",
+    statistic_name: "住民基本台帳人口移動報告",
+    coverage: {
+      focus_prefecture_code: projectConfig.focusPrefecture.code,
+      focus_prefecture_name_ja: projectConfig.focusPrefecture.nameJa,
+      focus_municipality_count: focusCodes.length,
+      available_years: [...years],
+      region_definitions: regionDefinitions.map((region) => ({
+        key: region.key,
+        label_ja: region.labelJa,
+        prefecture_codes: [...region.prefectureCodes],
+      })),
+      notes: [...migrationSummaryNotes],
+    },
+    entries,
+  });
+}
+
 type StructureExclusion = { reason: string; count: number };
 
 function structureValues(
@@ -1314,6 +1562,24 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     processedIndustry,
     options.municipalityCodes,
   );
+  const migrationFlowParts = buildMigrationFlow(
+    options.releaseId,
+    options.migrationYears,
+    options.municipalityCodes,
+    options.migrationProcessedRoot,
+  );
+  const migrationFlow = migrationFlowParts.file;
+  const migrationSummary = buildMigrationSummary(
+    options.releaseId,
+    options.migrationYears,
+    options.municipalityCodes,
+    options.migrationProcessedRoot,
+  );
+  migrationFlowParts.sources.forEach(({ year, source }) =>
+    manifestSources.push(
+      migrationSourceToManifest(year, source, options.migrationRawRoot),
+    ),
+  );
   const structureSimilarityParts = buildStructureSimilarity(
     options.releaseId,
     details,
@@ -1397,6 +1663,8 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
   similarityModelSchema.parse(similarityModel);
   currentDensityFileSchema.parse(density);
   currentIndustryFileSchema.parse(industry);
+  migrationFlowFileSchema.parse(migrationFlow);
+  migrationSummaryFileSchema.parse(migrationSummary);
   structureSimilarityFileSchema.parse(structureSimilarity);
   structureSimilarityModelSchema.parse(structureSimilarityModel);
   extendedDetails.forEach((detail) =>
@@ -1412,6 +1680,8 @@ export function buildPublication(options: PublishOptions): PublicationFiles {
     similarityModel,
     density,
     industry,
+    migrationFlow,
+    migrationSummary,
     structureSimilarity,
     structureSimilarityModel,
     extendedDetails,
@@ -1441,6 +1711,11 @@ export async function publishJuki(options: PublishOptions): Promise<void> {
     );
     writeJson(join(releaseRoot, "density.json"), files.density);
     writeJson(join(releaseRoot, "industry.json"), files.industry);
+    writeJson(join(releaseRoot, "migration-flow.json"), files.migrationFlow);
+    writeJson(
+      join(releaseRoot, "migration-summary.json"),
+      files.migrationSummary,
+    );
     writeJson(
       join(releaseRoot, "similarity-structure.json"),
       files.structureSimilarity,
@@ -1583,6 +1858,16 @@ function parseArgs(argv: string[]): PublishOptions {
     }
     return year;
   });
+  const migrationYears = parseList(
+    values.get("migration-years") ?? "2018,2019,2020,2021,2022,2023,2024,2025",
+    "migration-years",
+  ).map((value) => {
+    const year = Number(value);
+    if (!Number.isInteger(year)) {
+      throw new Error(`移動データの年が整数ではありません: ${value}`);
+    }
+    return year;
+  });
   const municipalityCodes = parseList(
     values.get("municipalities") ??
       hiroshimaMunicipalities.map(({ code }) => code).join(","),
@@ -1596,6 +1881,7 @@ function parseArgs(argv: string[]): PublishOptions {
   return {
     releaseId: values.get("release-id") ?? "juki-2016-2025-pilot-v1",
     years,
+    migrationYears,
     municipalityCodes,
     processedRoot: resolve(
       projectRoot,
@@ -1621,6 +1907,15 @@ function parseArgs(argv: string[]): PublishOptions {
     industryRawRoot: resolve(
       projectRoot,
       values.get("industry-raw-root") ?? "data/raw",
+    ),
+    migrationProcessedRoot: resolve(
+      projectRoot,
+      values.get("migration-processed-root") ??
+        "data/processed/juki-migration-age",
+    ),
+    migrationRawRoot: resolve(
+      projectRoot,
+      values.get("migration-raw-root") ?? "data/raw/juki-migration-age",
     ),
     outputRoot: resolve(
       projectRoot,

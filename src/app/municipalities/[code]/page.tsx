@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { PopulationTrend } from "@/components/municipality/MunicipalityVisuals";
 import { DensityPanel } from "@/components/municipality/DensityPanel";
 import { IndustryStructurePanel } from "@/components/municipality/IndustryStructurePanel";
+import { MigrationFlowPanel } from "@/components/municipality/MigrationFlowPanel";
 import {
   AgeCategoryTrend,
   ResidentScopeCharts,
@@ -17,6 +18,8 @@ import {
   loadLatestPointer,
   loadDensity,
   loadIndustry,
+  loadMigrationFlow,
+  loadMigrationSummary,
   loadManifest,
   loadMunicipalityDetail,
   loadSimilarity,
@@ -101,6 +104,8 @@ export default async function MunicipalityPage({
     structureSimilarity,
     structureSimilarityModel,
     extendedDetail,
+    migrationFlow,
+    migrationSummary,
   ] = await Promise.all([
     loadMunicipalityDetail(latestPointer.release_id, code),
     loadDensity(latestPointer.release_id),
@@ -111,6 +116,8 @@ export default async function MunicipalityPage({
     loadStructureSimilarity(latestPointer.release_id),
     loadStructureSimilarityModel(latestPointer.release_id),
     loadExtendedMunicipalityDetail(latestPointer.release_id, code),
+    loadMigrationFlow(latestPointer.release_id),
+    loadMigrationSummary(latestPointer.release_id),
   ]);
   const latestSnapshot = detail.snapshots.at(-1);
   const latestFlow = detail.flows.at(-1);
@@ -242,6 +249,28 @@ export default async function MunicipalityPage({
           migration_change: flow.migration_change_reported,
         }))}
       />
+
+      {migrationSummary ? (
+        <MigrationFlowPanel
+          municipalityName={municipality.nameJa}
+          entries={migrationSummary.entries.filter(
+            ({ municipality_code }) => municipality_code === code,
+          )}
+          totals={
+            migrationFlow?.entries
+              .filter(({ municipality_code }) => municipality_code === code)
+              .map(({ year, inbound, outbound }) => ({
+                year,
+                inbound:
+                  inbound.find(({ area_type }) => area_type === "total")
+                    ?.all_nationalities ?? null,
+                outbound:
+                  outbound.find(({ area_type }) => area_type === "total")
+                    ?.all_nationalities ?? null,
+              })) ?? []
+          }
+        />
+      ) : null}
 
       <section className="data-card" aria-labelledby="flow-heading">
         <div className="section-heading compact-heading">

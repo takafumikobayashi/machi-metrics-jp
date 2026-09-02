@@ -40,18 +40,27 @@
   --decrease: #b0421f;
 
   /*
-   * 年齢の順序尺度。カテゴリカルではなく単色の濃淡で並び順を示す。
-   * 住民区分でパネルを分ける場合は、見出しの色と棒の色みを一致させるため
-   * 外国人住民側を紫の階調にする（色相=住民区分、明度=年齢）。
+   * 年齢の順序尺度。--age-band-1〜7 が唯一の年齢の階調で、10歳階級の人口移動
+   * グラフがそのまま使い、年齢4区分は1・3・5・7段目を抜き出す。同じ年代が
+   * どのグラフでも同じ色になる。
+   * 色相は黄緑→緑→青緑→青→紺へ動かすが、明度は等間隔に落とすので並び順が
+   * 色から読める。8区分を単一色相で表すと中間が詰まるための判断（[[D-027]]）。
+   * 住民区分は棒の色では区別せず、パネル上辺の罫と見出しの文字色で示す。
    */
-  --age-1: #a7c6e4;
-  --age-2: #6f9bcb;
-  --age-3: #3f6da3;
-  --age-4: #1e4372;
-  --age-foreign-1: #bfb0dd;
-  --age-foreign-2: #9b86c6;
-  --age-foreign-3: #6f56a5;
-  --age-foreign-4: #472f74;
+  --age-band-1: #94b072;
+  --age-band-2: #65a175;
+  --age-band-3: #4c8a82;
+  --age-band-4: #387389;
+  --age-band-5: #2d5b88;
+  --age-band-6: #2c4574;
+  --age-band-7: #25335b;
+  --age-band-unknown: #6b7684;
+
+  /* 年齢4区分。テーマ切替は階調側だけを差し替えれば追従する。 */
+  --age-1: var(--age-band-1);
+  --age-2: var(--age-band-3);
+  --age-3: var(--age-band-5);
+  --age-4: var(--age-band-7);
 
   /* 旧名の別名。既存ルールを壊さずに新パレットへ寄せる。 */
   --primary: var(--brand-600);
@@ -104,14 +113,14 @@
     --chart-muted: #3a424f;
     --increase: #4fbfae;
     --decrease: #f08a63;
-    --age-1: #2b4a6b;
-    --age-2: #416f9c;
-    --age-3: #6a9bcd;
-    --age-4: #a8caea;
-    --age-foreign-1: #3a2d55;
-    --age-foreign-2: #55437a;
-    --age-foreign-3: #7d67ab;
-    --age-foreign-4: #b7a4dc;
+    --age-band-1: #345639;
+    --age-band-2: #346c55;
+    --age-band-3: #427d7a;
+    --age-band-4: #578da3;
+    --age-band-5: #739cc7;
+    --age-band-6: #93addc;
+    --age-band-7: #b1c0e8;
+    --age-band-unknown: #8b95a3;
     --shadow: 0 1px 2px rgb(0 0 0 / 40%);
   }
 }
@@ -136,14 +145,14 @@ html[data-theme="dark"] {
   --chart-muted: #3a424f;
   --increase: #4fbfae;
   --decrease: #f08a63;
-  --age-1: #2b4a6b;
-  --age-2: #416f9c;
-  --age-3: #6a9bcd;
-  --age-4: #a8caea;
-  --age-foreign-1: #3a2d55;
-  --age-foreign-2: #55437a;
-  --age-foreign-3: #7d67ab;
-  --age-foreign-4: #b7a4dc;
+  --age-band-1: #345639;
+  --age-band-2: #346c55;
+  --age-band-3: #427d7a;
+  --age-band-4: #578da3;
+  --age-band-5: #739cc7;
+  --age-band-6: #93addc;
+  --age-band-7: #b1c0e8;
+  --age-band-unknown: #8b95a3;
   --shadow: 0 1px 2px rgb(0 0 0 / 40%);
 }
 
@@ -501,17 +510,26 @@ h3 {
 .density-bar {
   fill: var(--series-1);
   opacity: 0.85;
+  /* ホバーで太さが変わらないよう、輪郭の幅は最初から確保しておく。 */
+  stroke: transparent;
+  stroke-width: 1.5;
   transform-box: fill-box;
   transform-origin: left center;
   animation: density-bar-grow 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.density-bar:hover,
-.density-bar:focus-visible {
-  fill: var(--series-1);
+.density-bar:hover {
   opacity: 1;
   stroke: var(--ink);
-  stroke-width: 1;
+  stroke-opacity: 0.3;
+}
+
+/* キーボード操作の位置は見失うと困るため、輪郭を残す。 */
+.density-bar:focus-visible {
+  opacity: 1;
+  stroke: var(--ink);
+  stroke-opacity: 1;
+  stroke-width: 2;
 }
 
 .industry-summary {
@@ -1955,6 +1973,318 @@ body {
   font-size: var(--text-sm);
 }
 
+.migration-flow-chart-tooltip {
+  min-width: 176px;
+  max-width: min(300px, calc(100% - 16px));
+}
+
+.migration-flow-chart-tooltip small {
+  overflow-wrap: anywhere;
+}
+
+.migration-flow-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 22px 0 18px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-strong);
+}
+
+.migration-flow-control-group {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+.migration-flow-toggle {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.migration-flow-toggle:hover,
+.migration-flow-toggle:focus-visible {
+  color: var(--ink);
+  outline: 2px solid var(--brand-600);
+  outline-offset: 1px;
+}
+
+.migration-flow-toggle.is-active {
+  color: var(--white);
+  background: var(--brand-600);
+}
+
+.migration-flow-year {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: auto;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.migration-flow-year select {
+  min-width: 92px;
+  padding: 7px 28px 7px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+}
+
+.migration-flow-summary {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.35fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+  margin-bottom: 28px;
+}
+
+.migration-flow-summary > div {
+  display: grid;
+  gap: 2px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.migration-flow-summary span,
+.migration-flow-summary small {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.migration-flow-summary strong {
+  color: var(--brand-700);
+  font-size: var(--text-h2);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.migration-flow-summary p {
+  align-self: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.migration-flow-chart-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.migration-flow-chart-heading .eyebrow {
+  margin-bottom: 5px;
+}
+
+.migration-flow-chart-heading h3 {
+  margin: 0;
+  font-size: var(--text-h3);
+}
+
+.migration-flow-chart-heading > span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.migration-flow-list {
+  display: grid;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.migration-flow-row {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.55fr) minmax(140px, 1.8fr) 72px;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.migration-flow-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.migration-flow-label span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.migration-flow-label small {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--muted);
+  background: var(--paper-strong);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.migration-flow-track {
+  display: flex;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--paper-strong);
+  outline: none;
+}
+
+.migration-flow-track:focus-visible {
+  outline: 2px solid var(--brand-600);
+  outline-offset: 4px;
+}
+
+.migration-flow-fill {
+  flex: 0 0 var(--migration-width);
+  width: var(--migration-width);
+  height: 100%;
+  background: var(--migration-color, var(--series-1));
+  transform-origin: left center;
+  animation: density-bar-grow 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: filter 160ms ease;
+}
+
+.migration-flow-outbound .migration-flow-fill {
+  background: var(--migration-color, var(--series-4));
+}
+
+.migration-flow-fill-total {
+  border-radius: inherit;
+}
+
+.migration-flow-segment:first-child {
+  border-radius: 999px 0 0 999px;
+}
+
+.migration-flow-segment:last-child {
+  border-radius: 0 999px 999px 0;
+}
+
+/*
+ * 年齢階級は年齢4区分のグラフと同じ階調（--age-band-*）を使う。同じ年代がどの
+ * グラフでも同じ色になるため、画面をまたいで対応づけられる。
+ * 不詳・その他は年齢に属さないので階調の外の灰にする。
+ */
+.migration-flow-segment-age-0-9,
+.migration-flow-legend-swatch.age-0-9 {
+  --migration-color: var(--age-band-1);
+}
+
+.migration-flow-segment-age-10-19,
+.migration-flow-legend-swatch.age-10-19 {
+  --migration-color: var(--age-band-2);
+}
+
+.migration-flow-segment-age-20-29,
+.migration-flow-legend-swatch.age-20-29 {
+  --migration-color: var(--age-band-3);
+}
+
+.migration-flow-segment-age-30-39,
+.migration-flow-legend-swatch.age-30-39 {
+  --migration-color: var(--age-band-4);
+}
+
+.migration-flow-segment-age-40-49,
+.migration-flow-legend-swatch.age-40-49 {
+  --migration-color: var(--age-band-5);
+}
+
+.migration-flow-segment-age-50-59,
+.migration-flow-legend-swatch.age-50-59 {
+  --migration-color: var(--age-band-6);
+}
+
+.migration-flow-segment-age-60-plus,
+.migration-flow-legend-swatch.age-60-plus {
+  --migration-color: var(--age-band-7);
+}
+
+.migration-flow-segment-age-unknown-other,
+.migration-flow-legend-swatch.age-unknown-other {
+  --migration-color: var(--age-band-unknown);
+}
+
+.migration-flow-row:hover .migration-flow-fill,
+.migration-flow-row:focus-within .migration-flow-fill {
+  filter: brightness(1.08);
+}
+
+.migration-flow-row > strong {
+  color: var(--ink);
+  text-align: right;
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.migration-flow-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 18px 0 20px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.migration-flow-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.migration-flow-legend-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--migration-color);
+}
+
+.migration-flow-footnote,
+.migration-flow-source-note,
+.migration-flow-empty {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.migration-flow-footnote + .migration-flow-footnote {
+  margin-top: 8px;
+}
+
+.migration-flow-source-note {
+  margin-top: 8px;
+}
+
 .chart-modal-backdrop {
   position: fixed;
   z-index: 1000;
@@ -2552,6 +2882,23 @@ body {
   background: var(--paper);
 }
 
+/*
+ * 住民区分は棒の色では区別しない。棒の色は年齢だけを表す。
+ * 区分は上辺の罫と見出しの文字色で示す。凡例の記号にしないのは、
+ * 記号は「この色が下の棒の色」という対応を約束してしまうため。
+ */
+.age-category-panel {
+  border-top-width: 2px;
+}
+
+.age-category-panel.scope-japanese {
+  border-top-color: var(--series-1);
+}
+
+.age-category-panel.scope-foreign {
+  border-top-color: var(--series-4);
+}
+
 .age-category-panel-heading {
   display: flex;
   align-items: flex-start;
@@ -2630,26 +2977,6 @@ body {
   fill: var(--age-4);
 }
 
-.scope-foreign .age-category-minor {
-  background: var(--age-foreign-1);
-  fill: var(--age-foreign-1);
-}
-
-.scope-foreign .age-category-young {
-  background: var(--age-foreign-2);
-  fill: var(--age-foreign-2);
-}
-
-.scope-foreign .age-category-working {
-  background: var(--age-foreign-3);
-  fill: var(--age-foreign-3);
-}
-
-.scope-foreign .age-category-older {
-  background: var(--age-foreign-4);
-  fill: var(--age-foreign-4);
-}
-
 /* 指数の基準線（100）は他の目盛と区別する。 */
 .index-baseline {
   stroke-dasharray: 4 4;
@@ -2699,7 +3026,8 @@ html[data-theme="dark"] .insight-panel {
   .chart-modal-backdrop,
   .chart-modal,
   .density-bar,
-  .industry-bar-segment {
+  .industry-bar-segment,
+  .migration-flow-fill {
     animation: none;
   }
 }
@@ -2755,6 +3083,30 @@ html[data-theme="dark"] .insight-panel {
 
   .dashboard-chart {
     min-width: 570px;
+  }
+
+  .migration-flow-controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .migration-flow-year {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+  }
+
+  .migration-flow-year select {
+    flex: 1;
+  }
+
+  .migration-flow-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .migration-flow-row {
+    grid-template-columns: minmax(130px, 0.8fr) minmax(80px, 1.2fr) 62px;
+    gap: 8px;
   }
 
   .scope-summary-grid {

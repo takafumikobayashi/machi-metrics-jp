@@ -1,0 +1,2779 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v15",
+  "municipality_code": "34302",
+  "name_ja": "府中町",
+  "snapshots": [
+    {
+      "as_of_date": "2016-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51468,
+          "age_population_known": 51468,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2700
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2382
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2465
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2586
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2370
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2872
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3349
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3581
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 4198
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 3718
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3481
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 2909
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 3024
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 3526
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 2854
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2218
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 1659
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 979
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 437
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 138
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 22
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 625,
+          "age_population_known": 625,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 25
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 20
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 19
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 17
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 48
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 57
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 71
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 49
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 57
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 39
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 47
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 34
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 37
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 46
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 19
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 17
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 11
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 6
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 5
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 1
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2017-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51519,
+          "age_population_known": 51519,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2708
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2416
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2436
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2539
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2366
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2745
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3377
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3421
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 4151
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 3944
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3383
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 2968
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 2947
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 3617
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 2736
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2378
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 1706
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1008
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 499
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 149
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 25
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 635,
+          "age_population_known": 635,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 27
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 21
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 22
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 13
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 49
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 57
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 74
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 54
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 45
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 50
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 45
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 36
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 31
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 45
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 22
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 20
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 14
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 5
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 4
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 1
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2018-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51431,
+          "age_population_known": 51431,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2669
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2507
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2377
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2553
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2403
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2662
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3272
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3395
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3948
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 3981
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3514
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3027
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 2924
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 3327
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 2861
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2485
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 1772
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1067
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 498
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 155
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 34
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 650,
+          "age_population_known": 650,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 35
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 22
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 18
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 18
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 54
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 48
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 78
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 52
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 47
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 57
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 42
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 40
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 28
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 42
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 26
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 19
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 13
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 5
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 3
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 3
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2019-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51562,
+          "age_population_known": 51562,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2607
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2590
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2354
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2505
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2426
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2726
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3174
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3384
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3798
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 3987
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3680
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3145
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 2842
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 3119
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 3026
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2583
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 1811
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1123
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 490
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 161
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 31
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 662,
+          "age_population_known": 662,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 33
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 24
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 14
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 16
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 45
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 60
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 83
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 60
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 44
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 54
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 39
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 40
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 31
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 41
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 35
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 17
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 14
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 5
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 4
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 3
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2020-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51460,
+          "age_population_known": 51460,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2506
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2633
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2351
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2486
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2386
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2636
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3151
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3336
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3634
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 4108
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3689
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3233
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 2780
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 2953
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 3182
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2689
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 1824
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1155
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 540
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 160
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 28
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 703,
+          "age_population_known": 703,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 38
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 29
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 17
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 21
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 58
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 69
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 69
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 70
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 58
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 50
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 38
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 38
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 29
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 40
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 34
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 19
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 12
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 7
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 4
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 3
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2021-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51445,
+          "age_population_known": 51445,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2492
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2636
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2382
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2434
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2388
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2563
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3090
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3300
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3531
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 4134
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3641
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3386
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 2772
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 2850
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 3308
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2612
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 1906
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1227
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 593
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 175
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 25
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 656,
+          "age_population_known": 656,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 32
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 29
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 12
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 18
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 50
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 58
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 66
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 64
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 49
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 55
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 34
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 42
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 30
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 31
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 40
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 20
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 11
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 8
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 4
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 3
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2022-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 52293,
+          "age_population_known": 52293,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2566
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2684
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2427
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2378
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2356
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2737
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3160
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3518
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3443
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 4092
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3894
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3292
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 2867
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 2781
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 3403
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2502
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 2061
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1289
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 623
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 189
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 31
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 642,
+          "age_population_known": 642,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 27
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 32
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 14
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 16
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 34
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 65
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 57
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 74
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 50
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 46
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 43
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 37
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 28
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 28
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 39
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 22
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 16
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 8
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 4
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 2
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2023-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 52196,
+          "age_population_known": 52196,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2460
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2693
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2508
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2353
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2303
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2727
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3117
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3428
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3414
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 3958
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3923
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3459
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 2927
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 2781
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 3120
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2647
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 2176
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1344
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 646
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 182
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 30
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 695,
+          "age_population_known": 695,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 25
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 34
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 16
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 13
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 54
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 87
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 67
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 72
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 45
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 52
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 45
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 37
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 32
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 24
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 41
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 23
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 17
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 7
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 3
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 0
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2024-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51948,
+          "age_population_known": 51948,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2374
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2652
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2585
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2297
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2300
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2611
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 3081
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3386
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3389
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 3795
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 3940
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3590
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 3026
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 2728
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 2953
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2769
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 2246
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1356
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 657
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 184
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 29
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 694,
+          "age_population_known": 694,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 20
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 30
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 18
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 15
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 58
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 96
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 58
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 70
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 50
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 48
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 48
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 28
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 37
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 24
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 35
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 30
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 15
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 10
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 2
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 1
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "as_of_date": "2025-01-01",
+      "residents": {
+        "japanese": {
+          "population_total": 51386,
+          "age_population_known": 51386,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 2226
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 2570
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 2639
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 2307
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 2267
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 2497
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 2920
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 3257
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 3409
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 3586
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 4047
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 3571
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 3147
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 2672
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 2772
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 2892
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 2343
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 1372
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 679
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 186
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 27
+            }
+          ]
+        },
+        "foreign": {
+          "population_total": 688,
+          "age_population_known": 688,
+          "age_missing_band_count": 0,
+          "age_bands": [
+            {
+              "age_band_start": 0,
+              "age_band_end": 4,
+              "population": 18
+            },
+            {
+              "age_band_start": 5,
+              "age_band_end": 9,
+              "population": 23
+            },
+            {
+              "age_band_start": 10,
+              "age_band_end": 14,
+              "population": 22
+            },
+            {
+              "age_band_start": 15,
+              "age_band_end": 19,
+              "population": 18
+            },
+            {
+              "age_band_start": 20,
+              "age_band_end": 24,
+              "population": 64
+            },
+            {
+              "age_band_start": 25,
+              "age_band_end": 29,
+              "population": 88
+            },
+            {
+              "age_band_start": 30,
+              "age_band_end": 34,
+              "population": 72
+            },
+            {
+              "age_band_start": 35,
+              "age_band_end": 39,
+              "population": 54
+            },
+            {
+              "age_band_start": 40,
+              "age_band_end": 44,
+              "population": 55
+            },
+            {
+              "age_band_start": 45,
+              "age_band_end": 49,
+              "population": 51
+            },
+            {
+              "age_band_start": 50,
+              "age_band_end": 54,
+              "population": 39
+            },
+            {
+              "age_band_start": 55,
+              "age_band_end": 59,
+              "population": 31
+            },
+            {
+              "age_band_start": 60,
+              "age_band_end": 64,
+              "population": 33
+            },
+            {
+              "age_band_start": 65,
+              "age_band_end": 69,
+              "population": 23
+            },
+            {
+              "age_band_start": 70,
+              "age_band_end": 74,
+              "population": 32
+            },
+            {
+              "age_band_start": 75,
+              "age_band_end": 79,
+              "population": 34
+            },
+            {
+              "age_band_start": 80,
+              "age_band_end": 84,
+              "population": 17
+            },
+            {
+              "age_band_start": 85,
+              "age_band_end": 89,
+              "population": 9
+            },
+            {
+              "age_band_start": 90,
+              "age_band_end": 94,
+              "population": 3
+            },
+            {
+              "age_band_start": 95,
+              "age_band_end": 99,
+              "population": 2
+            },
+            {
+              "age_band_start": 100,
+              "age_band_end": null,
+              "population": 0
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "flows": [
+    {
+      "period_start": "2015-01-01",
+      "period_end": "2015-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25270,
+          "population_female": 26198,
+          "population_total": 51468,
+          "households": 22121,
+          "move_ins_domestic": 2215,
+          "move_ins_foreign": 39,
+          "move_ins_total": 2254,
+          "births": 566,
+          "registrations_other": 15,
+          "registrations_total": 2835,
+          "move_outs_domestic": 2272,
+          "move_outs_foreign": 43,
+          "move_outs_total": 2315,
+          "deaths": 412,
+          "deletions_other": 7,
+          "deletions_total": 2734,
+          "population_change_reported": 101,
+          "natural_change_reported": 154,
+          "migration_change_reported": -53
+        },
+        "foreign": {
+          "population_male": 311,
+          "population_female": 314,
+          "population_total": 625,
+          "households": 284,
+          "move_ins_domestic": 66,
+          "move_ins_foreign": 159,
+          "move_ins_total": 225,
+          "births": 4,
+          "registrations_other": 0,
+          "registrations_total": 229,
+          "move_outs_domestic": 167,
+          "move_outs_foreign": 12,
+          "move_outs_total": 179,
+          "deaths": 7,
+          "deletions_other": 12,
+          "deletions_total": 198,
+          "population_change_reported": 31,
+          "natural_change_reported": -3,
+          "migration_change_reported": 34
+        }
+      }
+    },
+    {
+      "period_start": "2016-01-01",
+      "period_end": "2016-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25331,
+          "population_female": 26188,
+          "population_total": 51519,
+          "households": 22297,
+          "move_ins_domestic": 2144,
+          "move_ins_foreign": 51,
+          "move_ins_total": 2195,
+          "births": 533,
+          "registrations_other": 17,
+          "registrations_total": 2745,
+          "move_outs_domestic": 2227,
+          "move_outs_foreign": 70,
+          "move_outs_total": 2297,
+          "deaths": 389,
+          "deletions_other": 8,
+          "deletions_total": 2694,
+          "population_change_reported": 51,
+          "natural_change_reported": 144,
+          "migration_change_reported": -93
+        },
+        "foreign": {
+          "population_male": 316,
+          "population_female": 319,
+          "population_total": 635,
+          "households": 284,
+          "move_ins_domestic": 69,
+          "move_ins_foreign": 135,
+          "move_ins_total": 204,
+          "births": 5,
+          "registrations_other": 0,
+          "registrations_total": 209,
+          "move_outs_domestic": 151,
+          "move_outs_foreign": 12,
+          "move_outs_total": 163,
+          "deaths": 3,
+          "deletions_other": 33,
+          "deletions_total": 199,
+          "population_change_reported": 10,
+          "natural_change_reported": 2,
+          "migration_change_reported": 8
+        }
+      }
+    },
+    {
+      "period_start": "2017-01-01",
+      "period_end": "2017-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25307,
+          "population_female": 26124,
+          "population_total": 51431,
+          "households": 22319,
+          "move_ins_domestic": 2039,
+          "move_ins_foreign": 52,
+          "move_ins_total": 2091,
+          "births": 556,
+          "registrations_other": 26,
+          "registrations_total": 2673,
+          "move_outs_domestic": 2247,
+          "move_outs_foreign": 62,
+          "move_outs_total": 2309,
+          "deaths": 446,
+          "deletions_other": 6,
+          "deletions_total": 2761,
+          "population_change_reported": -88,
+          "natural_change_reported": 110,
+          "migration_change_reported": -198
+        },
+        "foreign": {
+          "population_male": 319,
+          "population_female": 331,
+          "population_total": 650,
+          "households": 292,
+          "move_ins_domestic": 87,
+          "move_ins_foreign": 154,
+          "move_ins_total": 241,
+          "births": 5,
+          "registrations_other": 0,
+          "registrations_total": 246,
+          "move_outs_domestic": 173,
+          "move_outs_foreign": 15,
+          "move_outs_total": 188,
+          "deaths": 3,
+          "deletions_other": 40,
+          "deletions_total": 231,
+          "population_change_reported": 15,
+          "natural_change_reported": 2,
+          "migration_change_reported": 13
+        }
+      }
+    },
+    {
+      "period_start": "2018-01-01",
+      "period_end": "2018-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25382,
+          "population_female": 26180,
+          "population_total": 51562,
+          "households": 22528,
+          "move_ins_domestic": 2288,
+          "move_ins_foreign": 70,
+          "move_ins_total": 2358,
+          "births": 512,
+          "registrations_other": 9,
+          "registrations_total": 2879,
+          "move_outs_domestic": 2196,
+          "move_outs_foreign": 69,
+          "move_outs_total": 2265,
+          "deaths": 477,
+          "deletions_other": 6,
+          "deletions_total": 2748,
+          "population_change_reported": 131,
+          "natural_change_reported": 35,
+          "migration_change_reported": 96
+        },
+        "foreign": {
+          "population_male": 316,
+          "population_female": 346,
+          "population_total": 662,
+          "households": 314,
+          "move_ins_domestic": 63,
+          "move_ins_foreign": 158,
+          "move_ins_total": 221,
+          "births": 4,
+          "registrations_other": 0,
+          "registrations_total": 225,
+          "move_outs_domestic": 181,
+          "move_outs_foreign": 17,
+          "move_outs_total": 198,
+          "deaths": 4,
+          "deletions_other": 11,
+          "deletions_total": 213,
+          "population_change_reported": 12,
+          "natural_change_reported": 0,
+          "migration_change_reported": 12
+        }
+      }
+    },
+    {
+      "period_start": "2019-01-01",
+      "period_end": "2019-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25309,
+          "population_female": 26151,
+          "population_total": 51460,
+          "households": 22682,
+          "move_ins_domestic": 2104,
+          "move_ins_foreign": 55,
+          "move_ins_total": 2159,
+          "births": 483,
+          "registrations_other": 9,
+          "registrations_total": 2651,
+          "move_outs_domestic": 2246,
+          "move_outs_foreign": 77,
+          "move_outs_total": 2323,
+          "deaths": 425,
+          "deletions_other": 5,
+          "deletions_total": 2753,
+          "population_change_reported": -102,
+          "natural_change_reported": 58,
+          "migration_change_reported": -160
+        },
+        "foreign": {
+          "population_male": 341,
+          "population_female": 362,
+          "population_total": 703,
+          "households": 333,
+          "move_ins_domestic": 112,
+          "move_ins_foreign": 128,
+          "move_ins_total": 240,
+          "births": 6,
+          "registrations_other": 1,
+          "registrations_total": 247,
+          "move_outs_domestic": 137,
+          "move_outs_foreign": 16,
+          "move_outs_total": 153,
+          "deaths": 6,
+          "deletions_other": 47,
+          "deletions_total": 206,
+          "population_change_reported": 41,
+          "natural_change_reported": 0,
+          "migration_change_reported": 41
+        }
+      }
+    },
+    {
+      "period_start": "2020-01-01",
+      "period_end": "2020-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25312,
+          "population_female": 26133,
+          "population_total": 51445,
+          "households": 22835,
+          "move_ins_domestic": 2020,
+          "move_ins_foreign": 75,
+          "move_ins_total": 2095,
+          "births": 501,
+          "registrations_other": 21,
+          "registrations_total": 2617,
+          "move_outs_domestic": 2180,
+          "move_outs_foreign": 32,
+          "move_outs_total": 2212,
+          "deaths": 415,
+          "deletions_other": 5,
+          "deletions_total": 2632,
+          "population_change_reported": -15,
+          "natural_change_reported": 86,
+          "migration_change_reported": -101
+        },
+        "foreign": {
+          "population_male": 307,
+          "population_female": 349,
+          "population_total": 656,
+          "households": 309,
+          "move_ins_domestic": 50,
+          "move_ins_foreign": 41,
+          "move_ins_total": 91,
+          "births": 5,
+          "registrations_other": 0,
+          "registrations_total": 96,
+          "move_outs_domestic": 100,
+          "move_outs_foreign": 12,
+          "move_outs_total": 112,
+          "deaths": 3,
+          "deletions_other": 28,
+          "deletions_total": 143,
+          "population_change_reported": -47,
+          "natural_change_reported": 2,
+          "migration_change_reported": -49
+        }
+      }
+    },
+    {
+      "period_start": "2021-01-01",
+      "period_end": "2021-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25693,
+          "population_female": 26600,
+          "population_total": 52293,
+          "households": 23364,
+          "move_ins_domestic": 2874,
+          "move_ins_foreign": 43,
+          "move_ins_total": 2917,
+          "births": 475,
+          "registrations_other": 13,
+          "registrations_total": 3405,
+          "move_outs_domestic": 2103,
+          "move_outs_foreign": 38,
+          "move_outs_total": 2141,
+          "deaths": 416,
+          "deletions_other": 0,
+          "deletions_total": 2557,
+          "population_change_reported": 848,
+          "natural_change_reported": 59,
+          "migration_change_reported": 789
+        },
+        "foreign": {
+          "population_male": 300,
+          "population_female": 342,
+          "population_total": 642,
+          "households": 302,
+          "move_ins_domestic": 79,
+          "move_ins_foreign": 41,
+          "move_ins_total": 120,
+          "births": 5,
+          "registrations_other": 1,
+          "registrations_total": 126,
+          "move_outs_domestic": 93,
+          "move_outs_foreign": 17,
+          "move_outs_total": 110,
+          "deaths": 5,
+          "deletions_other": 25,
+          "deletions_total": 140,
+          "population_change_reported": -14,
+          "natural_change_reported": 0,
+          "migration_change_reported": -14
+        }
+      }
+    },
+    {
+      "period_start": "2022-01-01",
+      "period_end": "2022-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25672,
+          "population_female": 26524,
+          "population_total": 52196,
+          "households": 23493,
+          "move_ins_domestic": 2068,
+          "move_ins_foreign": 65,
+          "move_ins_total": 2133,
+          "births": 502,
+          "registrations_other": 6,
+          "registrations_total": 2641,
+          "move_outs_domestic": 2180,
+          "move_outs_foreign": 43,
+          "move_outs_total": 2223,
+          "deaths": 515,
+          "deletions_other": 0,
+          "deletions_total": 2738,
+          "population_change_reported": -97,
+          "natural_change_reported": -13,
+          "migration_change_reported": -84
+        },
+        "foreign": {
+          "population_male": 335,
+          "population_female": 360,
+          "population_total": 695,
+          "households": 355,
+          "move_ins_domestic": 97,
+          "move_ins_foreign": 145,
+          "move_ins_total": 242,
+          "births": 3,
+          "registrations_other": 0,
+          "registrations_total": 245,
+          "move_outs_domestic": 158,
+          "move_outs_foreign": 18,
+          "move_outs_total": 176,
+          "deaths": 5,
+          "deletions_other": 11,
+          "deletions_total": 192,
+          "population_change_reported": 53,
+          "natural_change_reported": -2,
+          "migration_change_reported": 55
+        }
+      }
+    },
+    {
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25501,
+          "population_female": 26447,
+          "population_total": 51948,
+          "households": 23571,
+          "move_ins_domestic": 2016,
+          "move_ins_foreign": 44,
+          "move_ins_total": 2060,
+          "births": 442,
+          "registrations_other": 13,
+          "registrations_total": 2515,
+          "move_outs_domestic": 2148,
+          "move_outs_foreign": 59,
+          "move_outs_total": 2207,
+          "deaths": 554,
+          "deletions_other": 2,
+          "deletions_total": 2763,
+          "population_change_reported": -248,
+          "natural_change_reported": -112,
+          "migration_change_reported": -136
+        },
+        "foreign": {
+          "population_male": 325,
+          "population_female": 369,
+          "population_total": 694,
+          "households": 360,
+          "move_ins_domestic": 79,
+          "move_ins_foreign": 164,
+          "move_ins_total": 243,
+          "births": 5,
+          "registrations_other": 0,
+          "registrations_total": 248,
+          "move_outs_domestic": 181,
+          "move_outs_foreign": 47,
+          "move_outs_total": 228,
+          "deaths": 4,
+          "deletions_other": 17,
+          "deletions_total": 249,
+          "population_change_reported": -1,
+          "natural_change_reported": 1,
+          "migration_change_reported": -2
+        }
+      }
+    },
+    {
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "residents": {
+        "japanese": {
+          "population_male": 25251,
+          "population_female": 26135,
+          "population_total": 51386,
+          "households": 23478,
+          "move_ins_domestic": 1804,
+          "move_ins_foreign": 50,
+          "move_ins_total": 1854,
+          "births": 427,
+          "registrations_other": 8,
+          "registrations_total": 2289,
+          "move_outs_domestic": 2272,
+          "move_outs_foreign": 70,
+          "move_outs_total": 2342,
+          "deaths": 506,
+          "deletions_other": 3,
+          "deletions_total": 2851,
+          "population_change_reported": -562,
+          "natural_change_reported": -79,
+          "migration_change_reported": -483
+        },
+        "foreign": {
+          "population_male": 321,
+          "population_female": 367,
+          "population_total": 688,
+          "households": 367,
+          "move_ins_domestic": 57,
+          "move_ins_foreign": 148,
+          "move_ins_total": 205,
+          "births": 5,
+          "registrations_other": 0,
+          "registrations_total": 210,
+          "move_outs_domestic": 154,
+          "move_outs_foreign": 44,
+          "move_outs_total": 198,
+          "deaths": 4,
+          "deletions_other": 14,
+          "deletions_total": 216,
+          "population_change_reported": -6,
+          "natural_change_reported": 1,
+          "migration_change_reported": -7
+        }
+      }
+    }
+  ]
+}

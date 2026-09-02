@@ -52,6 +52,150 @@ test("v9 remains loadable as an immutable rollback release", async () => {
 
   assert.equal(bundle.density.source.acquired_at, undefined);
   assert.equal(bundle.industry.source.acquired_at, undefined);
+  assert.equal(bundle.migrationFlow, null);
+});
+
+test("latest release exposes municipality origin and destination flows", async () => {
+  const latest = await loadLatestPointer();
+  const bundle = await loadReleaseBundle(latest.release_id);
+  const migration = bundle.migrationFlow;
+
+  assert.ok(migration);
+  assert.deepEqual(
+    migration.coverage.available_years,
+    [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  );
+  assert.equal(migration.entries.length, 23 * 8);
+
+  const entry = migration.entries.find(
+    ({ municipality_code, year }) =>
+      municipality_code === "34214" && year === 2025,
+  );
+  assert.ok(entry);
+  assert.equal(
+    entry.inbound.find(({ area_type }) => area_type === "total")
+      ?.all_nationalities,
+    738,
+  );
+  assert.deepEqual(
+    Object.fromEntries(
+      Object.entries(
+        entry.inbound.find(({ area_type }) => area_type === "total") ?? {},
+      ).filter(([key]) => key.startsWith("age_")),
+    ),
+    {
+      age_0_9: 23,
+      age_10_19: 67,
+      age_20_29: 317,
+      age_30_39: 131,
+      age_40_49: 75,
+      age_50_59: 47,
+      age_60_plus: 77,
+      age_unknown_other: 1,
+    },
+  );
+  assert.equal(
+    entry.inbound.find(({ area_type }) => area_type === "total")?.japanese,
+    null,
+  );
+  assert.equal(
+    entry.inbound.find(({ area_type }) => area_type === "total")?.foreign,
+    null,
+  );
+  assert.equal(
+    entry.outbound.find(({ area_type }) => area_type === "total")
+      ?.all_nationalities,
+    855,
+  );
+  assert.ok(
+    entry.inbound.some(({ area_name_ja }) => area_name_ja === "広島市"),
+  );
+  assert.ok(
+    entry.outbound.some(({ area_name_ja }) => area_name_ja === "広島市"),
+  );
+});
+
+test("latest release exposes non-overlapping migration summary levels", async () => {
+  const latest = await loadLatestPointer();
+  const bundle = await loadReleaseBundle(latest.release_id);
+  const summary = bundle.migrationSummary;
+
+  assert.ok(summary);
+  assert.equal(summary.coverage.region_definitions.length, 11);
+  assert.deepEqual(
+    summary.coverage.region_definitions.find(({ key }) => key === "shutoken")
+      ?.prefecture_codes,
+    ["11000", "12000", "13000", "14000"],
+  );
+
+  const entry = summary.entries.find(
+    ({ municipality_code, year }) =>
+      municipality_code === "34214" && year === 2025,
+  );
+  assert.ok(entry);
+
+  const inboundPrefectures = entry.inbound.prefecture.areas;
+  assert.equal(
+    inboundPrefectures.find(({ area_code }) => area_code === "34000")
+      ?.all_nationalities,
+    424,
+  );
+  assert.equal(
+    inboundPrefectures.find(({ area_code }) => area_code === "99000")
+      ?.all_nationalities,
+    105,
+  );
+
+  const inboundRegions = entry.inbound.region.areas;
+  assert.equal(
+    inboundRegions.find(({ area_code }) => area_code === "chugoku")
+      ?.all_nationalities,
+    487,
+  );
+  assert.equal(
+    inboundRegions.find(({ area_code }) => area_code === "kanto_other")
+      ?.all_nationalities,
+    13,
+  );
+
+  const inboundLocal = entry.inbound.hiroshima_municipality.areas;
+  assert.equal(
+    inboundLocal.find(({ area_code }) => area_code === "34100")
+      ?.all_nationalities,
+    239,
+  );
+  assert.equal(
+    inboundLocal.find(({ area_code }) => area_code === "34999")
+      ?.all_nationalities,
+    50,
+  );
+  assert.equal(
+    inboundLocal.find(({ area_code }) => area_code === "34999")?.availability,
+    "aggregated",
+  );
+  assert.equal(entry.inbound.hiroshima_municipality.not_published_count, 15);
+  assert.equal(
+    inboundLocal.some(
+      ({ area_code }) => area_code.startsWith("341") && area_code !== "34100",
+    ),
+    false,
+  );
+
+  const hiroshima2018 = summary.entries.find(
+    ({ municipality_code, year }) =>
+      municipality_code === "34100" && year === 2018,
+  );
+  assert.ok(hiroshima2018);
+  assert.equal(
+    hiroshima2018.inbound.hiroshima_municipality.not_published_count,
+    2,
+  );
+
+  const legacy = await loadReleaseBundle(
+    "juki-2016-2025-hiroshima-v12",
+    repositoryDataRoot,
+  );
+  assert.equal(legacy.migrationSummary, null);
 });
 
 test("a release that satisfies the data contract passes validation", async () => {
