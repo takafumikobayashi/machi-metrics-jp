@@ -2268,6 +2268,10 @@ body {
   font-size: var(--text-sm);
 }
 
+.migration-flow-footnote + .migration-flow-footnote {
+  margin-top: 8px;
+}
+
 .migration-flow-source-note {
   margin-top: 8px;
 }

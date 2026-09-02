@@ -5,7 +5,6 @@ import type { CSSProperties, FocusEvent, MouseEvent } from "react";
 
 import {
   migrationAgeFieldKeys,
-  type MigrationEntry,
   type MigrationAgeField,
 } from "@/lib/data/migration-schema";
 import {
@@ -242,7 +241,11 @@ export function MigrationFlowPanel({
 }: {
   municipalityName: string;
   entries: MigrationSummaryEntry[];
-  totals: MigrationEntry[];
+  totals: Array<{
+    year: number;
+    inbound: number | null;
+    outbound: number | null;
+  }>;
 }) {
   const years = useMemo(
     () =>
@@ -258,7 +261,9 @@ export function MigrationFlowPanel({
   const [year, setYear] = useState(() => years.at(-1) ?? 2018);
   const selectedYear = years.includes(year) ? year : (years.at(-1) ?? 2018);
   const entry = entries.find((candidate) => candidate.year === selectedYear);
-  const rawEntry = totals.find((candidate) => candidate.year === selectedYear);
+  const totalEntry = totals.find(
+    (candidate) => candidate.year === selectedYear,
+  );
   const selectedDirection = directions.find((item) => item.key === direction)!;
   const selectedLevel = levels.find((item) => item.key === level)!;
   const levelData = entry?.[direction][level];
@@ -267,9 +272,7 @@ export function MigrationFlowPanel({
     return null;
   }
 
-  const total = rawEntry?.[direction].find(
-    ({ area_type }) => area_type === "total",
-  );
+  const total = totalEntry?.[direction] ?? null;
   const regionalResidual =
     level === "region"
       ? (levelData?.areas.find(
@@ -311,6 +314,7 @@ export function MigrationFlowPanel({
       : level === "hiroshima_municipality"
         ? visibleAreas
         : visibleAreas.slice(0, 10);
+  const unpublishedCount = levelData.not_published_count;
   const maxValue = Math.max(
     0,
     ...chartAreas.map((area) => area.all_nationalities ?? 0),
@@ -390,7 +394,7 @@ export function MigrationFlowPanel({
       <div className="migration-flow-summary">
         <div>
           <span>{selectedDirection.label}の総数</span>
-          <strong>{formatCount(total?.all_nationalities ?? null)}</strong>
+          <strong>{formatCount(total)}</strong>
           <small>
             移動者（外国人を含む）・{entry.period_start.slice(0, 4)}年
           </small>
@@ -459,6 +463,13 @@ export function MigrationFlowPanel({
         <p className="migration-flow-footnote">
           ほか{visibleAreas.length - chartAreas.length}
           件の公表地点はグラフでは省略しています。原本の全地点は公開JSONに保持しています。
+        </p>
+      ) : null}
+      {level === "region" && unpublishedCount > 0 ? (
+        <p className="migration-flow-footnote">
+          ※ {unpublishedCount}
+          地方は原本に個別の行がないため、グラフには表示していません。
+          0人とはみなしていません。
         </p>
       ) : null}
       <p className="migration-flow-footnote">

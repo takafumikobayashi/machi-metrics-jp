@@ -257,9 +257,17 @@ export default async function MunicipalityPage({
             ({ municipality_code }) => municipality_code === code,
           )}
           totals={
-            migrationFlow?.entries.filter(
-              ({ municipality_code }) => municipality_code === code,
-            ) ?? []
+            migrationFlow?.entries
+              .filter(({ municipality_code }) => municipality_code === code)
+              .map(({ year, inbound, outbound }) => ({
+                year,
+                inbound:
+                  inbound.find(({ area_type }) => area_type === "total")
+                    ?.all_nationalities ?? null,
+                outbound:
+                  outbound.find(({ area_type }) => area_type === "total")
+                    ?.all_nationalities ?? null,
+              })) ?? []
           }
         />
       ) : null}
