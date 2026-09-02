@@ -434,7 +434,8 @@ function hiroshimaMunicipalityAreas(areas: readonly MigrationArea[]): {
       : [];
   });
   const otherMunicipalities = areas.find(
-    ({ area_type }) => area_type === "other_municipalities",
+    ({ area_code, area_type }) =>
+      area_code === "34999" && area_type === "other_municipalities",
   );
   result.push(
     sourceArea(

@@ -315,6 +315,12 @@ export function MigrationFlowPanel({
         ? visibleAreas
         : visibleAreas.slice(0, 10);
   const unpublishedCount = levelData.not_published_count;
+  const unpublishedUnit =
+    level === "region"
+      ? "地方"
+      : level === "prefecture"
+        ? "都道府県"
+        : "市町村";
   const maxValue = Math.max(
     0,
     ...chartAreas.map((area) => area.all_nationalities ?? 0),
@@ -462,13 +468,14 @@ export function MigrationFlowPanel({
       {visibleAreas.length > chartAreas.length ? (
         <p className="migration-flow-footnote">
           ほか{visibleAreas.length - chartAreas.length}
-          件の公表地点はグラフでは省略しています。原本の全地点は公開JSONに保持しています。
+          件の公表地点は、件数上位10件に絞ってグラフでは省略しています。
         </p>
       ) : null}
-      {level === "region" && unpublishedCount > 0 ? (
+      {unpublishedCount > 0 ? (
         <p className="migration-flow-footnote">
           ※ {unpublishedCount}
-          地方は原本に個別の行がないため、グラフには表示していません。
+          {unpublishedUnit}
+          は原本に個別の行がないため、グラフには表示していません。
           0人とはみなしていません。
         </p>
       ) : null}

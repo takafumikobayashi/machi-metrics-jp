@@ -167,7 +167,7 @@ test("latest release exposes non-overlapping migration summary levels", async ()
   assert.equal(
     inboundLocal.find(({ area_code }) => area_code === "34999")
       ?.all_nationalities,
-    3,
+    50,
   );
   assert.equal(
     inboundLocal.find(({ area_code }) => area_code === "34999")?.availability,
@@ -179,6 +179,16 @@ test("latest release exposes non-overlapping migration summary levels", async ()
       ({ area_code }) => area_code.startsWith("341") && area_code !== "34100",
     ),
     false,
+  );
+
+  const hiroshima2018 = summary.entries.find(
+    ({ municipality_code, year }) =>
+      municipality_code === "34100" && year === 2018,
+  );
+  assert.ok(hiroshima2018);
+  assert.equal(
+    hiroshima2018.inbound.hiroshima_municipality.not_published_count,
+    2,
   );
 
   const legacy = await loadReleaseBundle(
