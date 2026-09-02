@@ -848,7 +848,6 @@ function AgeCategoryPanel({
       <div className="age-category-panel-heading">
         <div>
           <span className={`scope-panel-label ${scope.tone}`}>
-            <i className={`legend-swatch ${scope.tone}`} aria-hidden="true" />
             {scope.label}
           </span>
           <h4>カテゴリ別の年齢構成</h4>

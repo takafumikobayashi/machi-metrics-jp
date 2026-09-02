@@ -8,6 +8,8 @@ acquire → normalize → validate → derive → publish
 
 現時点では、対象期間・23市町・類似度設定の検証、全60原本の正規化、全国類似度候補の生成、人口密度・産業構造データの正規化、公開JSONの検証まで実装しています。
 
+住民基本台帳人口移動報告の参考表（表1・表2、旧形式は表3・表4）については、2018〜2025年の転入元・転出先を別パイプラインで正規化します。e-Statの各年ファイルには広島県内23市町のシートがまとまっているため、対象シートだけを抽出し、個別の市区町村と「その他」の集計行を区別して保存します。2018〜2019年の旧`.xls`、2020〜2021年の旧形式実体も処理時にLibreOfficeで一時的に`.xlsx`へ変換しますが、raw原本は変更しません。
+
 ```bash
 pnpm validate:data
 ```
@@ -42,7 +44,7 @@ pnpm normalize:area -- \
   --output-path data/processed/area/pilot.json
 
 pnpm publish:data -- \
-  --release-id juki-2016-2025-hiroshima-v10
+  --release-id juki-2016-2025-hiroshima-v14
 ```
 
 既定の年は`config/project.json`の2016〜2025年、自治体は`config/municipalities/hiroshima.json`の23市町です。公開処理では追加で2016年・2025年の`-03`・`-04`原本から、全国の市・町・村と東京都特別区を候補として生成します。政令指定都市の行政区は除外し、必須4特徴量が揃わない候補は理由を記録します。
@@ -57,3 +59,25 @@ pnpm publish:data -- \
 ## 拡張データの公開
 
 拡張正規化データ（`-07`、`-08`、`-11`、`-12`）は、既存の公開JSON契約を変更せず、リリース内の`extended/municipality/<コード>.json`へ出力します。ここには日本人住民・外国人住民ごとの人口、人口動態、5歳階級別人口を収録します。公開先に既存リリースがある場合も、新しいリリースIDでのみ追加し、`latest.json`だけを新リリースへ更新します。
+
+## 転入元・転出先データ
+
+原本は次のコマンドで正規化します。
+
+```bash
+pnpm normalize:migration
+```
+
+出力先は`data/staging/juki-migration/<year>/pilot.json`と`data/processed/juki-migration/<year>/pilot.json`です。`publish:data`はこれらをまとめ、リリース内の`migration-flow.json`と表示用の`migration-summary.json`へ変換します。公開JSONの利用可能年は2018〜2025年で、既存の人口スナップショット（2016〜2025年）とは別の年次フローです。
+
+使用した統計はe-Statの[住民基本台帳人口移動報告 参考表 2018年〜](https://www.e-stat.go.jp/stat-search/files?cycle=7&layout=datalist&month=0&tclass1=000001128355&toukei=00200523&tstat=000000070001&year=20250)です。現行の表1が移動前の住所地別転入者数、表2が移動後の住所地別転出者数で、移動者（外国人を含む）の総数と10歳階級別人数を保持します。表3・表4の総数・日本人移動者・外国人移動者は旧リリース互換用に残しています。配布ファイルのURL、取得日時、SHA-256はリリースの`manifest.json`へ記録します。
+
+年齢階級別の原本を正規化する場合は、次を実行します。
+
+```bash
+pnpm normalize:migration:age
+```
+
+出力先は`data/staging/juki-migration-age/<year>/pilot.json`と`data/processed/juki-migration-age/<year>/pilot.json`です。`publish:data`の既定値はこの年齢階級別パイプラインを使用します。
+
+表示用集計は、地方別、都道府県別、広島県内23市町別を切り替えます。首都圏は関東から、北陸は中部から分離して重複を避けます。原本の「その他の県」「その他の市町村」は配分せず残余として表示し、個別行のない地点は0人とみなしません。広島市の行政区は県内市町別から除外します。

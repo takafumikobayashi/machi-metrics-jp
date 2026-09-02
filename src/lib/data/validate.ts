@@ -1,4 +1,9 @@
 import type { ReleaseBundle } from "./load";
+import {
+  migrationAgeFieldKeys,
+  type MigrationFlowFile,
+} from "./migration-schema";
+import type { MigrationSummaryFile } from "./migration-summary";
 import type { MunicipalityDetail, SummaryRow } from "./schema";
 import { featureIds } from "../similarity/calculate";
 import { calculatePopulationDensity } from "../metrics/density";
@@ -77,6 +82,8 @@ export function validateRelease(
   validateSummary(bundle, expectation, detailByCode, error);
   validateDensity(bundle, expectation, detailByCode, error);
   validateIndustry(bundle, expectation, error);
+  validateMigrationFlow(bundle.migrationFlow, expectation, error);
+  validateMigrationSummary(bundle.migrationSummary, expectation, error);
   validateSimilarity(bundle, expectation, knownCodes, error);
   validateSimilarityModel(bundle, error);
   validateStructureSimilarity(bundle, expectation, knownCodes, error);
@@ -104,6 +111,22 @@ function validateReleaseIds(
     ["similarity-model.json", bundle.similarityModel.release_id],
     ["density.json", bundle.density.release_id],
     ["industry.json", bundle.industry.release_id],
+    ...(bundle.migrationFlow
+      ? [
+          ["migration-flow.json", bundle.migrationFlow.release_id] as [
+            string,
+            string,
+          ],
+        ]
+      : []),
+    ...(bundle.migrationSummary
+      ? [
+          ["migration-summary.json", bundle.migrationSummary.release_id] as [
+            string,
+            string,
+          ],
+        ]
+      : []),
     ["similarity-structure.json", bundle.structureSimilarity.release_id],
     [
       "similarity-structure-model.json",
@@ -123,6 +146,200 @@ function validateReleaseIds(
       );
     }
   });
+}
+
+function validateMigrationFlow(
+  migration: MigrationFlowFile | null,
+  expectation: ReleaseExpectation,
+  error: Report,
+): void {
+  if (!migration) {
+    return;
+  }
+
+  if (
+    migration.coverage.focus_municipality_count !==
+    expectation.focusMunicipalityCodes.length
+  ) {
+    error(
+      "migration_coverage_mismatch",
+      "転入元・転出先データの対象自治体件数が公開対象と一致しません。",
+    );
+  }
+
+  const focusCodes = new Set(expectation.focusMunicipalityCodes);
+  const expectedYears = migration.coverage.available_years;
+  const expectedEntryCount = focusCodes.size * expectedYears.length;
+  if (migration.entries.length !== expectedEntryCount) {
+    error(
+      "migration_entry_count_mismatch",
+      "転入元・転出先データの自治体・年別レコード件数が一致しません。",
+    );
+  }
+
+  const entryKeys = new Set<string>();
+  migration.entries.forEach((entry) => {
+    const key = `${entry.municipality_code}/${entry.year}`;
+    if (entryKeys.has(key)) {
+      error(
+        "migration_entry_duplicated",
+        "転入元・転出先データに自治体・年の重複があります。",
+        entry.municipality_code,
+      );
+    }
+    entryKeys.add(key);
+    if (!focusCodes.has(entry.municipality_code)) {
+      error(
+        "migration_entry_outside_focus",
+        "転入元・転出先データに対象外自治体のレコードがあります。",
+        entry.municipality_code,
+      );
+    }
+    if (!expectedYears.includes(entry.year)) {
+      error(
+        "migration_year_outside_coverage",
+        "転入元・転出先データに対象期間外の年があります。",
+        entry.municipality_code,
+      );
+    }
+    validateMigrationAreas(
+      entry.inbound,
+      "inbound",
+      entry.municipality_code,
+      error,
+    );
+    validateMigrationAreas(
+      entry.outbound,
+      "outbound",
+      entry.municipality_code,
+      error,
+    );
+  });
+}
+
+function validateMigrationSummary(
+  summary: MigrationSummaryFile | null,
+  expectation: ReleaseExpectation,
+  error: Report,
+): void {
+  if (!summary) {
+    return;
+  }
+
+  if (
+    summary.coverage.focus_municipality_count !==
+    expectation.focusMunicipalityCodes.length
+  ) {
+    error(
+      "migration_summary_coverage_mismatch",
+      "転入元・転出先集計の対象自治体件数が公開対象と一致しません。",
+    );
+  }
+
+  const focusCodes = new Set(expectation.focusMunicipalityCodes);
+  const expectedYears = summary.coverage.available_years;
+  const expectedEntryCount = focusCodes.size * expectedYears.length;
+  if (summary.entries.length !== expectedEntryCount) {
+    error(
+      "migration_summary_entry_count_mismatch",
+      "転入元・転出先集計の自治体・年別レコード件数が一致しません。",
+    );
+  }
+
+  const entryKeys = new Set<string>();
+  summary.entries.forEach((entry) => {
+    const key = `${entry.municipality_code}/${entry.year}`;
+    if (entryKeys.has(key)) {
+      error(
+        "migration_summary_entry_duplicated",
+        "転入元・転出先集計に自治体・年の重複があります。",
+        entry.municipality_code,
+      );
+    }
+    entryKeys.add(key);
+    if (!focusCodes.has(entry.municipality_code)) {
+      error(
+        "migration_summary_entry_outside_focus",
+        "転入元・転出先集計に対象外自治体のレコードがあります。",
+        entry.municipality_code,
+      );
+    }
+    if (!expectedYears.includes(entry.year)) {
+      error(
+        "migration_summary_year_outside_coverage",
+        "転入元・転出先集計に対象期間外の年があります。",
+        entry.municipality_code,
+      );
+    }
+    (["inbound", "outbound"] as const).forEach((direction) => {
+      (["region", "prefecture", "hiroshima_municipality"] as const).forEach(
+        (level) => {
+          const areas = entry[direction][level].areas;
+          const areaCodes = new Set(areas.map(({ area_code }) => area_code));
+          if (areaCodes.size !== areas.length) {
+            error(
+              "migration_summary_area_duplicated",
+              "転入元・転出先集計の地点コードに重複があります。",
+              entry.municipality_code,
+            );
+          }
+          if (
+            level === "hiroshima_municipality" &&
+            areas.some(
+              ({ area_code }) =>
+                area_code.startsWith("341") && area_code !== "34100",
+            )
+          ) {
+            error(
+              "migration_summary_ward_included",
+              "広島県内市町別集計に広島市の行政区が含まれています。",
+              entry.municipality_code,
+            );
+          }
+          areas.forEach((area) => {
+            if (
+              area.availability === "not_published" &&
+              (area.all_nationalities !== null ||
+                area.japanese !== null ||
+                area.foreign !== null ||
+                migrationAgeFieldKeys.some(
+                  (field) => area[field] !== null && area[field] !== undefined,
+                ))
+            ) {
+              error(
+                "migration_summary_unpublished_has_value",
+                "個別公表なしの地点に人数が設定されています。",
+                entry.municipality_code,
+              );
+            }
+          });
+        },
+      );
+    });
+  });
+}
+
+function validateMigrationAreas(
+  areas: MigrationFlowFile["entries"][number]["inbound"],
+  direction: "inbound" | "outbound",
+  municipalityCode: string,
+  error: Report,
+): void {
+  const areaCodes = new Set(areas.map(({ area_code }) => area_code));
+  if (areaCodes.size !== areas.length) {
+    error(
+      "migration_area_duplicated",
+      `転${direction === "inbound" ? "入" : "出"}元・転出先の地点コードに重複があります。`,
+      municipalityCode,
+    );
+  }
+  if (!areas.some(({ area_code }) => area_code === "00000")) {
+    error(
+      "migration_total_missing",
+      `転${direction === "inbound" ? "入" : "出"}元・転出先の総数行がありません。`,
+      municipalityCode,
+    );
+  }
 }
 
 function validateDensity(

@@ -1,7 +1,7 @@
 # 技術構成
 
 最終更新: 2026-08-30  
-状態: MVP + 人口密度・産業構造拡張
+状態: MVP + 人口密度・産業構造・転入元／転出先拡張
 
 ## 1. 方針
 
@@ -80,6 +80,7 @@ tests/                     # 設定、指標、回帰用fixture
 - 拡張詳細: `extended/municipality/<code>.json`（日本人・外国人、5歳階級）
 - 類似検索: 事前計算した `similarity.json` と `similarity-structure.json`
 - 地域構造: `density.json`（行政区域面積と人口密度）、`industry.json`（産業・農業構造）
+- 地域間移動: `migration-flow.json`（2018〜2025年の転入元・転出先・年齢階級）と `migration-summary.json`（表示用の地方別・都道府県別・県内市町別集計）
 - 説明: `manifest.json`、`similarity-model.json`、`similarity-structure-model.json`
 
 類似度はクライアントで全自治体を毎回計算せず、データリリース作成時に決定的に計算します。表示側は特徴量差を説明するだけにします。

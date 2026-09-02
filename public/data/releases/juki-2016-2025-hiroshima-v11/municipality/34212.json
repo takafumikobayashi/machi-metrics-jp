@@ -1,0 +1,385 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v11",
+  "municipality": {
+    "municipality_code": "34212",
+    "prefecture_code": "34",
+    "prefecture_name_ja": "広島県",
+    "name_ja": "東広島市",
+    "name_kana": null,
+    "municipality_type": "city",
+    "valid_from": "2016-01-01",
+    "valid_to": null
+  },
+  "snapshots": [
+    {
+      "as_of_date": "2016-01-01",
+      "population_total": 185374,
+      "population_japanese": 180113,
+      "population_foreign": 5261,
+      "households": 81002,
+      "age": {
+        "age_0_14": 27784,
+        "age_15_64": 115465,
+        "age_65_plus": 42125,
+        "age_unknown": 0,
+        "population_age_known": 185374,
+        "shares": {
+          "age_0_14": 0.14988078155512638,
+          "age_15_64": 0.6228759157163356,
+          "age_65_plus": 0.227243302728538
+        }
+      }
+    },
+    {
+      "as_of_date": "2017-01-01",
+      "population_total": 185764,
+      "population_japanese": 180001,
+      "population_foreign": 5763,
+      "households": 81973,
+      "age": {
+        "age_0_14": 27691,
+        "age_15_64": 114912,
+        "age_65_plus": 43161,
+        "age_unknown": 0,
+        "population_age_known": 185764,
+        "shares": {
+          "age_0_14": 0.14906548093279645,
+          "age_15_64": 0.6185913309360264,
+          "age_65_plus": 0.2323431881311772
+        }
+      }
+    },
+    {
+      "as_of_date": "2018-01-01",
+      "population_total": 186649,
+      "population_japanese": 180112,
+      "population_foreign": 6537,
+      "households": 83452,
+      "age": {
+        "age_0_14": 27599,
+        "age_15_64": 115104,
+        "age_65_plus": 43946,
+        "age_unknown": 0,
+        "population_age_known": 186649,
+        "shares": {
+          "age_0_14": 0.14786578015419316,
+          "age_15_64": 0.616686936442199,
+          "age_65_plus": 0.23544728340360785
+        }
+      }
+    },
+    {
+      "as_of_date": "2019-01-01",
+      "population_total": 187718,
+      "population_japanese": 180575,
+      "population_foreign": 7143,
+      "households": 85012,
+      "age": {
+        "age_0_14": 27449,
+        "age_15_64": 115577,
+        "age_65_plus": 44692,
+        "age_unknown": 0,
+        "population_age_known": 187718,
+        "shares": {
+          "age_0_14": 0.14622465613313587,
+          "age_15_64": 0.6156948188239807,
+          "age_65_plus": 0.23808052504288346
+        }
+      }
+    },
+    {
+      "as_of_date": "2020-01-01",
+      "population_total": 188779,
+      "population_japanese": 180852,
+      "population_foreign": 7927,
+      "households": 86589,
+      "age": {
+        "age_0_14": 27248,
+        "age_15_64": 116273,
+        "age_65_plus": 45258,
+        "age_unknown": 0,
+        "population_age_known": 188779,
+        "shares": {
+          "age_0_14": 0.1443380884526351,
+          "age_15_64": 0.615921262428554,
+          "age_65_plus": 0.23974064911881088
+        }
+      }
+    },
+    {
+      "as_of_date": "2021-01-01",
+      "population_total": 189369,
+      "population_japanese": 181536,
+      "population_foreign": 7833,
+      "households": 87669,
+      "age": {
+        "age_0_14": 27175,
+        "age_15_64": 116238,
+        "age_65_plus": 45956,
+        "age_unknown": 0,
+        "population_age_known": 189369,
+        "shares": {
+          "age_0_14": 0.14350289646140604,
+          "age_15_64": 0.6138174674841184,
+          "age_65_plus": 0.24267963605447565
+        }
+      }
+    },
+    {
+      "as_of_date": "2022-01-01",
+      "population_total": 189039,
+      "population_japanese": 182100,
+      "population_foreign": 6939,
+      "households": 87971,
+      "age": {
+        "age_0_14": 26935,
+        "age_15_64": 115600,
+        "age_65_plus": 46504,
+        "age_unknown": 0,
+        "population_age_known": 189039,
+        "shares": {
+          "age_0_14": 0.14248382608879648,
+          "age_15_64": 0.6115140262062326,
+          "age_65_plus": 0.24600214770497092
+        }
+      }
+    },
+    {
+      "as_of_date": "2023-01-01",
+      "population_total": 190353,
+      "population_japanese": 182295,
+      "population_foreign": 8058,
+      "households": 89941,
+      "age": {
+        "age_0_14": 26588,
+        "age_15_64": 116944,
+        "age_65_plus": 46821,
+        "age_unknown": 0,
+        "population_age_known": 190353,
+        "shares": {
+          "age_0_14": 0.1396773363172632,
+          "age_15_64": 0.6143533330181294,
+          "age_65_plus": 0.24596933066460733
+        }
+      }
+    },
+    {
+      "as_of_date": "2024-01-01",
+      "population_total": 190516,
+      "population_japanese": 181738,
+      "population_foreign": 8778,
+      "households": 91028,
+      "age": {
+        "age_0_14": 26119,
+        "age_15_64": 117208,
+        "age_65_plus": 47189,
+        "age_unknown": 0,
+        "population_age_known": 190516,
+        "shares": {
+          "age_0_14": 0.13709609691574462,
+          "age_15_64": 0.6152134203951374,
+          "age_65_plus": 0.24769048268911797
+        }
+      }
+    },
+    {
+      "as_of_date": "2025-01-01",
+      "population_total": 190911,
+      "population_japanese": 181452,
+      "population_foreign": 9459,
+      "households": 92192,
+      "age": {
+        "age_0_14": 25588,
+        "age_15_64": 117770,
+        "age_65_plus": 47553,
+        "age_unknown": 0,
+        "population_age_known": 190911,
+        "shares": {
+          "age_0_14": 0.13403104064197452,
+          "age_15_64": 0.6168843073474027,
+          "age_65_plus": 0.24908465201062274
+        }
+      }
+    }
+  ],
+  "flows": [
+    {
+      "period_start": "2015-01-01",
+      "period_end": "2015-12-31",
+      "births": 1758,
+      "deaths": 1639,
+      "natural_change_reported": 119,
+      "natural_change_calculated": 119,
+      "move_ins": 9170,
+      "move_outs": 8159,
+      "migration_change_reported": 656,
+      "migration_change_simple": 1011,
+      "adjustment": -355,
+      "denominator_as_of_date": "2016-01-01",
+      "denominator_population": 185374,
+      "natural_rate_per_1000": 0.6419454723963447,
+      "migration_rate_per_1000": 3.53879184783195
+    },
+    {
+      "period_start": "2016-01-01",
+      "period_end": "2016-12-31",
+      "births": 1675,
+      "deaths": 1584,
+      "natural_change_reported": 91,
+      "natural_change_calculated": 91,
+      "move_ins": 8959,
+      "move_outs": 8359,
+      "migration_change_reported": 299,
+      "migration_change_simple": 600,
+      "adjustment": -301,
+      "denominator_as_of_date": "2016-01-01",
+      "denominator_population": 185374,
+      "natural_rate_per_1000": 0.49089947889132235,
+      "migration_rate_per_1000": 1.6129554306429164
+    },
+    {
+      "period_start": "2017-01-01",
+      "period_end": "2017-12-31",
+      "births": 1590,
+      "deaths": 1654,
+      "natural_change_reported": -64,
+      "natural_change_calculated": -64,
+      "move_ins": 9709,
+      "move_outs": 8393,
+      "migration_change_reported": 949,
+      "migration_change_simple": 1316,
+      "adjustment": -367,
+      "denominator_as_of_date": "2017-01-01",
+      "denominator_population": 185764,
+      "natural_rate_per_1000": -0.3445231584160548,
+      "migration_rate_per_1000": 5.108632458388062
+    },
+    {
+      "period_start": "2018-01-01",
+      "period_end": "2018-12-31",
+      "births": 1551,
+      "deaths": 1599,
+      "natural_change_reported": -48,
+      "natural_change_calculated": -48,
+      "move_ins": 10142,
+      "move_outs": 8646,
+      "migration_change_reported": 1117,
+      "migration_change_simple": 1496,
+      "adjustment": -379,
+      "denominator_as_of_date": "2018-01-01",
+      "denominator_population": 186649,
+      "natural_rate_per_1000": -0.25716719618106715,
+      "migration_rate_per_1000": 5.98449496113025
+    },
+    {
+      "period_start": "2019-01-01",
+      "period_end": "2019-12-31",
+      "births": 1539,
+      "deaths": 1599,
+      "natural_change_reported": -60,
+      "natural_change_calculated": -60,
+      "move_ins": 10507,
+      "move_outs": 8957,
+      "migration_change_reported": 1121,
+      "migration_change_simple": 1550,
+      "adjustment": -429,
+      "denominator_as_of_date": "2019-01-01",
+      "denominator_population": 187718,
+      "natural_rate_per_1000": -0.31962837873832023,
+      "migration_rate_per_1000": 5.97172354276095
+    },
+    {
+      "period_start": "2020-01-01",
+      "period_end": "2020-12-31",
+      "births": 1499,
+      "deaths": 1610,
+      "natural_change_reported": -111,
+      "natural_change_calculated": -111,
+      "move_ins": 9013,
+      "move_outs": 7997,
+      "migration_change_reported": 701,
+      "migration_change_simple": 1016,
+      "adjustment": -315,
+      "denominator_as_of_date": "2020-01-01",
+      "denominator_population": 188779,
+      "natural_rate_per_1000": -0.5879891301468914,
+      "migration_rate_per_1000": 3.713336758855593
+    },
+    {
+      "period_start": "2021-01-01",
+      "period_end": "2021-12-31",
+      "births": 1419,
+      "deaths": 1680,
+      "natural_change_reported": -261,
+      "natural_change_calculated": -261,
+      "move_ins": 8147,
+      "move_outs": 7922,
+      "migration_change_reported": -69,
+      "migration_change_simple": 225,
+      "adjustment": -294,
+      "denominator_as_of_date": "2021-01-01",
+      "denominator_population": 189369,
+      "natural_rate_per_1000": -1.3782614894729337,
+      "migration_rate_per_1000": -0.3643679799756032
+    },
+    {
+      "period_start": "2022-01-01",
+      "period_end": "2022-12-31",
+      "births": 1414,
+      "deaths": 1806,
+      "natural_change_reported": -392,
+      "natural_change_calculated": -392,
+      "move_ins": 11143,
+      "move_outs": 9221,
+      "migration_change_reported": 1706,
+      "migration_change_simple": 1922,
+      "adjustment": -216,
+      "denominator_as_of_date": "2022-01-01",
+      "denominator_population": 189039,
+      "natural_rate_per_1000": -2.073646178830823,
+      "migration_rate_per_1000": 9.024592808891287
+    },
+    {
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "births": 1298,
+      "deaths": 1910,
+      "natural_change_reported": -612,
+      "natural_change_calculated": -612,
+      "move_ins": 10568,
+      "move_outs": 9579,
+      "migration_change_reported": 775,
+      "migration_change_simple": 989,
+      "adjustment": -214,
+      "denominator_as_of_date": "2023-01-01",
+      "denominator_population": 190353,
+      "natural_rate_per_1000": -3.2150793525712755,
+      "migration_rate_per_1000": 4.071383167063298
+    },
+    {
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "births": 1287,
+      "deaths": 1865,
+      "natural_change_reported": -578,
+      "natural_change_calculated": -578,
+      "move_ins": 10443,
+      "move_outs": 9294,
+      "migration_change_reported": 973,
+      "migration_change_simple": 1149,
+      "adjustment": -176,
+      "denominator_as_of_date": "2024-01-01",
+      "denominator_population": 190516,
+      "natural_rate_per_1000": -3.033865922022297,
+      "migration_rate_per_1000": 5.107182598836843
+    }
+  ],
+  "change_10y": {
+    "start_date": "2016-01-01",
+    "end_date": "2025-01-01",
+    "start_population": 185374,
+    "end_population": 190911,
+    "population_change_10y": 5537,
+    "population_change_rate_10y": 0.029869345215618157
+  }
+}

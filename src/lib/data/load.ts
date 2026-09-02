@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -5,6 +6,14 @@ import type { z } from "zod";
 
 import { densityFileSchema, type DensityFile } from "./density-schema";
 import { industryFileSchema, type IndustryFile } from "./industry-schema";
+import {
+  migrationFlowFileSchema,
+  type MigrationFlowFile,
+} from "./migration-schema";
+import {
+  migrationSummaryFileSchema,
+  type MigrationSummaryFile,
+} from "./migration-summary";
 import {
   structureSimilarityFileSchema,
   structureSimilarityModelSchema,
@@ -169,6 +178,34 @@ export async function loadIndustry(
   );
 }
 
+export async function loadMigrationFlow(
+  releaseId: string,
+  root: string = defaultPublicDataRoot(),
+): Promise<MigrationFlowFile | null> {
+  const filePath = path.join(
+    releaseDirectory(root, releaseId),
+    "migration-flow.json",
+  );
+  if (!existsSync(filePath)) {
+    return null;
+  }
+  return readJsonFile(filePath, migrationFlowFileSchema);
+}
+
+export async function loadMigrationSummary(
+  releaseId: string,
+  root: string = defaultPublicDataRoot(),
+): Promise<MigrationSummaryFile | null> {
+  const filePath = path.join(
+    releaseDirectory(root, releaseId),
+    "migration-summary.json",
+  );
+  if (!existsSync(filePath)) {
+    return null;
+  }
+  return readJsonFile(filePath, migrationSummaryFileSchema);
+}
+
 export async function loadStructureSimilarity(
   releaseId: string,
   root: string = defaultPublicDataRoot(),
@@ -228,6 +265,8 @@ export interface ReleaseBundle {
   similarityModel: SimilarityModel;
   density: DensityFile;
   industry: IndustryFile;
+  migrationFlow: MigrationFlowFile | null;
+  migrationSummary: MigrationSummaryFile | null;
   structureSimilarity: StructureSimilarityFile;
   structureSimilarityModel: StructureSimilarityModel;
   details: MunicipalityDetail[];
@@ -249,6 +288,8 @@ export async function loadReleaseBundle(
     similarityModel,
     density,
     industry,
+    migrationFlow,
+    migrationSummary,
     structureSimilarity,
     structureSimilarityModel,
   ] = await Promise.all([
@@ -259,6 +300,8 @@ export async function loadReleaseBundle(
     loadSimilarityModel(releaseId, root),
     loadDensity(releaseId, root),
     loadIndustry(releaseId, root),
+    loadMigrationFlow(releaseId, root),
+    loadMigrationSummary(releaseId, root),
     loadStructureSimilarity(releaseId, root),
     loadStructureSimilarityModel(releaseId, root),
   ]);
@@ -278,6 +321,8 @@ export async function loadReleaseBundle(
     similarityModel,
     density,
     industry,
+    migrationFlow,
+    migrationSummary,
     structureSimilarity,
     structureSimilarityModel,
     details,
