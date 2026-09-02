@@ -408,7 +408,10 @@ function prefectureAreas(areas: readonly MigrationArea[]): {
   };
 }
 
-function hiroshimaMunicipalityAreas(areas: readonly MigrationArea[]): {
+function hiroshimaMunicipalityAreas(
+  areas: readonly MigrationArea[],
+  subjectMunicipalityCode: string,
+): {
   areas: MigrationSummaryArea[];
   notPublishedCount: number;
 } {
@@ -448,16 +451,24 @@ function hiroshimaMunicipalityAreas(areas: readonly MigrationArea[]): {
       otherMunicipalities ? "aggregated" : "not_published",
     ),
   );
+  const publishedMunicipalityCodes = new Set(
+    result
+      .filter(({ area_type }) => area_type === "municipality")
+      .map(({ area_code }) => area_code),
+  );
   return {
     areas: result,
-    notPublishedCount:
-      hiroshimaMunicipalities.length -
-      result.filter(({ area_type }) => area_type === "municipality").length,
+    notPublishedCount: hiroshimaMunicipalities.filter(
+      ({ code }) =>
+        code !== subjectMunicipalityCode &&
+        !publishedMunicipalityCodes.has(code),
+    ).length,
   };
 }
 
 export function summarizeMigrationAreas(
   areas: readonly MigrationArea[],
+  subjectMunicipalityCode: string,
 ): Record<
   MigrationSummaryLevel,
   {
@@ -468,7 +479,10 @@ export function summarizeMigrationAreas(
 > {
   const region = regionAreas(areas);
   const prefecture = prefectureAreas(areas);
-  const hiroshimaMunicipality = hiroshimaMunicipalityAreas(areas);
+  const hiroshimaMunicipality = hiroshimaMunicipalityAreas(
+    areas,
+    subjectMunicipalityCode,
+  );
   return {
     region: {
       areas: region.areas,

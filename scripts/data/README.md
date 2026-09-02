@@ -44,7 +44,7 @@ pnpm normalize:area -- \
   --output-path data/processed/area/pilot.json
 
 pnpm publish:data -- \
-  --release-id juki-2016-2025-hiroshima-v14
+  --release-id juki-2016-2025-hiroshima-v16
 ```
 
 既定の年は`config/project.json`の2016〜2025年、自治体は`config/municipalities/hiroshima.json`の23市町です。公開処理では追加で2016年・2025年の`-03`・`-04`原本から、全国の市・町・村と東京都特別区を候補として生成します。政令指定都市の行政区は除外し、必須4特徴量が揃わない候補は理由を記録します。

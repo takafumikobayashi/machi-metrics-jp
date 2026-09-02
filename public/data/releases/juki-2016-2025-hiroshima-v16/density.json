@@ -1,0 +1,223 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v16",
+  "dataset": "density",
+  "unit": "persons_per_km2",
+  "population_as_of_date": "2025-01-01",
+  "area_as_of_date": "2025-01-01",
+  "source": {
+    "title": "令和8年全国都道府県市区町村別面積調（令和7年1月1日時点）",
+    "url": "https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm",
+    "acquired_at": "2026-08-30T00:11:12.802Z",
+    "file_name": "R8_04_mencho.csv",
+    "sha256": "e1043053d52fa39d23b14c9961fc42b675726af9bc3f67b9b1c3f835a3162eec"
+  },
+  "entries": [
+    {
+      "municipality_code": "34100",
+      "name_ja": "広島市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 1173543,
+      "area_km2": 906.69,
+      "population_density_per_km2": 1294.3
+    },
+    {
+      "municipality_code": "34202",
+      "name_ja": "呉市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 201242,
+      "area_km2": 352.04,
+      "population_density_per_km2": 571.6
+    },
+    {
+      "municipality_code": "34203",
+      "name_ja": "竹原市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 22557,
+      "area_km2": 118.23,
+      "population_density_per_km2": 190.8
+    },
+    {
+      "municipality_code": "34204",
+      "name_ja": "三原市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 87075,
+      "area_km2": 471.51,
+      "population_density_per_km2": 184.7
+    },
+    {
+      "municipality_code": "34205",
+      "name_ja": "尾道市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 126396,
+      "area_km2": 284.89,
+      "population_density_per_km2": 443.7
+    },
+    {
+      "municipality_code": "34207",
+      "name_ja": "福山市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 455028,
+      "area_km2": 517.72,
+      "population_density_per_km2": 878.9
+    },
+    {
+      "municipality_code": "34208",
+      "name_ja": "府中市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 35105,
+      "area_km2": 195.75,
+      "population_density_per_km2": 179.3
+    },
+    {
+      "municipality_code": "34209",
+      "name_ja": "三次市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 47904,
+      "area_km2": 778.18,
+      "population_density_per_km2": 61.6
+    },
+    {
+      "municipality_code": "34210",
+      "name_ja": "庄原市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 31198,
+      "area_km2": 1246.49,
+      "population_density_per_km2": 25
+    },
+    {
+      "municipality_code": "34211",
+      "name_ja": "大竹市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 25353,
+      "area_km2": 78.66,
+      "population_density_per_km2": 322.3
+    },
+    {
+      "municipality_code": "34212",
+      "name_ja": "東広島市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 190911,
+      "area_km2": 635.15,
+      "population_density_per_km2": 300.6
+    },
+    {
+      "municipality_code": "34213",
+      "name_ja": "廿日市市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 115451,
+      "area_km2": 489.49,
+      "population_density_per_km2": 235.9
+    },
+    {
+      "municipality_code": "34214",
+      "name_ja": "安芸高田市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 26041,
+      "area_km2": 537.71,
+      "population_density_per_km2": 48.4
+    },
+    {
+      "municipality_code": "34215",
+      "name_ja": "江田島市",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 20690,
+      "area_km2": 100.65,
+      "population_density_per_km2": 205.6
+    },
+    {
+      "municipality_code": "34302",
+      "name_ja": "府中町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 52074,
+      "area_km2": 10.41,
+      "population_density_per_km2": 5002.3
+    },
+    {
+      "municipality_code": "34304",
+      "name_ja": "海田町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 30810,
+      "area_km2": 13.79,
+      "population_density_per_km2": 2234.2
+    },
+    {
+      "municipality_code": "34307",
+      "name_ja": "熊野町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 23475,
+      "area_km2": 33.76,
+      "population_density_per_km2": 695.3
+    },
+    {
+      "municipality_code": "34309",
+      "name_ja": "坂町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 12498,
+      "area_km2": 15.69,
+      "population_density_per_km2": 796.6
+    },
+    {
+      "municipality_code": "34368",
+      "name_ja": "安芸太田町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 5367,
+      "area_km2": 341.89,
+      "population_density_per_km2": 15.7
+    },
+    {
+      "municipality_code": "34369",
+      "name_ja": "北広島町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 16953,
+      "area_km2": 646.2,
+      "population_density_per_km2": 26.2
+    },
+    {
+      "municipality_code": "34431",
+      "name_ja": "大崎上島町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 6779,
+      "area_km2": 43.11,
+      "population_density_per_km2": 157.2
+    },
+    {
+      "municipality_code": "34462",
+      "name_ja": "世羅町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 14519,
+      "area_km2": 278.14,
+      "population_density_per_km2": 52.2
+    },
+    {
+      "municipality_code": "34545",
+      "name_ja": "神石高原町",
+      "population_as_of_date": "2025-01-01",
+      "area_as_of_date": "2025-01-01",
+      "population_total": 7802,
+      "area_km2": 381.98,
+      "population_density_per_km2": 20.4
+    }
+  ]
+}

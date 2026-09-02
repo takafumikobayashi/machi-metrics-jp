@@ -173,7 +173,7 @@ test("latest release exposes non-overlapping migration summary levels", async ()
     inboundLocal.find(({ area_code }) => area_code === "34999")?.availability,
     "aggregated",
   );
-  assert.equal(entry.inbound.hiroshima_municipality.not_published_count, 16);
+  assert.equal(entry.inbound.hiroshima_municipality.not_published_count, 15);
   assert.equal(
     inboundLocal.some(
       ({ area_code }) => area_code.startsWith("341") && area_code !== "34100",

@@ -1036,8 +1036,14 @@ function buildMigrationSummary(
         year: processed.coverage.year,
         period_start: processed.coverage.period_start,
         period_end: processed.coverage.period_end,
-        inbound: summarizeMigrationAreas(sourceEntry.inbound),
-        outbound: summarizeMigrationAreas(sourceEntry.outbound),
+        inbound: summarizeMigrationAreas(
+          sourceEntry.inbound,
+          sourceEntry.municipality_code,
+        ),
+        outbound: summarizeMigrationAreas(
+          sourceEntry.outbound,
+          sourceEntry.municipality_code,
+        ),
       });
     });
   });

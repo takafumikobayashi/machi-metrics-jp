@@ -1,0 +1,2012 @@
+{
+  "release_id": "juki-2016-2025-hiroshima-v16",
+  "schema_version": 1,
+  "generated_at": "2026-09-02T15:47:26.516Z",
+  "coverage": {
+    "focus_prefecture_code": "34",
+    "focus_municipality_count": 23,
+    "snapshot_dates": [
+      "2016-01-01",
+      "2017-01-01",
+      "2018-01-01",
+      "2019-01-01",
+      "2020-01-01",
+      "2021-01-01",
+      "2022-01-01",
+      "2023-01-01",
+      "2024-01-01",
+      "2025-01-01"
+    ],
+    "flow_periods": [
+      {
+        "period_start": "2015-01-01",
+        "period_end": "2015-12-31"
+      },
+      {
+        "period_start": "2016-01-01",
+        "period_end": "2016-12-31"
+      },
+      {
+        "period_start": "2017-01-01",
+        "period_end": "2017-12-31"
+      },
+      {
+        "period_start": "2018-01-01",
+        "period_end": "2018-12-31"
+      },
+      {
+        "period_start": "2019-01-01",
+        "period_end": "2019-12-31"
+      },
+      {
+        "period_start": "2020-01-01",
+        "period_end": "2020-12-31"
+      },
+      {
+        "period_start": "2021-01-01",
+        "period_end": "2021-12-31"
+      },
+      {
+        "period_start": "2022-01-01",
+        "period_end": "2022-12-31"
+      },
+      {
+        "period_start": "2023-01-01",
+        "period_end": "2023-12-31"
+      },
+      {
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31"
+      }
+    ],
+    "national_candidate_count": 1739,
+    "national_excluded_count": 8
+  },
+  "units": {
+    "share": "ratio_0_1",
+    "change_rate": "ratio_0_1",
+    "flow_rate": "per_1000"
+  },
+  "config_files": [
+    {
+      "path": "config/project.json",
+      "sha256": "6fd62cdacebc7d51aa9fd1493d53f44a0560dc950e4a10a376b33db99de58a8e"
+    },
+    {
+      "path": "config/municipalities/hiroshima.json",
+      "sha256": "55bf61b4ab4a80c211dc595c02c3140991e5820a2f929e0c92a8c977ae8da40f"
+    }
+  ],
+  "sources": [
+    {
+      "statistic_name": "全国都道府県市区町村別面積調",
+      "table_number": "2025-面積調",
+      "table_name": "令和8年全国都道府県市区町村別面積調（令和7年1月1日時点）",
+      "distribution_url": "https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm",
+      "acquired_at": "2026-08-30T00:11:12.802Z",
+      "file_name": "R8_04_mencho.csv",
+      "sha256": "e1043053d52fa39d23b14c9961fc42b675726af9bc3f67b9b1c3f835a3162eec"
+    },
+    {
+      "statistic_name": "令和2年国勢調査",
+      "table_number": "2020-国勢調査-5-3",
+      "table_name": "令和2年国勢調査 就業状態等基本集計 第5-3表 男女，従業上の地位，産業（大分類）別就業者数（15歳以上）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000032201183",
+      "acquired_at": "2026-08-30T00:29:38.554Z",
+      "file_name": "industry/2020/2020-005-03.xlsx",
+      "sha256": "93f66ae97ed8a57c2ce62258064b1278058fb1658c84bc827068a2b179265122"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2016-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031430150",
+      "acquired_at": "2026-08-29T04:33:28.141Z",
+      "file_name": "2016/16-03.xls",
+      "sha256": "843c8063f9a82d3f67bf67bf0391b40b0fc80e02b35ed0adaac30a17c3cb9f65"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2016-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031429218",
+      "acquired_at": "2026-08-29T04:33:29.126Z",
+      "file_name": "2016/16-04.xls",
+      "sha256": "3bf1c9f46c8eafdf94628185d7865134adb0700aa86da3e9ed08e48a7de0d5b5"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2016-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031429257",
+      "acquired_at": "2026-08-29T05:00:20.627Z",
+      "file_name": "2016/16-07.xls",
+      "sha256": "507c49d3a22a8bdd2c829f952abe82ed7983cf8828f665626be66980bde2d9df"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2016-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031429220",
+      "acquired_at": "2026-08-29T05:00:21.550Z",
+      "file_name": "2016/16-08.xls",
+      "sha256": "4c9007c25495de1cefbb1791ef950c76c14af584bc2cf01857568d624a72e1bd"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2016-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031429221",
+      "acquired_at": "2026-08-29T05:00:22.293Z",
+      "file_name": "2016/16-11.xls",
+      "sha256": "3ec813a3122948da5d8610afe8bd7ac196b8c779c7c3101fd07700fe4b276bb9"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2016-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031429275",
+      "acquired_at": "2026-08-29T05:00:23.278Z",
+      "file_name": "2016/16-12.xls",
+      "sha256": "18cb6ba4dba9ab495c9a4faddfc953f465b181d8aebe8e46fe08713360134f0c"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2017-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031598538",
+      "acquired_at": "2026-08-29T04:42:38.526Z",
+      "file_name": "2017/17-03.xls",
+      "sha256": "d354ededc923561fce0eaedfd1ea0cfff004d3d0541aca6891e37ccea5554ecf"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2017-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031598539",
+      "acquired_at": "2026-08-29T04:42:37.421Z",
+      "file_name": "2017/17-04.xls",
+      "sha256": "8f4a44738e8dcf700a0e2290c36bb159f8a71947096206df0dad89d136cc28c2"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2017-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031598571",
+      "acquired_at": "2026-08-29T04:56:20.466Z",
+      "file_name": "2017/17-07.xls",
+      "sha256": "979d18c37b7227733f50f87ec85c5e0e4c213a04139d09e958bc508bd154ef22"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2017-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031598552",
+      "acquired_at": "2026-08-29T04:56:21.200Z",
+      "file_name": "2017/17-08.xls",
+      "sha256": "16cf425bb8c597086dab6b921d297e2ed8a9f65172c41a46ffe902d82d6cf677"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2017-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031598590",
+      "acquired_at": "2026-08-29T04:56:22.092Z",
+      "file_name": "2017/17-11.xls",
+      "sha256": "2a712a0580f450ed698e415173e763e951d38246a6ae364656c4832fd4b73d20"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2017-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031598572",
+      "acquired_at": "2026-08-29T04:56:23.080Z",
+      "file_name": "2017/17-12.xls",
+      "sha256": "9ec864f167e7a1f1caa3908460ee8f12dadcd8f138511da767d87b50146499a4"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2018-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031736913",
+      "acquired_at": "2026-08-29T04:42:34.898Z",
+      "file_name": "2018/18-03.xls",
+      "sha256": "0e1f74c68a63a59be09b2a784dd1183544f99bd54eb2a2b4971facfb5cd3c9ac"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2018-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031736914",
+      "acquired_at": "2026-08-29T04:42:34.298Z",
+      "file_name": "2018/18-04.xls",
+      "sha256": "68974bd6b3bc9ddb12303982b753044a9fe4c09c34efb0f3e7700cae3b5dd906"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2018-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031736917",
+      "acquired_at": "2026-08-29T04:56:23.892Z",
+      "file_name": "2018/18-07.xls",
+      "sha256": "ddfde01d511a496c022135b73887aa2dbee4efd0a256fc08e6db5fc1b74d75ab"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2018-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031736918",
+      "acquired_at": "2026-08-29T04:56:24.887Z",
+      "file_name": "2018/18-08.xls",
+      "sha256": "99a55c0fd00602bd2397d08daaa215c01f334b8e2d121b117c447303a8909185"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2018-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031736921",
+      "acquired_at": "2026-08-29T04:56:25.910Z",
+      "file_name": "2018/18-11.xls",
+      "sha256": "9ed2037c9bb0edd3eb0657a0605ece07613b35f0802ea3b468872650ddda45da"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2018-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031736922",
+      "acquired_at": "2026-08-29T04:56:26.717Z",
+      "file_name": "2018/18-12.xls",
+      "sha256": "58d869515c107e02e14c1fda3fbd868a4d44e49cbd714060604f5ec4b659d88e"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2019-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031843908",
+      "acquired_at": "2026-08-29T04:42:33.539Z",
+      "file_name": "2019/19-03.xls",
+      "sha256": "992746fefaec2616a7072a64add8a9abfb70cc26360df2ff26e958de924ce6c0"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2019-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031843909",
+      "acquired_at": "2026-08-29T04:42:33.345Z",
+      "file_name": "2019/19-04.xls",
+      "sha256": "78053f967f37f724906340cd05cdbe648cac560c635d0ec04a25f1aeaefa1a6a"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2019-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031843912",
+      "acquired_at": "2026-08-29T04:56:27.450Z",
+      "file_name": "2019/19-07.xls",
+      "sha256": "de784ea7c6cd1bd4c808adb9c4f211ca00e6b8ef71297c4906f4ba240830504e"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2019-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031843913",
+      "acquired_at": "2026-08-29T04:56:28.559Z",
+      "file_name": "2019/19-08.xls",
+      "sha256": "dd2c920b053a64bd0948760d90099cf06c0e8778dc9617ec4812c2dc513f5395"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2019-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031843916",
+      "acquired_at": "2026-08-29T04:56:29.706Z",
+      "file_name": "2019/19-11.xls",
+      "sha256": "28e83db5da72aa14cc030965923b9f2bca1794eb62973ee81d3a5a72eba01e5a"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2019-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031843917",
+      "acquired_at": "2026-08-29T04:56:31.279Z",
+      "file_name": "2019/19-12.xls",
+      "sha256": "3699302b79da775b8d079893548502763474ab9cbca4c640124d11028d5fd387"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2020-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031971203",
+      "acquired_at": "2026-08-29T04:42:33.495Z",
+      "file_name": "2020/20-03.xls",
+      "sha256": "65da53be4fde4c33d0af5c7d225f600bf5f22d961c62e6efc37d3e9c0d9b1011"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2020-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031971230",
+      "acquired_at": "2026-08-29T04:42:24.428Z",
+      "file_name": "2020/20-04.xls",
+      "sha256": "481c335fe5e5458c7751aec403c289e55cfeb3d0e2a81cc789eb043c00a21c0b"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2020-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031971232",
+      "acquired_at": "2026-08-29T04:56:32.371Z",
+      "file_name": "2020/20-07.xls",
+      "sha256": "2a142229f37280aa12a7825628671caf22f1f0e17cdcec8acff8b7cb066b982a"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2020-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031971233",
+      "acquired_at": "2026-08-29T04:56:33.118Z",
+      "file_name": "2020/20-08.xls",
+      "sha256": "95233a92afc1368bd67293167cc84f95f659accd69fb232d7f02e74ff7ebb4f3"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2020-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031971236",
+      "acquired_at": "2026-08-29T04:56:33.731Z",
+      "file_name": "2020/20-11.xls",
+      "sha256": "72acf44b35757c38e361d53dd996143544b8809b374cdda18a09ac8cbba84502"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2020-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031971237",
+      "acquired_at": "2026-08-29T04:56:35.081Z",
+      "file_name": "2020/20-12.xls",
+      "sha256": "0838fe13c60e9fa2d2c3ff639b30f0f6a4fd5e3e3f55cf2b4295565a34ebba90"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2021-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306659",
+      "acquired_at": "2026-08-29T04:42:24.091Z",
+      "file_name": "2021/21-03.xlsx",
+      "sha256": "a38f7539e1587ed95d22fd8c12e151ac11697e9f0c95b1ab1ce5cc99656a3ce3"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2021-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306661",
+      "acquired_at": "2026-08-29T04:42:19.558Z",
+      "file_name": "2021/21-04.xlsx",
+      "sha256": "af485797942888ae6d6b6bc0d1777e791e8715cba5d83c3b117cec0fc6eac394"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2021-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306687",
+      "acquired_at": "2026-08-29T04:56:36.172Z",
+      "file_name": "2021/21-07.xlsx",
+      "sha256": "25278541b0b9f0eb33b740fb3027ddf0c5702b4298fdcc0602ec8ad551ee5170"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2021-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306689",
+      "acquired_at": "2026-08-29T04:56:36.908Z",
+      "file_name": "2021/21-08.xlsx",
+      "sha256": "da236f0f92e9a6b15bbb323efe4b28690d2019f67d3fb014c5e6a29dde2c6109"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2021-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306693",
+      "acquired_at": "2026-08-29T04:56:37.579Z",
+      "file_name": "2021/21-11.xlsx",
+      "sha256": "232612d401cedee4ba11c0dc3318dceeda206e5dadb6bf4292318486dd8add54"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2021-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306694",
+      "acquired_at": "2026-08-29T04:56:38.522Z",
+      "file_name": "2021/21-12.xlsx",
+      "sha256": "efa73181ed38324fe8589a039b555b1d7ec20b32099a21ee31a296eee21b086a"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2022-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000032224636",
+      "acquired_at": "2026-08-29T04:42:14.598Z",
+      "file_name": "2022/22-03.xlsx",
+      "sha256": "72d4da673c384d824fd24f4ec3802e3c179183b5c3bcb67699b32e0eeb95a9f7"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2022-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000032224637",
+      "acquired_at": "2026-08-29T04:42:12.987Z",
+      "file_name": "2022/22-04.xlsx",
+      "sha256": "645232460cd9b2dc44887cb520c6acb5933c12a6947d86aa19bcb8cccba1539e"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2022-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000032224640",
+      "acquired_at": "2026-08-29T04:56:39.131Z",
+      "file_name": "2022/22-07.xlsx",
+      "sha256": "9c40c8692698ade130ca42359095f8d55bb2b91c3aede34a1858ff80aa913b8e"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2022-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000032224641",
+      "acquired_at": "2026-08-29T04:56:39.819Z",
+      "file_name": "2022/22-08.xlsx",
+      "sha256": "4e3314c448a00aa78179b6ae9c59361ec9232af13172a7c4d416493a735c8f8c"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2022-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000032224644",
+      "acquired_at": "2026-08-29T04:56:40.469Z",
+      "file_name": "2022/22-11.xlsx",
+      "sha256": "672d9529517557bf0830cd69945675681f8bf9e7900b0b9a51665230f2a2df70"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2022-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000032224645",
+      "acquired_at": "2026-08-29T04:56:41.490Z",
+      "file_name": "2022/22-12.xlsx",
+      "sha256": "20cb923a54aac48b677bd03dc30ee40f8b28a361683dc185834ec6a09a3dae0c"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2023-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306647",
+      "acquired_at": "2026-08-29T04:42:15.556Z",
+      "file_name": "2023/23-03.xlsx",
+      "sha256": "09a35646f7dea3ea738be03cf03b70bccecffe55f916dd4d29a1d87cb722d100"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2023-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306648",
+      "acquired_at": "2026-08-29T04:42:16.197Z",
+      "file_name": "2023/23-04.xlsx",
+      "sha256": "48a13f8dc5ce8b36c43d3dc21ac7f08960ad913aed45cae9dccb8045051909e9"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2023-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306666",
+      "acquired_at": "2026-08-29T04:56:42.382Z",
+      "file_name": "2023/23-07.xlsx",
+      "sha256": "2b110439aa522380c226132da531eef38a12a5713f40bff98a6fdea8f9ea9db5"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2023-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306667",
+      "acquired_at": "2026-08-29T04:56:43.449Z",
+      "file_name": "2023/23-08.xlsx",
+      "sha256": "e4ed4b1097381f1606553dd117b1adf6a5416d25d9b419c21469483adb0c80ae"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2023-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306673",
+      "acquired_at": "2026-08-29T04:56:44.161Z",
+      "file_name": "2023/23-11.xlsx",
+      "sha256": "f81af6184e5ecd02496f57141b8d0fc69af88e016effa68bccfac3eb606ee12c"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2023-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306650",
+      "acquired_at": "2026-08-29T04:56:44.949Z",
+      "file_name": "2023/23-12.xlsx",
+      "sha256": "3b5f68c0df8542a0be3cf3087195a26fecbe27cdf075aea9f7a01c51166264dc"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2024-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306672",
+      "acquired_at": "2026-08-29T04:42:10.917Z",
+      "file_name": "2024/24-03.xlsx",
+      "sha256": "f76c54a5f59f1e78a53910a649d96fa24001bfd2efc5d91ecef66b4849bb246b"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2024-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306674",
+      "acquired_at": "2026-08-29T04:42:09.148Z",
+      "file_name": "2024/24-04.xlsx",
+      "sha256": "88f32322cedd97fcc50c0e892f41ffdfe8034f364dd1c1ecd40bfe16c13ec190"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2024-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306677",
+      "acquired_at": "2026-08-29T04:56:45.429Z",
+      "file_name": "2024/24-07.xlsx",
+      "sha256": "27e1a4d39905ebc66d7dd196d1667e2a647f37da6ad6dcf04aefbe5872a3c93c"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2024-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306678",
+      "acquired_at": "2026-08-29T04:56:46.411Z",
+      "file_name": "2024/24-08.xlsx",
+      "sha256": "ad5728b0a84981512b77c23240175ca9604edd3eec2c4c1b43926ce28e972234"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2024-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306681",
+      "acquired_at": "2026-08-29T04:56:47.339Z",
+      "file_name": "2024/24-11.xlsx",
+      "sha256": "3852e4bcaf4e08f4b850f4db0f43623dac27ab047d9758cae61d7e9d8ae5a886"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2024-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306682",
+      "acquired_at": "2026-08-29T04:56:48.082Z",
+      "file_name": "2024/24-12.xlsx",
+      "sha256": "118b45916c3bc7fe9400bdd0a6baa90c527caac10cc69469bbf723b8af99cd93"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2025-03",
+      "table_name": "人口、世帯数、人口動態（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306653",
+      "acquired_at": "2026-08-29T04:33:29.770Z",
+      "file_name": "2025/25-03.xlsx",
+      "sha256": "5e6c474d2b0c89e6006b8ccca844b7422c3d867e2444e3f5ef14627b2bc06f8a"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2025-04",
+      "table_name": "年齢別人口（市区町村別）【総計】",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306654",
+      "acquired_at": "2026-08-29T04:33:30.539Z",
+      "file_name": "2025/25-04.xlsx",
+      "sha256": "8b72e4fe5bbb9f49c135c17451afb673388100d7d39d0b75acfd9e4539af867e"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2025-07",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306660",
+      "acquired_at": "2026-08-29T05:01:23.240Z",
+      "file_name": "2025/25-07.xlsx",
+      "sha256": "86617a4c9538897dc2c066598a0849c6ef32458e422fa26f34827a3ae8de2447"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2025-08",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306662",
+      "acquired_at": "2026-08-29T05:01:24.109Z",
+      "file_name": "2025/25-08.xlsx",
+      "sha256": "ae58218dc6329989e573d8e6ced336b098e4f261a36334ec9b64aabe85ba7282"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2025-11",
+      "table_name": "人口、人口動態及び世帯数（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306688",
+      "acquired_at": "2026-08-29T05:01:24.560Z",
+      "file_name": "2025/25-11.xlsx",
+      "sha256": "b96cd0c4fb68d58f57f5bab0c544d530b75843131274713627da034bcfb4ea4b"
+    },
+    {
+      "statistic_name": "住民基本台帳に基づく人口、人口動態及び世帯数調査",
+      "table_number": "2025-12",
+      "table_name": "年齢階級別人口（市区町村別）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040306690",
+      "acquired_at": "2026-08-29T05:01:25.617Z",
+      "file_name": "2025/25-12.xlsx",
+      "sha256": "a92fb50047c229ee2cdebfc9120971c4593535f8331f68063b05ba2e928c3310"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2018-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031818791",
+      "acquired_at": "2026-09-02T12:41:08.380Z",
+      "file_name": "2018/juki-migration-age-inbound.xls",
+      "sha256": "add5265de8d4a9d4702c55d1f92a9eb6c7eef943a6b3ea658601b38ecb73181e"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2018-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031818838",
+      "acquired_at": "2026-09-02T12:41:08.384Z",
+      "file_name": "2018/juki-migration-age-outbound.xls",
+      "sha256": "5d0257ebd40c98ed904621bd2960e900006b00f70885bc9f5bbe0bd3e2e991c3"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2019-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031927980",
+      "acquired_at": "2026-09-02T12:41:08.389Z",
+      "file_name": "2019/juki-migration-age-inbound.xls",
+      "sha256": "4121573d7d2e6edd6228519e65349edade9339200837b47e9e945b215efbd1d3"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2019-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000031928027",
+      "acquired_at": "2026-09-02T12:41:08.394Z",
+      "file_name": "2019/juki-migration-age-outbound.xls",
+      "sha256": "ce502c43c3e72e05f99f76b7d704c36ef75553e76b934c525104a187e2109180"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2020-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000032084437",
+      "acquired_at": "2026-09-02T12:41:08.399Z",
+      "file_name": "2020/juki-migration-age-inbound.xlsx",
+      "sha256": "ca57a97cea6a203b372353c4d48e9e006611b3b3cca2b26fb0fdc5f92fb1f813"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2020-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000032084484",
+      "acquired_at": "2026-09-02T12:41:08.403Z",
+      "file_name": "2020/juki-migration-age-outbound.xlsx",
+      "sha256": "6b7d0dec87e246bb8af0c2c1a66cdfe8dbc0e5b48426a6d70fe290b72d8758e7"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2021-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000032193140",
+      "acquired_at": "2026-09-02T12:41:08.407Z",
+      "file_name": "2021/juki-migration-age-inbound.xlsx",
+      "sha256": "ce400397916a595e573f1ef23aabd57362516fb709a734a110f422d2094db8c5"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2021-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000032193187",
+      "acquired_at": "2026-09-02T12:41:08.412Z",
+      "file_name": "2021/juki-migration-age-outbound.xlsx",
+      "sha256": "765aff66f0089de3634621f84827b7a87d2d79bf18788c7f92e61b9c3a4c5d2c"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2022-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040049185",
+      "acquired_at": "2026-09-02T12:41:08.415Z",
+      "file_name": "2022/juki-migration-age-inbound.xlsx",
+      "sha256": "e79e4e9c4dee4ac9bbdd25e79a5c518eaaba32185a3bfe2212e493133d90ec7b"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2022-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040049232",
+      "acquired_at": "2026-09-02T12:41:08.418Z",
+      "file_name": "2022/juki-migration-age-outbound.xlsx",
+      "sha256": "4c999d813038ee93fed9d71cc82531d62241ef9993128f209690520cbffa7132"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2023-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040174273",
+      "acquired_at": "2026-09-02T12:41:08.422Z",
+      "file_name": "2023/juki-migration-age-inbound.xlsx",
+      "sha256": "df545ed34faee499d14078d6fa2460e14ce452f8dba7272810a1936973372523"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2023-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040174320",
+      "acquired_at": "2026-09-02T12:41:08.425Z",
+      "file_name": "2023/juki-migration-age-outbound.xlsx",
+      "sha256": "ee2b082000875d17a4986096cce233ae868fd5662c8a1b5c9691c97e0e8b3f1f"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2024-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040270483",
+      "acquired_at": "2026-09-02T12:41:08.428Z",
+      "file_name": "2024/juki-migration-age-inbound.xlsx",
+      "sha256": "79b98372bd06b8007cf08265d6331b7e7f13f345df7b3a61b7152900bf2d64dc"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2024-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040270530",
+      "acquired_at": "2026-09-02T12:41:08.431Z",
+      "file_name": "2024/juki-migration-age-outbound.xlsx",
+      "sha256": "3878a37de9332ed860188c3ee630908d3904410a3746979b5f8ad157c23755a0"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2025-参考表1",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動前の住所地別転入者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040443152",
+      "acquired_at": "2026-09-02T12:41:08.434Z",
+      "file_name": "2025/juki-migration-age-inbound.xlsx",
+      "sha256": "11a7fd60d1d2c0ead7d652f1315e96650dbddccff21e9f35de324160dcccab20"
+    },
+    {
+      "statistic_name": "住民基本台帳人口移動報告",
+      "table_number": "2025-参考表2",
+      "table_name": "参考表（年齢（10歳階級）、男女、移動後の住所地別転出者数－都道府県、市区町村）",
+      "distribution_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=4&statInfId=000040443199",
+      "acquired_at": "2026-09-02T12:41:08.436Z",
+      "file_name": "2025/juki-migration-age-outbound.xlsx",
+      "sha256": "a004ec418d6d141470eaaee0a4cc672fa893e28bd1fb1e2c14bee3b497804fb8"
+    }
+  ],
+  "pipeline": {
+    "git_commit": "e409bac",
+    "generated_by": "scripts/data/publish-juki.ts"
+  },
+  "quality": {
+    "warnings": [
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34100"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2017年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34202"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34203"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34204"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2022年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34205"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34207"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34208"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34209"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34210"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34211"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34212"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34213"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34214"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34215"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34302"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34304"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34307"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34309"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2016年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2017年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2018年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2019年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2020年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2021年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2022年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "age_coverage_gap",
+        "message": "2023年の総人口と年齢把握済み人口に差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34368"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34369"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34431"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34462"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2015-01-01〜2015-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2016-01-01〜2016-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2017-01-01〜2017-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2018-01-01〜2018-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2019-01-01〜2019-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2020-01-01〜2020-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2021-01-01〜2021-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2022-01-01〜2022-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2023-01-01〜2023-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      },
+      {
+        "code": "migration_change_gap",
+        "message": "2024-01-01〜2024-12-31の社会増減に調整差があります。",
+        "municipality_code": "34545"
+      }
+    ],
+    "excluded_municipalities": [
+      {
+        "municipality_code": "01695",
+        "reason": "2016年の人口が0（増減率の分母が作れない）"
+      },
+      {
+        "municipality_code": "01696",
+        "reason": "2016年の人口が0（増減率の分母が作れない）"
+      },
+      {
+        "municipality_code": "01697",
+        "reason": "2016年の人口が0（増減率の分母が作れない）"
+      },
+      {
+        "municipality_code": "01698",
+        "reason": "2016年の人口が0（増減率の分母が作れない）"
+      },
+      {
+        "municipality_code": "01699",
+        "reason": "2016年の人口が0（増減率の分母が作れない）"
+      },
+      {
+        "municipality_code": "01700",
+        "reason": "2016年の人口が0（増減率の分母が作れない）"
+      },
+      {
+        "municipality_code": "04216",
+        "reason": "2016年の同一自治体コードなし"
+      },
+      {
+        "municipality_code": "40231",
+        "reason": "2016年の同一自治体コードなし"
+      }
+    ]
+  },
+  "metric_choices": {
+    "migration_change": "reported",
+    "natural_change": "reported"
+  },
+  "attribution": "総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」の公表データを本プロジェクトが加工したものです。全国の市・町・村と東京都特別区を類似候補とし、政令指定都市の行政区は除外しています。",
+  "license_note": "一次情報の利用条件と出典表示に従って利用してください。公開データは非公式の可視化プロジェクトによる加工・集計結果です。"
+}

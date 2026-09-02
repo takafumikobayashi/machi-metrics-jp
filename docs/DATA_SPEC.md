@@ -1,7 +1,7 @@
 # データ仕様
 
 最終更新: 2026-08-30  
-対象リリース: `juki-2016-2025-hiroshima-v14`
+対象リリース: `juki-2016-2025-hiroshima-v16`
 
 ## 1. 基本方針
 
@@ -270,7 +270,7 @@ population_density_per_km2 = population_total / area_km2
 public/data/
 ├── latest.json
 └── releases/
-    └── juki-2016-2025-hiroshima-v14/
+    └── juki-2016-2025-hiroshima-v16/
         ├── manifest.json
         ├── municipalities.json
         ├── hiroshima-summary.json
