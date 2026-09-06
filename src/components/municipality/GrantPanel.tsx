@@ -20,6 +20,8 @@ type Group = {
   reviewed: boolean;
   rows: Row[];
   total: number;
+  knownAmountCount: number;
+  unknownAmountCount: number;
 };
 
 function providerLabel(provider: Row["provider"]): string {
@@ -53,12 +55,31 @@ function groupRows(rows: readonly Row[]): Group[] {
       reviewed: row.reviewed,
       rows: [],
       total: 0,
+      knownAmountCount: 0,
+      unknownAmountCount: 0,
     };
     group.rows.push(row);
-    group.total += row.amount_yen ?? 0;
+    if (row.amount_yen === null) {
+      group.unknownAmountCount += 1;
+    } else {
+      group.knownAmountCount += 1;
+      group.total += row.amount_yen;
+    }
     groups.set(key, group);
   }
   return [...groups.values()].sort((a, b) => b.total - a.total);
+}
+
+function groupAmountLabel(group: Group): string {
+  return group.knownAmountCount > 0 ? formatYen(group.total) : missingLabel;
+}
+
+function groupCountLabel(group: Group): string {
+  if (group.unknownAmountCount === 0) return `${group.rows.length}件`;
+  if (group.knownAmountCount === 0) {
+    return `${group.rows.length}件・金額不明`;
+  }
+  return `${group.rows.length}件・金額判明分`;
 }
 
 export function GrantPanel({ data, code }: { data: GrantFile; code: string }) {
@@ -138,8 +159,8 @@ export function GrantPanel({ data, code }: { data: GrantFile; code: string }) {
                   </p>
                 </div>
                 <div className="grant-group-total">
-                  <strong>{formatYen(group.total)}</strong>
-                  <small>{group.rows.length}件</small>
+                  <strong>{groupAmountLabel(group)}</strong>
+                  <small>{groupCountLabel(group)}</small>
                 </div>
               </div>
               <div className="table-wrap">

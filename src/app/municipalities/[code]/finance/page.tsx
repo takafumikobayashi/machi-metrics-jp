@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 
 import { FinancePanel } from "@/components/municipality/FinancePanel";
 import { hiroshimaMunicipalities } from "@/lib/config";
+import { selectLatestFinanceEntries } from "@/lib/data/finance";
 import {
   loadFinance,
+  loadFurusato,
   loadLatestPointer,
   loadMunicipalityDetail,
 } from "@/lib/data/load";
@@ -47,18 +49,33 @@ export default async function FinancePage({
   );
   if (!municipality) notFound();
   const latestPointer = await loadLatestPointer();
-  const [finance, detail] = await Promise.all([
+  const [finance, furusato, detail] = await Promise.all([
     loadFinance(),
+    loadFurusato(),
     loadMunicipalityDetail(latestPointer.release_id, code),
   ]);
+  // 複数年度が混在しても、表示値と県内順位の比較母集団を同じ最新年度に揃える。
+  const financeSelection = selectLatestFinanceEntries(finance.entries);
   const entry =
-    finance.entries.find((item) => item.municipality_code === code) ?? null;
+    financeSelection.entries.find((item) => item.municipality_code === code) ??
+    null;
+  const donationFiscalYear = financeSelection.fiscalYear
+    ? Number(financeSelection.fiscalYear)
+    : null;
+  const donationEntry =
+    donationFiscalYear === null
+      ? null
+      : (furusato.entries.find(
+          (item) =>
+            item.municipality_code === code &&
+            item.fiscal_year === donationFiscalYear,
+        ) ?? null);
   const latest = detail.snapshots.at(-1);
   const financialIndicator =
     finance.financial_indicators.entries.find(
       (item) =>
         item.municipality_code === code &&
-        item.fiscal_year === entry?.fiscal_year,
+        item.fiscal_year === financeSelection.fiscalYear,
     ) ?? null;
   return (
     <article className="shell municipality-page">
@@ -86,13 +103,15 @@ export default async function FinancePage({
       </nav>
       <FinancePanel
         entry={entry}
-        comparison={finance.entries}
+        comparison={financeSelection.entries}
+        donationEntry={donationEntry}
         population={latest?.population_total ?? null}
         financialIndicator={financialIndicator}
         financialIndicatorSource={finance.financial_indicators.source}
       />
       <p className="section-note">
-        データ出典：総務省「地方財政状況調査」（令和6年度決算）。リリース{" "}
+        データ出典：総務省「地方財政状況調査」（
+        {financeSelection.fiscalYear ?? "対象"}年度決算）。リリース{" "}
         {latestPointer.release_id} の人口を1人当たり計算の分母に使用しています。
       </p>
     </article>

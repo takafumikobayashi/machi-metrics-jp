@@ -109,6 +109,21 @@ test("金額不明の採択がある場合は判明分の合計と明示する",
   assert.doesNotMatch(markup, /掲載分の合計は/);
 });
 
+test("金額がすべて不明の制度は0円ではなくデータなしと表示する", async () => {
+  const file = await grants();
+  const markup = renderToStaticMarkup(
+    GrantPanel({ data: file, code: "34212" }),
+  );
+  const digitalGroup = markup.match(
+    /<h3>デジタル田園都市国家構想交付金<\/h3>[\s\S]*?<\/section>/,
+  )?.[0];
+
+  assert.ok(digitalGroup);
+  assert.match(digitalGroup, /<strong>データなし<\/strong>/);
+  assert.match(digitalGroup, /1件・金額不明/);
+  assert.doesNotMatch(digitalGroup, /0円/);
+});
+
 test("出典が1つでも欠ければ検証は落ちる", async () => {
   const file = await grants();
   const broken = { ...file, sources: file.sources.slice(1) };
@@ -166,5 +181,16 @@ test("デジタル田園都市国家構想交付金は原本の採択団体一�
   for (const row of rows) {
     assert.equal(row.source_id, "digital_implementation_2022");
     assert.equal(row.fiscal_year, 2022);
+  }
+});
+
+test("出典のURLは配布元のファイル名と一致する", async () => {
+  const file = await grants();
+  // 配布元を確かめずにURLを組み立てると404になる。ファイル名の一致で取り違えを防ぐ。
+  for (const source of file.sources) {
+    assert.ok(
+      source.url.endsWith(source.file) || source.url.endsWith(".html"),
+      `${source.program} のURLと保存ファイル名が食い違う: ${source.url}`,
+    );
   }
 });

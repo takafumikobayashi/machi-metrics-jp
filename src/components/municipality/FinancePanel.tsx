@@ -1,4 +1,5 @@
 import { FinanceRadarCharts } from "@/components/municipality/FinanceRadarCharts";
+import type { FurusatoFile } from "@/lib/data/furusato-schema";
 import type {
   FinanceEntry,
   FinanceFile,
@@ -171,11 +172,22 @@ function toRadarValues<T extends Record<string, number>>(
   }));
 }
 
+type DetailRow = {
+  label: string;
+  value: number;
+  /** 他の内訳と重複する内数。親項目の残額計算には加えない。 */
+  isOverlapping?: boolean;
+};
+
 function detailRows(
   parentValue: number,
-  rows: readonly { label: string; value: number }[],
-): readonly { label: string; value: number }[] {
-  const residual = parentValue - rows.reduce((sum, row) => sum + row.value, 0);
+  rows: readonly DetailRow[],
+): readonly DetailRow[] {
+  const residual =
+    parentValue -
+    rows
+      .filter((row) => !row.isOverlapping)
+      .reduce((sum, row) => sum + row.value, 0);
   return residual > 0
     ? [...rows, { label: "その他（内訳公表なし）", value: residual }]
     : rows;
@@ -188,7 +200,7 @@ function RevenueDetailTable({
 }: {
   parentLabel: string;
   parentValue: number;
-  rows: readonly { label: string; value: number }[];
+  rows: readonly DetailRow[];
 }) {
   const completeRows = detailRows(parentValue, rows);
   return (
@@ -227,7 +239,7 @@ function ExpenditureDetailTable({
 }: {
   parentLabel: string;
   parentValue: number;
-  rows: readonly { label: string; value: number }[];
+  rows: readonly DetailRow[];
 }) {
   const completeRows = detailRows(parentValue, rows);
   return (
@@ -242,9 +254,21 @@ function ExpenditureDetailTable({
           </tr>
         </thead>
         <tbody>
-          {completeRows.map(({ label, value }) => (
-            <tr key={label}>
-              <th scope="row">{label}</th>
+          {completeRows.map(({ label, value, isOverlapping }) => (
+            <tr
+              key={label}
+              className={
+                isOverlapping ? "finance-detail-subset-row" : undefined
+              }
+            >
+              <th scope="row">
+                {label}
+                {isOverlapping ? (
+                  <small className="finance-detail-subset-label">
+                    （内数）
+                  </small>
+                ) : null}
+              </th>
               <td>{formatYen(value)}</td>
               <td>
                 {formatRatioAsPercent(
@@ -262,12 +286,14 @@ function ExpenditureDetailTable({
 export function FinancePanel({
   entry,
   comparison,
+  donationEntry,
   population,
   financialIndicator,
   financialIndicatorSource,
 }: {
   entry: FinanceEntry | null;
   comparison: FinanceFile["entries"];
+  donationEntry: FurusatoFile["entries"][number] | null;
   population: number | null;
   financialIndicator: FinancialIndicator | null;
   financialIndicatorSource: FinanceFile["financial_indicators"]["source"];
@@ -287,6 +313,11 @@ export function FinancePanel({
   const expenditureTotal = entry.values["歳出合計"];
   const expenditureNatureTotal = entry.expenditure_nature["歳出合計"];
   const revenueTotal = entry.revenue["歳入合計"];
+  const donationAmount = donationEntry?.amount_yen ?? null;
+  const donationToExpenditureRatio =
+    donationAmount !== null && expenditureTotal > 0
+      ? donationAmount / expenditureTotal
+      : null;
   const currentAccountBalanceRatio =
     calculateCurrentAccountBalanceRatio(financialIndicator);
   const expenditureRadar = toRadarValues(
@@ -342,6 +373,15 @@ export function FinancePanel({
             {financialIndicator
               ? "公開データを元に当サイト算出・高いほど財政構造が硬直的"
               : "同年度の指標データなし"}
+          </small>
+        </div>
+        <div className="metric-card">
+          <span>ふるさと納税受入額／歳出合計</span>
+          <strong>{formatRatioAsPercent(donationToExpenditureRatio)}</strong>
+          <small>
+            {donationEntry
+              ? `${donationEntry.fiscal_year}年度受入額 ${formatYen(donationAmount)}`
+              : "同年度の受入額データなし"}
           </small>
         </div>
       </div>
@@ -623,16 +663,17 @@ export function FinancePanel({
                 label: "災害復旧事業費",
                 value: entry.expenditure_nature["投資的経費・災害復旧事業費"],
               },
+              {
+                label: "うち人件費",
+                value: entry.expenditure_nature["投資的経費・うち人件費"],
+                isOverlapping: true,
+              },
             ]}
           />
           <ExpenditureDetailTable
             parentLabel="普通建設事業費"
             parentValue={entry.expenditure_nature["投資的経費・普通建設事業費"]}
             rows={[
-              {
-                label: "うち人件費",
-                value: entry.expenditure_nature["投資的経費・うち人件費"],
-              },
               {
                 label: "うち単独事業費",
                 value:

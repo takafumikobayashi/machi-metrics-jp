@@ -29,8 +29,8 @@ SOURCES = {
     "regional_future_2026": {
         "id": "regional_future_2026",
         "program": "地域未来交付金",
-        "title": "地域未来交付金（地域未来推進型）の交付対象事業の決定について",
-        "url": "https://www.chisou.go.jp/sousei/about/kouhukin/pdf/r8_suishin_1.pdf",
+        "title": "地域未来交付金（地域未来推進型）の交付対象事業の決定について（令和8年1月募集）",
+        "url": "https://www.chisou.go.jp/sousei/about/chiikimiraikoufukin/suishin/pdf/r8_suishin_1.pdf",
         "path": "regional-future/2026/r8_suishin_1.pdf",
         "sha256": "949ece75408f71e3ac9f4c8cc26752ac15a6210769ec745480c7958ed2385cb2",
         "page_basis": "file",

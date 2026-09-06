@@ -49,7 +49,8 @@ pnpm publish:digital-dx
 サイトが読む`public/data/digital/dx-2024.json`へ反映します。検証に失敗した場合は、
 公開済みファイルを変更しません。取得日時は同じディレクトリの`source.json`に記録した
 `acquired_at`を優先し、メタデータがない既存原本では`dashboard.zip`の更新日時を
-再現可能な暫定値として使います。
+再現可能な暫定値として使います。正規化対象のCSVは、抽出済みファイルではなく
+ハッシュを記録する`dashboard.zip`内から直接読み込みます。
 
 ## 正規化結果から公開JSONへの変換
 

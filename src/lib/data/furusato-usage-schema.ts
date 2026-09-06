@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { hiroshimaMunicipalities } from "../config";
+
 export const furusatoUsageCategories = [
   "子育て・教育",
   "福祉・医療",
@@ -45,6 +47,36 @@ export const furusatoUsageFileSchema = z
         .strict(),
     ),
   })
-  .strict();
+  .strict()
+  .superRefine((file, ctx) => {
+    /*
+     * 市町コードが1桁違うだけで画面から消える。実際に大崎上島町が 34390 と
+     * 書かれており、正しい 34431 と突き合わないまま空欄になっていた。
+     * 23市町がすべて、設定と同じ順序で揃っていることを確かめる。
+     */
+    const expected = hiroshimaMunicipalities.map(({ code }) => code);
+    const actual = file.entries.map(
+      ({ municipality_code }) => municipality_code,
+    );
+    if (actual.join(",") !== expected.join(",")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["entries"],
+        message: `Expected the 23 Hiroshima municipalities in config order, got ${actual.join(",")}`,
+      });
+    }
+    for (const entry of file.entries) {
+      const municipality = hiroshimaMunicipalities.find(
+        ({ code }) => code === entry.municipality_code,
+      );
+      if (municipality && municipality.nameJa !== entry.municipality_name) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["entries"],
+          message: `${entry.municipality_code} is ${municipality.nameJa}, not ${entry.municipality_name}`,
+        });
+      }
+    }
+  });
 
 export type FurusatoUsageFile = z.infer<typeof furusatoUsageFileSchema>;

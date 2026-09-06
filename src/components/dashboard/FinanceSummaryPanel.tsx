@@ -1,6 +1,12 @@
 import Link from "next/link";
 
 import { FinanceCompositionBars } from "@/components/dashboard/FinanceCompositionBars";
+import {
+  FinanceRatioDistribution,
+  type RatioPoint,
+} from "@/components/dashboard/FinanceRatioDistribution";
+import { hiroshimaMunicipalities } from "@/lib/config";
+import { selectLatestFinanceEntries } from "@/lib/data/finance";
 import type { FinanceEntry, FinanceFile } from "@/lib/data/finance-schema";
 import { formatRatioAsPercent, formatYen } from "@/lib/format/display";
 
@@ -19,6 +25,11 @@ export type FinanceSummaryGroup = {
 
 type SummaryGroup = GroupDefinition & FinanceSummaryGroup;
 
+/**
+ * 款をそのまま並べると9区分になり、色だけで見分けられる上限を超える。
+ * 構成比の大きい款を色付きで残し、小さい款は中立色の「その他」にまとめる（[[D-036]]）。
+ * tone 7 は色相を持たない「その他」専用。
+ */
 const revenueGroupDefinitions: readonly GroupDefinition[] = [
   { label: "地方税", keys: ["地方税"], tone: 1 },
   { label: "地方交付税", keys: ["地方交付税"], tone: 2 },
@@ -47,12 +58,19 @@ const revenueGroupDefinitions: readonly GroupDefinition[] = [
     ],
     tone: 5,
   },
-  { label: "分担金・負担金", keys: ["分担金及び負担金"], tone: 6 },
-  { label: "使用料・手数料", keys: ["使用料", "手数料"], tone: 7 },
   {
     label: "その他収入",
-    keys: ["財産収入", "寄附金", "繰入金", "繰越金", "諸収入"],
-    tone: 8,
+    keys: [
+      "分担金及び負担金",
+      "使用料",
+      "手数料",
+      "財産収入",
+      "寄附金",
+      "繰入金",
+      "繰越金",
+      "諸収入",
+    ],
+    tone: 7,
   },
 ];
 
@@ -60,16 +78,22 @@ const expenditureGroupDefinitions: readonly GroupDefinition[] = [
   { label: "議会・総務", keys: ["議会費", "総務費"], tone: 1 },
   { label: "民生", keys: ["民生費"], tone: 2 },
   { label: "衛生", keys: ["衛生費"], tone: 3 },
+  { label: "土木", keys: ["土木費"], tone: 4 },
+  { label: "教育", keys: ["教育費"], tone: 5 },
+  { label: "公債費", keys: ["公債費"], tone: 6 },
   {
-    label: "産業・労働",
-    keys: ["労働費", "農林水産業費", "商工費"],
-    tone: 4,
+    label: "その他",
+    keys: [
+      "労働費",
+      "農林水産業費",
+      "商工費",
+      "消防費",
+      "災害復旧費",
+      "諸支出金",
+      "前年度繰上充用金",
+    ],
+    tone: 7,
   },
-  { label: "土木", keys: ["土木費"], tone: 5 },
-  { label: "消防・災害", keys: ["消防費", "災害復旧費"], tone: 6 },
-  { label: "教育", keys: ["教育費"], tone: 7 },
-  { label: "公債費", keys: ["公債費"], tone: 8 },
-  { label: "その他", keys: ["諸支出金", "前年度繰上充用金"], tone: 9 },
 ];
 
 function sumKeys(
@@ -123,9 +147,8 @@ function positionInRange(
 }
 
 export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
-  const entries = finance.entries;
+  const { fiscalYear, entries } = selectLatestFinanceEntries(finance.entries);
   const municipalityCount = entries.length;
-  const fiscalYear = entries[0]?.fiscal_year ?? null;
   const revenueTotal = entries.reduce(
     (sum, entry) => sum + entry.revenue["歳入合計"],
     0,
@@ -147,7 +170,9 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
     expenditureGroupDefinitions,
   );
 
-  const indicators = finance.financial_indicators.entries;
+  const indicators = finance.financial_indicators.entries.filter(
+    (indicator) => indicator.fiscal_year === fiscalYear,
+  );
   const indicatorRatios = indicators.map(
     (indicator) => indicator.published_ratio_percent / 100,
   );
@@ -173,6 +198,45 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
     ratioDenominator > 0 ? currentExpenditure / ratioDenominator : null;
   const medianPosition = positionInRange(medianRatio, minRatio, maxRatio);
   const aggregatePosition = positionInRange(aggregateRatio, minRatio, maxRatio);
+  /** 帯の上に23市町を1点ずつ置き、どの市町がどこにいるかを読めるようにする。 */
+  const ratioPoints: RatioPoint[] = indicators
+    .map((indicator) => {
+      const ratio = indicator.published_ratio_percent / 100;
+      const position = positionInRange(ratio, minRatio, maxRatio);
+      const municipality = hiroshimaMunicipalities.find(
+        ({ code }) => code === indicator.municipality_code,
+      );
+      return position === null || !municipality
+        ? null
+        : {
+            code: indicator.municipality_code,
+            name: municipality.nameJa,
+            ratio,
+            position,
+          };
+    })
+    .filter((point): point is RatioPoint => point !== null)
+    .sort((a, b) => a.ratio - b.ratio);
+  const rangeMarkers = [
+    medianRatio !== null && medianPosition !== null
+      ? {
+          kind: "median" as const,
+          label: "中央値",
+          ratio: medianRatio,
+          position: medianPosition,
+          detail: "市町別の経常収支比率の中央値",
+        }
+      : null,
+    aggregateRatio !== null && aggregatePosition !== null
+      ? {
+          kind: "aggregate" as const,
+          label: `${municipalityCount}市町合算`,
+          ratio: aggregateRatio,
+          position: aggregatePosition,
+          detail: "算定元データを合算して計算した参考値",
+        }
+      : null,
+  ].filter((marker) => marker !== null);
 
   return (
     <section
@@ -230,24 +294,12 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
           </div>
           <span>{indicators.length}市町</span>
         </div>
-        <div className="finance-summary-range-labels" aria-hidden="true">
-          <span>{formatRatioAsPercent(minRatio)}</span>
-          <span>{formatRatioAsPercent(maxRatio)}</span>
-        </div>
-        <div className="finance-summary-range-track" aria-hidden="true">
-          {medianPosition !== null ? (
-            <span
-              className="finance-summary-range-marker finance-summary-range-marker-median"
-              style={{ left: `${medianPosition}%` }}
-            />
-          ) : null}
-          {aggregatePosition !== null ? (
-            <span
-              className="finance-summary-range-marker finance-summary-range-marker-aggregate"
-              style={{ left: `${aggregatePosition}%` }}
-            />
-          ) : null}
-        </div>
+        <FinanceRatioDistribution
+          points={ratioPoints}
+          markers={rangeMarkers}
+          minRatio={minRatio}
+          maxRatio={maxRatio}
+        />
         <div className="finance-summary-range-key">
           <span>
             <i className="finance-summary-range-dot finance-summary-range-dot-median" />

@@ -4,9 +4,10 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { hiroshimaMunicipalities } from "../src/lib/config";
 import { FinanceSummaryPanel } from "../src/components/dashboard/FinanceSummaryPanel";
+import { selectLatestFinanceEntries } from "../src/lib/data/finance";
 import { financeFileSchema } from "../src/lib/data/finance-schema";
 import { FinancePanel } from "../src/components/municipality/FinancePanel";
-import { loadFinance } from "../src/lib/data/load";
+import { loadFinance, loadFurusato } from "../src/lib/data/load";
 import { formatRatioAsPercent, formatYen } from "../src/lib/format/display";
 
 let cached: Awaited<ReturnType<typeof loadFinance>> | null = null;
@@ -34,6 +35,59 @@ test("財務データは広島県23市町を同じ決算年度で持つ", async 
     ),
     expectedCodes,
   );
+});
+
+test("財務比較は入力順ではなく最新年度の行だけを選ぶ", async () => {
+  const file = await finance();
+  const olderEntries = file.entries.map((entry) => ({
+    ...entry,
+    fiscal_year: "2020",
+  }));
+  const selection = selectLatestFinanceEntries([
+    ...olderEntries,
+    ...file.entries,
+  ]);
+
+  assert.equal(selection.fiscalYear, "2024");
+  assert.equal(selection.entries.length, file.entries.length);
+  assert.ok(selection.entries.every((entry) => entry.fiscal_year === "2024"));
+});
+
+test("同年度のふるさと納税受入額と歳出合計の比率を表示する", async () => {
+  const [file, furusato] = await Promise.all([finance(), loadFurusato()]);
+  const entry = file.entries[0];
+  assert.ok(entry);
+  const donationEntry = furusato.entries.find(
+    (candidate) =>
+      candidate.municipality_code === entry.municipality_code &&
+      candidate.fiscal_year === Number(entry.fiscal_year),
+  );
+  assert.ok(donationEntry);
+  const indicator =
+    file.financial_indicators.entries.find(
+      ({ municipality_code, fiscal_year }) =>
+        municipality_code === entry.municipality_code &&
+        fiscal_year === entry.fiscal_year,
+    ) ?? null;
+
+  const markup = renderToStaticMarkup(
+    FinancePanel({
+      entry,
+      comparison: file.entries,
+      donationEntry,
+      population: null,
+      financialIndicator: indicator,
+      financialIndicatorSource: file.financial_indicators.source,
+    }),
+  );
+  const ratio =
+    donationEntry.amount_yen === null
+      ? null
+      : donationEntry.amount_yen / entry.values["歳出合計"];
+
+  assert.match(markup, /ふるさと納税受入額／歳出合計/);
+  assert.match(markup, new RegExp(formatRatioAsPercent(ratio)));
+  assert.match(markup, new RegExp(`${entry.fiscal_year}年度受入額`));
 });
 
 test("経常収支比率は公式の分子・分母から計算できる", async () => {
@@ -248,6 +302,7 @@ test("目的別の表は前年度繰上充用金を除く13款をすべて出す
     FinancePanel({
       entry,
       comparison: file.entries,
+      donationEntry: null,
       population: null,
       financialIndicator: indicator,
       financialIndicatorSource: file.financial_indicators.source,
@@ -285,4 +340,38 @@ test("目的別の表は前年度繰上充用金を除く13款をすべて出す
     covered,
     entry.values["歳出合計"] - entry.values["前年度繰上充用金"],
   );
+});
+
+test("投資的経費の人件費は投資的経費の内数として表示する", async () => {
+  const file = await finance();
+  const entry = file.entries[0];
+  assert.ok(entry);
+  const indicator =
+    file.financial_indicators.entries.find(
+      ({ municipality_code }) => municipality_code === entry.municipality_code,
+    ) ?? null;
+
+  const markup = renderToStaticMarkup(
+    FinancePanel({
+      entry,
+      comparison: file.entries,
+      donationEntry: null,
+      population: null,
+      financialIndicator: indicator,
+      financialIndicatorSource: file.financial_indicators.source,
+    }),
+  );
+  const investmentDetail = markup.match(
+    /<h4>投資的経費の内訳<\/h4>[\s\S]*?<\/table>/,
+  )?.[0];
+  const constructionDetail = markup.match(
+    /<h4>普通建設事業費の内訳<\/h4>[\s\S]*?<\/table>/,
+  )?.[0];
+
+  assert.ok(investmentDetail);
+  assert.match(investmentDetail, /うち人件費/);
+  assert.match(investmentDetail, /finance-detail-subset-row/);
+  assert.ok(constructionDetail);
+  assert.doesNotMatch(constructionDetail, /うち人件費/);
+  assert.match(constructionDetail, /その他（内訳公表なし）/);
 });

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { projectConfig } from "@/lib/config";
+import { selectLatestFinanceEntries } from "@/lib/data/finance";
 import {
   loadDensity,
   loadFinance,
@@ -64,6 +65,7 @@ export default async function DataAboutPage() {
   const furusatoHistory = furusato.sources.find(
     (source) => source.id === "history",
   );
+  const financeSelection = selectLatestFinanceEntries(finance.entries);
   /** 除外した自治体は、コードだけでは伝わらないため名称を引き当てて表示する。 */
   const nameByCode = new Map(
     municipalitiesFile.municipalities.map((municipality) => [
@@ -245,9 +247,10 @@ export default async function DataAboutPage() {
       <section>
         <h2>財務状況</h2>
         <p>
-          総務省「地方財政状況調査」の市町村分から、{finance.entries.length}
+          総務省「地方財政状況調査」の市町村分から、
+          {financeSelection.entries.length}
           市町の
-          {finance.entries[0]?.fiscal_year ?? "対象"}
+          {financeSelection.fiscalYear ?? "対象"}
           年度決算における歳入・目的別歳出・性質別経費を掲載しています。原本の千円単位を円へ換算し、歳入・歳出合計に対する構成比、歳入の主な内訳、最新の人口スナップショットを分母にした1人当たり歳出を表示します。構成比レーダーチャートは比較用に8分類へまとめた分析表示です。性質別経費は予算書の「節」そのものではなく、e-Statの統一分類です。
         </p>
         <p>

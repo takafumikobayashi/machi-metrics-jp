@@ -37,15 +37,17 @@
   --series-4: #6a4fa3;
 
   /* 財務構成専用のカテゴリカル配色。色自体に良し悪しや順位の意味は持たせない。 */
-  --finance-1: #2f6fb5;
-  --finance-2: #6a4fa3;
-  --finance-3: #b8730f;
-  --finance-4: #4e6d83;
-  --finance-5: #8b6952;
-  --finance-6: #607c65;
-  --finance-7: #8a5a73;
-  --finance-8: #7c7aa1;
-  --finance-9: #7d8792;
+  /*
+   * 歳入・歳出の構成の配色。6区分に絞り、検証スクリプトの全項目を通した値。
+   * 明度帯・彩度・色覚差・通常視の識別・地色比をライトとダークの両方で確認済み（[[D-036]]）。
+   */
+  --finance-1: #2a78d6;
+  --finance-2: #eb6834;
+  --finance-3: #4a3aa7;
+  --finance-4: #eda100;
+  --finance-5: #e87ba4;
+  --finance-6: #008300;
+  --finance-other: #7d8792;
 
   /* 注目していない行の色。地色と紛れない程度に見える濃さにする。 */
   --chart-muted: #d6dce4;
@@ -125,15 +127,13 @@
     --series-1: #7fb0e8;
     --series-3: #e0a34e;
     --series-4: #b09ce0;
-    --finance-1: #7fb0e8;
-    --finance-2: #b09ce0;
-    --finance-3: #e0a34e;
-    --finance-4: #93b1c8;
-    --finance-5: #c7a98d;
-    --finance-6: #98b49d;
-    --finance-7: #d09bb5;
-    --finance-8: #b5b3d3;
-    --finance-9: #a3acb7;
+    --finance-1: #3986e5;
+    --finance-2: #d95821;
+    --finance-3: #7c74e6;
+    --finance-4: #bd7400;
+    --finance-5: #c75d87;
+    --finance-6: #33a02e;
+    --finance-other: #a3acb7;
     --chart-muted: #3a424f;
     --increase: #4fbfae;
     --decrease: #f08a63;
@@ -166,15 +166,13 @@ html[data-theme="dark"] {
   --series-1: #7fb0e8;
   --series-3: #e0a34e;
   --series-4: #b09ce0;
-  --finance-1: #7fb0e8;
-  --finance-2: #b09ce0;
-  --finance-3: #e0a34e;
-  --finance-4: #93b1c8;
-  --finance-5: #c7a98d;
-  --finance-6: #98b49d;
-  --finance-7: #d09bb5;
-  --finance-8: #b5b3d3;
-  --finance-9: #a3acb7;
+  --finance-1: #3986e5;
+  --finance-2: #d95821;
+  --finance-3: #7c74e6;
+  --finance-4: #bd7400;
+  --finance-5: #c75d87;
+  --finance-6: #33a02e;
+  --finance-other: #a3acb7;
   --chart-muted: #3a424f;
   --increase: #4fbfae;
   --decrease: #f08a63;
@@ -835,6 +833,18 @@ h3 {
 
 .finance-detail-table .data-table {
   min-width: 0;
+}
+
+.finance-detail-subset-row th,
+.finance-detail-subset-row td {
+  border-top: 1px dashed var(--line);
+}
+
+.finance-detail-subset-label {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 400;
 }
 
 .compact-heading {
@@ -3182,15 +3192,52 @@ body {
   opacity: 0.75;
 }
 
+/* 吹き出しを帯の上に重ねるための基準。 */
+.finance-summary-range-frame {
+  position: relative;
+}
+
+/* 23市町を1点ずつ置く。同じ値が重なるため、半透明にして密度が見えるようにする。 */
+.finance-summary-range-point {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 1px solid var(--white);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--series-1) 70%, transparent);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 120ms ease;
+}
+
+.finance-summary-range-point:hover,
+.finance-summary-range-point:focus-visible {
+  z-index: 2;
+  transform: translate(-50%, -50%) scale(1.35);
+  background: var(--series-1);
+  outline: none;
+}
+
 .finance-summary-range-marker {
   position: absolute;
   z-index: 1;
   top: 50%;
   width: 3px;
   height: 22px;
+  padding: 0;
   border: 1px solid var(--white);
   border-radius: 999px;
   transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.finance-summary-range-marker:hover,
+.finance-summary-range-marker:focus-visible {
+  z-index: 3;
+  height: 26px;
+  outline: none;
 }
 
 .finance-summary-range-marker-median {
@@ -3373,16 +3420,9 @@ body {
   background: var(--finance-6);
 }
 
+/* 小さな款をまとめた「その他」。色相を持たせず、他の区分と役割を分ける。 */
 .finance-summary-tone-7 {
-  background: var(--finance-7);
-}
-
-.finance-summary-tone-8 {
-  background: var(--finance-8);
-}
-
-.finance-summary-tone-9 {
-  background: var(--finance-9);
+  background: var(--finance-other);
 }
 
 .finance-summary-chart-tooltip {
@@ -4021,17 +4061,76 @@ html[data-theme="dark"] .insight-panel {
     padding: 7px 9px 7px 11px;
   }
 }
+/* ---------- ふるさと納税の使いみち ---------- */
+
+/*
+ * 使途は1市町で14件になることがある。1列に積むと区切りが読めないため、
+ * 枠のあるカードを格子に並べ、短い項目が縦に伸び続けないようにする。
+ */
+.usage-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.usage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.usage-card h3 {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: 1.55;
+}
+
+.usage-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* 分類は見出しではなく、カードの所属を示す小さな印にとどめる。 */
+.usage-category,
+.usage-kind {
+  align-self: flex-start;
+  padding: 1px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.usage-description {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
 .usage-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  margin: 0.35rem 0;
-  color: var(--muted);
-  font-size: 0.85rem;
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
 }
 
 .usage-meta span {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.15rem 0.55rem;
+  background: var(--white);
 }

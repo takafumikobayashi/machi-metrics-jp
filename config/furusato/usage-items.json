@@ -1,0 +1,880 @@
+{
+  "items": {
+    "34100": [
+      {
+        "category": "観光・文化",
+        "title": "被爆の実相を守り、広め、伝える取組",
+        "description": "青少年同士の交流支援、被爆建物・被爆樹木の保存継承、被爆資料の劣化防止など。",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34202": [
+      {
+        "category": "子育て・教育",
+        "title": "子育て・教育分野",
+        "description": "子供の居場所づくりと学びの環境づくり",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "福祉保健分野",
+        "description": "誰もが自分らしく暮らせるまちへ",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "防災・安全",
+        "title": "市民生活・防災分野",
+        "description": "暮らしの安心と災害への備え",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "文化・スポーツ・生涯学習分野",
+        "description": "文化・スポーツ・学びの機会の創出",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "産業分野",
+        "description": "新たなビジネスへの挑戦",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "都市基盤分野",
+        "description": "安全で快適に暮らせるまちへ",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "環境分野",
+        "description": "脱炭素社会に向けた地域へ",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "行政経営分野",
+        "description": "スマートシティ“くれ”への第一歩を",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "自治体におまかせ",
+        "description": "市の発展のために有効に活用",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34203": [
+      {
+        "category": "福祉・医療",
+        "title": "ひとにやさしいふるさとづくり",
+        "description": "高齢社会に即した環境づくりや子育て支援など次世代育成のための事業",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "竹原の資源を活かしたふるさとづくり",
+        "description": "自然・歴史・文化を活かす事業",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "魅力あふれるふるさとづくり",
+        "description": "市の魅力や活力を創出する事業",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34204": [
+      {
+        "category": "子育て・教育",
+        "title": "子どもたちの健やかな成長を応援する事業",
+        "description": "16事業",
+        "fiscal_year": "令和7年度",
+        "amount_yen": 131458519,
+        "evidence_type": "actual"
+      },
+      {
+        "category": "環境",
+        "title": "ふるさと三原の環境を守る事業",
+        "description": "2事業",
+        "fiscal_year": "令和7年度",
+        "amount_yen": 19230000,
+        "evidence_type": "actual"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "地域活動の充実・強化に関する事業",
+        "description": "1事業",
+        "fiscal_year": "令和7年度",
+        "amount_yen": 10000000,
+        "evidence_type": "actual"
+      }
+    ],
+    "34208": [
+      {
+        "category": "その他",
+        "title": "府中市長におまかせ（府中市の市政全般に）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "子育てに関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "まちづくりに関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "健康や医療・福祉に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "観光振興に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "商業・工業の振興に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "農林業の振興に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "地域活性化や移住・定住に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "スポーツや文化振興に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "環境や衛生に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "防災・安全",
+        "title": "安心・安全なまちづくりや防災に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "ICTを活用したまちづくりに関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "文化財の保存継承に関すること（びんご府中の宝を未来へ！）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "教育に関すること",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34210": [
+      {
+        "category": "地域づくり・移住",
+        "title": "自治、協働及び定住に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "産業及び交流に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "環境、基盤、交通及び情報に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "保健、福祉、医療及び介護に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "教育及び文化に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "市民団体等の公益的な事業に対して行う事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "その他市長が別に定める事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34211": [
+      {
+        "category": "子育て・教育",
+        "title": "教育・文化",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "産業・雇用",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "生活・環境",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "防災・安全",
+        "title": "安全・安心",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "健康・福祉",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "自治・行政運営",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34304": [
+      {
+        "category": "子育て・教育",
+        "title": "こどもがいきいきと育つまちづくり",
+        "description": "かいた版ネウボラ事業、地域子育て支援センター事業など",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "魅力づくりの推進",
+        "description": "町の魅力PR事業、旧千葉家管理運営事業など",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "健康づくりの推進",
+        "description": "がん検診事業、食育推進事業など",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "防災・安全",
+        "title": "災害に強いまちづくり",
+        "description": "防災リーダー育成事業、消防団運営事業など",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "基盤整備と都市機能が充実したまちづくり",
+        "description": "町内道路修繕事業、地域公共交通維持確保事業など",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "「海田っ子応援寄附金」（町教育委員会の取組に対する支援）",
+        "description": "海田っ子の学びの充実に向けた町教育委員会の取組に活用します。令和7年4月1日から新規。",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "「海田っ子応援寄附金」（町立小中学校の取組に対する支援）",
+        "description": "町立小中学校を応援することができます。令和7年4月1日から新規。",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34307": [
+      {
+        "category": "観光・文化",
+        "title": "筆文化の継承に資する事業",
+        "description": "小学生の筆づくり体験学習や「筆まつり」実施の支援など",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "教育分野に資する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "観光分野に資する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "子育て分野に資する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "防災・安全",
+        "title": "復旧・復興及び防災・減災に資する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "町長におまかせ",
+        "description": "熊野町の未来創造に向けて活用されます。",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34368": [
+      {
+        "category": "子育て・教育",
+        "title": "教育・人づくりに関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "健康・医療・福祉に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "子ども・子育てに関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "環境・衛生に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "地域・産業振興等に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "スポーツ・文化振興に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "まちづくり・町民活動に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "観光・交流・定住促進に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "防災・安全",
+        "title": "安心・安全・防災に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "防災・安全",
+        "title": "災害支援・復興に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "加計高校支援に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "1～11の指定を町長に任せます",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34369": [
+      {
+        "category": "その他",
+        "title": "北広島町のまちづくり全般に（指定なし）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "脱炭素社会を目指したまちづくり",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "スポーツをキーワードとしたまちづくり",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "住民が安心して元気に暮らせるまちづくり",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "地域資源を生かした産業・観光のまちづくり",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "環境",
+        "title": "豊かな自然を守り育むまちづくり",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "魅力ある伝統文化が息づくまちづくり",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "地域を担う人材の教育・学びがあるまちづくり",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "協働によるまちづくり（芸北地域振興協議会の活動支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "協働によるまちづくり（大朝地域協議会の活動支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "協働によるまちづくり（千代田地域づくり協議会の活動支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "協働によるまちづくり（豊平地域自治振興会の活動支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "トップアスリートの活動（どんぐり北広島ソフトテニスクラブ選手への支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "トップアスリートの活動（やり投げで世界を目指すパラアスリート白砂匠庸選手への支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34431": [
+      {
+        "category": "その他",
+        "title": "町長におまかせ",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "大崎上島サマーフェスティバル花火大会支援",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "東野住吉祭花火大会支援",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "木江十七夜祭花火大会支援",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "地場産業発展支援（商工会支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "観光・文化",
+        "title": "観光振興支援（観光協会支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "広島商船高専活性化支援",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "大崎海星高校活性化支援",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "広島叡智学園活性化支援",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "社会福祉協議会支援（社協支援）",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "【団体支援】一般社団法人まなびのみなと",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "【団体支援】一般社団法人AUST",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "【団体支援】特定非営利活動法人かみじまの風",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34462": [
+      {
+        "category": "地域づくり・移住",
+        "title": "自治活動、地域環境の保全整備及び定住に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "農業、観光、商工業等の振興に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "教育、文化、芸術の振興に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "福祉・医療",
+        "title": "子育て、福祉、保健及び医療に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "その他",
+        "title": "特に指定なし",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34545": [
+      {
+        "category": "子育て・教育",
+        "title": "次世代を担う人材育成事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "子育て・若者定住支援事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "誰もが尊敬し合えるまちづくり事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "子育て・教育",
+        "title": "町内唯一の高校「県立油木高校」魅力化事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "地域づくり・移住",
+        "title": "「神石高原地域創造チャレンジ基金」に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      },
+      {
+        "category": "産業・農林水産業",
+        "title": "「ふるさと起業家支援プロジェクト」に関する事業",
+        "description": null,
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ]
+  }
+}

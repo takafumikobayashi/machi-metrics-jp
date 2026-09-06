@@ -1,13 +1,16 @@
 """Normalize the Digital Agency's machine-readable municipal DX table."""
 import csv
 import hashlib
+import io
 import json
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data/raw/digital-dx/2024-07-12"
 OUTPUT = ROOT / "data/processed/digital-dx-2024.json"
+CSV_MEMBER = "市区町村毎のDX進捗状況_市区町村比較.csv"
 
 
 def percent(value):
@@ -62,6 +65,32 @@ def acquired_at(source, source_sha256):
     )
 
 
+def read_csv_from_archive(archive_bytes):
+    """Read the municipality comparison table from the hashed source archive.
+
+    The extracted directory is only a convenience for inspecting the raw
+    download.  It is not used for normalization because it can become stale
+    or be edited independently of ``dashboard.zip``.
+    """
+    try:
+        with zipfile.ZipFile(io.BytesIO(archive_bytes)) as archive:
+            members = [
+                info for info in archive.infolist() if info.filename == CSV_MEMBER
+            ]
+            if len(members) != 1:
+                raise ValueError(
+                    f"対象CSVの格納が一意ではありません: {CSV_MEMBER}"
+                )
+            member = members[0]
+
+            with archive.open(member) as raw_csv, io.TextIOWrapper(
+                raw_csv, encoding="utf-8-sig", newline=""
+            ) as text:
+                return list(csv.reader(text))
+    except zipfile.BadZipFile as error:
+        raise ValueError("Invalid dashboard archive") from error
+
+
 def resolve_columns(header, names):
     """Map each municipality to its column, using the prefecture block.
 
@@ -97,12 +126,13 @@ def resolve_columns(header, names):
 
 def main():
     source = RAW / "dashboard.zip"
-    csv_path = RAW / "extracted/市区町村毎のDX進捗状況_市区町村比較.csv"
+    source_bytes = source.read_bytes()
+    source_sha256 = hashlib.sha256(source_bytes).hexdigest()
     municipalities = {
         item["nameJa"]: item["code"]
         for item in json.loads((ROOT / "config/municipalities/hiroshima.json").read_text())
     }
-    rows = list(csv.reader(csv_path.open(encoding="utf-8-sig")))
+    rows = read_csv_from_archive(source_bytes)
     header = rows[0]
     columns = resolve_columns(header, list(municipalities))
     entries = []
@@ -121,7 +151,6 @@ def main():
                 "display_value": raw or None,
             })
         entries.append({"municipality_code": code, "municipality_name": name, "metrics": metrics})
-    source_sha256 = hashlib.sha256(source.read_bytes()).hexdigest()
     result = {
         "schema_version": "1.0",
         "as_of_date": "2024-07-12",
