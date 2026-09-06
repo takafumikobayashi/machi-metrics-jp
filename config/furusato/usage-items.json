@@ -1,4 +1,114 @@
 {
+  "source": {
+    "title": "広島県内市町へのふるさと納税について",
+    "url": "https://www.pref.hiroshima.lg.jp/site/hiroshima-ouenn-kifukinn/kennnaishimachi-furusatonouzei-madoguchi.html",
+    "acquired_at": "2026-09-06T12:00:00+09:00"
+  },
+  "municipalities": {
+    "34100": {
+      "official_url": "https://www.city.hiroshima.lg.jp/atomicbomb-peace/1036658/1026970/1015036.html",
+      "checked_at": "2026-09-06"
+    },
+    "34202": {
+      "official_url": "https://www.city.kure.lg.jp/soshiki/68/tukaimiti.html",
+      "checked_at": "2026-09-06"
+    },
+    "34203": {
+      "official_url": "https://www.city.takehara.lg.jp/soshikikarasagasu/zaiseika/gyomuannai/furusatonozei/1993.html",
+      "checked_at": "2026-09-06"
+    },
+    "34204": {
+      "official_url": "https://www.city.mihara.hiroshima.jp/soshiki/4/174759.html",
+      "checked_at": "2026-09-06"
+    },
+    "34205": {
+      "official_url": "https://www.city.onomichi.hiroshima.jp/soshiki/2/19609.html",
+      "checked_at": "2026-09-06"
+    },
+    "34207": {
+      "official_url": "https://www.city.fukuyama.hiroshima.jp/soshiki/jouhou-hasshin/109542.html",
+      "checked_at": "2026-09-06"
+    },
+    "34208": {
+      "official_url": "https://www.city.fuchu.hiroshima.jp/soshiki/soumubu/kikakuzaisei/furusatonozei/8806.html",
+      "checked_at": "2026-09-06"
+    },
+    "34209": {
+      "official_url": "https://www.city.miyoshi.hiroshima.jp/soshiki/1/1364.html",
+      "checked_at": "2026-09-06"
+    },
+    "34210": {
+      "official_url": "https://www.city.shobara.hiroshima.jp/main/government/zaisei/cat02/post_750.html",
+      "checked_at": "2026-09-06"
+    },
+    "34211": {
+      "official_url": "https://www.city.otake.hiroshima.jp/soshiki/somu/sangyoshinko/gyomu/5898.html",
+      "checked_at": "2026-09-06"
+    },
+    "34212": {
+      "official_url": "https://www.city.higashihiroshima.lg.jp/soshiki/sangyo/12/5/44312.html",
+      "checked_at": "2026-09-06"
+    },
+    "34213": {
+      "official_url": "https://www.city.hatsukaichi.hiroshima.jp/soshiki/12/47438.html",
+      "checked_at": "2026-09-06"
+    },
+    "34214": {
+      "official_url": "https://www.akitakata.jp/ja/",
+      "checked_at": "2026-09-06"
+    },
+    "34215": {
+      "official_url": "https://www.city.etajima.hiroshima.jp/cms/articles/show/9448",
+      "checked_at": "2026-09-06"
+    },
+    "34302": {
+      "official_url": "https://www.town.fuchu.hiroshima.jp/site/home/list43.html",
+      "checked_at": "2026-09-06"
+    },
+    "34304": {
+      "official_url": "https://www.town.kaita.lg.jp/site/furusato-subsite/137372.html",
+      "checked_at": "2026-09-06"
+    },
+    "34307": {
+      "official_url": "https://www.town.kumano.lg.jp/13/2/1/3992.html",
+      "checked_at": "2026-09-06"
+    },
+    "34309": {
+      "official_url": "https://www.town.saka.lg.jp/2017/04/04/furusato_jisseki/",
+      "checked_at": "2026-09-06"
+    },
+    "34368": {
+      "official_url": "https://www.akiota.jp/site/furusatonouzei/3221.html",
+      "checked_at": "2026-09-06"
+    },
+    "34369": {
+      "official_url": "https://www.town.kitahiroshima.lg.jp/site/furusatokihu/2910.html",
+      "checked_at": "2026-09-06"
+    },
+    "34431": {
+      "official_url": "https://www.town.osakikamijima.hiroshima.jp/soshiki/somu/5/1_1/1282.html",
+      "checked_at": "2026-09-06"
+    },
+    "34462": {
+      "official_url": "https://www.town.sera.hiroshima.jp/soshiki/13/260.html",
+      "checked_at": "2026-09-06"
+    },
+    "34545": {
+      "official_url": "https://www.jinsekigun.jp/town/formation/seisaku/02/furusatonouzei/",
+      "checked_at": "2026-09-06"
+    }
+  },
+  "item_sources": {
+    "34205": {
+      "子どもの居場所づくり事業など": "https://www.city.onomichi.hiroshima.jp/uploaded/attachment/56658.pdf"
+    },
+    "34215": {
+      "新規就農者支援対策事業補助": "https://www.city.etajima.hiroshima.jp/cms/files/uploads/6%281%29.pdf"
+    },
+    "34302": {
+      "水分峡森林公園整備": "https://www.town.fuchu.hiroshima.jp/site/home/46439.html"
+    }
+  },
   "items": {
     "34100": [
       {
@@ -134,6 +244,87 @@
         "fiscal_year": "令和7年度",
         "amount_yen": 10000000,
         "evidence_type": "actual"
+      }
+    ],
+    "34205": [
+      {
+        "category": "子育て・教育",
+        "title": "子どもの居場所づくり事業など",
+        "description": "児童センター、子育て支援センター、公園整備など。金額は使途指定区分への寄附額。",
+        "fiscal_year": "令和7年度活用予定",
+        "amount_yen": 88899000,
+        "evidence_type": "planned"
+      }
+    ],
+    "34207": [
+      {
+        "category": "子育て・教育",
+        "title": "こども・希望の子育てのために",
+        "description": "子どもの成長・子育て支援と、小児・周産期医療体制の充実。",
+        "fiscal_year": null,
+        "amount_yen": null,
+        "evidence_type": "menu"
+      }
+    ],
+    "34209": [
+      {
+        "category": "産業・農林水産業",
+        "title": "農業振興に関する事業",
+        "description": "事業区分別寄附実績。",
+        "fiscal_year": "令和7年度",
+        "amount_yen": 25146000,
+        "evidence_type": "menu"
+      }
+    ],
+    "34212": [
+      {
+        "category": "その他",
+        "title": "令和5年度に受け入れた寄附の活用",
+        "description": "令和5年度寄附を令和6年度に活用。金額は受入総額。詳細は公式PDF。",
+        "fiscal_year": "令和6年度",
+        "amount_yen": 313563014,
+        "evidence_type": "actual"
+      }
+    ],
+    "34213": [
+      {
+        "category": "観光・文化",
+        "title": "観光おもてなし向上事業",
+        "description": "寄附金を活用する主な事業。",
+        "fiscal_year": "令和7年度",
+        "amount_yen": null,
+        "evidence_type": "planned"
+      }
+    ],
+    "34214": [],
+    "34215": [
+      {
+        "category": "産業・農林水産業",
+        "title": "新規就農者支援対策事業補助",
+        "description": "寄附金充当予定事業。",
+        "fiscal_year": "令和6年度",
+        "amount_yen": 6300000,
+        "evidence_type": "planned"
+      }
+    ],
+    "34302": [
+      {
+        "category": "防災・安全",
+        "title": "水分峡森林公園整備",
+        "description": "「被災者支援・災害復旧・減災」応援コースへの寄附の活用内容。",
+        "fiscal_year": "令和5年度",
+        "amount_yen": null,
+        "evidence_type": "actual"
+      }
+    ],
+    "34309": [
+      {
+        "category": "子育て・教育",
+        "title": "青少年の健全育成支援",
+        "description": "使途別寄附実績。",
+        "fiscal_year": "令和6年度",
+        "amount_yen": 52000,
+        "evidence_type": "menu"
       }
     ],
     "34208": [

@@ -23,6 +23,8 @@
     "normalize:migration:age": "python3 scripts/data/normalize-migration.py --dataset age",
     "acquire:furusato": "python3 scripts/data/acquire-furusato.py",
     "normalize:furusato": "python3 scripts/data/normalize-furusato.py",
+    "normalize:furusato-usage": "node --import tsx scripts/data/normalize-furusato-usage.ts",
+    "publish:furusato-usage": "node --import tsx scripts/data/publish-furusato-usage.ts",
     "acquire:finance": "python3 scripts/data/acquire-finance.py",
     "normalize:finance": "python3 scripts/data/normalize-finance.py",
     "publish:finance": "node --import tsx scripts/data/publish-finance.ts",

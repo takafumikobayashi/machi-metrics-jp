@@ -26,6 +26,17 @@ python -m pip install -r requirements.txt
 
 以後、この仮想環境を有効にした状態で`pnpm normalize:furusato`を実行します。CIでも同じ`requirements.txt`をインストールしてから検証します。
 
+## ふるさと納税の使途情報
+
+使途カテゴリ・事業名・自治体公式URLは`config/furusato/usage-items.json`を正本として管理します。正規化時に23市町分のメタデータ、項目、公式リンクを検証し、サイトが読む公開JSONを生成します。項目ごとに自治体の一覧ページと異なる原典がある場合は、同じ設定ファイルの`item_sources`で上書きします。
+
+```bash
+pnpm normalize:furusato-usage
+pnpm publish:furusato-usage
+```
+
+`normalize:furusato-usage`は`data/processed/furusato/usage.json`を生成し、`publish:furusato-usage`は`furusatoUsageFileSchema`で検証してから`public/data/furusato/usage.json`へ原子的に反映します。設定を編集した場合は、正規化後に公開処理を実行してください。
+
 ## パイロット正規化
 
 2016年・2025年の`-03`・`-04`原本から、広島市（`34100`）と安芸高田市（`34214`）を抽出します。

@@ -124,6 +124,10 @@ MVP画面の主系列は`YY-03`と`YY-04`です。`YY-07`、`YY-08`、`YY-11`、
 
 原本の列位置は年によって変わり得るため、正規化は見出しセルの文言（`（単位：千円、件）`、`平成28年度`、`令和７年度`、`市町村民税`、`※推計値含む` など）を検算してから読み取ります。控除額の列BEは結合セルの構造上「ふるさと納税に係る寄附金税額控除 → 市町村民税 → 控除額（円）」に当たります。
 
+### 使途情報
+
+使途カテゴリ・事業名・活用年度・金額・公式リンクは、国や自治体の公開情報を確認して `config/furusato/usage-items.json` に記録します。`pnpm normalize:furusato-usage` で設定を `data/processed/furusato/usage.json` に変換し、`pnpm publish:furusato-usage` でスキーマ検証後に `public/data/furusato/usage.json` へ反映します。項目ごとに一覧ページ以外の原典を使う場合は、設定内の `item_sources` にURLを記録します。
+
 ## 3-5. 追加統計: 財務状況
 
 | 項目         | 内容                                                                                                                                  |

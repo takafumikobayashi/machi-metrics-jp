@@ -14,3 +14,4 @@
 - `.gitignore` は未追跡ファイル向けの設定であり、追跡済みの公開データやGit履歴を縮小しません。容量が問題になるまでは履歴を残し、将来必要になった時点でGitHub Releaseやオブジェクトストレージなどのバージョン付き保管先へ移す方針です。
 
 財務JSONは、`pnpm acquire:finance` → `pnpm normalize:finance` → `pnpm publish:finance`で、取得マニフェストのSHA-256を検証しながら再生成できます。
+ふるさと納税の使途情報（`furusato/usage.json`）は、`config/furusato/usage-items.json`を`pnpm normalize:furusato-usage`で正規化し、`pnpm publish:furusato-usage`でスキーマ検証後に公開したものです。
