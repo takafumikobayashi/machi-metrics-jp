@@ -26,11 +26,28 @@
   /*
    * データ可視化のカテゴリカル配色。
    * ティール系は増加の意味色（--increase）と紛らわしいため、系列には使わない。
-   * 系列1=人口のストック、系列3=自然増減、系列4=社会増減と外国人住民。
+   *
+   * 系列色は「1つのグラフの中で系列を区別するための番号」であり、画面をまたいだ
+   * 意味は持たない（[[D-033]]）。同じ青が、あるグラフでは人口のストック、別の
+   * グラフでは日本人住民や歳出を指す。どの系列かは必ず凡例か見出しで示す。
+   * 順序のある区分は系列色ではなく年齢の階調（--age-band-*）を使う。
    */
   --series-1: #2f6fb5;
   --series-3: #b8730f;
   --series-4: #6a4fa3;
+
+  /* 財務構成専用のカテゴリカル配色。色自体に良し悪しや順位の意味は持たせない。 */
+  /*
+   * 歳入・歳出の構成の配色。6区分に絞り、検証スクリプトの全項目を通した値。
+   * 明度帯・彩度・色覚差・通常視の識別・地色比をライトとダークの両方で確認済み（[[D-036]]）。
+   */
+  --finance-1: #88b7f3;
+  --finance-2: #d9897a;
+  --finance-3: #a290d5;
+  --finance-4: #d7ac67;
+  --finance-5: #e598c3;
+  --finance-6: #93c485;
+  --finance-other: #a8b0ba;
 
   /* 注目していない行の色。地色と紛れない程度に見える濃さにする。 */
   --chart-muted: #d6dce4;
@@ -110,6 +127,13 @@
     --series-1: #7fb0e8;
     --series-3: #e0a34e;
     --series-4: #b09ce0;
+    --finance-1: #6399d0;
+    --finance-2: #ca7e69;
+    --finance-3: #8f7dc1;
+    --finance-4: #b09146;
+    --finance-5: #c27ba2;
+    --finance-6: #76a465;
+    --finance-other: #8d959f;
     --chart-muted: #3a424f;
     --increase: #4fbfae;
     --decrease: #f08a63;
@@ -142,6 +166,13 @@ html[data-theme="dark"] {
   --series-1: #7fb0e8;
   --series-3: #e0a34e;
   --series-4: #b09ce0;
+  --finance-1: #6399d0;
+  --finance-2: #ca7e69;
+  --finance-3: #8f7dc1;
+  --finance-4: #b09146;
+  --finance-5: #c27ba2;
+  --finance-6: #76a465;
+  --finance-other: #8d959f;
   --chart-muted: #3a424f;
   --increase: #4fbfae;
   --decrease: #f08a63;
@@ -276,6 +307,170 @@ h3 {
   padding-block: 36px 80px;
 }
 
+.detail-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.detail-nav a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.detail-nav a[aria-current="page"] {
+  background: var(--primary-soft);
+  border-color: var(--brand-500);
+  color: var(--primary-deep);
+  font-weight: 700;
+}
+.dx-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0 28px;
+}
+.dx-summary-grid > div {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.dx-summary-grid strong {
+  font-size: var(--text-h2);
+}
+.dx-summary-grid span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.dx-chart-list {
+  display: grid;
+  gap: 20px;
+}
+.dx-category {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.dx-category h3 {
+  margin: 0 0 14px;
+  font-size: var(--text-h3);
+}
+.dx-metric + .dx-metric {
+  margin-top: 14px;
+}
+.dx-metric-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: var(--text-sm);
+}
+/*
+ * 「実施」「未実施」は原本の表記をそのまま出す。ブランド色を当てると
+ * 未実施が否定的な評価に見えるうえ、色が状態を表していないのに表しているように
+ * 読めてしまう。状態は文字で読めるため、色は足さない（[[D-016]]）。
+ */
+.dx-metric-label strong {
+  color: var(--ink);
+}
+.dx-meter {
+  height: 9px;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--paper-strong);
+}
+.dx-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--brand-600);
+}
+@media (max-width: 600px) {
+  .dx-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.donation-bars {
+  position: relative;
+  overflow-x: auto;
+  padding: 20px 12px 12px;
+}
+.donation-bars-inner {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  min-width: 720px;
+  height: 260px;
+}
+.donation-bar-column {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 52px;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.donation-bar-value {
+  min-height: 1.2em;
+  font-size: 10px;
+  text-align: center;
+}
+.donation-bar-track {
+  display: flex;
+  width: 100%;
+  max-width: 42px;
+  height: 190px;
+  align-items: end;
+  background: var(--paper-strong);
+  border-radius: 6px 6px 0 0;
+}
+.donation-bar {
+  width: 100%;
+  min-height: 2px;
+  /* 棒の中で色を変えても表す量は変わらない。ダークでは階調の向きも反転する。 */
+  background: var(--brand-600);
+  border-radius: 6px 6px 0 0;
+  transition: height 300ms ease;
+}
+.donation-bar-button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: end;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.donation-bar-button:focus-visible {
+  outline: 3px solid var(--brand-500);
+  outline-offset: 3px;
+}
+.donation-tooltip {
+  position: absolute;
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .detail-heading {
+    gap: 16px;
+  }
+  .detail-nav {
+    width: 100%;
+  }
+  .detail-nav a {
+    flex: 1;
+    text-align: center;
+  }
+}
+
 .detail-kicker {
   display: flex;
   align-items: baseline;
@@ -357,6 +552,10 @@ h3 {
   margin: 36px 0;
 }
 
+.metric-grid.compact-metric-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .metric-card {
   min-height: 150px;
   padding: 20px;
@@ -413,6 +612,241 @@ h3 {
   background: var(--white);
 }
 
+.finance-radar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 30px 0 34px;
+}
+
+.finance-radar-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.finance-radar-card h3 {
+  margin: 0;
+  font-size: var(--text-h3);
+}
+
+.finance-radar {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  margin: 4px auto 0;
+  overflow: visible;
+}
+
+.finance-radar-grid-lines polygon,
+.finance-radar-grid-lines line {
+  fill: none;
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+}
+
+.finance-radar-grid-lines line {
+  stroke: var(--chart-muted);
+  stroke-dasharray: 2 3;
+}
+
+.finance-radar-area {
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.finance-radar-area-revenue {
+  fill: color-mix(in srgb, var(--series-4) 24%, transparent);
+  stroke: var(--series-4);
+}
+
+.finance-radar-area-expenditure {
+  fill: color-mix(in srgb, var(--series-1) 24%, transparent);
+  stroke: var(--series-1);
+}
+
+.finance-radar-point {
+  stroke-width: 1;
+}
+
+.finance-radar-point-revenue {
+  fill: var(--series-4);
+  stroke: var(--white);
+}
+
+.finance-radar-point-expenditure {
+  fill: var(--series-1);
+  stroke: var(--white);
+}
+
+.finance-radar-hit-area {
+  fill: transparent;
+  stroke: transparent;
+  cursor: pointer;
+}
+
+.finance-radar-hit-area:focus {
+  fill: rgb(255 255 255 / 22%);
+  stroke: var(--ink);
+  stroke-dasharray: 2 2;
+  outline: none;
+}
+
+.finance-radar-label {
+  fill: var(--muted);
+  font-size: var(--text-chart);
+  font-weight: 700;
+}
+
+.finance-radar-scale-label {
+  fill: var(--chart-muted);
+  font-size: var(--text-chart);
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-radar-values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.finance-radar-values li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 5px;
+}
+
+.finance-radar-values strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 補助金・交付金 ---------- */
+
+/*
+ * 制度ごとにまとめた区画。行ごとに制度名・年度・主体を繰り返すのをやめ、
+ * 区画の見出しへ1回だけ出す。表は事業名と採択額の2列に絞る。
+ */
+.grant-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.grant-group {
+  padding: 18px 16px 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.grant-group-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-bottom: 12px;
+}
+
+.grant-group-heading h3 {
+  margin: 0;
+  font-size: var(--text-h3);
+}
+
+.grant-group-meta {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+/* 未照合は評価ではなく状態なので、意味色ではなく地色の違いで示す。 */
+.grant-pending {
+  margin-left: 8px;
+  padding: 1px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-strong);
+  color: var(--ink);
+  font-size: var(--text-sm);
+}
+
+.grant-group-total {
+  display: grid;
+  justify-items: end;
+  gap: 1px;
+  text-align: right;
+}
+
+.grant-group-total strong {
+  font-size: var(--text-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.grant-group-total small {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.grant-group .data-table td {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-table-section {
+  margin-top: 34px;
+}
+
+.finance-table-section h3 {
+  margin: 0;
+  font-size: var(--text-h3);
+}
+
+.finance-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.finance-detail-table {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.finance-detail-table h4 {
+  margin: 0 0 10px;
+  font-size: var(--text-body);
+}
+
+.finance-detail-table .data-table {
+  min-width: 0;
+}
+
+.finance-detail-subset-row th,
+.finance-detail-subset-row td {
+  border-top: 1px dashed var(--line);
+}
+
+.finance-detail-subset-label {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
 .compact-heading {
   margin-bottom: 24px;
 }
@@ -423,10 +857,18 @@ h3 {
 }
 
 .section-note {
-  max-width: 720px;
+  max-width: 960px;
   margin: 10px 0 0;
   color: var(--muted);
   font-size: var(--text-body);
+}
+
+.finance-nature-note {
+  max-width: none;
+}
+
+.finance-indicator-note {
+  max-width: none;
 }
 
 .chart-frame {
@@ -1555,6 +1997,18 @@ nav a:focus-visible,
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .metric-grid.compact-metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .finance-radar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .finance-details-grid {
+    grid-template-columns: 1fr;
+  }
+
   .overview-summary-grid {
     grid-template-columns: 1fr;
   }
@@ -1627,6 +2081,10 @@ nav a:focus-visible,
   }
 
   .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-grid.compact-metric-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2615,6 +3073,384 @@ body {
   padding: 24px 26px;
 }
 
+.dashboard-finance-summary {
+  margin-top: 16px;
+}
+
+.finance-summary-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 18px;
+}
+
+.finance-summary-kpi {
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.finance-summary-kpi-featured {
+  border-color: var(--brand-100);
+  background: var(--brand-50);
+}
+
+.finance-summary-kpi span,
+.finance-summary-kpi small {
+  display: block;
+}
+
+.finance-summary-kpi span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.finance-summary-kpi strong {
+  display: block;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: var(--text-lg);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-summary-kpi-featured strong {
+  color: var(--brand-700);
+}
+
+.finance-summary-kpi small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.finance-summary-distribution {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.finance-summary-distribution-heading,
+.finance-summary-composition-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.finance-summary-distribution-heading h4,
+.finance-summary-composition-heading h4 {
+  margin: 0;
+  font-size: var(--text-body);
+}
+
+.finance-summary-distribution-heading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.finance-summary-distribution-heading > span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.finance-summary-range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-summary-range-track {
+  position: relative;
+  height: 12px;
+  margin: 4px 8px 0;
+  border-radius: 999px;
+  background: var(--paper-strong);
+}
+
+.finance-summary-range-track::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--series-1),
+    var(--series-4),
+    var(--brand-600)
+  );
+  content: "";
+  opacity: 0.75;
+}
+
+/* 吹き出しを帯の上に重ねるための基準。 */
+.finance-summary-range-frame {
+  position: relative;
+}
+
+/* 23市町を1点ずつ置く。同じ値が重なるため、半透明にして密度が見えるようにする。 */
+.finance-summary-range-point {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 1px solid var(--white);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--series-1) 70%, transparent);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 120ms ease;
+}
+
+.finance-summary-range-point:hover,
+.finance-summary-range-point:focus-visible {
+  z-index: 2;
+  transform: translate(-50%, -50%) scale(1.35);
+  background: var(--series-1);
+  outline: none;
+}
+
+.finance-summary-range-marker {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  width: 3px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--white);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.finance-summary-range-marker:hover,
+.finance-summary-range-marker:focus-visible {
+  z-index: 3;
+  height: 26px;
+  outline: none;
+}
+
+.finance-summary-range-marker-median {
+  background: var(--ink);
+}
+
+.finance-summary-range-marker-aggregate {
+  background: var(--brand-700);
+}
+
+.finance-summary-range-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.finance-summary-range-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.finance-summary-range-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.finance-summary-range-dot-median {
+  background: var(--ink);
+}
+
+.finance-summary-range-dot-aggregate {
+  background: var(--brand-700);
+}
+
+.finance-summary-composition-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.finance-summary-composition {
+  position: relative;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.finance-summary-composition-heading strong {
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.finance-summary-stacked-bar {
+  display: flex;
+  height: 22px;
+  margin: 18px 0 14px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--paper-strong);
+}
+
+.finance-summary-segment {
+  appearance: none;
+  display: block;
+  flex: 0 0 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid var(--white);
+  cursor: pointer;
+}
+
+.finance-summary-segment:last-child {
+  border-right: 0;
+}
+
+.finance-summary-segment:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 2px solid var(--brand-700);
+  outline-offset: -2px;
+}
+
+.finance-summary-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.finance-summary-legend li {
+  padding-top: 5px;
+  border-top: 1px solid var(--line);
+}
+
+.finance-summary-legend-button {
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 8px;
+  align-items: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.finance-summary-legend-button:focus-visible {
+  outline: 2px solid var(--brand-700);
+  outline-offset: 2px;
+}
+
+.finance-summary-legend-button > span {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+  overflow-wrap: anywhere;
+}
+
+.finance-summary-legend-button strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-summary-legend-button small {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-summary-swatch {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.finance-summary-tone-1 {
+  background: var(--finance-1);
+}
+
+.finance-summary-tone-2 {
+  background: var(--finance-2);
+}
+
+.finance-summary-tone-3 {
+  background: var(--finance-3);
+}
+
+.finance-summary-tone-4 {
+  background: var(--finance-4);
+}
+
+.finance-summary-tone-5 {
+  background: var(--finance-5);
+}
+
+.finance-summary-tone-6 {
+  background: var(--finance-6);
+}
+
+/* 小さな款をまとめた「その他」。色相を持たせず、他の区分と役割を分ける。 */
+.finance-summary-tone-7 {
+  background: var(--finance-other);
+}
+
+.finance-summary-chart-tooltip {
+  min-width: 176px;
+  max-width: min(300px, calc(100% - 16px));
+}
+
+.finance-summary-footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.finance-summary-footer .section-note {
+  margin-top: 14px;
+}
+
+.finance-summary-footer .panel-link {
+  flex: 0 0 auto;
+  margin-top: 14px;
+}
+
+.dashboard-donation-ranking {
+  margin-top: 16px;
+}
+
 .panel-period {
   color: var(--muted);
   font-size: var(--text-sm);
@@ -2634,6 +3470,43 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.dashboard-ranking-table thead th {
+  padding: 0;
+  vertical-align: bottom;
+}
+
+.dashboard-ranking-table thead th button {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 12px 10px;
+  border: 0;
+  color: var(--muted);
+  background: none;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-align: right;
+  cursor: pointer;
+}
+
+.dashboard-ranking-table thead th button:hover,
+.dashboard-ranking-table thead th[aria-sort="ascending"] button,
+.dashboard-ranking-table thead th[aria-sort="descending"] button {
+  color: var(--ink);
+}
+
+.dashboard-ranking-table .sort-marker {
+  color: var(--brand-600);
+}
+
+.dashboard-ranking-table thead th[aria-sort="none"] .sort-marker {
+  color: var(--muted);
+  opacity: 0.6;
 }
 
 .dashboard-ranking-table tbody th a {
@@ -3011,8 +3884,13 @@ html[data-theme="dark"] .insight-panel {
   }
 
   .dashboard-chart-grid,
-  .dashboard-lower-grid {
+  .dashboard-lower-grid,
+  .finance-summary-composition-grid {
     grid-template-columns: 1fr;
+  }
+
+  .finance-summary-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -3079,6 +3957,20 @@ html[data-theme="dark"] .insight-panel {
   .dashboard-chart-card,
   .dashboard-panel {
     padding: 20px 17px;
+  }
+
+  .finance-summary-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .finance-summary-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .finance-summary-legend {
+    grid-template-columns: 1fr;
   }
 
   .dashboard-chart {
@@ -3168,4 +4060,77 @@ html[data-theme="dark"] .insight-panel {
   .chart-modal-close {
     padding: 7px 9px 7px 11px;
   }
+}
+/* ---------- ふるさと納税の使いみち ---------- */
+
+/*
+ * 使途は1市町で14件になることがある。1列に積むと区切りが読めないため、
+ * 枠のあるカードを格子に並べ、短い項目が縦に伸び続けないようにする。
+ */
+.usage-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.usage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.usage-card h3 {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: 1.55;
+}
+
+.usage-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* 分類は見出しではなく、カードの所属を示す小さな印にとどめる。 */
+.usage-category,
+.usage-kind {
+  align-self: flex-start;
+  padding: 1px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.usage-description {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.usage-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.usage-meta span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  background: var(--white);
 }

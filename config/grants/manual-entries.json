@@ -1,0 +1,34 @@
+{
+  "entries": [
+    {
+      "municipality_code": "34203",
+      "municipality_name": "竹原市",
+      "fiscal_year": 2022,
+      "provider": "national",
+      "program": "デジタル田園都市国家構想交付金",
+      "category": "デジタル実装タイプ 地方創生テレワーク型（施設整備・利用促進事業 標準タイプ）",
+      "award_count": 1,
+      "amount_yen": null,
+      "project_name": null,
+      "source_id": "digital_implementation_2022",
+      "source_page": 23,
+      "verification_status": "double_checked"
+    },
+    {
+      "municipality_code": "34212",
+      "municipality_name": "東広島市",
+      "fiscal_year": 2022,
+      "provider": "national",
+      "program": "デジタル田園都市国家構想交付金",
+      "category": "デジタル実装タイプ TYPE2",
+      "award_count": 1,
+      "amount_yen": null,
+      "project_name": null,
+      "source_id": "digital_implementation_2022",
+      "source_page": 18,
+      "verification_status": "double_checked"
+    }
+  ],
+  "review_entries": [],
+  "unsourced_programs": []
+}

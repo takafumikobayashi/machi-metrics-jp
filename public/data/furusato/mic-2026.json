@@ -1,0 +1,2960 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "id": "history",
+      "statistic": "ふるさと納税に関する現況調査（令和8年度調査）",
+      "title": "各自治体のふるさと納税受入額及び受入件数（平成20年度～令和7年度）",
+      "url": "https://www.soumu.go.jp/main_content/001084990.xlsx",
+      "acquired_at": "2026-09-05T09:56:01.848896+00:00",
+      "sha256": "516c6cd0efcb53e82aead1b7a13a404d3ca74a8ef68af17af0406b6cd7f77407",
+      "file": "001084990.xlsx",
+      "license_url": "https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html"
+    },
+    {
+      "id": "receipts",
+      "statistic": "ふるさと納税に関する現況調査（令和8年度調査）",
+      "title": "各自治体の令和7年度受入額等",
+      "url": "https://www.soumu.go.jp/main_content/001084989.xlsx",
+      "acquired_at": "2026-09-05T09:56:02.080432+00:00",
+      "sha256": "e6299d05a172f00472971f1684f250cb38da4fd596408f03f333a0c1bc5452e2",
+      "file": "001084989.xlsx",
+      "license_url": "https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html"
+    },
+    {
+      "id": "deductions",
+      "statistic": "ふるさと納税に関する現況調査（令和8年度調査）",
+      "title": "各自治体の令和8年度課税における住民税控除額等",
+      "url": "https://www.soumu.go.jp/main_content/001085012.xlsx",
+      "acquired_at": "2026-09-05T09:56:02.240382+00:00",
+      "sha256": "157ec580017313a607c34bd46899b77c9136485865548ded2ee7a3b6bed90b5b",
+      "file": "001085012.xlsx",
+      "license_url": "https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html"
+    }
+  ],
+  "entries": [
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2016,
+      "amount_yen": 723173687.0,
+      "donation_count": 746,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1435:T1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2017,
+      "amount_yen": 24846595.0,
+      "donation_count": 1449,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1435:V1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2018,
+      "amount_yen": 100968000,
+      "donation_count": 3245,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1435:X1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2019,
+      "amount_yen": 355985935.0,
+      "donation_count": 5801,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1435:Z1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2020,
+      "amount_yen": 113780056.0,
+      "donation_count": 1650,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1435:AB1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2021,
+      "amount_yen": 199082436.0,
+      "donation_count": 1989,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1435:AD1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2022,
+      "amount_yen": 207716091.0,
+      "donation_count": 2539,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1435:AF1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2023,
+      "amount_yen": 298993142.0,
+      "donation_count": 5428,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1435:AH1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2024,
+      "amount_yen": 579485866.0,
+      "donation_count": 1238,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1435:AJ1435",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34100",
+      "fiscal_year": 2025,
+      "amount_yen": 245616043.0,
+      "donation_count": 6009,
+      "expense_yen": 105248978,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1435:AL1435",
+        "receipts": "Sheet1!D1378:R1378"
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2016,
+      "amount_yen": 50407694.0,
+      "donation_count": 2311,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1436:T1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2017,
+      "amount_yen": 71123856.0,
+      "donation_count": 3601,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1436:V1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2018,
+      "amount_yen": 259637000,
+      "donation_count": 11375,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1436:X1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2019,
+      "amount_yen": 324504122.0,
+      "donation_count": 23031,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1436:Z1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2020,
+      "amount_yen": 520075407.0,
+      "donation_count": 34863,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1436:AB1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2021,
+      "amount_yen": 617318366.0,
+      "donation_count": 28252,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1436:AD1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2022,
+      "amount_yen": 342418439.0,
+      "donation_count": 20787,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1436:AF1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2023,
+      "amount_yen": 777139762.0,
+      "donation_count": 49918,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1436:AH1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2024,
+      "amount_yen": 990659155.0,
+      "donation_count": 54206,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1436:AJ1436",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34202",
+      "fiscal_year": 2025,
+      "amount_yen": 822662755.0,
+      "donation_count": 60711,
+      "expense_yen": 381083991,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1436:AL1436",
+        "receipts": "Sheet1!D1379:R1379"
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2016,
+      "amount_yen": 38811350.0,
+      "donation_count": 2345,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1437:T1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2017,
+      "amount_yen": 37195008.0,
+      "donation_count": 2750,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1437:V1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2018,
+      "amount_yen": 57510000,
+      "donation_count": 4107,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1437:X1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2019,
+      "amount_yen": 31227917.0,
+      "donation_count": 2203,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1437:Z1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2020,
+      "amount_yen": 63476805.0,
+      "donation_count": 4128,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1437:AB1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2021,
+      "amount_yen": 83638280.0,
+      "donation_count": 5271,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1437:AD1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2022,
+      "amount_yen": 83924825.0,
+      "donation_count": 4541,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1437:AF1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2023,
+      "amount_yen": 118801300.0,
+      "donation_count": 6787,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1437:AH1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2024,
+      "amount_yen": 146037199.0,
+      "donation_count": 6498,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1437:AJ1437",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34203",
+      "fiscal_year": 2025,
+      "amount_yen": 260628695.0,
+      "donation_count": 11304,
+      "expense_yen": 129269020,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1437:AL1437",
+        "receipts": "Sheet1!D1380:R1380"
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2016,
+      "amount_yen": 66403231.0,
+      "donation_count": 3590,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1438:T1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2017,
+      "amount_yen": 51318230.0,
+      "donation_count": 2517,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1438:V1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2018,
+      "amount_yen": 81834000,
+      "donation_count": 3035,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1438:X1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2019,
+      "amount_yen": 51367000,
+      "donation_count": 2291,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1438:Z1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2020,
+      "amount_yen": 87411000,
+      "donation_count": 4489,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1438:AB1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2021,
+      "amount_yen": 106432555.0,
+      "donation_count": 6110,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1438:AD1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2022,
+      "amount_yen": 173020000,
+      "donation_count": 10008,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1438:AF1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2023,
+      "amount_yen": 289312000,
+      "donation_count": 17294,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1438:AH1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2024,
+      "amount_yen": 390921000,
+      "donation_count": 24728,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1438:AJ1438",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34204",
+      "fiscal_year": 2025,
+      "amount_yen": 579493400.0,
+      "donation_count": 34008,
+      "expense_yen": 288853140,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1438:AL1438",
+        "receipts": "Sheet1!D1381:R1381"
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2016,
+      "amount_yen": 156365003.0,
+      "donation_count": 4134,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1439:T1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2017,
+      "amount_yen": 130256001.0,
+      "donation_count": 3634,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1439:V1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2018,
+      "amount_yen": 157097000,
+      "donation_count": 4773,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1439:X1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2019,
+      "amount_yen": 180942920.0,
+      "donation_count": 5080,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1439:Z1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2020,
+      "amount_yen": 327932000,
+      "donation_count": 13259,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1439:AB1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2021,
+      "amount_yen": 478267400.0,
+      "donation_count": 16418,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1439:AD1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2022,
+      "amount_yen": 525776300.0,
+      "donation_count": 17155,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1439:AF1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2023,
+      "amount_yen": 551073000,
+      "donation_count": 16816,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1439:AH1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2024,
+      "amount_yen": 558155000,
+      "donation_count": 18956,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1439:AJ1439",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34205",
+      "fiscal_year": 2025,
+      "amount_yen": 608733000,
+      "donation_count": 18183,
+      "expense_yen": 301596822,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1439:AL1439",
+        "receipts": "Sheet1!D1382:R1382"
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2016,
+      "amount_yen": 33287700.0,
+      "donation_count": 1170,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1440:T1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2017,
+      "amount_yen": 35020300.0,
+      "donation_count": 1022,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1440:V1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2018,
+      "amount_yen": 50186000,
+      "donation_count": 1702,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1440:X1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2019,
+      "amount_yen": 82358295.0,
+      "donation_count": 1551,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1440:Z1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2020,
+      "amount_yen": 159034117.0,
+      "donation_count": 3704,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1440:AB1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2021,
+      "amount_yen": 179342888.0,
+      "donation_count": 5328,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1440:AD1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2022,
+      "amount_yen": 179455000,
+      "donation_count": 6681,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1440:AF1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2023,
+      "amount_yen": 192430504.0,
+      "donation_count": 7431,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1440:AH1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2024,
+      "amount_yen": 212874100.0,
+      "donation_count": 6224,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1440:AJ1440",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34207",
+      "fiscal_year": 2025,
+      "amount_yen": 306858600.0,
+      "donation_count": 8918,
+      "expense_yen": 132895161,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1440:AL1440",
+        "receipts": "Sheet1!D1383:R1383"
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2016,
+      "amount_yen": 29247000,
+      "donation_count": 776,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1441:T1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2017,
+      "amount_yen": 21809437.0,
+      "donation_count": 573,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1441:V1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2018,
+      "amount_yen": 30984000,
+      "donation_count": 876,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1441:X1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2019,
+      "amount_yen": 32792530.0,
+      "donation_count": 1379,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1441:Z1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2020,
+      "amount_yen": 72285604.0,
+      "donation_count": 2295,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1441:AB1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2021,
+      "amount_yen": 142581758.0,
+      "donation_count": 3897,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1441:AD1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2022,
+      "amount_yen": 153150000,
+      "donation_count": 3922,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1441:AF1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2023,
+      "amount_yen": 254096000,
+      "donation_count": 3948,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1441:AH1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2024,
+      "amount_yen": 207587500.0,
+      "donation_count": 4380,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1441:AJ1441",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34208",
+      "fiscal_year": 2025,
+      "amount_yen": 207966000,
+      "donation_count": 3914,
+      "expense_yen": 99357675,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1441:AL1441",
+        "receipts": "Sheet1!D1384:R1384"
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2016,
+      "amount_yen": 94304111.0,
+      "donation_count": 6460,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1442:T1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2017,
+      "amount_yen": 50010000,
+      "donation_count": 3315,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1442:V1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2018,
+      "amount_yen": 50217000,
+      "donation_count": 3069,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1442:X1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2019,
+      "amount_yen": 66851005.0,
+      "donation_count": 4296,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1442:Z1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2020,
+      "amount_yen": 88352000,
+      "donation_count": 6197,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1442:AB1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2021,
+      "amount_yen": 76267000,
+      "donation_count": 5235,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1442:AD1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2022,
+      "amount_yen": 90490557.0,
+      "donation_count": 6009,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1442:AF1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2023,
+      "amount_yen": 82685000,
+      "donation_count": 5223,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1442:AH1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2024,
+      "amount_yen": 103685534.0,
+      "donation_count": 6372,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1442:AJ1442",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34209",
+      "fiscal_year": 2025,
+      "amount_yen": 158994000,
+      "donation_count": 8294,
+      "expense_yen": 78312194,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1442:AL1442",
+        "receipts": "Sheet1!D1385:R1385"
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2016,
+      "amount_yen": 12907000,
+      "donation_count": 248,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1443:T1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2017,
+      "amount_yen": 18783000,
+      "donation_count": 605,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1443:V1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2018,
+      "amount_yen": 28096000,
+      "donation_count": 1088,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1443:X1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2019,
+      "amount_yen": 75811000,
+      "donation_count": 939,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1443:Z1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2020,
+      "amount_yen": 34656850.0,
+      "donation_count": 1199,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1443:AB1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2021,
+      "amount_yen": 30686000,
+      "donation_count": 1237,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1443:AD1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2022,
+      "amount_yen": 38516000,
+      "donation_count": 1672,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1443:AF1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2023,
+      "amount_yen": 47641000,
+      "donation_count": 1823,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1443:AH1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2024,
+      "amount_yen": 46122000,
+      "donation_count": 1480,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1443:AJ1443",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34210",
+      "fiscal_year": 2025,
+      "amount_yen": 56135000,
+      "donation_count": 2045,
+      "expense_yen": 21375608,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1443:AL1443",
+        "receipts": "Sheet1!D1386:R1386"
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2016,
+      "amount_yen": 59480000,
+      "donation_count": 2126,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1444:T1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2017,
+      "amount_yen": 171997000,
+      "donation_count": 5607,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1444:V1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2018,
+      "amount_yen": 199448000,
+      "donation_count": 7013,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1444:X1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2019,
+      "amount_yen": 368864000,
+      "donation_count": 8490,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1444:Z1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2020,
+      "amount_yen": 287658000,
+      "donation_count": 5361,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1444:AB1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2021,
+      "amount_yen": 623255000,
+      "donation_count": 9702,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1444:AD1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2022,
+      "amount_yen": 515789000,
+      "donation_count": 7248,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1444:AF1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2023,
+      "amount_yen": 987142000,
+      "donation_count": 16640,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1444:AH1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2024,
+      "amount_yen": 1020030000,
+      "donation_count": 19839,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1444:AJ1444",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34211",
+      "fiscal_year": 2025,
+      "amount_yen": 916607600.0,
+      "donation_count": 17885,
+      "expense_yen": 424896078,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1444:AL1444",
+        "receipts": "Sheet1!D1387:R1387"
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2016,
+      "amount_yen": 13690500.0,
+      "donation_count": 744,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1445:T1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2017,
+      "amount_yen": 16794000,
+      "donation_count": 929,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1445:V1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2018,
+      "amount_yen": 70442000,
+      "donation_count": 2809,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1445:X1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2019,
+      "amount_yen": 36309000,
+      "donation_count": 1121,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1445:Z1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2020,
+      "amount_yen": 114578346.0,
+      "donation_count": 2602,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1445:AB1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2021,
+      "amount_yen": 162411846.0,
+      "donation_count": 3606,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1445:AD1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2022,
+      "amount_yen": 266943784.0,
+      "donation_count": 6414,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1445:AF1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2023,
+      "amount_yen": 313563014.0,
+      "donation_count": 6888,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1445:AH1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2024,
+      "amount_yen": 438819000,
+      "donation_count": 9986,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1445:AJ1445",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34212",
+      "fiscal_year": 2025,
+      "amount_yen": 453065600.0,
+      "donation_count": 10891,
+      "expense_yen": 216454356,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1445:AL1445",
+        "receipts": "Sheet1!D1388:R1388"
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2016,
+      "amount_yen": 8782000,
+      "donation_count": 356,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1446:T1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2017,
+      "amount_yen": 26091000,
+      "donation_count": 857,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1446:V1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2018,
+      "amount_yen": 69222000,
+      "donation_count": 3298,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1446:X1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2019,
+      "amount_yen": 152899100.0,
+      "donation_count": 5534,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1446:Z1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2020,
+      "amount_yen": 206013000,
+      "donation_count": 12163,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1446:AB1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2021,
+      "amount_yen": 314708000,
+      "donation_count": 18725,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1446:AD1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2022,
+      "amount_yen": 394820500.0,
+      "donation_count": 22354,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1446:AF1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2023,
+      "amount_yen": 424650400.0,
+      "donation_count": 15248,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1446:AH1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2024,
+      "amount_yen": 430945000,
+      "donation_count": 15241,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1446:AJ1446",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34213",
+      "fiscal_year": 2025,
+      "amount_yen": 349512741.0,
+      "donation_count": 9685,
+      "expense_yen": 167166939,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1446:AL1446",
+        "receipts": "Sheet1!D1389:R1389"
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2016,
+      "amount_yen": 19324000,
+      "donation_count": 832,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1447:T1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2017,
+      "amount_yen": 33350010.0,
+      "donation_count": 1320,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1447:V1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2018,
+      "amount_yen": 70006000,
+      "donation_count": 4350,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1447:X1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2019,
+      "amount_yen": 245876056.0,
+      "donation_count": 18412,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1447:Z1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2020,
+      "amount_yen": 183469500.0,
+      "donation_count": 8834,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1447:AB1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2021,
+      "amount_yen": 214583812.0,
+      "donation_count": 10030,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1447:AD1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2022,
+      "amount_yen": 200779000,
+      "donation_count": 9881,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1447:AF1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2023,
+      "amount_yen": 467855092.0,
+      "donation_count": 24702,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1447:AH1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2024,
+      "amount_yen": 145164975.0,
+      "donation_count": 6542,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1447:AJ1447",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34214",
+      "fiscal_year": 2025,
+      "amount_yen": 86810000,
+      "donation_count": 3712,
+      "expense_yen": 42969192,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1447:AL1447",
+        "receipts": "Sheet1!D1390:R1390"
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2016,
+      "amount_yen": 8203700.0,
+      "donation_count": 489,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1448:T1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2017,
+      "amount_yen": 22082000,
+      "donation_count": 1980,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1448:V1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2018,
+      "amount_yen": 23761000,
+      "donation_count": 1211,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1448:X1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2019,
+      "amount_yen": 15017000,
+      "donation_count": 867,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1448:Z1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2020,
+      "amount_yen": 29932000,
+      "donation_count": 1069,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1448:AB1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2021,
+      "amount_yen": 30775000,
+      "donation_count": 1374,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1448:AD1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2022,
+      "amount_yen": 50636000,
+      "donation_count": 1993,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1448:AF1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2023,
+      "amount_yen": 101942000,
+      "donation_count": 5944,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1448:AH1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2024,
+      "amount_yen": 192549279.0,
+      "donation_count": 9773,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1448:AJ1448",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34215",
+      "fiscal_year": 2025,
+      "amount_yen": 216283100.0,
+      "donation_count": 10288,
+      "expense_yen": 109259476,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1448:AL1448",
+        "receipts": "Sheet1!D1391:R1391"
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2016,
+      "amount_yen": 807000,
+      "donation_count": 63,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1449:T1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2017,
+      "amount_yen": 1115000,
+      "donation_count": 84,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1449:V1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2018,
+      "amount_yen": 10336000,
+      "donation_count": 425,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1449:X1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2019,
+      "amount_yen": 3140000,
+      "donation_count": 80,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1449:Z1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2020,
+      "amount_yen": 3130000,
+      "donation_count": 61,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1449:AB1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2021,
+      "amount_yen": 2980000,
+      "donation_count": 97,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1449:AD1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2022,
+      "amount_yen": 5530000,
+      "donation_count": 251,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1449:AF1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2023,
+      "amount_yen": 9431000,
+      "donation_count": 442,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1449:AH1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2024,
+      "amount_yen": 7522000,
+      "donation_count": 351,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1449:AJ1449",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34302",
+      "fiscal_year": 2025,
+      "amount_yen": 9684000,
+      "donation_count": 359,
+      "expense_yen": 4414594,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1449:AL1449",
+        "receipts": "Sheet1!D1392:R1392"
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2016,
+      "amount_yen": 1630000,
+      "donation_count": 80,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1450:T1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2017,
+      "amount_yen": 1385000,
+      "donation_count": 59,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1450:V1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2018,
+      "amount_yen": 14346000,
+      "donation_count": 725,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1450:X1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2019,
+      "amount_yen": 8484005.0,
+      "donation_count": 469,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1450:Z1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2020,
+      "amount_yen": 8847000,
+      "donation_count": 665,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1450:AB1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2021,
+      "amount_yen": 14535000,
+      "donation_count": 1135,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1450:AD1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2022,
+      "amount_yen": 29611000,
+      "donation_count": 2132,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1450:AF1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2023,
+      "amount_yen": 70419000,
+      "donation_count": 4646,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1450:AH1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2024,
+      "amount_yen": 48837000,
+      "donation_count": 3918,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1450:AJ1450",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34304",
+      "fiscal_year": 2025,
+      "amount_yen": 52157000,
+      "donation_count": 3252,
+      "expense_yen": 23820895,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1450:AL1450",
+        "receipts": "Sheet1!D1393:R1393"
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2016,
+      "amount_yen": 9022000,
+      "donation_count": 209,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1451:T1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2017,
+      "amount_yen": 22800001.0,
+      "donation_count": 614,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1451:V1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2018,
+      "amount_yen": 47303000,
+      "donation_count": 1903,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1451:X1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2019,
+      "amount_yen": 46855555.0,
+      "donation_count": 1231,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1451:Z1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2020,
+      "amount_yen": 55775000,
+      "donation_count": 1775,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1451:AB1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2021,
+      "amount_yen": 79920000,
+      "donation_count": 2455,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1451:AD1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2022,
+      "amount_yen": 164453000,
+      "donation_count": 5039,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1451:AF1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2023,
+      "amount_yen": 222240537.0,
+      "donation_count": 6753,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1451:AH1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2024,
+      "amount_yen": 238950843.0,
+      "donation_count": 6793,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1451:AJ1451",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34307",
+      "fiscal_year": 2025,
+      "amount_yen": 209315000,
+      "donation_count": 6474,
+      "expense_yen": 92309391,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1451:AL1451",
+        "receipts": "Sheet1!D1394:R1394"
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2016,
+      "amount_yen": 400506.0,
+      "donation_count": 16,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1452:T1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2017,
+      "amount_yen": 539000,
+      "donation_count": 18,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1452:V1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2018,
+      "amount_yen": 5344000,
+      "donation_count": 87,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1452:X1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2019,
+      "amount_yen": 3537000,
+      "donation_count": 35,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1452:Z1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2020,
+      "amount_yen": 2655000,
+      "donation_count": 22,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1452:AB1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2021,
+      "amount_yen": 5410000,
+      "donation_count": 19,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1452:AD1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2022,
+      "amount_yen": 6828000,
+      "donation_count": 29,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1452:AF1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2023,
+      "amount_yen": 2041000,
+      "donation_count": 45,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1452:AH1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2024,
+      "amount_yen": 2023000,
+      "donation_count": 44,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1452:AJ1452",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34309",
+      "fiscal_year": 2025,
+      "amount_yen": 2679000,
+      "donation_count": 50,
+      "expense_yen": 495275,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1452:AL1452",
+        "receipts": "Sheet1!D1395:R1395"
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2016,
+      "amount_yen": 62652000,
+      "donation_count": 4769,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1453:T1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2017,
+      "amount_yen": 53044000,
+      "donation_count": 5172,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1453:V1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2018,
+      "amount_yen": 61971000,
+      "donation_count": 6488,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1453:X1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2019,
+      "amount_yen": 60625000,
+      "donation_count": 5973,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1453:Z1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2020,
+      "amount_yen": 109947000,
+      "donation_count": 8516,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1453:AB1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2021,
+      "amount_yen": 144250000,
+      "donation_count": 10883,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1453:AD1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2022,
+      "amount_yen": 151282000,
+      "donation_count": 11094,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1453:AF1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2023,
+      "amount_yen": 191253860.0,
+      "donation_count": 14706,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1453:AH1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2024,
+      "amount_yen": 238699000,
+      "donation_count": 17539,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1453:AJ1453",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34368",
+      "fiscal_year": 2025,
+      "amount_yen": 246780000,
+      "donation_count": 17068,
+      "expense_yen": 116790408,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1453:AL1453",
+        "receipts": "Sheet1!D1396:R1396"
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2016,
+      "amount_yen": 20090000,
+      "donation_count": 418,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1454:T1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2017,
+      "amount_yen": 14793000,
+      "donation_count": 321,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1454:V1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2018,
+      "amount_yen": 24498000,
+      "donation_count": 708,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1454:X1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2019,
+      "amount_yen": 11161000,
+      "donation_count": 335,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1454:Z1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2020,
+      "amount_yen": 38806000,
+      "donation_count": 577,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1454:AB1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2021,
+      "amount_yen": 129906200.0,
+      "donation_count": 2565,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1454:AD1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2022,
+      "amount_yen": 136756000,
+      "donation_count": 2303,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1454:AF1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2023,
+      "amount_yen": 147900000,
+      "donation_count": 2359,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1454:AH1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2024,
+      "amount_yen": 210246000,
+      "donation_count": 3374,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1454:AJ1454",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34369",
+      "fiscal_year": 2025,
+      "amount_yen": 241139834.0,
+      "donation_count": 3420,
+      "expense_yen": 113834191,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1454:AL1454",
+        "receipts": "Sheet1!D1397:R1397"
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2016,
+      "amount_yen": 12990000,
+      "donation_count": 94,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1455:T1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2017,
+      "amount_yen": 15841000,
+      "donation_count": 274,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1455:V1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2018,
+      "amount_yen": 23510000,
+      "donation_count": 1198,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1455:X1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2019,
+      "amount_yen": 39445000,
+      "donation_count": 1508,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1455:Z1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2020,
+      "amount_yen": 44469000,
+      "donation_count": 2157,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1455:AB1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2021,
+      "amount_yen": 53623000,
+      "donation_count": 2667,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1455:AD1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2022,
+      "amount_yen": 50855000,
+      "donation_count": 2488,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1455:AF1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2023,
+      "amount_yen": 43781000,
+      "donation_count": 1987,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1455:AH1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2024,
+      "amount_yen": 69791500.0,
+      "donation_count": 3430,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1455:AJ1455",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34431",
+      "fiscal_year": 2025,
+      "amount_yen": 75255100.0,
+      "donation_count": 4059,
+      "expense_yen": 33569069,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1455:AL1455",
+        "receipts": "Sheet1!D1398:R1398"
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2016,
+      "amount_yen": 14535010.0,
+      "donation_count": 576,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1456:T1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2017,
+      "amount_yen": 34922000,
+      "donation_count": 1990,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1456:V1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2018,
+      "amount_yen": 49928000,
+      "donation_count": 3509,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1456:X1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2019,
+      "amount_yen": 51233000,
+      "donation_count": 3648,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1456:Z1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2020,
+      "amount_yen": 75376990.0,
+      "donation_count": 6923,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1456:AB1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2021,
+      "amount_yen": 82467000,
+      "donation_count": 5043,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1456:AD1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2022,
+      "amount_yen": 64718000,
+      "donation_count": 4787,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1456:AF1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2023,
+      "amount_yen": 58802000,
+      "donation_count": 3869,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1456:AH1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2024,
+      "amount_yen": 60316000,
+      "donation_count": 3592,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1456:AJ1456",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34462",
+      "fiscal_year": 2025,
+      "amount_yen": 56626000,
+      "donation_count": 3368,
+      "expense_yen": 25778443,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1456:AL1456",
+        "receipts": "Sheet1!D1399:R1399"
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2016,
+      "amount_yen": 531444825.0,
+      "donation_count": 21218,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!S1457:T1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2017,
+      "amount_yen": 569038001.0,
+      "donation_count": 21506,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!U1457:V1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2018,
+      "amount_yen": 528958000,
+      "donation_count": 20685,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!W1457:X1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2019,
+      "amount_yen": 728995114.0,
+      "donation_count": 28573,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!Y1457:Z1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2020,
+      "amount_yen": 1155477941.0,
+      "donation_count": 29158,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AA1457:AB1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2021,
+      "amount_yen": 793075123.0,
+      "donation_count": 29872,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AC1457:AD1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2022,
+      "amount_yen": 1065115686.0,
+      "donation_count": 24870,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AE1457:AF1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2023,
+      "amount_yen": 661797087.0,
+      "donation_count": 25964,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AG1457:AH1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2024,
+      "amount_yen": 632892058.0,
+      "donation_count": 23481,
+      "expense_yen": null,
+      "provisional": false,
+      "source_cells": {
+        "history": "各団体一覧!AI1457:AJ1457",
+        "receipts": null
+      }
+    },
+    {
+      "municipality_code": "34545",
+      "fiscal_year": 2025,
+      "amount_yen": 589435858.0,
+      "donation_count": 20538,
+      "expense_yen": 80943996,
+      "provisional": true,
+      "source_cells": {
+        "history": "各団体一覧!AK1457:AL1457",
+        "receipts": "Sheet1!D1400:R1400"
+      }
+    }
+  ],
+  "deductions": [
+    {
+      "municipality_code": "34100",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 7048333357.28,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1382"
+    },
+    {
+      "municipality_code": "34202",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 583767062.12,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1383"
+    },
+    {
+      "municipality_code": "34203",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 39696701.1,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1384"
+    },
+    {
+      "municipality_code": "34204",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 192410971,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1385"
+    },
+    {
+      "municipality_code": "34205",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 310462635.5,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1386"
+    },
+    {
+      "municipality_code": "34207",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 1365819122.28,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1387"
+    },
+    {
+      "municipality_code": "34208",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 57296791.64,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1388"
+    },
+    {
+      "municipality_code": "34209",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 73363946,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1389"
+    },
+    {
+      "municipality_code": "34210",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 28432041.7,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1390"
+    },
+    {
+      "municipality_code": "34211",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 64828709.74,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1391"
+    },
+    {
+      "municipality_code": "34212",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 698789259.48,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1392"
+    },
+    {
+      "municipality_code": "34213",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 335439882.9,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1393"
+    },
+    {
+      "municipality_code": "34214",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 26933994.92,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1394"
+    },
+    {
+      "municipality_code": "34215",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 29100399.52,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1395"
+    },
+    {
+      "municipality_code": "34302",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 237388700.58,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1396"
+    },
+    {
+      "municipality_code": "34304",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 115787409.34,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1397"
+    },
+    {
+      "municipality_code": "34307",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 51915492,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1398"
+    },
+    {
+      "municipality_code": "34309",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 37073807.02,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1399"
+    },
+    {
+      "municipality_code": "34368",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 3941532,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1400"
+    },
+    {
+      "municipality_code": "34369",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 19349798.12,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1401"
+    },
+    {
+      "municipality_code": "34431",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 6217467.9,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1402"
+    },
+    {
+      "municipality_code": "34462",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 19301506.5,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1403"
+    },
+    {
+      "municipality_code": "34545",
+      "tax_year": 2026,
+      "municipal_tax_deduction_yen": 5987850,
+      "includes_estimates": true,
+      "source_cell": "集計表!BE1404"
+    }
+  ]
+}

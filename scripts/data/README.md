@@ -14,6 +14,29 @@ acquire → normalize → validate → derive → publish
 pnpm validate:data
 ```
 
+## Python依存関係
+
+ふるさと納税のExcel原本を処理する`normalize:furusato`は、Excel読み込みに`openpyxl`を使用します。依存関係はリポジトリルートの`requirements.txt`に固定しています。初回のみ、リポジトリルートで次を実行してください。
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+以後、この仮想環境を有効にした状態で`pnpm normalize:furusato`を実行します。CIでも同じ`requirements.txt`をインストールしてから検証します。
+
+## ふるさと納税の使途情報
+
+使途カテゴリ・事業名・自治体公式URLは`config/furusato/usage-items.json`を正本として管理します。正規化時に23市町分のメタデータ、項目、公式リンクを検証し、サイトが読む公開JSONを生成します。項目ごとに自治体の一覧ページと異なる原典がある場合は、同じ設定ファイルの`item_sources`で上書きします。
+
+```bash
+pnpm normalize:furusato-usage
+pnpm publish:furusato-usage
+```
+
+`normalize:furusato-usage`は`data/processed/furusato/usage.json`を生成し、`publish:furusato-usage`は`furusatoUsageFileSchema`で検証してから`public/data/furusato/usage.json`へ原子的に反映します。設定を編集した場合は、正規化後に公開処理を実行してください。
+
 ## パイロット正規化
 
 2016年・2025年の`-03`・`-04`原本から、広島市（`34100`）と安芸高田市（`34214`）を抽出します。
@@ -33,6 +56,36 @@ pnpm normalize:data -- --years 2016,2025 --municipalities 34100,34214
 `-03`の社会増減は、転入−転出の単純計算値で上書きせず、原表の報告値と差分を保持します。
 
 全量処理では、2016〜2025年の23市町を指定します。正規化結果はGit管理外の`data/staging`・`data/processed`に生成されます。
+
+## 自治体DXデータ
+
+デジタル庁「自治体DXの取組に関するダッシュボード」の原本を
+`data/raw/digital-dx/2024-07-12/`へ保存し、次の順で処理します。
+
+```bash
+pnpm normalize:digital-dx
+pnpm publish:digital-dx
+```
+
+`normalize:digital-dx`は`data/processed/digital-dx-2024.json`を生成します。
+`publish:digital-dx`はこのファイルを`digitalDxFileSchema`で検証してから、
+サイトが読む`public/data/digital/dx-2024.json`へ反映します。検証に失敗した場合は、
+公開済みファイルを変更しません。取得日時は同じディレクトリの`source.json`に記録した
+`acquired_at`を優先し、メタデータがない既存原本では`dashboard.zip`の更新日時を
+再現可能な暫定値として使います。正規化対象のCSVは、抽出済みファイルではなく
+ハッシュを記録する`dashboard.zip`内から直接読み込みます。
+
+## 財務状況データ
+
+財務状況は、e-Statの表04・05・07〜12・14、広島県の市町別Excel、経常収支比率を掲載した県PDFを同じスナップショットとして扱います。取得時に`data/raw/finance/source.json`へ各原本のURL・取得日時・SHA-256を保存し、正規化はこのマニフェストとハッシュが一致するファイルだけを読み込みます。PDFの比率表の抽出にはPopplerの`pdftotext`が必要です。
+
+```bash
+pnpm acquire:finance
+pnpm normalize:finance
+pnpm publish:finance
+```
+
+`normalize:finance`は`data/processed/finance/finance.json`を生成し、`publish:finance`は`financeFileSchema`で検証してから`public/data/finance/finance.json`へ原子的に反映します。再実行時も、正規化時刻ではなく取得マニフェストの`acquired_at`を公開JSONへ写します。
 
 ## 正規化結果から公開JSONへの変換
 
