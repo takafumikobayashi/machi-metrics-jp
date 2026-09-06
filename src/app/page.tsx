@@ -141,10 +141,10 @@ export default async function HomePage() {
       >
         <div className="dashboard-page-header">
           <div>
-            <p className="eyebrow">住民基本台帳 / 2016〜2025年</p>
+            <p className="eyebrow">公的統計 | 2016〜2025</p>
             <h1>ひろしまダッシュボード</h1>
             <p>
-              広島県23市町の人口、年齢構成、人口動態を、基準日と集計期間を分けて確認できます。
+              広島県23市町の人口や財政、行政の取り組みを、出典と基準日を添えて見える化していきます。
             </p>
           </div>
         </div>

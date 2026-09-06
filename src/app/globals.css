@@ -291,6 +291,9 @@ h2,
 h3,
 p {
   text-wrap: pretty;
+  /* 日本語は語間に空白が無く、text-wrap だけでは「でき／ます」の位置でも折り返す。
+     文節の切れ目で折り返させる。対応していないブラウザは従来どおり折り返す。 */
+  word-break: auto-phrase;
 }
 
 h1,
@@ -2178,7 +2181,9 @@ body {
 }
 
 .dashboard-page-header p:not(.eyebrow) {
-  max-width: 620px;
+  /* リード文は広い画面で1行に収める。文を伸ばすときは幅も見直す
+     （現在の文は16px時に687px）。狭い画面では文節の切れ目で折り返す。 */
+  max-width: 46em;
   margin: 18px 0 0;
   color: var(--muted);
   font-size: var(--text-body);
