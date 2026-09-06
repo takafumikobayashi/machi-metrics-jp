@@ -687,7 +687,7 @@ h3 {
 .finance-radar-hit-area {
   fill: transparent;
   stroke: transparent;
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 .finance-radar-hit-area:focus {
@@ -3272,7 +3272,7 @@ body {
   padding: 0;
   border: 0;
   border-right: 1px solid var(--white);
-  cursor: help;
+  cursor: pointer;
 }
 
 .finance-summary-segment:last-child {
@@ -3314,7 +3314,7 @@ body {
   background: none;
   font: inherit;
   text-align: left;
-  cursor: help;
+  cursor: pointer;
 }
 
 .finance-summary-legend-button:focus-visible {
