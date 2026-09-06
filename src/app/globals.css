@@ -41,13 +41,13 @@
    * 歳入・歳出の構成の配色。6区分に絞り、検証スクリプトの全項目を通した値。
    * 明度帯・彩度・色覚差・通常視の識別・地色比をライトとダークの両方で確認済み（[[D-036]]）。
    */
-  --finance-1: #2a78d6;
-  --finance-2: #eb6834;
-  --finance-3: #4a3aa7;
-  --finance-4: #eda100;
-  --finance-5: #e87ba4;
-  --finance-6: #008300;
-  --finance-other: #7d8792;
+  --finance-1: #88b7f3;
+  --finance-2: #d9897a;
+  --finance-3: #a290d5;
+  --finance-4: #d7ac67;
+  --finance-5: #e598c3;
+  --finance-6: #93c485;
+  --finance-other: #a8b0ba;
 
   /* 注目していない行の色。地色と紛れない程度に見える濃さにする。 */
   --chart-muted: #d6dce4;
@@ -127,13 +127,13 @@
     --series-1: #7fb0e8;
     --series-3: #e0a34e;
     --series-4: #b09ce0;
-    --finance-1: #3986e5;
-    --finance-2: #d95821;
-    --finance-3: #7c74e6;
-    --finance-4: #bd7400;
-    --finance-5: #c75d87;
-    --finance-6: #33a02e;
-    --finance-other: #a3acb7;
+    --finance-1: #6399d0;
+    --finance-2: #ca7e69;
+    --finance-3: #8f7dc1;
+    --finance-4: #b09146;
+    --finance-5: #c27ba2;
+    --finance-6: #76a465;
+    --finance-other: #8d959f;
     --chart-muted: #3a424f;
     --increase: #4fbfae;
     --decrease: #f08a63;
@@ -166,13 +166,13 @@ html[data-theme="dark"] {
   --series-1: #7fb0e8;
   --series-3: #e0a34e;
   --series-4: #b09ce0;
-  --finance-1: #3986e5;
-  --finance-2: #d95821;
-  --finance-3: #7c74e6;
-  --finance-4: #bd7400;
-  --finance-5: #c75d87;
-  --finance-6: #33a02e;
-  --finance-other: #a3acb7;
+  --finance-1: #6399d0;
+  --finance-2: #ca7e69;
+  --finance-3: #8f7dc1;
+  --finance-4: #b09146;
+  --finance-5: #c27ba2;
+  --finance-6: #76a465;
+  --finance-other: #8d959f;
   --chart-muted: #3a424f;
   --increase: #4fbfae;
   --decrease: #f08a63;

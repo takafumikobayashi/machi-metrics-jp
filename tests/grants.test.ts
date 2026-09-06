@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -193,4 +194,29 @@ test("出典のURLは配布元のファイル名と一致する", async () => {
       `${source.program} のURLと保存ファイル名が食い違う: ${source.url}`,
     );
   }
+});
+
+test("出典目録は公開中の原本をもれなく同じURL・ハッシュで載せる", async () => {
+  const file = await grants();
+  // 目録と実装が別々に育つと、保存済みの原本が「未照合」と書かれたまま残る。
+  const inventory = await readFile("docs/SOURCE_INVENTORY.md", "utf8");
+  const section = inventory.slice(
+    inventory.indexOf("## 3-6."),
+    inventory.indexOf("## 4."),
+  );
+  for (const source of file.sources) {
+    const row = section
+      .split("\n")
+      .find((line) => line.includes(`\`${source.file}\``));
+    assert.ok(row, `${source.program} が出典目録に無い`);
+    assert.ok(row.includes(source.url), `${source.program} のURLが古い`);
+    assert.ok(
+      row.includes(source.sha256),
+      `${source.program} のハッシュが古い`,
+    );
+  }
+  assert.ok(
+    !section.includes("原本PDFを保存できていない"),
+    "保存済みの原本に未照合の注記が残っている",
+  );
 });

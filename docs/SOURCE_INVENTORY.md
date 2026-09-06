@@ -143,18 +143,17 @@ MVP画面の主系列は`YY-03`と`YY-04`です。`YY-07`、`YY-08`、`YY-11`、
 
 原本は `data/raw/grants/` に保存し、`pnpm normalize:grants` でファイル上のページ番号つきで抽出する。ページ番号は印刷ページ番号ではなくファイル上の番号で統一する（[[D-030]]）。
 
-| 制度                           | 原本                                                                       | 配布URL                                                             | ファイル           | SHA-256                                                          |
-| ------------------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------ | ---------------------------------------------------------------- |
-| デジタル田園都市国家構想交付金 | デジタル田園都市国家構想交付金（令和4年度第2次補正予算分）採択結果について | https://www.chisou.go.jp/sousei/about/kouhukin/pdf/saitaku.pdf      | `saitaku.pdf`      | a1dfacc15562537f32c896e15d979d94de1a0eac169f1d8c5ef79945ac980228 |
-| 地域未来交付金                 | 地域未来交付金（地域未来推進型）の交付対象事業の決定について               | https://www.chisou.go.jp/sousei/about/kouhukin/pdf/r8_suishin_1.pdf | `r8_suishin_1.pdf` | 949ece75408f71e3ac9f4c8cc26752ac15a6210769ec745480c7958ed2385cb2 |
-| 多面的機能支払交付金           | 令和3年度 多面的機能支払交付金の市町村別取組状況                           | https://www.maff.go.jp/chushi/chusankan/attach/pdf/nihongata-50.pdf | `nihongata-50.pdf` | b4d021241144b6c545840b42b8425b875691fe9d44f170bd2dc24dc36dd891fc |
+| 制度                           | 原本                                                                           | 配布URL                                                                                         | ファイル                | SHA-256                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| デジタル田園都市国家構想交付金 | デジタル田園都市国家構想交付金（令和4年度第2次補正予算分）採択結果について     | https://www.chisou.go.jp/sousei/about/kouhukin/pdf/saitaku.pdf                                  | `saitaku.pdf`           | a1dfacc15562537f32c896e15d979d94de1a0eac169f1d8c5ef79945ac980228 |
+| 地域未来交付金                 | 地域未来交付金（地域未来推進型）の交付対象事業の決定について（令和8年1月募集） | https://www.chisou.go.jp/sousei/about/chiikimiraikoufukin/suishin/pdf/r8_suishin_1.pdf          | `r8_suishin_1.pdf`      | 949ece75408f71e3ac9f4c8cc26752ac15a6210769ec745480c7958ed2385cb2 |
+| 環境保全型農業直接支払交付金   | 令和6年度環境保全型農業直接支払交付金の実施状況（都道府県別・市町村別）        | https://www.maff.go.jp/j/seisan/kankyo/kakyou_chokubarai/other/attach/pdf/jisshijyoukyou-22.pdf | `jisshijyoukyou-22.pdf` | ad1a13fa5d5fa66e642983bcff6b72bd75af36fe5045743e126c6f821bd642a1 |
+| 宿泊税を活用した市町補助金     | 宿泊税を活用した市町補助金 交付決定事業一覧（2026年8月31日時点）               | https://www.pref.hiroshima.lg.jp/soshiki/78/shityouhojyokin.html                                | `shityouhojyokin.html`  | 572b23566e9351ea892c153a4dc1404b0bf0d2960c9b1645b1667852b2931fed |
+| 多面的機能支払交付金           | 令和3年度 多面的機能支払交付金の市町村別取組状況                               | https://www.maff.go.jp/chushi/chusankan/attach/pdf/nihongata-50.pdf                             | `nihongata-50.pdf`      | b4d021241144b6c545840b42b8425b875691fe9d44f170bd2dc24dc36dd891fc |
 
-原本を保存できていない制度は未照合として区別し、公開JSONの `unsourced_programs` に理由を残す。
+原本を保存してSHA-256を記録できた制度だけを掲載する（[[D-035]]）。宿泊税を活用した市町補助金はHTMLが随時更新されるため、取得時点のスナップショットを保存し、出典名に時点を明記した上で「原本あり」として扱う。原本を保存できない制度は、値が正しそうでも掲載しない。公開JSONの `unsourced_programs` は、この方針の下では空である。
 
-- 環境保全型農業直接支払交付金: 原本PDFを保存できていない（農林水産省のサーバーが自動取得を拒否する）（https://www.maff.go.jp/j/seisan/kankyo/kakyou_chokubarai/other/jisshijyoukyou.html）
-- 宿泊税を活用した市町補助金: 原本がPDFではなくHTMLで、随時更新されるため時点を固定できていない（https://www.pref.hiroshima.lg.jp/soshiki/78/shityouhojyokin.html）
-
-指定された制度のうち、重点支援地方交付金と中山間地域等直接支払交付金は、市町別の採択一覧を特定できておらず未着手である。
+指定された制度のうち、重点支援地方交付金と中山間地域等直接支払交付金は、複数年度・複数の公表資料を当たっても市町別の交付一覧が公表されておらず、原本を保存できない。上記の方針により掲載しない。
 
 ## 4. 年別取得計画
 
