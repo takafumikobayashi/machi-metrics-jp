@@ -32,7 +32,7 @@ MVPの人口データと全国類似自治体を実装し、人口密度と産�
 
 ## セットアップ
 
-必要なものは Node.js 22 以上と pnpm 10 です。
+必要なものは Node.js 22 以上と pnpm 10 です。データ正規化を実行する場合は Python 3 も必要です。
 
 ```bash
 pnpm install
@@ -40,6 +40,16 @@ pnpm dev
 ```
 
 ブラウザで `http://localhost:3000` を開きます。
+
+ふるさと納税などのPython製データ正規化スクリプトを実行する場合は、リポジトリルートで仮想環境を作成し、依存関係をインストールします。
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+依存関係の詳細と各スクリプトの実行方法は [scripts/data/README.md](scripts/data/README.md) を参照してください。
 
 品質チェックは次の1コマンドにまとめています。
 

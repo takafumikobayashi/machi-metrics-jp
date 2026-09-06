@@ -37,7 +37,7 @@ Next.js（概要 / 自治体詳細 / データ説明）
 | 配信       | Vercel等のNode/静的配信を想定           | 公開JSONが静的なので特定のDBを必要としない                                     |
 | CI         | GitHub Actions                          | lint、型、テスト、データ設定、ビルドを自動確認                                 |
 
-通常のMVP処理はNode.js + TypeScriptで行います。産業構造の原本は1シート約30万行・大規模なExcel XMLであるため、`normalize-industry.py`だけは追加ライブラリ不要のPython標準ライブラリでストリーム解析します。採用理由は処理をWeb実行時へ持ち込まず、Excel原本の保存・再生成手順を保つためです。
+通常のMVP処理はNode.js + TypeScriptで行います。産業構造の原本は1シート約30万行・大規模なExcel XMLであるため、`normalize-industry.py`は追加ライブラリ不要のPython標準ライブラリでストリーム解析します。一方、ふるさと納税と財務状況のExcel原本は`normalize-furusato.py`・`normalize-finance.py`が`requirements.txt`で固定した`openpyxl`で読み込みます。採用理由は処理をWeb実行時へ持ち込まず、Excel原本の保存・再生成手順を保つためです。
 
 ## 3. ディレクトリ責務
 

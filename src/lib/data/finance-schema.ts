@@ -156,6 +156,14 @@ const publishedRatioSourceSchema = z
   })
   .strict();
 
+const financeSourceFileSchema = z
+  .object({
+    file: z.string().min(1),
+    url: z.string().url(),
+    sha256: z.string().regex(/^[a-f0-9]{64}$/),
+  })
+  .strict();
+
 const financialIndicatorEntrySchema = z
   .object({
     municipality_code: z.string().regex(/^34\d{3}$/),
@@ -189,6 +197,8 @@ export const financeFileSchema = z
         title: z.string().min(1),
         url: z.string().url(),
         acquired_at: z.string().datetime({ offset: true }),
+        /** 正規化に実際に使った原本とハッシュ。再生成時の突合に利用します。 */
+        files: z.array(financeSourceFileSchema).min(1),
       })
       .strict(),
     financial_indicators: financialIndicatorsSchema,

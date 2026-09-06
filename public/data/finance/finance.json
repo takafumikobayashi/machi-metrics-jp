@@ -3,7 +3,219 @@
   "source": {
     "title": "地方財政状況調査 市町村分（2025年公表・令和6年度決算／歳入・歳出）",
     "url": "https://www.e-stat.go.jp/stat-search/files?cycle=7&layout=datalist&month=0&result_back=1&tclass1=000001077756&tclass2=000001077757&tclass3val=0&toukei=00200251&tstat=000001077755&year=20250",
-    "acquired_at": "2026-09-06T12:00:00+09:00"
+    "acquired_at": "2026-09-06T12:00:00+09:00",
+    "files": [
+      {
+        "file": "estat-2025/table04.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375638",
+        "sha256": "7f47a972b0501242f1dfd522bbf722adb0eb8401efffc768715b73e49d400a31"
+      },
+      {
+        "file": "estat-2025/table05-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375639",
+        "sha256": "21c3f81c315b82580fbe26d6aadd3a8b80e6040ee2a52b23b4e2a2d50bc78199"
+      },
+      {
+        "file": "estat-2025/table05-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375640",
+        "sha256": "1fc9ed3bcc8f25d5e1ac4c6ab365bf602a328a2b6c58337bc1293fd642572b11"
+      },
+      {
+        "file": "estat-2025/table07-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375643",
+        "sha256": "9648d04c07241055c34fcd9f7f2079fef1270100ed4affb706e1241a54fa5b67"
+      },
+      {
+        "file": "estat-2025/table07-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375644",
+        "sha256": "37f8cc20d3f8f7da32f54b637077543b6c626fe7de93a5a833fe18ad3f9a886a"
+      },
+      {
+        "file": "estat-2025/table08-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375645",
+        "sha256": "db9e7672ae5a8e4857557ffb429e50038c39ef855029da42f2bebb3853948424"
+      },
+      {
+        "file": "estat-2025/table08-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375646",
+        "sha256": "2cdf9d44baa1a578eb82f7808b2d01a97669022c8d4e80e9870af3452ad439ea"
+      },
+      {
+        "file": "estat-2025/table09-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375647",
+        "sha256": "a5a4934a99e9c269c048ec1c4dc59bc082233880d8368f8c0eaa67828e5819bc"
+      },
+      {
+        "file": "estat-2025/table09-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375648",
+        "sha256": "eaae34915c7b391348036e1f3076c35e8eea487e546e00f93c51d16ed0e4ac4e"
+      },
+      {
+        "file": "estat-2025/table10-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375649",
+        "sha256": "53087a5fbc0808304c3bd0b47d0b1c1e4767d3abf3bbdea89b002162b26be202"
+      },
+      {
+        "file": "estat-2025/table10-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375650",
+        "sha256": "05f6cad05482cb59e36883a5f448d59a6f64051ba96acbeaa07203fc6a78ff16"
+      },
+      {
+        "file": "estat-2025/table11-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375651",
+        "sha256": "6fcab886384b4836501cbe352781cb9008b75778378bd6267fcd6f2a5d6c2b0f"
+      },
+      {
+        "file": "estat-2025/table11-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375652",
+        "sha256": "a528d3c6437301f2eb0b0bb1a90b8e01f692099dcf78d57a2c5983d0d171ee0f"
+      },
+      {
+        "file": "estat-2025/table12-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375653",
+        "sha256": "3d058653665597d7250d51b44df03d844c3f6277f65f8b7ae6d27605b7068d40"
+      },
+      {
+        "file": "estat-2025/table12-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375654",
+        "sha256": "3324a533d4ba1459ba1fef28c49b3a350d79b1a26ea6d4c21aff3866e1d980a2"
+      },
+      {
+        "file": "estat-2025/table12-3.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375655",
+        "sha256": "422b4528c525c5b4e8c389a2554beb46a7c5cbf841409c2f3628d70824415ce9"
+      },
+      {
+        "file": "estat-2025/table14-1.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375660",
+        "sha256": "c610a060ef7c3bab9894bdf353ba12f95fac46b7d26698b1e1ffe5ba11ef4774"
+      },
+      {
+        "file": "estat-2025/table14-2.csv",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=1&statInfId=000040375661",
+        "sha256": "61c3812559e6c64b35c4c53fe8fc7aaa7da9fdae77cab917453c9b1c8c4403c3"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34100.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619203_misc.xlsx",
+        "sha256": "6757e3b6ea17e1ce2fa09d9a52aa1ba56b38f13584bba751e81ee0fc0e2ac0f8"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34202.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619182_misc.xlsx",
+        "sha256": "90922409d4f22c1b633e74bd858fc94da92fc527b89ad79a3cb7963e2a894d3b"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34203.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619202_misc.xlsx",
+        "sha256": "a42ffc578051bb9e0e12bf3148a0b289a9147fb0636a31769c4ee0ad73faeb29"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34204.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620184_misc.xlsx",
+        "sha256": "6cd5bc493fe9420efdcd9b4e0c44b6d864c857db9a65d95afd612d79fdb2818e"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34205.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620153_misc.xlsx",
+        "sha256": "e9085e55018c68e52ad71025d4e1fcf400e64cec73efb529121267ea2de369f9"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34207.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620154_misc.xlsx",
+        "sha256": "234d0b6bbc45f7391e2596dc4c8dac52652753e866cfd383bbd38c9a1e0a61b4"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34208.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619186_misc.xlsx",
+        "sha256": "d7205da46b80c677a7e3be81bdfcd6306f19ab4d6422626bf7b20c6ecfc89418"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34209.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619187_misc.xlsx",
+        "sha256": "ee3d4c88a0e0d679fb801f6a057a1fc2d03a26aee9a41d55e1a6bd4cbb916cf3"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34210.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620174_misc.xlsx",
+        "sha256": "a2d23ea5d3b1db52b6ff8fdd8e390eb7def6a6451276eb22baa3a675a8585e4f"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34211.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619189_misc.xlsx",
+        "sha256": "d1efc7d668ee1b4beba7a8f36a35ec38a4f4236b89430dc49e7f9d5ca092cbe6"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34212.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620176_misc.xlsx",
+        "sha256": "e1d2b54e8c258048103e04d30e5f560be04bf75c553607a3729268c7160feeca"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34213.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619191_misc.xlsx",
+        "sha256": "bc6d5e50efdb111b66ae52e8adde66769c5269898105bef3fb463b36eb84e4d0"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34214.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619192_misc.xlsx",
+        "sha256": "d5891ea11bf389dbb7a5d65473ab737c5d0cc203dcc95c5a5fa1d9bb43b8adb8"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34215.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620177_misc.xlsx",
+        "sha256": "71fc221cfb1ba9cb87194189f5bfc98fb874f82bbc3dc8caeea2b4eb43456dc1"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34302.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619194_misc.xlsx",
+        "sha256": "4edf4061da69b909b7562b514e567af593d052a928d49502a90728c3cc644c3e"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34304.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619195_misc.xlsx",
+        "sha256": "cd69b2ddb57514fbc7f3cd0c55dc0e225da224d71e7dba0c8aefb41cb6532f92"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34307.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619204_misc.xlsx",
+        "sha256": "63b0f6d640b37480801325bca8d8a44a23e1af4ee4ee57678eb346a0e8a7e871"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34309.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619201_misc.xlsx",
+        "sha256": "652bc4cf41fa2f1bad8239119327e4ab79a790d6b5fd5dbd279266c21d79bc9f"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34368.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620179_misc.xlsx",
+        "sha256": "ae7b67ca8e51a2f1f4c8bcfbad7a540df0413a4df46fad122d633a278af42748"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34369.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620180_misc.xlsx",
+        "sha256": "40353987be6b411cdfe79171a926b80b7c7459b5452fd74cd1ba8285aca0e75d"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34431.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620181_misc.xlsx",
+        "sha256": "64c7ec60ab4a52e10e873a7e4a6fd2d46748f1f0fcd453be06fc1fc3f7aa244a"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34462.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9620182_misc.xlsx",
+        "sha256": "deb02db05fc4ac0ccdb279e69830a5014a48b7aa05141ae9ec2b7f7aa425cbf8"
+      },
+      {
+        "file": "hiroshima-shiryoshu/2024/34545.xlsx",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619200_misc.xlsx",
+        "sha256": "806584c4c5b2238530cf70c4072e00aae75348b21110ced8fc4784edf9b3a635"
+      },
+      {
+        "file": "hiroshima-kessan/2024/658760.pdf",
+        "url": "https://www.pref.hiroshima.lg.jp/uploaded/attachment/658760.pdf",
+        "sha256": "791c180afdcafdb0ed1f6c07401b75ebde37f66b983795a2942a2a217a74fcf8"
+      }
+    ]
   },
   "financial_indicators": {
     "source": {

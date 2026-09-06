@@ -14,6 +14,18 @@ acquire → normalize → validate → derive → publish
 pnpm validate:data
 ```
 
+## Python依存関係
+
+ふるさと納税のExcel原本を処理する`normalize:furusato`は、Excel読み込みに`openpyxl`を使用します。依存関係はリポジトリルートの`requirements.txt`に固定しています。初回のみ、リポジトリルートで次を実行してください。
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+以後、この仮想環境を有効にした状態で`pnpm normalize:furusato`を実行します。CIでも同じ`requirements.txt`をインストールしてから検証します。
+
 ## パイロット正規化
 
 2016年・2025年の`-03`・`-04`原本から、広島市（`34100`）と安芸高田市（`34214`）を抽出します。
@@ -51,6 +63,18 @@ pnpm publish:digital-dx
 `acquired_at`を優先し、メタデータがない既存原本では`dashboard.zip`の更新日時を
 再現可能な暫定値として使います。正規化対象のCSVは、抽出済みファイルではなく
 ハッシュを記録する`dashboard.zip`内から直接読み込みます。
+
+## 財務状況データ
+
+財務状況は、e-Statの表04・05・07〜12・14、広島県の市町別Excel、経常収支比率を掲載した県PDFを同じスナップショットとして扱います。取得時に`data/raw/finance/source.json`へ各原本のURL・取得日時・SHA-256を保存し、正規化はこのマニフェストとハッシュが一致するファイルだけを読み込みます。PDFの比率表の抽出にはPopplerの`pdftotext`が必要です。
+
+```bash
+pnpm acquire:finance
+pnpm normalize:finance
+pnpm publish:finance
+```
+
+`normalize:finance`は`data/processed/finance/finance.json`を生成し、`publish:finance`は`financeFileSchema`で検証してから`public/data/finance/finance.json`へ原子的に反映します。再実行時も、正規化時刻ではなく取得マニフェストの`acquired_at`を公開JSONへ写します。
 
 ## 正規化結果から公開JSONへの変換
 
