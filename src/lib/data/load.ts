@@ -5,6 +5,14 @@ import path from "node:path";
 import type { z } from "zod";
 
 import { densityFileSchema, type DensityFile } from "./density-schema";
+import { furusatoFileSchema, type FurusatoFile } from "./furusato-schema";
+import {
+  furusatoUsageFileSchema,
+  type FurusatoUsageFile,
+} from "./furusato-usage-schema";
+import { financeFileSchema, type FinanceFile } from "./finance-schema";
+import { grantFileSchema, type GrantFile } from "./grant-schema";
+import { digitalDxFileSchema, type DigitalDxFile } from "./digital-dx-schema";
 import { industryFileSchema, type IndustryFile } from "./industry-schema";
 import {
   migrationFlowFileSchema,
@@ -175,6 +183,51 @@ export async function loadIndustry(
   return readJsonFile(
     path.join(releaseDirectory(root, releaseId), "industry.json"),
     industryFileSchema,
+  );
+}
+
+export async function loadFurusato(
+  root: string = defaultPublicDataRoot(),
+): Promise<FurusatoFile> {
+  return readJsonFile(
+    path.join(root, "furusato", "mic-2026.json"),
+    furusatoFileSchema,
+  );
+}
+
+export async function loadFurusatoUsage(
+  root: string = defaultPublicDataRoot(),
+): Promise<FurusatoUsageFile> {
+  return readJsonFile(
+    path.join(root, "furusato", "usage.json"),
+    furusatoUsageFileSchema,
+  );
+}
+
+export async function loadFinance(
+  root: string = defaultPublicDataRoot(),
+): Promise<FinanceFile> {
+  return readJsonFile(
+    path.join(root, "finance", "finance.json"),
+    financeFileSchema,
+  );
+}
+
+export async function loadDigitalDx(
+  root: string = defaultPublicDataRoot(),
+): Promise<DigitalDxFile> {
+  return readJsonFile(
+    path.join(root, "digital", "dx-2024.json"),
+    digitalDxFileSchema,
+  );
+}
+
+export async function loadGrants(
+  root: string = defaultPublicDataRoot(),
+): Promise<GrantFile> {
+  return readJsonFile(
+    path.join(root, "grants", "grants.json"),
+    grantFileSchema,
   );
 }
 

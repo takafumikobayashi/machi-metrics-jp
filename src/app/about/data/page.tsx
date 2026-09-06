@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { projectConfig } from "@/lib/config";
 import {
   loadDensity,
+  loadFinance,
+  loadFurusato,
   loadIndustry,
   loadLatestPointer,
   loadManifest,
@@ -42,6 +44,8 @@ export default async function DataAboutPage() {
     density,
     industry,
     structureSimilarityModel,
+    furusato,
+    finance,
   ] = await Promise.all([
     loadManifest(latestPointer.release_id),
     loadSimilarityModel(latestPointer.release_id),
@@ -49,7 +53,17 @@ export default async function DataAboutPage() {
     loadDensity(latestPointer.release_id),
     loadIndustry(latestPointer.release_id),
     loadStructureSimilarityModel(latestPointer.release_id),
+    loadFurusato(),
+    loadFinance(),
   ]);
+  /** 年度は画面に書かず、公開データの最新年度から導く（DECISIONS D-029）。 */
+  const furusatoFiscalYear = Math.max(
+    ...furusato.entries.map((entry) => entry.fiscal_year),
+  );
+  const furusatoTaxYear = furusato.deductions[0]?.tax_year ?? null;
+  const furusatoHistory = furusato.sources.find(
+    (source) => source.id === "history",
+  );
   /** 除外した自治体は、コードだけでは伝わらないため名称を引き当てて表示する。 */
   const nameByCode = new Map(
     municipalitiesFile.municipalities.map((municipality) => [
@@ -197,6 +211,55 @@ export default async function DataAboutPage() {
           産業データの出典:{" "}
           <a href={industry.source.url} rel="noreferrer" target="_blank">
             {industry.source.title}
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2>ふるさと納税</h2>
+        <p>
+          総務省「ふるさと納税に関する現況調査」から、受入額・受入件数・募集経費・住民税控除額の
+          <strong>数値だけ</strong>
+          を掲載しています。返礼品の名称・画像・紹介文は取得も公開もしていません。
+        </p>
+        <p>
+          年度は会計年度です。受入額の原本は千円単位のため円へ換算し、受入額表と控除額表は原本が円単位なのでそのまま使っています。最新の
+          {furusatoFiscalYear}
+          年度は決算見込で、確定値ではありません。募集経費はこの年度だけ公表されるため、それ以前の年度は空欄です。
+        </p>
+        <p>
+          住民税控除額は「ふるさと納税に係る寄附金税額控除」のうち市町村民税分で、原本に推計値を含むと明記されています。円未満の端数があるため、画面では円単位に丸めています。課税年度
+          {furusatoTaxYear !== null ? `（${furusatoTaxYear}年度）` : ""}
+          は受入年度とずれるので、同じ年度の収支として差し引かないでください。
+        </p>
+        {furusatoHistory ? (
+          <p>
+            ふるさと納税データの出典:{" "}
+            <a href={furusatoHistory.url} rel="noreferrer" target="_blank">
+              {furusatoHistory.title}
+            </a>
+          </p>
+        ) : null}
+      </section>
+
+      <section>
+        <h2>財務状況</h2>
+        <p>
+          総務省「地方財政状況調査」の市町村分から、{finance.entries.length}
+          市町の
+          {finance.entries[0]?.fiscal_year ?? "対象"}
+          年度決算における歳入・目的別歳出・性質別経費を掲載しています。原本の千円単位を円へ換算し、歳入・歳出合計に対する構成比、歳入の主な内訳、最新の人口スナップショットを分母にした1人当たり歳出を表示します。構成比レーダーチャートは比較用に8分類へまとめた分析表示です。性質別経費は予算書の「節」そのものではなく、e-Statの統一分類です。
+        </p>
+        <p>
+          県内順位は同じ決算年度の23市町間で計算しています。財務状況の歳出額は自治体全体の決算であり、ふるさと納税をどの事業へ充当したかを示すものではありません。使途の公表情報は、ふるさと納税ページに別に掲載します。
+        </p>
+        <p>
+          経常収支比率は、経常経費充当一般財源等を経常一般財源等、減収補塡債特例分、猶予特例債、臨時財政対策債の合計で割って当サイトで計算した参考値です。財政構造の弾力性を示す指標で、比率が高いほど経常的な支出に一般財源が固定されています。算定元データはe-Statの調査表と広島県の市町別決算資料です。前年度比・5年程度の推移・人口規模が近い自治体との差は、同一定義の過年度決算を揃えてから追加します。
+        </p>
+        <p>
+          財務データの出典:{" "}
+          <a href={finance.source.url} rel="noreferrer" target="_blank">
+            {finance.source.title}
           </a>
         </p>
       </section>

@@ -5,12 +5,16 @@ import {
   type RegionalFlowPoint,
   type RegionalPopulationPoint,
 } from "@/components/dashboard/DashboardCharts";
+import { DonationRankingTable } from "@/components/dashboard/DonationRankingTable";
+import { FinanceSummaryPanel } from "@/components/dashboard/FinanceSummaryPanel";
 import { MunicipalityTable } from "@/components/dashboard/MunicipalityTable";
 import { hiroshimaMunicipalities, projectConfig } from "@/lib/config";
 import {
   loadHiroshimaSummary,
   loadLatestPointer,
   loadDensity,
+  loadFinance,
+  loadFurusato,
   loadMunicipalityDetail,
 } from "@/lib/data/load";
 import {
@@ -79,7 +83,7 @@ function aggregateRegionalSeries(
 
 export default async function HomePage() {
   const latestPointer = await loadLatestPointer();
-  const [summary, density, details] = await Promise.all([
+  const [summary, density, details, furusato, finance] = await Promise.all([
     loadHiroshimaSummary(latestPointer.release_id),
     loadDensity(latestPointer.release_id),
     Promise.all(
@@ -87,6 +91,8 @@ export default async function HomePage() {
         loadMunicipalityDetail(latestPointer.release_id, code),
       ),
     ),
+    loadFurusato(),
+    loadFinance(),
   ]);
   const { populationPoints, flowPoints } = aggregateRegionalSeries(details);
   const currentPopulation = populationPoints.at(-1)?.population ?? null;
@@ -109,6 +115,23 @@ export default async function HomePage() {
   );
   const strongestGrowth = summaryRows[0];
   const largestDecline = summaryRows.at(-1);
+  // 年度を画面に書き込まず、公開データに含まれる最新年度を使う。
+  const donationFiscalYear = Math.max(
+    ...furusato.entries.map((entry) => entry.fiscal_year),
+  );
+  const donationRows = furusato.entries
+    .filter((entry) => entry.fiscal_year === donationFiscalYear)
+    .map((entry) => ({
+      ...entry,
+      name_ja:
+        hiroshimaMunicipalities.find(
+          ({ code }) => code === entry.municipality_code,
+        )?.nameJa ?? entry.municipality_code,
+    }))
+    .sort((a, b) => (b.amount_yen ?? -1) - (a.amount_yen ?? -1));
+  const donationProvisional = furusato.entries.some(
+    (entry) => entry.fiscal_year === donationFiscalYear && entry.provisional,
+  );
 
   return (
     <>
@@ -277,6 +300,35 @@ export default async function HomePage() {
             </p>
           </section>
         </div>
+
+        <FinanceSummaryPanel finance={finance} />
+
+        <section
+          className="dashboard-panel dashboard-donation-ranking"
+          aria-labelledby="donation-ranking-heading"
+        >
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow">ふるさと納税</p>
+              <h3 id="donation-ranking-heading">受入額ランキング</h3>
+            </div>
+            <span className="panel-period">{donationFiscalYear}年度</span>
+          </div>
+          <p className="section-note">
+            個人向けふるさと納税の受入額。
+            {donationProvisional
+              ? `${donationFiscalYear}年度は決算見込です。`
+              : null}
+            平均寄付額は受入額を件数で割った参考値です。
+          </p>
+          <DonationRankingTable
+            fiscalYear={donationFiscalYear}
+            rows={donationRows}
+          />
+          <p className="section-note">
+            総務省「ふるさと納税に関する現況調査」を加工しています。返礼品情報は掲載していません。
+          </p>
+        </section>
       </section>
 
       <section

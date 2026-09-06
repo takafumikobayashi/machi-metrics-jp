@@ -21,7 +21,14 @@
     "normalize:industry": "python3 scripts/data/normalize-industry.py",
     "normalize:migration": "python3 scripts/data/normalize-migration.py",
     "normalize:migration:age": "python3 scripts/data/normalize-migration.py --dataset age",
+    "acquire:furusato": "python3 scripts/data/acquire-furusato.py",
+    "normalize:furusato": "python3 scripts/data/normalize-furusato.py",
+    "normalize:digital-dx": "python3 scripts/data/normalize-digital-dx.py",
+    "publish:digital-dx": "node --import tsx scripts/data/publish-digital-dx.ts",
     "publish:data": "node --import tsx scripts/data/publish-juki.ts",
+    "publish:furusato": "node --import tsx scripts/data/publish-furusato.ts",
+    "normalize:grants": "python3 scripts/data/normalize-grants.py",
+    "publish:grants": "node --import tsx scripts/data/publish-grants.ts",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm validate:data"
   },
   "dependencies": {

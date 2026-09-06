@@ -44,6 +44,20 @@ export function formatCount(value: number | null, unit = "人"): string {
   return `${integerFormat.format(value)}${unit}`;
 }
 
+/**
+ * 金額。原本が推計値の場合は円未満の端数を持つため、円単位へ丸めて表示する。
+ * 端数は表示上の意味を持たず、桁数が増えて読みにくくなるだけのため。
+ */
+export function formatYen(value: number | null): string {
+  if (value === null) {
+    return missingLabel;
+  }
+  if (!Number.isFinite(value)) {
+    throw new Error("value must be a finite number.");
+  }
+  return `${integerFormat.format(Math.round(value))}円`;
+}
+
 /** 人口密度。面積の単位は列見出しや補足で示すため、ここでは値に添える。 */
 export function formatPopulationDensity(value: number | null): string {
   if (value === null) {

@@ -173,6 +173,15 @@ export default async function MunicipalityPage({
           <small>{manifest.release_id}</small>
         </div>
       </div>
+      <nav className="detail-nav" aria-label="自治体情報のカテゴリ">
+        <Link aria-current="page" href={`/municipalities/${code}`}>
+          人口・人口動態
+        </Link>
+        <Link href={`/municipalities/${code}/finance`}>財務状況</Link>
+        <Link href={`/municipalities/${code}/donations`}>ふるさと納税</Link>
+        <Link href={`/municipalities/${code}/digital`}>自治体DX</Link>
+        <Link href={`/municipalities/${code}/grants`}>補助金・交付金</Link>
+      </nav>
 
       <div className="preview-note" role="status">
         <strong>広島県23市町の詳細データを表示しています。</strong>

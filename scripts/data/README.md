@@ -34,6 +34,23 @@ pnpm normalize:data -- --years 2016,2025 --municipalities 34100,34214
 
 全量処理では、2016〜2025年の23市町を指定します。正規化結果はGit管理外の`data/staging`・`data/processed`に生成されます。
 
+## 自治体DXデータ
+
+デジタル庁「自治体DXの取組に関するダッシュボード」の原本を
+`data/raw/digital-dx/2024-07-12/`へ保存し、次の順で処理します。
+
+```bash
+pnpm normalize:digital-dx
+pnpm publish:digital-dx
+```
+
+`normalize:digital-dx`は`data/processed/digital-dx-2024.json`を生成します。
+`publish:digital-dx`はこのファイルを`digitalDxFileSchema`で検証してから、
+サイトが読む`public/data/digital/dx-2024.json`へ反映します。検証に失敗した場合は、
+公開済みファイルを変更しません。取得日時は同じディレクトリの`source.json`に記録した
+`acquired_at`を優先し、メタデータがない既存原本では`dashboard.zip`の更新日時を
+再現可能な暫定値として使います。
+
 ## 正規化結果から公開JSONへの変換
 
 公開JSONのスキーマと横断検証は既存の`src/lib/data/`を利用します。次の処理は、正規化済みの総計データと拡張データを公開JSONの形へ変換し、スキーマ検証と横断検証を通過した場合だけパイロット出力を配置します。
