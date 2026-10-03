@@ -515,7 +515,7 @@ def main() -> None:
                     "acquired_at": source_acquired_at(
                         manifest, listed[fiscal_strength_relative]
                     ),
-                    "note": "e-Stat D2201「財政力指数（市町村財政）」の公表値。値は基準財政収入額と基準財政需要額の過去3年度平均です。",
+                    "note": "e-Stat D2201「財政力指数（市町村財政）」の公表値。値は基準財政収入額を基準財政需要額で割った値の過去3年度平均です。",
                 },
                 "entries": fiscal_strength_entries,
             },
