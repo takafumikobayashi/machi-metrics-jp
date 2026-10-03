@@ -156,6 +156,33 @@ const publishedRatioSourceSchema = z
   })
   .strict();
 
+/** e-Stat D2201の財政力指数。現行決算とは別の統計年度になり得るため独立して保持する。 */
+const fiscalStrengthSourceSchema = z
+  .object({
+    title: z.string().min(1),
+    url: z.string().url(),
+    file: z.string().min(1),
+    sha256: z.string().regex(/^[a-f0-9]{64}$/),
+    acquired_at: z.string().datetime({ offset: true }),
+    note: z.string().min(1),
+  })
+  .strict();
+
+const fiscalStrengthEntrySchema = z
+  .object({
+    municipality_code: z.string().regex(/^34\d{3}$/),
+    fiscal_year: z.string().regex(/^\d{4}$/),
+    value: z.number().nonnegative(),
+  })
+  .strict();
+
+const fiscalStrengthSchema = z
+  .object({
+    source: fiscalStrengthSourceSchema,
+    entries: z.array(fiscalStrengthEntrySchema),
+  })
+  .strict();
+
 const financeSourceFileSchema = z
   .object({
     file: z.string().min(1),
@@ -185,6 +212,7 @@ const financialIndicatorsSchema = z
   .object({
     source: financialIndicatorSourceSchema,
     published_ratio_source: publishedRatioSourceSchema,
+    fiscal_strength: fiscalStrengthSchema,
     entries: z.array(financialIndicatorEntrySchema),
   })
   .strict();
@@ -224,3 +252,7 @@ export type FinanceFile = z.infer<typeof financeFileSchema>;
 export type FinanceEntry = FinanceFile["entries"][number];
 export type FinancialIndicator =
   FinanceFile["financial_indicators"]["entries"][number];
+export type FiscalStrength =
+  FinanceFile["financial_indicators"]["fiscal_strength"]["entries"][number];
+export type FiscalStrengthSource =
+  FinanceFile["financial_indicators"]["fiscal_strength"]["source"];

@@ -8,7 +8,11 @@ import {
 import { hiroshimaMunicipalities } from "@/lib/config";
 import { selectLatestFinanceEntries } from "@/lib/data/finance";
 import type { FinanceEntry, FinanceFile } from "@/lib/data/finance-schema";
-import { formatRatioAsPercent, formatYen } from "@/lib/format/display";
+import {
+  formatFiscalStrengthIndex,
+  formatRatioAsPercent,
+  formatYen,
+} from "@/lib/format/display";
 
 type GroupDefinition = {
   label: string;
@@ -198,6 +202,17 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
     ratioDenominator > 0 ? currentExpenditure / ratioDenominator : null;
   const medianPosition = positionInRange(medianRatio, minRatio, maxRatio);
   const aggregatePosition = positionInRange(aggregateRatio, minRatio, maxRatio);
+  const fiscalStrengthEntries =
+    finance.financial_indicators.fiscal_strength.entries;
+  const fiscalStrengthYear = fiscalStrengthEntries[0]?.fiscal_year ?? null;
+  const fiscalStrengthValues = fiscalStrengthEntries.map(
+    (entry) => entry.value,
+  );
+  const medianFiscalStrength = median(fiscalStrengthValues);
+  const minFiscalStrength =
+    fiscalStrengthValues.length > 0 ? Math.min(...fiscalStrengthValues) : null;
+  const maxFiscalStrength =
+    fiscalStrengthValues.length > 0 ? Math.max(...fiscalStrengthValues) : null;
   /** 帯の上に23市町を1点ずつ置き、どの市町がどこにいるかを読めるようにする。 */
   const ratioPoints: RatioPoint[] = indicators
     .map((indicator) => {
@@ -284,6 +299,17 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
               : `${formatRatioAsPercent(minRatio)}〜${formatRatioAsPercent(maxRatio)}`}
           </small>
         </div>
+        <div className="finance-summary-kpi">
+          <span>財政力指数（市町別中央値）</span>
+          <strong>{formatFiscalStrengthIndex(medianFiscalStrength)}</strong>
+          <small>
+            {fiscalStrengthYear === null ||
+            minFiscalStrength === null ||
+            maxFiscalStrength === null
+              ? "市町別データなし"
+              : `${fiscalStrengthYear}年度・${formatFiscalStrengthIndex(minFiscalStrength)}〜${formatFiscalStrengthIndex(maxFiscalStrength)}`}
+          </small>
+        </div>
       </div>
 
       <div className="finance-summary-distribution">
@@ -332,6 +358,18 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
             target="_blank"
           >
             広島県公表資料
+          </a>
+          。財政力指数はe-Stat D2201の公表値（
+          {fiscalStrengthYear === null
+            ? "対象年度不明"
+            : `${fiscalStrengthYear}年度`}
+          ）です。出典：
+          <a
+            href={finance.financial_indicators.fiscal_strength.source.url}
+            rel="noreferrer"
+            target="_blank"
+          >
+            e-Stat「統計でみる市区町村のすがた」
           </a>
           。
         </p>

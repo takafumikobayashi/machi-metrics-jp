@@ -77,6 +77,10 @@ export default async function FinancePage({
         item.municipality_code === code &&
         item.fiscal_year === financeSelection.fiscalYear,
     ) ?? null;
+  const fiscalStrength =
+    finance.financial_indicators.fiscal_strength.entries.find(
+      (item) => item.municipality_code === code,
+    ) ?? null;
   return (
     <article className="shell municipality-page">
       <Link className="back-link" href="/">
@@ -108,6 +112,10 @@ export default async function FinancePage({
         population={latest?.population_total ?? null}
         financialIndicator={financialIndicator}
         financialIndicatorSource={finance.financial_indicators.source}
+        fiscalStrength={fiscalStrength}
+        fiscalStrengthSource={
+          finance.financial_indicators.fiscal_strength.source
+        }
       />
       <p className="section-note">
         データ出典：総務省「地方財政状況調査」（

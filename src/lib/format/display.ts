@@ -109,6 +109,17 @@ export function formatRatioAsPercent(
   return `${roundToFixed(ratio * 100, fractionDigits).toFixed(fractionDigits)}%`;
 }
 
+/** e-Statの財政力指数。公表値の小数2桁をそのまま表示する。 */
+export function formatFiscalStrengthIndex(value: number | null): string {
+  if (value === null) {
+    return missingLabel;
+  }
+  if (!Number.isFinite(value)) {
+    throw new Error("value must be a finite number.");
+  }
+  return value.toFixed(2);
+}
+
 /** 増減率。丸めた後に符号と「増」「減」を付ける。 */
 export function formatSignedRatioAsPercent(
   ratio: number | null,

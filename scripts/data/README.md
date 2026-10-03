@@ -77,7 +77,7 @@ pnpm publish:digital-dx
 
 ## 財務状況データ
 
-財務状況は、e-Statの表04・05・07〜12・14、広島県の市町別Excel、経常収支比率を掲載した県PDFを同じスナップショットとして扱います。取得時に`data/raw/finance/source.json`へ各原本のURL・取得日時・SHA-256を保存し、正規化はこのマニフェストとハッシュが一致するファイルだけを読み込みます。PDFの比率表の抽出にはPopplerの`pdftotext`が必要です。
+財務状況は、e-Statの表04・05・07〜12・14、e-Stat「統計でみる市区町村のすがた」D行政基盤、広島県の市町別Excel、経常収支比率を掲載した県PDFを同じスナップショットとして扱います。取得時に`data/raw/finance/source.json`へ各原本のURL・取得日時・SHA-256を保存し、正規化はこのマニフェストとハッシュが一致するファイルだけを読み込みます。PDFの比率表の抽出にはPopplerの`pdftotext`、財政力指数の旧形式Excel変換にはLibreOfficeの`soffice`が必要です。
 
 ```bash
 pnpm acquire:finance
@@ -85,7 +85,8 @@ pnpm normalize:finance
 pnpm publish:finance
 ```
 
-`normalize:finance`は`data/processed/finance/finance.json`を生成し、`publish:finance`は`financeFileSchema`で検証してから`public/data/finance/finance.json`へ原子的に反映します。再実行時も、正規化時刻ではなく取得マニフェストの`acquired_at`を公開JSONへ写します。
+`normalize:finance`は`data/processed/finance/finance.json`を生成し、`publish:finance`は`financeFileSchema`で検証してから`public/data/finance/finance.json`へ原子的に反映します。再実行時も、正規化時刻ではなく取得マニフェストの`acquired_at`を公開JSONへ写します。既存スナップショットへ後から原本を追加した場合、全体の`acquired_at`は変えず、追加したファイルにだけファイル単位の`acquired_at`を記録します。
+財政力指数はe-Statの調査項目D2201「財政力指数（市町村財政）」をそのまま収録します。統計年度は決算データと一致しない場合があるため、公開JSONと画面の両方で指数の年度を明記します。
 
 ## 正規化結果から公開JSONへの変換
 

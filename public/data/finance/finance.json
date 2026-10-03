@@ -96,6 +96,11 @@
         "sha256": "61c3812559e6c64b35c4c53fe8fc7aaa7da9fdae77cab917453c9b1c8c4403c3"
       },
       {
+        "file": "estat-2026/administrative-base.xls",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040463587",
+        "sha256": "d51dcd8e7a31518a707fd92ef73e2bd9d141501185b648cb43bb58d8829ecc25"
+      },
+      {
         "file": "hiroshima-shiryoshu/2024/34100.xlsx",
         "url": "https://www.pref.hiroshima.lg.jp/uploaded/life/1114354_9619203_misc.xlsx",
         "sha256": "6757e3b6ea17e1ce2fa09d9a52aa1ba56b38f13584bba751e81ee0fc0e2ac0f8"
@@ -230,6 +235,133 @@
       "file": "658760.pdf",
       "sha256": "791c180afdcafdb0ed1f6c07401b75ebde37f66b983795a2942a2a217a74fcf8",
       "acquired_at": "2026-09-06T12:00:00+09:00"
+    },
+    "fiscal_strength": {
+      "source": {
+        "title": "統計でみる市区町村のすがた2026 D 行政基盤（財政力指数）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040463587",
+        "file": "estat-2026/administrative-base.xls",
+        "sha256": "d51dcd8e7a31518a707fd92ef73e2bd9d141501185b648cb43bb58d8829ecc25",
+        "acquired_at": "2026-09-12T01:17:55+00:00",
+        "note": "e-Stat D2201「財政力指数（市町村財政）」の公表値。値は基準財政収入額と基準財政需要額の過去3年度平均です。"
+      },
+      "entries": [
+        {
+          "municipality_code": "34100",
+          "fiscal_year": "2022",
+          "value": 0.8
+        },
+        {
+          "municipality_code": "34202",
+          "fiscal_year": "2022",
+          "value": 0.59
+        },
+        {
+          "municipality_code": "34203",
+          "fiscal_year": "2022",
+          "value": 0.67
+        },
+        {
+          "municipality_code": "34204",
+          "fiscal_year": "2022",
+          "value": 0.54
+        },
+        {
+          "municipality_code": "34205",
+          "fiscal_year": "2022",
+          "value": 0.52
+        },
+        {
+          "municipality_code": "34207",
+          "fiscal_year": "2022",
+          "value": 0.79
+        },
+        {
+          "municipality_code": "34208",
+          "fiscal_year": "2022",
+          "value": 0.44
+        },
+        {
+          "municipality_code": "34209",
+          "fiscal_year": "2022",
+          "value": 0.33
+        },
+        {
+          "municipality_code": "34210",
+          "fiscal_year": "2022",
+          "value": 0.26
+        },
+        {
+          "municipality_code": "34211",
+          "fiscal_year": "2022",
+          "value": 0.75
+        },
+        {
+          "municipality_code": "34212",
+          "fiscal_year": "2022",
+          "value": 0.86
+        },
+        {
+          "municipality_code": "34213",
+          "fiscal_year": "2022",
+          "value": 0.6
+        },
+        {
+          "municipality_code": "34214",
+          "fiscal_year": "2022",
+          "value": 0.33
+        },
+        {
+          "municipality_code": "34215",
+          "fiscal_year": "2022",
+          "value": 0.3
+        },
+        {
+          "municipality_code": "34302",
+          "fiscal_year": "2022",
+          "value": 0.81
+        },
+        {
+          "municipality_code": "34304",
+          "fiscal_year": "2022",
+          "value": 0.79
+        },
+        {
+          "municipality_code": "34307",
+          "fiscal_year": "2022",
+          "value": 0.5
+        },
+        {
+          "municipality_code": "34309",
+          "fiscal_year": "2022",
+          "value": 0.64
+        },
+        {
+          "municipality_code": "34368",
+          "fiscal_year": "2022",
+          "value": 0.2
+        },
+        {
+          "municipality_code": "34369",
+          "fiscal_year": "2022",
+          "value": 0.35
+        },
+        {
+          "municipality_code": "34431",
+          "fiscal_year": "2022",
+          "value": 0.31
+        },
+        {
+          "municipality_code": "34462",
+          "fiscal_year": "2022",
+          "value": 0.32
+        },
+        {
+          "municipality_code": "34545",
+          "fiscal_year": "2022",
+          "value": 0.2
+        }
+      ]
     },
     "entries": [
       {

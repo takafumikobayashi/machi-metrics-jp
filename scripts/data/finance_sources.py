@@ -11,6 +11,13 @@ ESTAT_PAGE_URL = (
     "&result_back=1&tclass1=000001077756&tclass2=000001077757&tclass3val=0"
     "&toukei=00200251&tstat=000001077755&year=20250"
 )
+ESTAT_FISCAL_STRENGTH_URL = (
+    "https://www.e-stat.go.jp/stat-search/file-download?fileKind=0&statInfId=000040463587"
+)
+ESTAT_FISCAL_STRENGTH_TITLE = (
+    "統計でみる市区町村のすがた2026 D 行政基盤（財政力指数）"
+)
+ESTAT_FISCAL_STRENGTH_FILE = "estat-2026/administrative-base.xls"
 PREFECTURE_PAGE_URL = "https://www.pref.hiroshima.lg.jp/soshiki/36/r06zaiseijoukyou.html"
 PREFECTURE_BASE_URL = "https://www.pref.hiroshima.lg.jp"
 PUBLISHED_RATIO_URL = (
@@ -91,6 +98,13 @@ def source_definitions(municipality_codes: list[str]) -> list[dict[str, str]]:
         }
         for name in ESTAT_CSV_FILES
     ]
+    sources.append(
+        {
+            "file": ESTAT_FISCAL_STRENGTH_FILE,
+            "url": ESTAT_FISCAL_STRENGTH_URL,
+            "title": ESTAT_FISCAL_STRENGTH_TITLE,
+        }
+    )
     sources.extend(
         {
             "file": f"hiroshima-shiryoshu/2024/{code}.xlsx",
