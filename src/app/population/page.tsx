@@ -36,8 +36,11 @@ export default async function PopulationThemePage() {
       (b.population_change_rate_10y ?? Number.NEGATIVE_INFINITY) -
       (a.population_change_rate_10y ?? Number.NEGATIVE_INFINITY),
   );
-  const strongestGrowth = rankedRows[0];
-  const largestDecline = rankedRows.at(-1);
+  const rankedRowsWithRates = rankedRows.filter(
+    (row) => row.population_change_rate_10y !== null,
+  );
+  const strongestGrowth = rankedRowsWithRates[0];
+  const largestDecline = rankedRowsWithRates.at(-1);
 
   return (
     <article className="shell theme-page">
