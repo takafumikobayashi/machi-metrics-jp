@@ -34,6 +34,7 @@
     "publish:furusato": "node --import tsx scripts/data/publish-furusato.ts",
     "normalize:grants": "python3 scripts/data/normalize-grants.py",
     "publish:grants": "node --import tsx scripts/data/publish-grants.ts",
+    "publish:childcare": "node --import tsx scripts/data/publish-childcare.ts",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm validate:data"
   },
   "dependencies": {

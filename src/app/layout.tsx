@@ -73,6 +73,7 @@ export default function RootLayout({
             <div className="header-actions">
               <nav aria-label="主なページ">
                 <Link href="/">概要</Link>
+                <Link href="/childcare">子育て支援</Link>
                 <Link href="/about/data">データについて</Link>
               </nav>
               <ThemeToggle />

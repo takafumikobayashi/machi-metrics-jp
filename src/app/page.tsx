@@ -301,6 +301,40 @@ export default async function HomePage() {
           </section>
         </div>
 
+        <section
+          className="dashboard-panel childcare-home-panel"
+          aria-labelledby="childcare-home-heading"
+        >
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow">子育て支援</p>
+              <h3 id="childcare-home-heading">
+                子どもと家庭に関わる制度を見比べる
+              </h3>
+            </div>
+            <span className="panel-period">公式情報・基準日付き</span>
+          </div>
+          <p className="section-note">
+            保育料、妊娠・出産、医療、健診、ファミサポ、保育施設・学校の給食費などを、総合点ではなく制度の条件と出典で比較します。
+          </p>
+          <div
+            className="childcare-home-tags"
+            aria-label="子育て支援のカテゴリー"
+          >
+            <span>妊娠・出産</span>
+            <span>0〜2歳・保育料</span>
+            <span>子ども医療</span>
+            <span>健診・相談</span>
+            <span>保育施設の給食費</span>
+            <span>学校給食費</span>
+            <span>就学援助</span>
+            <span>学童保育</span>
+          </div>
+          <Link className="panel-link" href="/childcare">
+            子育て支援比較を見る <span aria-hidden="true">→</span>
+          </Link>
+        </section>
+
         <FinanceSummaryPanel finance={finance} />
 
         <section

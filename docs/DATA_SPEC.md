@@ -334,6 +334,10 @@ e-Statの原本には、一定の地点を個別に掲載せず「その他の�
 
 `latest.json` は現在のリリースIDだけを指します。リリースディレクトリの内容は公開後に上書きせず、訂正は `v2` など新IDで作成します。
 
+### 子育て支援比較
+
+`public/data/childcare/childcare.json` は、広島県23市町の制度をカテゴリー別に比較する公開データです。`programs`は制度の有無・概要・自治体公式出典、`measures`は制度に紐づく第何子、対象年齢、所得制限、条件、利用者負担などを保持します。給食費は、保育所・認定こども園の`school_meals`と、小学校・中学校の`school_lunch`を分けて管理します。小学生以降は、`school_support`（就学援助・学用品費）、`special_needs_support`（特別支援教育就学奨励費）、`after_school_care`（放課後児童クラブ）、`learning_support`（子どもの居場所・学習生活支援）に分けて管理します。`other`は、乳児用品、住宅・定住、通学費など、他カテゴリーに収まりにくい主な独自・特記事項を公式確認分だけ掲載します。高校生・進学支援は現時点の比較対象外です。`learning_support`と`other`は公式確認できた自治体のみ掲載し、未掲載を制度なしとは扱いません。制度変更に備えて、各レコードに`referenceDate`、`effectiveFrom`、`effectiveTo`を持たせます。未確認の市町は制度がないとは扱わず、自治体一覧の`status: "not_checked"`として画面に明示します。正本は`config/childcare/policies.json`で、`pnpm publish:childcare`がスキーマ検証後に公開ファイルへ反映します。
+
 公開JSONの機械可読な契約は `src/lib/data/schema.ts` を正とします。フィールド名は本書9の正規化モデルとMVP_SPEC 4の指標IDに合わせたsnake_caseで、人が管理する `config/` のcamelCaseとは別系統です。欠損はキーを省略せず `null` を明示し、比率は0〜1で保持します。想定外のキーを含むJSONはスキーマ違反として公開を止めます。
 
 ファイル間の整合（一覧と詳細の一致、10年増減の再計算、類似結果の件数と参照先など）は `src/lib/data/validate.ts` で検証し、`node --import tsx scripts/data/validate-release.ts` から実行します。

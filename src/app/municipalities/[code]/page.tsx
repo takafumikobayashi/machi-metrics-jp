@@ -181,6 +181,7 @@ export default async function MunicipalityPage({
         <Link href={`/municipalities/${code}/donations`}>ふるさと納税</Link>
         <Link href={`/municipalities/${code}/digital`}>自治体DX</Link>
         <Link href={`/municipalities/${code}/grants`}>補助金・交付金</Link>
+        <Link href={`/municipalities/${code}/childcare`}>子育て支援</Link>
       </nav>
 
       <div className="preview-note" role="status">

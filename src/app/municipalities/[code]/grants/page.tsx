@@ -63,6 +63,7 @@ export default async function GrantsPage({
         <Link aria-current="page" href={`/municipalities/${code}/grants`}>
           補助金・交付金
         </Link>
+        <Link href={`/municipalities/${code}/childcare`}>子育て支援</Link>
       </nav>
       <GrantPanel data={data} code={code} />
       <section className="source-card">

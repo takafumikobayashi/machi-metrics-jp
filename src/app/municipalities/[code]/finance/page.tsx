@@ -104,6 +104,7 @@ export default async function FinancePage({
         <Link href={`/municipalities/${code}/donations`}>ふるさと納税</Link>
         <Link href={`/municipalities/${code}/digital`}>自治体DX</Link>
         <Link href={`/municipalities/${code}/grants`}>補助金・交付金</Link>
+        <Link href={`/municipalities/${code}/childcare`}>子育て支援</Link>
       </nav>
       <FinancePanel
         entry={entry}

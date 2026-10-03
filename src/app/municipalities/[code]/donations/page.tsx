@@ -75,6 +75,7 @@ export default async function DonationsPage({
         </Link>
         <Link href={`/municipalities/${code}/digital`}>自治体DX</Link>
         <Link href={`/municipalities/${code}/grants`}>補助金・交付金</Link>
+        <Link href={`/municipalities/${code}/childcare`}>子育て支援</Link>
       </nav>
       <div className="preview-note" role="note">
         <strong>返礼品紹介は掲載していません。</strong>

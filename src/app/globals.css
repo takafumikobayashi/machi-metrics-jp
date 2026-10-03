@@ -52,6 +52,13 @@
   /* 注目していない行の色。地色と紛れない程度に見える濃さにする。 */
   --chart-muted: #d6dce4;
 
+  /* 子育て支援比較表の制度掲載状態。 */
+  --childcare-present-bg: #eaf2fb;
+  --childcare-present-border: #2f6fb5;
+  --childcare-missing-bg: #f3f4f6;
+  --childcare-pending-bg: #fff6db;
+  --childcare-pending-border: #b8730f;
+
   /* 増減の意味色 */
   --increase: #0f6e63;
   --decrease: #b0421f;
@@ -135,6 +142,11 @@
     --finance-6: #76a465;
     --finance-other: #8d959f;
     --chart-muted: #3a424f;
+    --childcare-present-bg: #20354c;
+    --childcare-present-border: #7fb0e8;
+    --childcare-missing-bg: #1d2229;
+    --childcare-pending-bg: #453a1f;
+    --childcare-pending-border: #e0a34e;
     --increase: #4fbfae;
     --decrease: #f08a63;
     --age-band-1: #345639;
@@ -174,6 +186,11 @@ html[data-theme="dark"] {
   --finance-6: #76a465;
   --finance-other: #8d959f;
   --chart-muted: #3a424f;
+  --childcare-present-bg: #20354c;
+  --childcare-present-border: #7fb0e8;
+  --childcare-missing-bg: #1d2229;
+  --childcare-pending-bg: #453a1f;
+  --childcare-pending-border: #e0a34e;
   --increase: #4fbfae;
   --decrease: #f08a63;
   --age-band-1: #345639;
@@ -4138,4 +4155,314 @@ html[data-theme="dark"] .insight-panel {
   border-radius: 999px;
   padding: 0.15rem 0.55rem;
   background: var(--white);
+}
+
+/* ---------- 子育て支援比較 ---------- */
+
+.childcare-page {
+  padding-block: 36px 80px;
+}
+
+.childcare-home-panel {
+  margin-top: 18px;
+}
+
+.childcare-home-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 4px;
+}
+
+.childcare-home-tags span {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.childcare-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.childcare-category-card {
+  display: grid;
+  min-height: 128px;
+  gap: 6px;
+  align-content: start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.childcare-category-card:hover,
+.childcare-category-card:focus-visible,
+.childcare-category-card.is-selected {
+  border-color: var(--brand-500);
+  background: var(--brand-50);
+}
+
+.childcare-category-card:hover {
+  transform: translateY(-2px);
+}
+
+.childcare-category-card > span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.childcare-category-card > strong {
+  font-size: var(--text-h3);
+}
+
+.childcare-category-card > small {
+  margin-top: auto;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.childcare-table-wrap {
+  margin-inline: -4px;
+}
+
+.childcare-table-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin: 0 4px 12px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.childcare-table-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.childcare-legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+.childcare-legend-swatch--available {
+  border-color: var(--childcare-present-border);
+  background: var(--childcare-present-bg);
+}
+
+.childcare-legend-swatch--missing {
+  background: var(--childcare-missing-bg);
+}
+
+.childcare-legend-swatch--unconfirmed {
+  border-color: var(--childcare-pending-border);
+  background: var(--childcare-pending-bg);
+}
+
+.childcare-table {
+  min-width: 960px;
+}
+
+.childcare-table--medical {
+  min-width: 1180px;
+}
+
+.childcare-table th,
+.childcare-table td {
+  vertical-align: top;
+  text-align: left;
+}
+
+.childcare-table tbody th a {
+  text-underline-offset: 4px;
+}
+
+.childcare-table tbody td {
+  max-width: 300px;
+  white-space: normal;
+  line-height: 1.65;
+}
+
+.childcare-table tbody td.childcare-status-cell {
+  background: var(--childcare-missing-bg);
+  box-shadow: inset 3px 0 0 var(--line);
+}
+
+.childcare-table tbody td.childcare-status-cell--available {
+  background: var(--childcare-present-bg);
+  box-shadow: inset 3px 0 0 var(--childcare-present-border);
+}
+
+.childcare-table tbody td.childcare-status-cell--unconfirmed {
+  background: var(--childcare-pending-bg);
+  box-shadow: inset 3px 0 0 var(--childcare-pending-border);
+}
+
+.childcare-table-items {
+  display: grid;
+  gap: 8px;
+  min-width: 280px;
+}
+
+.childcare-table-items > div {
+  display: grid;
+  gap: 2px;
+}
+
+.childcare-table-items strong {
+  color: var(--ink);
+}
+
+.childcare-table-items span,
+.childcare-table-items small {
+  color: var(--muted);
+}
+
+.childcare-table-items small {
+  font-size: var(--text-sm);
+}
+
+.childcare-medical-details {
+  min-width: 260px;
+}
+
+.childcare-medical-details > div {
+  padding-block: 2px;
+}
+
+.childcare-unconfirmed,
+.childcare-muted {
+  color: var(--muted);
+}
+
+.childcare-unconfirmed {
+  font-weight: 700;
+}
+
+.childcare-detail-card {
+  margin-top: 20px;
+}
+
+.childcare-program-list {
+  display: grid;
+  gap: 16px;
+}
+
+.childcare-program {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.childcare-program-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.childcare-program-heading h3 {
+  margin: 0;
+  font-size: var(--text-h3);
+}
+
+.childcare-program-heading .eyebrow {
+  margin-bottom: 4px;
+}
+
+.childcare-status {
+  flex: 0 0 auto;
+  padding: 2px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.childcare-program > p:not(.childcare-note):not(.childcare-source) {
+  margin: 10px 0 0;
+}
+
+.childcare-measure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.childcare-measure-grid > div {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+}
+
+.childcare-measure-grid span,
+.childcare-measure-grid small,
+.childcare-note,
+.childcare-source {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.childcare-measure-grid strong {
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+.childcare-measure-grid small {
+  line-height: 1.55;
+}
+
+.childcare-note {
+  margin: 14px 0 0;
+}
+
+.childcare-source {
+  margin: 16px 0 0;
+  line-height: 1.65;
+}
+
+.childcare-source a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 800px) {
+  .childcare-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .childcare-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .childcare-category-card {
+    min-height: 112px;
+  }
+
+  .childcare-program-heading {
+    flex-direction: column;
+    gap: 8px;
+  }
 }

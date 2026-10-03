@@ -88,6 +88,16 @@ pnpm publish:finance
 `normalize:finance`は`data/processed/finance/finance.json`を生成し、`publish:finance`は`financeFileSchema`で検証してから`public/data/finance/finance.json`へ原子的に反映します。再実行時も、正規化時刻ではなく取得マニフェストの`acquired_at`を公開JSONへ写します。既存スナップショットへ後から原本を追加した場合、全体の`acquired_at`は変えず、追加したファイルにだけファイル単位の`acquired_at`を記録します。
 財政力指数はe-Statの調査項目D2201「財政力指数（市町村財政）」をそのまま収録します。統計年度は決算データと一致しない場合があるため、公開JSONと画面の両方で指数の年度を明記します。
 
+## 子育て支援比較データ
+
+子育て支援は制度の有無と制度条件を分けて管理します。正本は`config/childcare/policies.json`で、`programs`に制度、`measures`に第何子・年齢・所得制限・利用者負担などの条件を記録します。給食費は保育施設の`school_meals`と学校給食の`school_lunch`を別カテゴリーにし、小学生以降は就学援助、特別支援教育就学奨励費、放課後児童クラブ、子どもの居場所・学習生活支援に分けます。`other`には、乳児用品、住宅・定住、通学費など、他カテゴリーに収まりにくい主な独自・特記事項を公式確認分だけ掲載します。子どもの居場所・学習生活支援と`other`は公式確認できた自治体のみ掲載し、未掲載を制度なしとは扱いません。高校生・進学支援は現時点の比較対象外です。各制度には確認日、適用開始日、自治体公式URLを必須で持たせ、未確認の市町は推測で埋めず`not_checked`として公開します。
+
+```bash
+pnpm publish:childcare
+```
+
+公開処理は`childcareFileSchema`で23市町・制度ID・条件の親子関係・日付・公式URLを検証してから、`public/data/childcare/childcare.json`へ原子的に反映します。制度を追加・更新するときは、自治体公式ページで内容を確認し、`referenceDate`と`effectiveFrom`、条件、出典URLを更新してから実行してください。
+
 ## 正規化結果から公開JSONへの変換
 
 公開JSONのスキーマと横断検証は既存の`src/lib/data/`を利用します。次の処理は、正規化済みの総計データと拡張データを公開JSONの形へ変換し、スキーマ検証と横断検証を通過した場合だけパイロット出力を配置します。
