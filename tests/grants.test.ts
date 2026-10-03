@@ -4,6 +4,7 @@ import test from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import { hiroshimaMunicipalities } from "../src/lib/config";
+import { summarizeGrants } from "../src/components/dashboard/GrantComparisonTable";
 import { GrantPanel } from "../src/components/municipality/GrantPanel";
 import { grantFileSchema } from "../src/lib/data/grant-schema";
 import { loadGrants } from "../src/lib/data/load";
@@ -218,5 +219,31 @@ test("出典目録は公開中の原本をもれなく同じURL・ハッシュ�
   assert.ok(
     !section.includes("原本PDFを保存できていない"),
     "保存済みの原本に未照合の注記が残っている",
+  );
+});
+
+test("市町別の集計は、金額不明の件数も行数ではなく採択件数で数える", async () => {
+  const file = await grants();
+  const code = "34212";
+  const base = summarizeGrants(file, code);
+  const unknownRow = file.entries.find(
+    (entry) => entry.municipality_code === code && entry.amount_yen === null,
+  );
+  assert.ok(unknownRow);
+  // 金額不明の1行が3件の採択をまとめている場合を作る。
+  const widened = {
+    ...file,
+    entries: file.entries.map((entry) =>
+      entry === unknownRow ? { ...entry, award_count: 3 } : entry,
+    ),
+  };
+  const summary = summarizeGrants(widened, code);
+
+  assert.equal(summary.unknownAmountCount, base.unknownAmountCount + 2);
+  assert.equal(summary.awardCount, base.awardCount + 2);
+  assert.equal(summary.knownAmountCount, base.knownAmountCount);
+  assert.equal(
+    summary.knownAmountCount + summary.unknownAmountCount,
+    summary.awardCount,
   );
 });

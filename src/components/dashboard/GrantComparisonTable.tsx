@@ -7,17 +7,21 @@ import { formatYen, missingLabel } from "@/lib/format/display";
 /**
  * 市町ごとの照合済み採択件数と、金額が公表されている分の合計。
  * 金額不明の採択を0円として足さないよう、金額の判明件数も持つ。
+ * 1行が複数の採択を表す場合があるため、件数は行数ではなく award_count で数える。
  */
 export function summarizeGrants(data: GrantFile, code: string) {
   const entries = data.entries.filter(
     ({ municipality_code }) => municipality_code === code,
   );
   const known = entries.filter(({ amount_yen }) => amount_yen !== null);
+  const unknown = entries.filter(({ amount_yen }) => amount_yen === null);
+  const countAwards = (rows: typeof entries) =>
+    rows.reduce((sum, entry) => sum + entry.award_count, 0);
   return {
-    awardCount: entries.reduce((sum, entry) => sum + entry.award_count, 0),
+    awardCount: countAwards(entries),
     programCount: new Set(entries.map(({ program }) => program)).size,
-    knownAmountCount: known.length,
-    unknownAmountCount: entries.length - known.length,
+    knownAmountCount: countAwards(known),
+    unknownAmountCount: countAwards(unknown),
     knownAmountTotal: known.reduce(
       (sum, entry) => sum + (entry.amount_yen ?? 0),
       0,
