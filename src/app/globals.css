@@ -482,12 +482,17 @@ h3 {
   .detail-heading {
     gap: 16px;
   }
+  /* タブが8つあるため、折り返さず横にスクロールさせる。 */
   .detail-nav {
     width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
   }
   .detail-nav a {
-    flex: 1;
-    text-align: center;
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 }
 
@@ -1221,6 +1226,26 @@ h3 {
 
 .table-wrap {
   overflow-x: auto;
+}
+
+/* 細かい数値表は初期状態で閉じ、グラフを先に読めるようにする。 */
+.data-table-details {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.data-table-details > summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  color: var(--primary-deep);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+.data-table-details[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+.data-table-details > .table-wrap {
+  padding: 0 16px 8px;
 }
 
 .data-table {
@@ -2298,6 +2323,7 @@ body {
 }
 
 .chart-card-header h3,
+.panel-heading h2,
 .panel-heading h3 {
   margin: 0;
   font-size: var(--text-h3);
@@ -4464,5 +4490,355 @@ html[data-theme="dark"] .insight-panel {
   .childcare-program-heading {
     flex-direction: column;
     gap: 8px;
+  }
+}
+
+/* ---------- ヘッダーの入口（市町を探す／テーマで比べる） ---------- */
+
+.site-nav {
+  align-items: center;
+}
+
+.site-nav a[aria-current="page"],
+.theme-menu > summary[aria-current="page"] {
+  color: var(--primary-deep);
+  font-weight: 700;
+}
+
+.theme-menu {
+  position: relative;
+}
+
+/* 隣のリンクと同じく下線を付け、押せる入口に見えるようにする。 */
+.theme-menu > summary {
+  cursor: pointer;
+  list-style: none;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.theme-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.theme-menu > summary::after {
+  content: "";
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  margin-left: 0.45em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.2em) rotate(45deg);
+}
+
+.theme-menu[open] > summary::after {
+  transform: translateY(0.05em) rotate(-135deg);
+}
+
+.theme-menu > ul {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 200px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 8px 24px rgb(16 20 26 / 12%);
+}
+
+.theme-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.theme-menu a:hover {
+  background: var(--paper);
+}
+
+@media (max-width: 480px) {
+  .theme-menu > ul {
+    right: auto;
+    left: 0;
+  }
+}
+
+/* ---------- テーマ別ページ・市町を探す ---------- */
+
+.theme-page {
+  padding-block: 36px 80px;
+}
+
+.theme-page > .dashboard-panel,
+.theme-page > .data-card,
+.theme-page > .dashboard-lower-grid {
+  margin-top: 18px;
+}
+
+.theme-section .metric-grid {
+  margin-top: 28px;
+}
+
+.theme-comparison-table th small,
+.theme-comparison-table td small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.theme-comparison-table td small {
+  display: inline;
+}
+
+.theme-comparison-table td small.table-note {
+  display: block;
+}
+
+.theme-comparison-table thead th {
+  white-space: normal;
+  min-width: 7em;
+  vertical-align: bottom;
+}
+
+/* ---------- 市町選び ---------- */
+
+.municipality-picker {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.municipality-picker input {
+  width: 100%;
+  max-width: 420px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+}
+
+.municipality-picker input:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 1px;
+}
+
+.municipality-picker-group {
+  display: grid;
+  grid-template-columns: 2em minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+}
+
+.municipality-picker-group > span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.municipality-picker-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.municipality-picker-group a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.municipality-picker-group a:hover {
+  border-color: var(--brand-500);
+  color: var(--primary-deep);
+}
+
+/* ---------- トップページ ---------- */
+
+.home-picker-panel {
+  margin-top: 8px;
+}
+
+.home-themes {
+  margin-top: 48px;
+}
+
+.theme-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.theme-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: border-color 160ms ease;
+}
+
+.theme-card:hover {
+  border-color: var(--brand-500);
+}
+
+.theme-card-name {
+  font-weight: 700;
+}
+
+.theme-card > strong {
+  margin-top: 6px;
+  font-size: var(--text-h2);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.theme-card > small,
+.theme-card-description {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.theme-card-description {
+  flex: 1;
+  margin-top: 8px;
+}
+
+.theme-card-go {
+  margin-top: 12px;
+  color: var(--primary-deep);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.home-overview {
+  margin-top: 56px;
+}
+
+@media (max-width: 900px) {
+  .theme-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .theme-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 市町ページの概要タブ ---------- */
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.overview-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.overview-card > header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 10px;
+}
+
+.overview-card h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.overview-card > header small {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.overview-card dl {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 0;
+}
+
+.overview-card dt {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.overview-card dd {
+  margin: 2px 0 0;
+}
+
+.overview-card dd strong {
+  font-size: var(--text-h3);
+  font-variant-numeric: tabular-nums;
+}
+
+.overview-card dd small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.overview-card .section-note {
+  margin: 12px 0 0;
+}
+
+.overview-similar-list {
+  margin: 10px 0 0;
+  padding-left: 1.4em;
+  font-weight: 700;
+}
+
+.overview-card .panel-link {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+@media (max-width: 1000px) {
+  .overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
   }
 }

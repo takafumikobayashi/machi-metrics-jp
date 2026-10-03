@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { FinancePanel } from "@/components/municipality/FinancePanel";
+import { MunicipalityDetailNav } from "@/components/municipality/MunicipalityDetailNav";
 import { hiroshimaMunicipalities } from "@/lib/config";
 import { selectLatestFinanceEntries } from "@/lib/data/finance";
 import {
@@ -83,8 +84,8 @@ export default async function FinancePage({
     ) ?? null;
   return (
     <article className="shell municipality-page">
-      <Link className="back-link" href="/">
-        <span aria-hidden="true">←</span> 23市町の一覧へ
+      <Link className="back-link" href="/municipalities">
+        <span aria-hidden="true">←</span> 市町を探す
       </Link>
       <div className="detail-kicker">
         <p className="eyebrow">自治体詳細 / 財務状況</p>
@@ -96,16 +97,7 @@ export default async function FinancePage({
           <p className="lead">e-Stat決算統計から見る自治体全体の財務傾向</p>
         </div>
       </div>
-      <nav className="detail-nav" aria-label="自治体情報のカテゴリ">
-        <Link href={`/municipalities/${code}`}>人口・人口動態</Link>
-        <Link aria-current="page" href={`/municipalities/${code}/finance`}>
-          財務状況
-        </Link>
-        <Link href={`/municipalities/${code}/donations`}>ふるさと納税</Link>
-        <Link href={`/municipalities/${code}/digital`}>自治体DX</Link>
-        <Link href={`/municipalities/${code}/grants`}>補助金・交付金</Link>
-        <Link href={`/municipalities/${code}/childcare`}>子育て支援</Link>
-      </nav>
+      <MunicipalityDetailNav code={code} current="finance" />
       <FinancePanel
         entry={entry}
         comparison={financeSelection.entries}

@@ -9,6 +9,7 @@ import {
   formatRatioAsPercent,
   formatSignedCount,
   formatSignedRatioAsPercent,
+  formatYenInOku,
   missingLabel,
 } from "../src/lib/format/display";
 
@@ -66,4 +67,11 @@ test("flow periods stay distinguishable from stock reference dates", () => {
     formatFlowPeriod("2024-04-01", "2025-03-31"),
     "2024年4月1日〜2025年3月31日",
   );
+});
+
+test("large yen amounts are shown in oku with one decimal", () => {
+  assert.equal(formatYenInOku(6_752_438_326), "67.5億円");
+  assert.equal(formatYenInOku(100_000_000), "1.0億円");
+  assert.equal(formatYenInOku(99_999_999), "99,999,999円");
+  assert.equal(formatYenInOku(null), missingLabel);
 });

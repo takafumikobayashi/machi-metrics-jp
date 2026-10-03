@@ -23,10 +23,10 @@ export function ChildcareDashboard({
   return (
     <article className="shell childcare-page">
       <Link className="back-link" href="/">
-        <span aria-hidden="true">←</span> 概要へ戻る
+        <span aria-hidden="true">←</span> トップへ
       </Link>
       <div className="detail-kicker">
-        <p className="eyebrow">分析テーマ / 子育て支援</p>
+        <p className="eyebrow">テーマで比べる / 子育て支援</p>
         <span>23市町比較</span>
       </div>
       <div className="detail-heading">

@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Noto_Sans_Mono } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { SiteNav } from "@/components/layout/SiteNav";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { AnalyticsConsent } from "@/components/privacy/AnalyticsConsent";
 import {
@@ -71,11 +72,7 @@ export default function RootLayout({
               <span>準備版</span>
             </Link>
             <div className="header-actions">
-              <nav aria-label="主なページ">
-                <Link href="/">概要</Link>
-                <Link href="/childcare">子育て支援</Link>
-                <Link href="/about/data">データについて</Link>
-              </nav>
+              <SiteNav />
               <ThemeToggle />
             </div>
           </div>

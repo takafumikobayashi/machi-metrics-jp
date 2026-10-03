@@ -1,405 +1,160 @@
 import Link from "next/link";
 
+import { PopulationOverview } from "@/components/dashboard/PopulationOverview";
+import { MunicipalityPicker } from "@/components/layout/MunicipalityPicker";
+import { latestDonationRows } from "@/lib/data/donations";
+import { financeHeadline, median } from "@/lib/data/finance";
 import {
-  DashboardCharts,
-  type RegionalFlowPoint,
-  type RegionalPopulationPoint,
-} from "@/components/dashboard/DashboardCharts";
-import { DonationRankingTable } from "@/components/dashboard/DonationRankingTable";
-import { FinanceSummaryPanel } from "@/components/dashboard/FinanceSummaryPanel";
-import { MunicipalityTable } from "@/components/dashboard/MunicipalityTable";
-import { hiroshimaMunicipalities, projectConfig } from "@/lib/config";
-import {
-  loadHiroshimaSummary,
-  loadLatestPointer,
-  loadDensity,
+  loadChildcare,
+  loadDigitalDx,
   loadFinance,
   loadFurusato,
-  loadMunicipalityDetail,
+  loadGrants,
 } from "@/lib/data/load";
+import { loadRegionalPopulation } from "@/lib/data/regional";
 import {
   formatAsOfDate,
   formatCount,
-  formatSignedCount,
-  formatSignedRatioAsPercent,
+  formatRatioAsPercent,
+  formatYenInOku,
 } from "@/lib/format/display";
+import { themes, type ThemeKey } from "@/lib/site/themes";
 
-const startYear = projectConfig.populationSnapshots.years[0];
-const endYear = projectConfig.populationSnapshots.years.at(-1);
+/** 「よく使う32手続」のオンライン化率。DXのカードでは市町別中央値を出す。 */
+const digitalHeadlineLabel = "よく使う32手続のオンライン化状況";
 
-function sumNullable(
-  values: ReadonlyArray<number | null | undefined>,
-): number | null {
-  const presentValues = values.filter(
-    (value): value is number => value !== null && value !== undefined,
-  );
-  if (presentValues.length !== values.length) {
-    return null;
-  }
-  return presentValues.reduce((sum, value) => sum + value, 0);
-}
-
-function aggregateRegionalSeries(
-  details: Awaited<ReturnType<typeof loadMunicipalityDetail>>[],
-) {
-  const populationPoints: RegionalPopulationPoint[] =
-    projectConfig.populationSnapshots.years.map((year) => {
-      const asOfDate = `${year}-01-01`;
-      return {
-        as_of_date: asOfDate,
-        population: sumNullable(
-          details.map(
-            (detail) =>
-              detail.snapshots.find(
-                (snapshot) => snapshot.as_of_date === asOfDate,
-              )?.population_total,
-          ),
-        ),
-      };
-    });
-
-  const flowTemplate = details[0]?.flows ?? [];
-  const flowPoints: RegionalFlowPoint[] = flowTemplate.map((flow) => {
-    const matchingFlows = details.map((detail) =>
-      detail.flows.find(
-        (candidate) =>
-          candidate.period_start === flow.period_start &&
-          candidate.period_end === flow.period_end,
-      ),
-    );
-    return {
-      period_end: flow.period_end,
-      natural_change: sumNullable(
-        matchingFlows.map((candidate) => candidate?.natural_change_reported),
-      ),
-      migration_change: sumNullable(
-        matchingFlows.map((candidate) => candidate?.migration_change_reported),
-      ),
-    };
-  });
-
-  return { populationPoints, flowPoints };
-}
+type ThemeHeadline = { value: string; meta: string };
 
 export default async function HomePage() {
-  const latestPointer = await loadLatestPointer();
-  const [summary, density, details, furusato, finance] = await Promise.all([
-    loadHiroshimaSummary(latestPointer.release_id),
-    loadDensity(latestPointer.release_id),
-    Promise.all(
-      hiroshimaMunicipalities.map(({ code }) =>
-        loadMunicipalityDetail(latestPointer.release_id, code),
-      ),
-    ),
-    loadFurusato(),
-    loadFinance(),
-  ]);
-  const { populationPoints, flowPoints } = aggregateRegionalSeries(details);
-  const currentPopulation = populationPoints.at(-1)?.population ?? null;
-  const startPopulation = populationPoints[0]?.population ?? null;
-  const populationChange =
-    currentPopulation === null || startPopulation === null
-      ? null
-      : currentPopulation - startPopulation;
-  const populationChangeRate =
-    populationChange === null ||
-    startPopulation === null ||
-    startPopulation === 0
-      ? null
-      : populationChange / startPopulation;
-  const latestFlow = flowPoints.at(-1);
-  const summaryRows = [...summary.municipalities].sort(
-    (a, b) =>
-      (b.population_change_rate_10y ?? Number.NEGATIVE_INFINITY) -
-      (a.population_change_rate_10y ?? Number.NEGATIVE_INFINITY),
-  );
-  const strongestGrowth = summaryRows[0];
-  const largestDecline = summaryRows.at(-1);
-  // 年度を画面に書き込まず、公開データに含まれる最新年度を使う。
-  const donationFiscalYear = Math.max(
-    ...furusato.entries.map((entry) => entry.fiscal_year),
-  );
-  const donationRows = furusato.entries
-    .filter((entry) => entry.fiscal_year === donationFiscalYear)
-    .map((entry) => ({
-      ...entry,
-      name_ja:
-        hiroshimaMunicipalities.find(
-          ({ code }) => code === entry.municipality_code,
-        )?.nameJa ?? entry.municipality_code,
-    }))
-    .sort((a, b) => (b.amount_yen ?? -1) - (a.amount_yen ?? -1));
-  const donationProvisional = furusato.entries.some(
-    (entry) => entry.fiscal_year === donationFiscalYear && entry.provisional,
-  );
+  const [population, childcare, finance, furusato, digital, grants] =
+    await Promise.all([
+      loadRegionalPopulation(),
+      loadChildcare(),
+      loadFinance(),
+      loadFurusato(),
+      loadDigitalDx(),
+      loadGrants(),
+    ]);
+  const { summary } = population;
+  const financeSummary = financeHeadline(finance);
+  const donations = latestDonationRows(furusato);
+  const digitalRatios = digital.entries
+    .map(
+      (entry) =>
+        entry.metrics.find(({ label }) => label === digitalHeadlineLabel)
+          ?.value ?? null,
+    )
+    .filter((value): value is number => value !== null);
+  const confirmedChildcare = childcare.municipalities.filter(
+    ({ status }) => status === "confirmed",
+  ).length;
+
+  // カードの数字は県全体の代表値。どの集計かを必ず添える。
+  const headlines: Record<ThemeKey, ThemeHeadline> = {
+    population: {
+      value: formatCount(population.currentPopulation),
+      meta: `${formatAsOfDate(summary.as_of_date)}・23市町合計`,
+    },
+    childcare: {
+      value: `${childcare.programs.length}制度`,
+      meta: `${formatAsOfDate(childcare.source.referenceDate)}・${confirmedChildcare}市町の公式情報`,
+    },
+    finance: {
+      value: formatRatioAsPercent(financeSummary.medianRatio),
+      meta: `経常収支比率（県公表値）・市町別中央値・${financeSummary.fiscalYear ?? "最新"}年度`,
+    },
+    donations: {
+      value: formatYenInOku(donations.totalAmount),
+      meta: `受入額・23市町合計・${donations.fiscalYear}年度${donations.provisional ? "（決算見込）" : ""}`,
+    },
+    digital: {
+      value: formatRatioAsPercent(median(digitalRatios), 0),
+      meta: `よく使う32手続のオンライン化率・市町別中央値・${formatAsOfDate(digital.as_of_date)}`,
+    },
+    grants: {
+      value: `${grants.entries.reduce((sum, entry) => sum + entry.award_count, 0)}件`,
+      meta: "照合済みの採択件数・23市町合計",
+    },
+  };
 
   return (
     <>
       <section
         className="shell section dashboard-section"
-        aria-labelledby="overview-heading"
+        aria-labelledby="home-heading"
       >
         <div className="dashboard-page-header">
           <div>
-            <p className="eyebrow">公的統計 | 2016〜2025</p>
-            <h1>ひろしまダッシュボード</h1>
+            <p className="eyebrow">公的統計 | 広島県23市町</p>
+            <h1 id="home-heading">ひろしまダッシュボード</h1>
             <p>
               広島県23市町の人口や財政、行政の取り組みを、出典と基準日を添えて見える化していきます。
             </p>
           </div>
         </div>
 
-        <div className="dashboard-toolbar">
-          <div>
-            <p className="eyebrow">県内の概況</p>
-            <h2 id="overview-heading">広島県23市町の現在地</h2>
-          </div>
-          <div className="dashboard-toolbar-meta">
-            <span className="live-badge">
-              <i aria-hidden="true" /> 準備版
-            </span>
-            <span>{formatAsOfDate(summary.as_of_date)}</span>
-          </div>
-        </div>
-
-        <div
-          className="metric-grid dashboard-metric-grid"
-          aria-label="主要指標"
-        >
-          <div className="metric-card metric-card-featured">
-            <span>合計人口</span>
-            <strong>{formatCount(currentPopulation)}</strong>
-            <small>{formatAsOfDate(summary.as_of_date)}</small>
-          </div>
-          <div className="metric-card">
-            <span>
-              {startYear}〜{endYear}年の増減
-            </span>
-            <strong>{formatSignedCount(populationChange)}</strong>
-            <small>
-              {formatSignedRatioAsPercent(populationChangeRate)} / 両端比較
-            </small>
-          </div>
-          <div className="metric-card">
-            <span>直近の自然増減</span>
-            <strong>
-              {formatSignedCount(latestFlow?.natural_change ?? null)}
-            </strong>
-            <small>出生・死亡 / {latestFlow?.period_end.slice(0, 4)}年中</small>
-          </div>
-          <div className="metric-card">
-            <span>直近の社会増減</span>
-            <strong>
-              {formatSignedCount(latestFlow?.migration_change ?? null)}
-            </strong>
-            <small>転入・転出 / {latestFlow?.period_end.slice(0, 4)}年中</small>
-          </div>
-        </div>
-
-        <DashboardCharts
-          populationPoints={populationPoints}
-          flowPoints={flowPoints}
-        />
-
-        <div className="dashboard-lower-grid">
-          <section
-            className="dashboard-panel ranking-panel"
-            aria-labelledby="ranking-heading"
-          >
-            <div className="panel-heading">
-              <div>
-                <p className="eyebrow">ランキング</p>
-                <h3 id="ranking-heading">10年間の変化率</h3>
-              </div>
-              <span className="panel-period">
-                {startYear}〜{endYear}
-              </span>
-            </div>
-            <div className="table-wrap">
-              <table className="data-table dashboard-ranking-table">
-                <caption className="visually-hidden">
-                  自治体別の期間人口増減率
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">自治体</th>
-                    <th scope="col">最新人口</th>
-                    <th scope="col">増減率</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {summaryRows.slice(0, 7).map((row, index) => (
-                    <tr key={row.municipality_code}>
-                      <th scope="row">
-                        <span className="table-rank">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <Link href={`/municipalities/${row.municipality_code}`}>
-                          {row.name_ja}
-                        </Link>
-                      </th>
-                      <td>{formatCount(row.population_total)}</td>
-                      <td
-                        className={
-                          row.population_change_rate_10y !== null &&
-                          row.population_change_rate_10y >= 0
-                            ? "positive-value"
-                            : "negative-value"
-                        }
-                      >
-                        {formatSignedRatioAsPercent(
-                          row.population_change_rate_10y,
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <Link className="panel-link" href="#municipalities">
-              23市町の一覧を見る <span aria-hidden="true">→</span>
-            </Link>
-          </section>
-
-          <section
-            className="dashboard-panel insight-panel"
-            aria-labelledby="insight-heading"
-          >
-            <div className="panel-heading">
-              <div>
-                <p className="eyebrow">要点</p>
-                <h3 id="insight-heading">まず見るポイント</h3>
-              </div>
-              <span className="insight-mark" aria-hidden="true">
-                ↗
-              </span>
-            </div>
-            <div className="insight-list">
-              <div>
-                <span className="insight-label">増加率トップ</span>
-                <strong>{strongestGrowth?.name_ja ?? "データなし"}</strong>
-                <small>
-                  {formatSignedRatioAsPercent(
-                    strongestGrowth?.population_change_rate_10y ?? null,
-                  )}
-                </small>
-              </div>
-              <div>
-                <span className="insight-label">減少率が大きい自治体</span>
-                <strong>{largestDecline?.name_ja ?? "データなし"}</strong>
-                <small>
-                  {formatSignedRatioAsPercent(
-                    largestDecline?.population_change_rate_10y ?? null,
-                  )}
-                </small>
-              </div>
-            </div>
-            <p className="insight-note">
-              増減率は{startYear}年と{endYear}
-              年の1月1日時点を比較した値です。年齢構成や人口動態のグラフを組み合わせて、変化の背景を確認できます。
-            </p>
-          </section>
-        </div>
-
         <section
-          className="dashboard-panel childcare-home-panel"
-          aria-labelledby="childcare-home-heading"
+          className="dashboard-panel home-picker-panel"
+          aria-labelledby="picker-heading"
         >
           <div className="panel-heading">
             <div>
-              <p className="eyebrow">子育て支援</p>
-              <h3 id="childcare-home-heading">
-                子どもと家庭に関わる制度を見比べる
-              </h3>
+              <p className="eyebrow">市町から見る</p>
+              <h2 id="picker-heading">自分の町を選ぶ</h2>
             </div>
-            <span className="panel-period">公式情報・基準日付き</span>
+            <Link className="panel-period" href="/municipalities">
+              一覧で比べる →
+            </Link>
           </div>
           <p className="section-note">
-            保育料、妊娠・出産、医療、健診、ファミサポ、保育施設・学校の給食費などを、総合点ではなく制度の条件と出典で比較します。
+            市町を選ぶと、人口・子育て支援・財政などの要点をまとめた概要ページを開きます。
           </p>
-          <div
-            className="childcare-home-tags"
-            aria-label="子育て支援のカテゴリー"
-          >
-            <span>妊娠・出産</span>
-            <span>0〜2歳・保育料</span>
-            <span>子ども医療</span>
-            <span>健診・相談</span>
-            <span>保育施設の給食費</span>
-            <span>学校給食費</span>
-            <span>就学援助</span>
-            <span>学童保育</span>
+          <MunicipalityPicker />
+        </section>
+
+        <section className="home-themes" aria-labelledby="themes-heading">
+          <div className="section-heading compact-heading">
+            <p className="eyebrow">テーマで比べる</p>
+            <h2 id="themes-heading">23市町を同じ物差しで見比べる</h2>
+            <p className="section-note">
+              カードの数字は県全体の代表値です。どの集計かをカードの下に記載しています。
+            </p>
           </div>
-          <Link className="panel-link" href="/childcare">
-            子育て支援比較を見る <span aria-hidden="true">→</span>
+          <ul className="theme-card-grid">
+            {themes.map(({ key, label, href, description }) => (
+              <li key={key}>
+                <Link className="theme-card" href={href}>
+                  <span className="theme-card-name">{label}</span>
+                  <strong>{headlines[key].value}</strong>
+                  <small>{headlines[key].meta}</small>
+                  <span className="theme-card-description">{description}</span>
+                  <span className="theme-card-go">
+                    {label}を比べる <span aria-hidden="true">→</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="home-overview" aria-labelledby="overview-heading">
+          <div className="dashboard-toolbar">
+            <div>
+              <p className="eyebrow">県内の概況</p>
+              <h2 id="overview-heading">広島県23市町の現在地</h2>
+            </div>
+            <div className="dashboard-toolbar-meta">
+              <span className="live-badge">
+                <i aria-hidden="true" /> 準備版
+              </span>
+              <span>{formatAsOfDate(summary.as_of_date)}</span>
+            </div>
+          </div>
+          <PopulationOverview population={population} />
+          <Link className="panel-link" href="/population">
+            人口を詳しく比べる <span aria-hidden="true">→</span>
           </Link>
         </section>
-
-        <FinanceSummaryPanel finance={finance} />
-
-        <section
-          className="dashboard-panel dashboard-donation-ranking"
-          aria-labelledby="donation-ranking-heading"
-        >
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">ふるさと納税</p>
-              <h3 id="donation-ranking-heading">受入額ランキング</h3>
-            </div>
-            <span className="panel-period">{donationFiscalYear}年度</span>
-          </div>
-          <p className="section-note">
-            個人向けふるさと納税の受入額。
-            {donationProvisional
-              ? `${donationFiscalYear}年度は決算見込です。`
-              : null}
-            平均寄付額は受入額を件数で割った参考値です。
-          </p>
-          <DonationRankingTable
-            fiscalYear={donationFiscalYear}
-            rows={donationRows}
-          />
-          <p className="section-note">
-            総務省「ふるさと納税に関する現況調査」を加工しています。返礼品情報は掲載していません。
-          </p>
-        </section>
-      </section>
-
-      <section
-        className="municipality-section"
-        id="municipalities"
-        aria-labelledby="municipality-heading"
-      >
-        <div className="shell section">
-          <div className="section-heading heading-row">
-            <div>
-              <p className="eyebrow">自治体を選ぶ</p>
-              <h2 id="municipality-heading">広島県の23市町</h2>
-            </div>
-            <p>
-              {
-                hiroshimaMunicipalities.filter(({ type }) => type === "city")
-                  .length
-              }
-              市・
-              {
-                hiroshimaMunicipalities.filter(({ type }) => type === "town")
-                  .length
-              }
-              町
-            </p>
-          </div>
-          <p className="section-note">
-            {formatAsOfDate(summary.as_of_date)}
-            の人口と年齢構成、{startYear}〜{endYear}年の増減率、
-            {summary.flow_period_start.slice(0, 4)}
-            年中の人口動態です。列見出しで並べ替えできます。
-          </p>
-          <MunicipalityTable
-            rows={summary.municipalities}
-            densityEntries={density.entries}
-          />
-        </div>
       </section>
 
       <section

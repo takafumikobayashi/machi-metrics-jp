@@ -247,7 +247,7 @@ test("トップページの財務サマリは市町合算と市町別分布を�
   assert.ok(markup.includes(formatYen(revenueTotal)));
   assert.ok(markup.includes(formatYen(expenditureTotal)));
   assert.ok(markup.includes(formatRatioAsPercent(aggregateRatio)));
-  assert.ok(markup.includes("自治体別中央値"));
+  assert.ok(markup.includes("経常収支比率（市町別中央値）"));
   assert.ok(markup.includes("財政力指数（市町別中央値）"));
   assert.ok(markup.includes("e-Stat D2201"));
   assert.ok(markup.includes("経常収支比率の市町別分布"));
@@ -258,7 +258,7 @@ test("トップページの財務サマリは市町合算と市町別分布を�
   assert.ok(markup.includes('type="button"'));
   assert.ok(markup.includes('aria-label="地方税'));
   assert.ok(markup.includes("広島県公表資料"));
-  assert.ok(markup.includes("23市町の一覧から個別の財務状況を見る"));
+  assert.ok(markup.includes("市町を選んで個別の財務状況を見る"));
 });
 
 test("目的別歳出は14区分すべてを持ち、合計が性質別と一致する", async () => {

@@ -6,7 +6,7 @@ import {
   type RatioPoint,
 } from "@/components/dashboard/FinanceRatioDistribution";
 import { hiroshimaMunicipalities } from "@/lib/config";
-import { selectLatestFinanceEntries } from "@/lib/data/finance";
+import { median, selectLatestFinanceEntries } from "@/lib/data/finance";
 import type { FinanceEntry, FinanceFile } from "@/lib/data/finance-schema";
 import {
   formatFiscalStrengthIndex,
@@ -129,15 +129,6 @@ function buildGroups(
       ratio: total > 0 ? amount / total : 0,
     };
   });
-}
-
-function median(values: readonly number[]): number | null {
-  if (values.length === 0) return null;
-  const sorted = [...values].sort((a, b) => a - b);
-  const middle = Math.floor(sorted.length / 2);
-  return sorted.length % 2 === 1
-    ? (sorted[middle] ?? null)
-    : ((sorted[middle - 1] ?? 0) + (sorted[middle] ?? 0)) / 2;
 }
 
 function positionInRange(
@@ -291,12 +282,12 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
           <small>算定元データの合算</small>
         </div>
         <div className="finance-summary-kpi">
-          <span>自治体別中央値</span>
+          <span>経常収支比率（市町別中央値）</span>
           <strong>{formatRatioAsPercent(medianRatio)}</strong>
           <small>
             {minRatio === null || maxRatio === null
               ? "市町別データなし"
-              : `${formatRatioAsPercent(minRatio)}〜${formatRatioAsPercent(maxRatio)}`}
+              : `県公表値・${formatRatioAsPercent(minRatio)}〜${formatRatioAsPercent(maxRatio)}`}
           </small>
         </div>
         <div className="finance-summary-kpi">
@@ -347,7 +338,7 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
 
       <div className="finance-summary-footer">
         <p className="section-note">
-          経常収支比率は算定元データから当サイトで計算した参考値です。出典：{" "}
+          経常収支比率の合算値は算定元データから当サイトで計算した参考値、市町別の中央値と分布は広島県の公表値です。出典：{" "}
           <a href={finance.source.url} rel="noreferrer" target="_blank">
             e-Stat「地方財政状況調査」
           </a>
@@ -373,8 +364,8 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
           </a>
           。
         </p>
-        <Link className="panel-link" href="#municipalities">
-          23市町の一覧から個別の財務状況を見る <span aria-hidden="true">→</span>
+        <Link className="panel-link" href="/municipalities">
+          市町を選んで個別の財務状況を見る <span aria-hidden="true">→</span>
         </Link>
       </div>
     </section>

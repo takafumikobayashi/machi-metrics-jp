@@ -58,6 +58,23 @@ export function formatYen(value: number | null): string {
   return `${integerFormat.format(Math.round(value))}円`;
 }
 
+/**
+ * 1億円以上の金額を「○.○億円」で表す。県全体の合計のように桁が多く、
+ * 一目で大きさを読ませたいカードの見出しに使う。1億円未満は円単位のまま表示する。
+ */
+export function formatYenInOku(value: number | null): string {
+  if (value === null) {
+    return missingLabel;
+  }
+  if (!Number.isFinite(value)) {
+    throw new Error("value must be a finite number.");
+  }
+  if (Math.abs(value) < 100_000_000) {
+    return formatYen(value);
+  }
+  return `${roundToFixed(value / 100_000_000, 1).toFixed(1)}億円`;
+}
+
 /** 人口密度。面積の単位は列見出しや補足で示すため、ここでは値に添える。 */
 export function formatPopulationDensity(value: number | null): string {
   if (value === null) {
