@@ -6,6 +6,30 @@ import {
   type ChildcareCategory,
   type ChildcareFile,
 } from "@/lib/data/childcare-schema";
+
+/**
+ * 1市町に1制度とは限らないため、カードの単位を「市町」にするカテゴリーは
+ * 制度の件数ではなく制度がある市町の数を数える。
+ */
+const municipalityCountCategories: ReadonlySet<ChildcareCategory> = new Set([
+  "after_school_care",
+  "special_needs_support",
+  "learning_support",
+]);
+
+/** カテゴリーカードに出す件数。掲載が無ければ「確認中」とし、制度なしとは書かない。 */
+export function childcareCategoryCountLabel(
+  programs: ChildcareFile["programs"],
+  category: ChildcareCategory,
+): string {
+  const items = programs.filter(
+    ({ category: itemCategory }) => itemCategory === category,
+  );
+  if (items.length === 0) return "確認中";
+  return municipalityCountCategories.has(category)
+    ? `${new Set(items.map(({ municipalityCode }) => municipalityCode)).size}市町`
+    : `${items.length}制度`;
+}
 import { formatAsOfDate } from "@/lib/format/display";
 
 import { ChildcareComparisonTable } from "./ChildcareComparisonTable";
@@ -60,9 +84,6 @@ export function ChildcareDashboard({
         </div>
         <div className="childcare-category-grid">
           {childcareCategories.map((category) => {
-            const count = data.programs.filter(
-              ({ category: itemCategory }) => itemCategory === category,
-            ).length;
             return (
               <Link
                 className={`childcare-category-card${selectedCategory === category ? " is-selected" : ""}`}
@@ -74,13 +95,7 @@ export function ChildcareDashboard({
               >
                 <span>{childcareCategoryLabels[category]}</span>
                 <strong>
-                  {count > 0
-                    ? category === "after_school_care" ||
-                      category === "special_needs_support" ||
-                      category === "learning_support"
-                      ? `${count}市町`
-                      : `${count}制度`
-                    : "確認中"}
+                  {childcareCategoryCountLabel(data.programs, category)}
                 </strong>
                 <small>23市町の比較を見る →</small>
               </Link>

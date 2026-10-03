@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
 import test from "node:test";
 
-import { ChildcareDashboard } from "../src/components/childcare/ChildcareDashboard";
+import {
+  ChildcareDashboard,
+  childcareCategoryCountLabel,
+} from "../src/components/childcare/ChildcareDashboard";
 import { ChildcareDetailPanel } from "../src/components/childcare/ChildcareDetailPanel";
 import { hiroshimaMunicipalities } from "../src/lib/config";
 import {
@@ -718,4 +721,35 @@ test("自治体詳細は制度改正の適用期間を区別して表示する",
   );
   assert.match(markup, /2027年1月1日から（拡充後）/);
   assert.match(markup, /適用期間：2027年1月1日時点〜現在/);
+});
+
+test("市町単位のカテゴリーは、制度の件数ではなく制度がある市町の数を表示する", async () => {
+  const file = await childcare();
+  const learningSupport = file.programs.filter(
+    ({ category }) => category === "learning_support",
+  );
+  const municipalityCount = new Set(
+    learningSupport.map(({ municipalityCode }) => municipalityCode),
+  ).size;
+  // 1市町に複数の制度がある前提を確かめる。崩れたらこのテストの意味が無くなる。
+  assert.ok(learningSupport.length > municipalityCount);
+  assert.equal(
+    childcareCategoryCountLabel(file.programs, "learning_support"),
+    `${municipalityCount}市町`,
+  );
+
+  const markup = renderToStaticMarkup(
+    ChildcareDashboard({ data: file, selectedCategory: "age_0_2" }),
+  );
+  assert.ok(markup.includes(`${municipalityCount}市町`));
+  assert.ok(!markup.includes(`${learningSupport.length}市町`));
+
+  // 制度単位のカテゴリーは、1市町に複数あっても制度の件数を数える。
+  const pregnancy = file.programs.filter(
+    ({ category }) => category === "pregnancy_birth",
+  );
+  assert.equal(
+    childcareCategoryCountLabel(file.programs, "pregnancy_birth"),
+    `${pregnancy.length}制度`,
+  );
 });
