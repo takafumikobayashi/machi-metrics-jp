@@ -37,6 +37,29 @@ test("財務データは広島県23市町を同じ決算年度で持つ", async 
   );
 });
 
+test("財政力指数はe-StatのD2201公表値を指数の年度付きで持つ", async () => {
+  const file = await finance();
+  const fiscalStrength = file.financial_indicators.fiscal_strength;
+  const expectedCodes = hiroshimaMunicipalities.map(({ code }) => code);
+
+  assert.equal(fiscalStrength.source.url.includes("e-stat.go.jp"), true);
+  assert.equal(
+    fiscalStrength.source.file,
+    "estat-2026/administrative-base.xls",
+  );
+  assert.equal(fiscalStrength.entries.length, expectedCodes.length);
+  assert.deepEqual(
+    fiscalStrength.entries.map(({ municipality_code }) => municipality_code),
+    expectedCodes,
+  );
+  assert.equal(
+    new Set(fiscalStrength.entries.map(({ fiscal_year }) => fiscal_year)).size,
+    1,
+  );
+  assert.equal(fiscalStrength.entries[0]?.fiscal_year, "2022");
+  assert.ok(fiscalStrength.entries.every(({ value }) => value >= 0));
+});
+
 test("財務比較は入力順ではなく最新年度の行だけを選ぶ", async () => {
   const file = await finance();
   const olderEntries = file.entries.map((entry) => ({
@@ -88,6 +111,29 @@ test("同年度のふるさと納税受入額と歳出合計の比率を表示�
   assert.match(markup, /ふるさと納税受入額／歳出合計/);
   assert.match(markup, new RegExp(formatRatioAsPercent(ratio)));
   assert.match(markup, new RegExp(`${entry.fiscal_year}年度受入額`));
+  // 財政力指数を渡さない場合も「対象年度不明年度」のような崩れた文言にしない。
+  assert.ok(markup.includes("対象年度不明"));
+  assert.ok(!markup.includes("対象年度不明年度"));
+
+  const fiscalStrength =
+    file.financial_indicators.fiscal_strength.entries.find(
+      ({ municipality_code }) => municipality_code === entry.municipality_code,
+    ) ?? null;
+  assert.ok(fiscalStrength);
+  const withFiscalStrength = renderToStaticMarkup(
+    FinancePanel({
+      entry,
+      comparison: file.entries,
+      donationEntry,
+      population: null,
+      financialIndicator: indicator,
+      financialIndicatorSource: file.financial_indicators.source,
+      fiscalStrength,
+      fiscalStrengthSource: file.financial_indicators.fiscal_strength.source,
+    }),
+  );
+  assert.ok(withFiscalStrength.includes(`${fiscalStrength.fiscal_year}年度`));
+  assert.ok(!withFiscalStrength.includes("対象年度不明"));
 });
 
 test("経常収支比率は公式の分子・分母から計算できる", async () => {
@@ -201,7 +247,9 @@ test("トップページの財務サマリは市町合算と市町別分布を�
   assert.ok(markup.includes(formatYen(revenueTotal)));
   assert.ok(markup.includes(formatYen(expenditureTotal)));
   assert.ok(markup.includes(formatRatioAsPercent(aggregateRatio)));
-  assert.ok(markup.includes("自治体別中央値"));
+  assert.ok(markup.includes("経常収支比率（市町別中央値）"));
+  assert.ok(markup.includes("財政力指数（市町別中央値）"));
+  assert.ok(markup.includes("e-Stat D2201"));
   assert.ok(markup.includes("経常収支比率の市町別分布"));
   assert.ok(markup.includes("歳入の構成"));
   assert.ok(markup.includes("歳出（目的別）の構成"));
@@ -210,7 +258,7 @@ test("トップページの財務サマリは市町合算と市町別分布を�
   assert.ok(markup.includes('type="button"'));
   assert.ok(markup.includes('aria-label="地方税'));
   assert.ok(markup.includes("広島県公表資料"));
-  assert.ok(markup.includes("23市町の一覧から個別の財務状況を見る"));
+  assert.ok(markup.includes("市町を選んで個別の財務状況を見る"));
 });
 
 test("目的別歳出は14区分すべてを持ち、合計が性質別と一致する", async () => {

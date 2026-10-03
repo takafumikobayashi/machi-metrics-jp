@@ -6,9 +6,13 @@ import {
   type RatioPoint,
 } from "@/components/dashboard/FinanceRatioDistribution";
 import { hiroshimaMunicipalities } from "@/lib/config";
-import { selectLatestFinanceEntries } from "@/lib/data/finance";
+import { median, selectLatestFinanceEntries } from "@/lib/data/finance";
 import type { FinanceEntry, FinanceFile } from "@/lib/data/finance-schema";
-import { formatRatioAsPercent, formatYen } from "@/lib/format/display";
+import {
+  formatFiscalStrengthIndex,
+  formatRatioAsPercent,
+  formatYen,
+} from "@/lib/format/display";
 
 type GroupDefinition = {
   label: string;
@@ -127,15 +131,6 @@ function buildGroups(
   });
 }
 
-function median(values: readonly number[]): number | null {
-  if (values.length === 0) return null;
-  const sorted = [...values].sort((a, b) => a - b);
-  const middle = Math.floor(sorted.length / 2);
-  return sorted.length % 2 === 1
-    ? (sorted[middle] ?? null)
-    : ((sorted[middle - 1] ?? 0) + (sorted[middle] ?? 0)) / 2;
-}
-
 function positionInRange(
   value: number | null,
   min: number | null,
@@ -198,6 +193,17 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
     ratioDenominator > 0 ? currentExpenditure / ratioDenominator : null;
   const medianPosition = positionInRange(medianRatio, minRatio, maxRatio);
   const aggregatePosition = positionInRange(aggregateRatio, minRatio, maxRatio);
+  const fiscalStrengthEntries =
+    finance.financial_indicators.fiscal_strength.entries;
+  const fiscalStrengthYear = fiscalStrengthEntries[0]?.fiscal_year ?? null;
+  const fiscalStrengthValues = fiscalStrengthEntries.map(
+    (entry) => entry.value,
+  );
+  const medianFiscalStrength = median(fiscalStrengthValues);
+  const minFiscalStrength =
+    fiscalStrengthValues.length > 0 ? Math.min(...fiscalStrengthValues) : null;
+  const maxFiscalStrength =
+    fiscalStrengthValues.length > 0 ? Math.max(...fiscalStrengthValues) : null;
   /** 帯の上に23市町を1点ずつ置き、どの市町がどこにいるかを読めるようにする。 */
   const ratioPoints: RatioPoint[] = indicators
     .map((indicator) => {
@@ -276,12 +282,23 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
           <small>算定元データの合算</small>
         </div>
         <div className="finance-summary-kpi">
-          <span>自治体別中央値</span>
+          <span>経常収支比率（市町別中央値）</span>
           <strong>{formatRatioAsPercent(medianRatio)}</strong>
           <small>
             {minRatio === null || maxRatio === null
               ? "市町別データなし"
-              : `${formatRatioAsPercent(minRatio)}〜${formatRatioAsPercent(maxRatio)}`}
+              : `県公表値・${formatRatioAsPercent(minRatio)}〜${formatRatioAsPercent(maxRatio)}`}
+          </small>
+        </div>
+        <div className="finance-summary-kpi">
+          <span>財政力指数（市町別中央値）</span>
+          <strong>{formatFiscalStrengthIndex(medianFiscalStrength)}</strong>
+          <small>
+            {fiscalStrengthYear === null ||
+            minFiscalStrength === null ||
+            maxFiscalStrength === null
+              ? "市町別データなし"
+              : `${fiscalStrengthYear}年度・${formatFiscalStrengthIndex(minFiscalStrength)}〜${formatFiscalStrengthIndex(maxFiscalStrength)}`}
           </small>
         </div>
       </div>
@@ -321,7 +338,7 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
 
       <div className="finance-summary-footer">
         <p className="section-note">
-          経常収支比率は算定元データから当サイトで計算した参考値です。出典：{" "}
+          経常収支比率の合算値は算定元データから当サイトで計算した参考値、市町別の中央値と分布は広島県の公表値です。出典：{" "}
           <a href={finance.source.url} rel="noreferrer" target="_blank">
             e-Stat「地方財政状況調査」
           </a>
@@ -333,10 +350,22 @@ export function FinanceSummaryPanel({ finance }: { finance: FinanceFile }) {
           >
             広島県公表資料
           </a>
+          。財政力指数はe-Stat D2201の公表値（
+          {fiscalStrengthYear === null
+            ? "対象年度不明"
+            : `${fiscalStrengthYear}年度`}
+          ）です。出典：
+          <a
+            href={finance.financial_indicators.fiscal_strength.source.url}
+            rel="noreferrer"
+            target="_blank"
+          >
+            e-Stat「統計でみる市区町村のすがた」
+          </a>
           。
         </p>
-        <Link className="panel-link" href="#municipalities">
-          23市町の一覧から個別の財務状況を見る <span aria-hidden="true">→</span>
+        <Link className="panel-link" href="/municipalities">
+          市町を選んで個別の財務状況を見る <span aria-hidden="true">→</span>
         </Link>
       </div>
     </section>

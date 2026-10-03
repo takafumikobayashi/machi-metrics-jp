@@ -3,10 +3,12 @@ import type { FurusatoFile } from "@/lib/data/furusato-schema";
 import type {
   FinanceEntry,
   FinanceFile,
+  FiscalStrength,
   FinancialIndicator,
 } from "@/lib/data/finance-schema";
 import {
   formatCount,
+  formatFiscalStrengthIndex,
   formatRatioAsPercent,
   formatYen,
 } from "@/lib/format/display";
@@ -290,6 +292,8 @@ export function FinancePanel({
   population,
   financialIndicator,
   financialIndicatorSource,
+  fiscalStrength,
+  fiscalStrengthSource,
 }: {
   entry: FinanceEntry | null;
   comparison: FinanceFile["entries"];
@@ -297,6 +301,8 @@ export function FinancePanel({
   population: number | null;
   financialIndicator: FinancialIndicator | null;
   financialIndicatorSource: FinanceFile["financial_indicators"]["source"];
+  fiscalStrength?: FiscalStrength | null;
+  fiscalStrengthSource?: FinanceFile["financial_indicators"]["fiscal_strength"]["source"];
 }) {
   if (!entry) {
     return (
@@ -376,6 +382,17 @@ export function FinancePanel({
           </small>
         </div>
         <div className="metric-card">
+          <span>財政力指数（e-Stat公表値）</span>
+          <strong>
+            {formatFiscalStrengthIndex(fiscalStrength?.value ?? null)}
+          </strong>
+          <small>
+            {fiscalStrength
+              ? `${fiscalStrength.fiscal_year}年度・過去3年度平均`
+              : "公表値データなし"}
+          </small>
+        </div>
+        <div className="metric-card">
           <span>ふるさと納税受入額／歳出合計</span>
           <strong>{formatRatioAsPercent(donationToExpenditureRatio)}</strong>
           <small>
@@ -394,6 +411,20 @@ export function FinancePanel({
           {financialIndicatorSource.title}
         </a>
         とe-Statの調査表です。
+      </p>
+      <p className="section-note finance-indicator-note">
+        財政力指数は、基準財政収入額を基準財政需要額で割った値の過去3年度平均です。e-Stat
+        D2201の公表値（
+        {fiscalStrength ? `${fiscalStrength.fiscal_year}年度` : "対象年度不明"}
+        ）を掲載しています。
+        {fiscalStrengthSource ? (
+          <>
+            出典：
+            <a href={fiscalStrengthSource.url} rel="noreferrer" target="_blank">
+              {fiscalStrengthSource.title}
+            </a>
+          </>
+        ) : null}
       </p>
 
       <FinanceRadarCharts

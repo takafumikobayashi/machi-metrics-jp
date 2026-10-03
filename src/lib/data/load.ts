@@ -5,6 +5,7 @@ import path from "node:path";
 import type { z } from "zod";
 
 import { densityFileSchema, type DensityFile } from "./density-schema";
+import { childcareFileSchema, type ChildcareFile } from "./childcare-schema";
 import { furusatoFileSchema, type FurusatoFile } from "./furusato-schema";
 import {
   furusatoUsageFileSchema,
@@ -173,6 +174,15 @@ export async function loadDensity(
   return readJsonFile(
     path.join(releaseDirectory(root, releaseId), "density.json"),
     densityFileSchema,
+  );
+}
+
+export async function loadChildcare(
+  root: string = defaultPublicDataRoot(),
+): Promise<ChildcareFile> {
+  return readJsonFile(
+    path.join(root, "childcare", "childcare.json"),
+    childcareFileSchema,
   );
 }
 

@@ -6,8 +6,10 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 import re
 import subprocess
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -15,6 +17,9 @@ import openpyxl
 
 from finance_sources import (
     ESTAT_PAGE_URL,
+    ESTAT_FISCAL_STRENGTH_FILE,
+    ESTAT_FISCAL_STRENGTH_TITLE,
+    ESTAT_FISCAL_STRENGTH_URL,
     FINANCE_TITLE,
     PUBLISHED_RATIO_TITLE,
     PUBLISHED_RATIO_URL,
@@ -64,6 +69,20 @@ NATURE_LABELS = [
 ]
 
 
+def parse_fiscal_strength_value(value: object, *, context: str) -> float:
+    """Parse the D2201 index, preserving its published decimal precision."""
+
+    if value is None or str(value).strip() in {"", "-", "－", "…", "―", "..."}:
+        raise ValueError(f"財政力指数が欠損しています ({context})")
+    try:
+        parsed = float(str(value).strip().replace(",", ""))
+    except ValueError as error:
+        raise ValueError(f"財政力指数を読めません ({context}): {value!r}") from error
+    if parsed < 0:
+        raise ValueError(f"財政力指数が負です ({context}): {value!r}")
+    return parsed
+
+
 def parse_amount(value: str | int | float | None, *, context: str) -> int:
     if value is None:
         return 0
@@ -93,15 +112,7 @@ def verify_manifest(raw_root: Path, municipalities: list[dict[str, str]]) -> tup
             f"財務原本のmanifestがありません: {manifest_path}。先に pnpm acquire:finance を実行してください。"
         )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    acquired_at = manifest.get("acquired_at")
-    if not isinstance(acquired_at, str) or not acquired_at:
-        raise ValueError("finance source.json に acquired_at がありません")
-    try:
-        parsed_acquired_at = datetime.fromisoformat(acquired_at.replace("Z", "+00:00"))
-    except ValueError as error:
-        raise ValueError("finance source.json の acquired_at がISO日時ではありません") from error
-    if parsed_acquired_at.tzinfo is None or parsed_acquired_at.utcoffset() is None:
-        raise ValueError("finance source.json の acquired_at にはタイムゾーンが必要です")
+    validate_acquired_at(manifest.get("acquired_at"), context="finance source.json")
     if manifest.get("fiscal_year") != FISCAL_YEAR:
         raise ValueError("finance source.json の fiscal_year が対象年度と一致しません")
     expected = {item["file"]: item for item in source_definitions([m["code"] for m in municipalities])}
@@ -118,7 +129,27 @@ def verify_manifest(raw_root: Path, municipalities: list[dict[str, str]]) -> tup
             raise ValueError(f"原本のSHA-256がmanifestと一致しません: {path}")
         if item.get("url") != expected_definition["url"]:
             raise ValueError(f"原本URLが定義と一致しません: {relative}")
+        if "acquired_at" in item:
+            validate_acquired_at(item["acquired_at"], context=f"finance source.json の {relative}")
     return manifest, listed
+
+
+def validate_acquired_at(value: object, *, context: str) -> str:
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"{context} に acquired_at がありません")
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError as error:
+        raise ValueError(f"{context} の acquired_at がISO日時ではありません") from error
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        raise ValueError(f"{context} の acquired_at にはタイムゾーンが必要です")
+    return value
+
+
+def source_acquired_at(manifest: dict, item: dict) -> str:
+    """後から追記した原本はファイル単位の取得日時を優先し、なければスナップショット全体の値を使う。"""
+
+    return item.get("acquired_at") or manifest["acquired_at"]
 
 
 def read_csv_table(path: Path) -> tuple[list[str], dict[tuple[str, str], dict]]:
@@ -187,6 +218,93 @@ def xlsx_indicators(path: Path) -> tuple[int, int, int]:
         raise ValueError(f"経常収支比率の算定元行を確認できません: {path}")
     # The prefecture workbook records these cells in thousands of yen.
     return general_revenue * 1000, deficit * 1000, fiscal_adjustment * 1000
+
+
+def fiscal_strength_index(path: Path, codes: list[str]) -> tuple[str, dict[str, float]]:
+    """Read the official D2201 column from the e-Stat administrative-base workbook.
+
+    The 2026 publication is distributed as a legacy .xls file, so convert it in
+    a temporary directory before handing it to openpyxl.  Header positions are
+    detected by their D2201/code labels rather than hard-coded columns.
+    """
+
+    with tempfile.TemporaryDirectory(prefix="finance-fiscal-strength-") as directory:
+        converted = path
+        if path.suffix.lower() != ".xlsx":
+            try:
+                subprocess.run(
+                    [
+                        str(Path(os.environ.get("SOFFICE_BIN", "soffice"))),
+                        "--headless",
+                        "--convert-to",
+                        "xlsx",
+                        "--outdir",
+                        directory,
+                        str(path),
+                    ],
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                )
+            except FileNotFoundError as error:
+                raise RuntimeError(
+                    "財政力指数の旧形式Excel変換にはLibreOfficeのsofficeが必要です"
+                ) from error
+            except subprocess.CalledProcessError as error:
+                detail = (error.stderr or error.stdout or "").strip()
+                raise RuntimeError(
+                    f"財政力指数Excelの変換に失敗しました: {detail}"
+                ) from error
+            candidates = list(Path(directory).glob("*.xlsx"))
+            if len(candidates) != 1:
+                raise ValueError(f"財政力指数Excelの変換結果が一意ではありません: {path}")
+            converted = candidates[0]
+
+        workbook = openpyxl.load_workbook(converted, read_only=True, data_only=True)
+        if "D" not in workbook.sheetnames:
+            raise ValueError(f"行政基盤シートがありません: {path}")
+        sheet = workbook["D"]
+        d2201_column: int | None = None
+        code_column: int | None = None
+        year: str | None = None
+        for row in sheet.iter_rows(min_row=1, max_row=15, values_only=True):
+            for index, value in enumerate(row, start=1):
+                text = str(value).replace("\n", "").strip() if value is not None else ""
+                if text == "D2201":
+                    d2201_column = index
+                if "市区町村" in text and ("コード" in text or "ｺｰﾄﾞ" in text):
+                    code_column = index
+        if d2201_column is None or code_column is None:
+            raise ValueError(f"D2201または自治体コード列が見つかりません: {path}")
+        for row in sheet.iter_rows(min_row=1, max_row=15, values_only=True):
+            value = row[d2201_column - 1] if len(row) >= d2201_column else None
+            if value is not None and re.fullmatch(r"\d{4}", str(value).strip()):
+                year = str(value).strip()
+                break
+        if year is None:
+            raise ValueError(f"財政力指数の調査年度が見つかりません: {path}")
+
+        values: dict[str, float] = {}
+        wanted = set(codes)
+        for row in sheet.iter_rows(min_row=11, values_only=True):
+            if len(row) < max(d2201_column, code_column):
+                continue
+            raw_code = row[code_column - 1]
+            code = str(raw_code).strip() if raw_code is not None else ""
+            if code.endswith(".0"):
+                code = code[:-2]
+            if code not in wanted:
+                continue
+            if code in values:
+                raise ValueError(f"財政力指数に同一自治体コードの重複があります: {code}")
+            values[code] = parse_fiscal_strength_value(
+                row[d2201_column - 1], context=f"{path.name}:{code}:{year}"
+            )
+        workbook.close()
+        missing = sorted(wanted - values.keys())
+        if missing:
+            raise ValueError(f"財政力指数に広島県23市町の行がありません: {missing}")
+        return year, values
 
 
 def pdf_ratios(path: Path, names: list[str]) -> dict[str, float]:
@@ -331,6 +449,19 @@ def main() -> None:
             }
         )
 
+    fiscal_strength_relative = ESTAT_FISCAL_STRENGTH_FILE
+    fiscal_strength_year, fiscal_strength_values = fiscal_strength_index(
+        raw_root / fiscal_strength_relative, codes
+    )
+    fiscal_strength_entries = [
+        {
+            "municipality_code": municipality["code"],
+            "fiscal_year": fiscal_strength_year,
+            "value": fiscal_strength_values[municipality["code"]],
+        }
+        for municipality in municipalities
+    ]
+
     entries = []
     for municipality in municipalities:
         code, name = municipality["code"], municipality["name"]
@@ -374,6 +505,19 @@ def main() -> None:
                 "file": "658760.pdf",
                 "sha256": listed["hiroshima-kessan/2024/658760.pdf"]["sha256"],
                 "acquired_at": manifest["acquired_at"],
+            },
+            "fiscal_strength": {
+                "source": {
+                    "title": ESTAT_FISCAL_STRENGTH_TITLE,
+                    "url": ESTAT_FISCAL_STRENGTH_URL,
+                    "file": fiscal_strength_relative,
+                    "sha256": listed[fiscal_strength_relative]["sha256"],
+                    "acquired_at": source_acquired_at(
+                        manifest, listed[fiscal_strength_relative]
+                    ),
+                    "note": "e-Stat D2201「財政力指数（市町村財政）」の公表値。値は基準財政収入額を基準財政需要額で割った値の過去3年度平均です。",
+                },
+                "entries": fiscal_strength_entries,
             },
             "entries": indicators,
         },

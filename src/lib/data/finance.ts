@@ -1,4 +1,4 @@
-import type { FinanceEntry } from "./finance-schema";
+import type { FinanceEntry, FinanceFile } from "./finance-schema";
 
 /**
  * 複数年度の財務データから、最も新しい年度の行だけを選ぶ。
@@ -25,4 +25,25 @@ export function selectLatestFinanceEntries(entries: readonly FinanceEntry[]): {
         ? []
         : entries.filter((entry) => entry.fiscal_year === fiscalYear),
   };
+}
+
+export function median(values: readonly number[]): number | null {
+  if (values.length === 0) return null;
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 1
+    ? (sorted[middle] ?? null)
+    : ((sorted[middle - 1] ?? 0) + (sorted[middle] ?? 0)) / 2;
+}
+
+/** トップページのカードに出す、最新決算年度の経常収支比率（県公表値）の市町別中央値。 */
+export function financeHeadline(finance: FinanceFile): {
+  fiscalYear: string | null;
+  medianRatio: number | null;
+} {
+  const { fiscalYear } = selectLatestFinanceEntries(finance.entries);
+  const ratios = finance.financial_indicators.entries
+    .filter((indicator) => indicator.fiscal_year === fiscalYear)
+    .map((indicator) => indicator.published_ratio_percent / 100);
+  return { fiscalYear, medianRatio: median(ratios) };
 }

@@ -58,6 +58,8 @@ def validate_payload(path: Path, payload: bytes) -> None:
     suffix = path.suffix.lower()
     if suffix == ".xlsx" and not payload.startswith(b"PK"):
         raise ValueError(f"Excel原本ではない応答です: {path}")
+    if suffix == ".xls" and not payload.startswith(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"):
+        raise ValueError(f"旧形式Excel原本ではない応答です: {path}")
     if suffix == ".pdf" and not payload.startswith(b"%PDF"):
         raise ValueError(f"PDF原本ではない応答です: {path}")
     if suffix == ".csv":
@@ -107,15 +109,44 @@ def main() -> None:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         expected = {item["file"]: item for item in definitions}
         actual = {item["file"]: item for item in manifest.get("sources", [])}
-        if set(actual) != set(expected):
-            raise ValueError("既存manifestのファイル一覧が現行の定義と一致しません")
+        extra = set(actual) - set(expected)
+        if extra:
+            raise ValueError(
+                "既存manifestに現行定義にないファイルがあります: "
+                + ", ".join(sorted(extra))
+            )
         for relative, item in actual.items():
             path = raw_root / relative
             if item.get("url") != expected[relative]["url"]:
                 raise ValueError(f"manifestの原本URLが定義と一致しません: {relative}")
             if not path.is_file() or sha256(path) != item.get("sha256"):
                 raise ValueError(f"原本のハッシュがmanifestと一致しません: {path}")
-        print(f"取得済み原本を検証しました: {len(actual)}ファイル ({manifest_path})")
+        missing = [relative for relative in expected if relative not in actual]
+        if missing:
+            # 新しい指標の原本が追加された場合は、既存スナップショットを
+            # 検証したうえで不足分だけ取得し、同じmanifestへ追記する。
+            # 既存原本の取得日時は変えず、追加分にだけファイル単位の取得日時を残す。
+            added_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            for relative in missing:
+                definition = expected[relative]
+                path = raw_root / relative
+                if path.exists():
+                    validate_payload(path, path.read_bytes())
+                else:
+                    write_download(path, definition["url"])
+                actual[relative] = {
+                    **definition,
+                    "sha256": sha256(path),
+                    "acquired_at": added_at,
+                }
+            manifest["sources"] = [actual[relative] for relative in expected]
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            print(f"追加原本を取得しました: {len(missing)}ファイル ({manifest_path})")
+        else:
+            print(f"取得済み原本を検証しました: {len(actual)}ファイル ({manifest_path})")
         return
 
     verify_prefecture_index()

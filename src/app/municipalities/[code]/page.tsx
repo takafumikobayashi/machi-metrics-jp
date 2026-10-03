@@ -1,44 +1,39 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 
-import { PopulationTrend } from "@/components/municipality/MunicipalityVisuals";
-import { DensityPanel } from "@/components/municipality/DensityPanel";
-import { IndustryStructurePanel } from "@/components/municipality/IndustryStructurePanel";
-import { MigrationFlowPanel } from "@/components/municipality/MigrationFlowPanel";
-import {
-  AgeCategoryTrend,
-  ResidentScopeCharts,
-} from "@/components/municipality/ResidentScopeCharts";
-import { SimilarityExplorer } from "@/components/municipality/SimilarityExplorer";
-import { RegionalFlowChart } from "@/components/dashboard/DashboardCharts";
+import { summarizeGrants } from "@/components/dashboard/GrantComparisonTable";
+import { MunicipalityDetailNav } from "@/components/municipality/MunicipalityDetailNav";
 import { hiroshimaMunicipalities } from "@/lib/config";
-import { loadExtendedMunicipalityDetail } from "@/lib/data/extended-load";
+import { childcareCategories } from "@/lib/data/childcare-schema";
+import { latestDonationRows } from "@/lib/data/donations";
+import { selectLatestFinanceEntries } from "@/lib/data/finance";
 import {
-  loadLatestPointer,
+  loadChildcare,
   loadDensity,
+  loadDigitalDx,
+  loadFinance,
+  loadFurusato,
+  loadGrants,
   loadIndustry,
-  loadMigrationFlow,
-  loadMigrationSummary,
-  loadManifest,
+  loadLatestPointer,
   loadMunicipalityDetail,
   loadSimilarity,
-  loadSimilarityModel,
-  loadStructureSimilarity,
-  loadStructureSimilarityModel,
 } from "@/lib/data/load";
 import {
   formatAsOfDate,
   formatCount,
-  formatFlowPeriod,
-  formatRatePer1000,
+  formatFiscalStrengthIndex,
+  formatPopulationDensity,
   formatRatioAsPercent,
-  formatSignedCount,
   formatSignedRatioAsPercent,
+  formatYen,
+  missingLabel,
 } from "@/lib/format/display";
 import { pageOpenGraph } from "@/lib/site/metadata";
 
-interface MunicipalityPageProps {
+interface MunicipalityOverviewPageProps {
   params: Promise<{ code: string }>;
 }
 
@@ -48,7 +43,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: MunicipalityPageProps): Promise<Metadata> {
+}: MunicipalityOverviewPageProps): Promise<Metadata> {
   const { code } = await params;
   const municipality = hiroshimaMunicipalities.find(
     (item) => item.code === code,
@@ -56,333 +51,341 @@ export async function generateMetadata({
   if (!municipality) {
     return {};
   }
-
-  const latestPointer = await loadLatestPointer();
-  const detail = await loadMunicipalityDetail(latestPointer.release_id, code);
-  const latest = detail.snapshots.at(-1);
-  const change = detail.change_10y;
-  const description = [
-    `${municipality.nameJa}の人口は`,
-    latest ? `${formatAsOfDate(latest.as_of_date)}で` : "",
-    latest ? `${formatCount(latest.population_total)}。` : "",
-    `${change.start_date.slice(0, 4)}年からの増減は`,
-    `${formatSignedRatioAsPercent(change.population_change_rate_10y)}です。`,
-    "年齢構成と人口動態、全国の似ている自治体もあわせて確認できます。",
-  ].join("");
-
+  const description = `${municipality.nameJa}の人口、子育て支援、財政、ふるさと納税、自治体DX、補助金・交付金の要点を、出典と基準日付きでまとめています。`;
   return {
     title: municipality.nameJa,
     description,
     ...pageOpenGraph({
-      title: `${municipality.nameJa}の人口 | ひろしまダッシュボード`,
+      title: `${municipality.nameJa} | ひろしまダッシュボード`,
       description,
       path: `/municipalities/${code}`,
     }),
   };
 }
 
-export default async function MunicipalityPage({
+/** 概要タブのカード。テーマごとに要点の数字を2つと、詳しいタブへのリンクを置く。 */
+function SummaryCard({
+  title,
+  basis,
+  href,
+  linkLabel,
+  items,
+}: {
+  title: string;
+  basis: string;
+  href: string;
+  linkLabel: string;
+  items: ReadonlyArray<{ label: string; value: ReactNode; note?: string }>;
+}) {
+  return (
+    <section className="overview-card" aria-label={title}>
+      <header>
+        <h2>{title}</h2>
+        <small>{basis}</small>
+      </header>
+      <dl>
+        {items.map(({ label, value, note }) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>
+              <strong>{value}</strong>
+              {note ? <small>{note}</small> : null}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <Link className="panel-link" href={href}>
+        {linkLabel} <span aria-hidden="true">→</span>
+      </Link>
+    </section>
+  );
+}
+
+export default async function MunicipalityOverviewPage({
   params,
-}: MunicipalityPageProps) {
+}: MunicipalityOverviewPageProps) {
   const { code } = await params;
   const municipality = hiroshimaMunicipalities.find(
     (item) => item.code === code,
   );
-
   if (!municipality) {
     notFound();
   }
 
   const latestPointer = await loadLatestPointer();
+  const releaseId = latestPointer.release_id;
   const [
     detail,
     density,
     industry,
-    manifest,
     similarity,
-    similarityModel,
-    structureSimilarity,
-    structureSimilarityModel,
-    extendedDetail,
-    migrationFlow,
-    migrationSummary,
+    childcare,
+    finance,
+    furusato,
+    digital,
+    grants,
   ] = await Promise.all([
-    loadMunicipalityDetail(latestPointer.release_id, code),
-    loadDensity(latestPointer.release_id),
-    loadIndustry(latestPointer.release_id),
-    loadManifest(latestPointer.release_id),
-    loadSimilarity(latestPointer.release_id),
-    loadSimilarityModel(latestPointer.release_id),
-    loadStructureSimilarity(latestPointer.release_id),
-    loadStructureSimilarityModel(latestPointer.release_id),
-    loadExtendedMunicipalityDetail(latestPointer.release_id, code),
-    loadMigrationFlow(latestPointer.release_id),
-    loadMigrationSummary(latestPointer.release_id),
+    loadMunicipalityDetail(releaseId, code),
+    loadDensity(releaseId),
+    loadIndustry(releaseId),
+    loadSimilarity(releaseId),
+    loadChildcare(),
+    loadFinance(),
+    loadFurusato(),
+    loadDigitalDx(),
+    loadGrants(),
   ]);
   const latestSnapshot = detail.snapshots.at(-1);
-  const latestFlow = detail.flows.at(-1);
-  const similarityEntry = similarity.entries.find(
-    ({ municipality_code }) => municipality_code === code,
-  );
-  const structureSimilarityEntry = structureSimilarity.entries.find(
-    ({ municipality_code }) => municipality_code === code,
-  );
-  if (!latestSnapshot || !latestFlow) {
+  if (!latestSnapshot) {
     notFound();
   }
+  const base = `/municipalities/${code}`;
 
-  const source = manifest.sources.find(
-    ({ table_number }) =>
-      table_number === `${latestSnapshot.as_of_date.slice(0, 4)}-03`,
+  const densityEntry = density.entries.find(
+    ({ municipality_code }) => municipality_code === code,
   );
-  const densityEntry =
-    density.entries.find(
-      ({ municipality_code }) => municipality_code === code,
-    ) ?? null;
-  const industryEntry =
-    industry.entries.find(
-      ({ municipality_code }) => municipality_code === code,
-    ) ?? null;
-  const focusCodes = new Set(
-    hiroshimaMunicipalities.map(({ code: focusCode }) => focusCode),
+  const industryEntry = industry.entries.find(
+    ({ municipality_code }) => municipality_code === code,
   );
-  const industryComparison = industry.entries.filter(({ municipality_code }) =>
-    focusCodes.has(municipality_code),
+  const similarNames =
+    similarity.entries
+      .find(({ municipality_code }) => municipality_code === code)
+      ?.similar.slice(0, 3)
+      .map(
+        ({ name_ja, prefecture_name_ja }) =>
+          `${name_ja}（${prefecture_name_ja}）`,
+      ) ?? [];
+
+  const childcareStatus = childcare.municipalities.find(
+    ({ municipalityCode }) => municipalityCode === code,
   );
+  const childcarePrograms = childcare.programs.filter(
+    ({ municipalityCode }) => municipalityCode === code,
+  );
+  const childcareCategoryCount = new Set(
+    childcarePrograms.map(({ category }) => category),
+  ).size;
+
+  const { fiscalYear } = selectLatestFinanceEntries(finance.entries);
+  const financialIndicator = finance.financial_indicators.entries.find(
+    (item) =>
+      item.municipality_code === code && item.fiscal_year === fiscalYear,
+  );
+  const fiscalStrength =
+    finance.financial_indicators.fiscal_strength.entries.find(
+      (item) => item.municipality_code === code,
+    );
+
+  const donations = latestDonationRows(furusato);
+  const donationIndex = donations.rows.findIndex(
+    ({ municipality_code }) => municipality_code === code,
+  );
+  const donation = donations.rows[donationIndex];
+
+  const digitalMetrics =
+    digital.entries.find(({ municipality_code }) => municipality_code === code)
+      ?.metrics ?? [];
+  const digitalValue = (label: string) =>
+    digitalMetrics.find((metric) => metric.label === label)?.value ?? null;
+
+  const grantSummary = summarizeGrants(grants, code);
 
   return (
     <article className="shell municipality-page">
-      <Link className="back-link" href="/">
-        <span aria-hidden="true">←</span> 23市町の一覧へ
+      <Link className="back-link" href="/municipalities">
+        <span aria-hidden="true">←</span> 市町を探す
       </Link>
       <div className="detail-kicker">
-        <p className="eyebrow">自治体詳細</p>
+        <p className="eyebrow">自治体詳細 / 概要</p>
         <span>自治体コード {municipality.code}</span>
       </div>
       <div className="detail-heading">
         <div>
           <h1>{municipality.nameJa}</h1>
           <p className="lead">
-            {formatAsOfDate(latestSnapshot.as_of_date)}の人口と、
-            {detail.change_10y.start_date.slice(0, 4)}年から
-            {detail.change_10y.end_date.slice(0, 4)}年までの変化
+            人口・子育て支援・財政などの要点をまとめています。各カードから詳しいタブへ移れます。
           </p>
         </div>
-        <div className="detail-release">
-          <span>準備版</span>
-          <small>{manifest.release_id}</small>
-        </div>
       </div>
-      <nav className="detail-nav" aria-label="自治体情報のカテゴリ">
-        <Link aria-current="page" href={`/municipalities/${code}`}>
-          人口・人口動態
-        </Link>
-        <Link href={`/municipalities/${code}/finance`}>財務状況</Link>
-        <Link href={`/municipalities/${code}/donations`}>ふるさと納税</Link>
-        <Link href={`/municipalities/${code}/digital`}>自治体DX</Link>
-        <Link href={`/municipalities/${code}/grants`}>補助金・交付金</Link>
-      </nav>
+      <MunicipalityDetailNav code={code} current="overview" />
 
-      <div className="preview-note" role="status">
-        <strong>広島県23市町の詳細データを表示しています。</strong>
-        <span>
-          類似自治体は全国の市・町・村と東京都特別区から計算しています。政令指定都市の行政区は候補から除外しています。
-        </span>
-      </div>
-
-      <section className="metric-grid" aria-label="主要指標">
-        <div className="metric-card metric-card-featured">
-          <span>最新人口</span>
-          <strong>{formatCount(latestSnapshot.population_total)}</strong>
-          <small>{formatAsOfDate(latestSnapshot.as_of_date)}</small>
-        </div>
-        <div className="metric-card">
-          <span>期間人口増減</span>
-          <strong>
-            {formatSignedRatioAsPercent(
-              detail.change_10y.population_change_rate_10y,
-            )}
-          </strong>
-          <small>
-            {formatSignedCount(detail.change_10y.population_change_10y)} /
-            両端比較
-          </small>
-        </div>
-        <div className="metric-card">
-          <span>高齢者比率</span>
-          <strong>
-            {formatRatioAsPercent(
-              latestSnapshot.age.shares?.age_65_plus ?? null,
-            )}
-          </strong>
-          <small>年齢把握済み人口が分母</small>
-        </div>
-        <div className="metric-card">
-          <span>直近の社会増減</span>
-          <strong>
-            {formatSignedCount(latestFlow.migration_change_reported)}
-          </strong>
-          <small>
-            {formatFlowPeriod(latestFlow.period_start, latestFlow.period_end)}
-            ・報告値
-          </small>
-        </div>
-      </section>
-
-      <PopulationTrend
-        municipalityName={municipality.nameJa}
-        snapshots={detail.snapshots}
-      />
-
-      <DensityPanel
-        municipalityName={municipality.nameJa}
-        entry={densityEntry}
-        comparison={density.entries}
-      />
-
-      <IndustryStructurePanel
-        municipalityName={municipality.nameJa}
-        entry={industryEntry}
-        comparison={industryComparison}
-      />
-
-      <AgeCategoryTrend detail={extendedDetail} />
-
-      <RegionalFlowChart
-        headingId="municipality-flow-chart-heading"
-        subjectLabel={municipality.nameJa}
-        title={`${municipality.nameJa}の人口動態`}
-        points={detail.flows.map((flow) => ({
-          period_end: flow.period_end,
-          natural_change: flow.natural_change_reported,
-          migration_change: flow.migration_change_reported,
-        }))}
-      />
-
-      {migrationSummary ? (
-        <MigrationFlowPanel
-          municipalityName={municipality.nameJa}
-          entries={migrationSummary.entries.filter(
-            ({ municipality_code }) => municipality_code === code,
-          )}
-          totals={
-            migrationFlow?.entries
-              .filter(({ municipality_code }) => municipality_code === code)
-              .map(({ year, inbound, outbound }) => ({
-                year,
-                inbound:
-                  inbound.find(({ area_type }) => area_type === "total")
-                    ?.all_nationalities ?? null,
-                outbound:
-                  outbound.find(({ area_type }) => area_type === "total")
-                    ?.all_nationalities ?? null,
-              })) ?? []
-          }
+      <div className="overview-grid">
+        <SummaryCard
+          title="人口"
+          basis={formatAsOfDate(latestSnapshot.as_of_date)}
+          href={`${base}/population`}
+          linkLabel="人口・人口動態を詳しく"
+          items={[
+            {
+              label: "人口",
+              value: formatCount(latestSnapshot.population_total),
+            },
+            {
+              label: `${detail.change_10y.start_date.slice(0, 4)}年からの増減`,
+              value: formatSignedRatioAsPercent(
+                detail.change_10y.population_change_rate_10y,
+              ),
+            },
+          ]}
         />
-      ) : null}
-
-      <section className="data-card" aria-labelledby="flow-heading">
-        <div className="section-heading compact-heading">
-          <p className="eyebrow">人口動態</p>
-          <h2 id="flow-heading">人口動態の数値一覧</h2>
+        <SummaryCard
+          title="地域の特徴"
+          basis="人口密度・産業構造"
+          href={`${base}/profile`}
+          linkLabel="地域の特徴を詳しく"
+          items={[
+            {
+              label: "人口密度",
+              value: formatPopulationDensity(
+                densityEntry?.population_density_per_km2 ?? null,
+              ),
+              note: densityEntry
+                ? formatAsOfDate(densityEntry.population_as_of_date)
+                : undefined,
+            },
+            {
+              label: "第3次産業の就業者",
+              value: formatRatioAsPercent(
+                industryEntry?.tertiary_industry_share ?? null,
+              ),
+              note: industryEntry
+                ? `${industryEntry.reference_date.slice(0, 4)}年国勢調査`
+                : undefined,
+            },
+          ]}
+        />
+        <SummaryCard
+          title="子育て支援"
+          basis={
+            childcareStatus?.status === "confirmed"
+              ? `確認日 ${formatAsOfDate(childcareStatus.checkedAt)}`
+              : "確認中"
+          }
+          href={`${base}/childcare`}
+          linkLabel="子育て支援を詳しく"
+          items={[
+            {
+              label: "掲載している制度",
+              value: `${childcarePrograms.length}制度`,
+            },
+            {
+              label: "制度がある分野",
+              value: `${childcareCategoryCount} / ${childcareCategories.length}分野`,
+            },
+          ]}
+        />
+        <SummaryCard
+          title="財務状況"
+          basis={`${fiscalYear ?? "最新"}年度決算`}
+          href={`${base}/finance`}
+          linkLabel="財務状況を詳しく"
+          items={[
+            {
+              label: "経常収支比率",
+              value: financialIndicator
+                ? `${financialIndicator.published_ratio_percent.toFixed(1)}%`
+                : missingLabel,
+              note: "広島県公表値",
+            },
+            {
+              label: "財政力指数",
+              value: formatFiscalStrengthIndex(fiscalStrength?.value ?? null),
+              note: fiscalStrength
+                ? `${fiscalStrength.fiscal_year}年度・過去3年度平均`
+                : undefined,
+            },
+          ]}
+        />
+        <SummaryCard
+          title="ふるさと納税"
+          basis={`${donations.fiscalYear}年度${donations.provisional ? "（決算見込）" : ""}`}
+          href={`${base}/donations`}
+          linkLabel="ふるさと納税を詳しく"
+          items={[
+            {
+              label: "受入額",
+              value: formatYen(donation?.amount_yen ?? null),
+            },
+            {
+              label: "受入額の県内順位",
+              value:
+                donation?.amount_yen != null
+                  ? `${donations.rows.length}市町中${donationIndex + 1}位`
+                  : missingLabel,
+            },
+          ]}
+        />
+        <SummaryCard
+          title="自治体DX"
+          basis={formatAsOfDate(digital.as_of_date)}
+          href={`${base}/digital`}
+          linkLabel="自治体DXを詳しく"
+          items={[
+            {
+              label: "よく使う32手続のオンライン化",
+              value: formatRatioAsPercent(
+                digitalValue("よく使う32手続のオンライン化状況"),
+                0,
+              ),
+            },
+            {
+              label: "マイナンバーカード保有率",
+              value: formatRatioAsPercent(
+                digitalValue("マイナンバーカードの保有状況"),
+                0,
+              ),
+            },
+          ]}
+        />
+        <SummaryCard
+          title="補助金・交付金"
+          basis="照合済み・年度をまたいだ合計"
+          href={`${base}/grants`}
+          linkLabel="補助金・交付金を詳しく"
+          items={[
+            {
+              label: "採択件数",
+              value: `${grantSummary.awardCount}件`,
+              note:
+                grantSummary.programCount > 0
+                  ? `${grantSummary.programCount}制度の合計`
+                  : undefined,
+            },
+            {
+              label: "金額が公表されている分",
+              value:
+                grantSummary.knownAmountCount > 0
+                  ? formatYen(grantSummary.knownAmountTotal)
+                  : missingLabel,
+              note:
+                grantSummary.unknownAmountCount > 0
+                  ? `金額不明 ${grantSummary.unknownAmountCount}件`
+                  : undefined,
+            },
+          ]}
+        />
+        <section className="overview-card" aria-labelledby="similar-heading">
+          <header>
+            <h2 id="similar-heading">似ている自治体</h2>
+            <small>全国の市町村・特別区から</small>
+          </header>
           <p className="section-note">
-            人口は基準日時点、人口動態は前年1年間です。社会増減は報告値と単純計算値を分けて表示します。
+            人口規模・年齢構成・期間人口増減率が近い自治体
           </p>
-        </div>
-        <div className="table-wrap">
-          <table className="data-table flow-table">
-            <caption className="visually-hidden">
-              {municipality.nameJa}
-              の人口動態。期間、出生、死亡、自然増減、転入、転出、社会増減。
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">期間</th>
-                <th scope="col">出生</th>
-                <th scope="col">死亡</th>
-                <th scope="col">自然増減</th>
-                <th scope="col">転入</th>
-                <th scope="col">転出</th>
-                <th scope="col">社会増減</th>
-              </tr>
-            </thead>
-            <tbody>
-              {detail.flows.map((flow) => (
-                <tr key={`${flow.period_start}-${flow.period_end}`}>
-                  <th scope="row">
-                    {formatFlowPeriod(flow.period_start, flow.period_end)}
-                  </th>
-                  <td>{formatCount(flow.births)}</td>
-                  <td>{formatCount(flow.deaths)}</td>
-                  <td>
-                    <span className="table-primary-value">
-                      {formatSignedCount(flow.natural_change_reported)}
-                    </span>
-                    <small>報告</small>
-                  </td>
-                  <td>{formatCount(flow.move_ins)}</td>
-                  <td>{formatCount(flow.move_outs)}</td>
-                  <td>
-                    <span className="table-primary-value">
-                      {formatSignedCount(flow.migration_change_reported)}
-                    </span>
-                    <small>
-                      報告 / 単純{" "}
-                      {formatSignedCount(flow.migration_change_simple)}
-                    </small>
-                  </td>
-                </tr>
+          {similarNames.length > 0 ? (
+            <ol className="overview-similar-list">
+              {similarNames.map((name) => (
+                <li key={name}>{name}</li>
               ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="rate-callout">
-          <p>
-            直近の自然増減率{" "}
-            {formatRatePer1000(latestFlow.natural_rate_per_1000)}
-            、社会増減率 {formatRatePer1000(latestFlow.migration_rate_per_1000)}
-          </p>
-          <small>
-            率の分母:{" "}
-            {latestFlow.denominator_as_of_date
-              ? formatAsOfDate(latestFlow.denominator_as_of_date)
-              : "データなし"}
-            ・{formatCount(latestFlow.denominator_population)}
-          </small>
-        </div>
-      </section>
-
-      <ResidentScopeCharts detail={extendedDetail} />
-
-      <SimilarityExplorer
-        sourceCode={code}
-        similarityEntry={similarityEntry}
-        singleFeatureEntries={similarity.single_feature_entries}
-        features={similarityModel.features}
-        candidateCount={similarityModel.candidate_count}
-        structureSimilarityEntry={structureSimilarityEntry}
-        structureSimilarityModel={structureSimilarityModel}
-        focusCodes={hiroshimaMunicipalities.map(
-          ({ code: focusCode }) => focusCode,
-        )}
-      />
-
-      <section className="source-card" aria-labelledby="source-heading">
-        <div>
-          <p className="eyebrow">出典とリリース</p>
-          <h2 id="source-heading">数字の出典</h2>
-          <p>
-            総務省「住民基本台帳に基づく人口、人口動態及び世帯数調査」を加工しています。
-            データリリース <code>{manifest.release_id}</code>、生成日時{" "}
-            {manifest.generated_at}。
-          </p>
-        </div>
-        {source ? (
-          <a href={source.distribution_url} rel="noreferrer" target="_blank">
-            e-Statの原本を見る <span aria-hidden="true">↗</span>
-          </a>
-        ) : null}
-      </section>
+            </ol>
+          ) : (
+            <p>{missingLabel}</p>
+          )}
+          <Link className="panel-link" href={`${base}/profile`}>
+            比べ方と他の候補を見る <span aria-hidden="true">→</span>
+          </Link>
+        </section>
+      </div>
     </article>
   );
 }
