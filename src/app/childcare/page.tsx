@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 
 import { ChildcareDashboard } from "@/components/childcare/ChildcareDashboard";
-import {
-  childcareCategories,
-  type ChildcareCategory,
-} from "@/lib/data/childcare-schema";
+import { resolveChildcareCategory } from "@/lib/data/childcare";
 import { loadChildcare } from "@/lib/data/load";
 import { pageOpenGraph } from "@/lib/site/metadata";
 
@@ -18,12 +15,6 @@ export const metadata: Metadata = {
   }),
 };
 
-function selectedCategory(value: string | undefined): ChildcareCategory {
-  return childcareCategories.includes(value as ChildcareCategory)
-    ? (value as ChildcareCategory)
-    : "age_0_2";
-}
-
 export default async function ChildcarePage({
   searchParams,
 }: {
@@ -36,7 +27,7 @@ export default async function ChildcarePage({
   return (
     <ChildcareDashboard
       data={data}
-      selectedCategory={selectedCategory(resolvedSearchParams.category)}
+      selectedCategory={resolveChildcareCategory(resolvedSearchParams.category)}
     />
   );
 }

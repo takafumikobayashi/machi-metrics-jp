@@ -49,7 +49,7 @@ export function ThemeToggle() {
       <span className="theme-toggle-icon" aria-hidden="true">
         {isDark ? "☼" : "☾"}
       </span>
-      <span>{isDark ? "ライト" : "ダーク"}</span>
+      <span className="theme-toggle-label">{isDark ? "ライト" : "ダーク"}</span>
     </button>
   );
 }

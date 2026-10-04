@@ -69,7 +69,6 @@ export default function RootLayout({
           <div className="shell header-inner">
             <Link className="brand" href="/">
               ひろしまダッシュボード
-              <span>準備版</span>
             </Link>
             <div className="header-actions">
               <SiteNav />

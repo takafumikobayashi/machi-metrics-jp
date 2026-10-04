@@ -12,6 +12,7 @@ import {
   childcareFileSchema,
   type ChildcareFile,
 } from "../src/lib/data/childcare-schema";
+import { resolveChildcareCategory } from "../src/lib/data/childcare";
 import { loadChildcare } from "../src/lib/data/load";
 
 let cached: ChildcareFile | null = null;
@@ -752,4 +753,10 @@ test("市町単位のカテゴリーは、制度の件数ではなく制度が�
     childcareCategoryCountLabel(file.programs, "pregnancy_birth"),
     `${pregnancy.length}制度`,
   );
+});
+
+test("カテゴリー指定が無いときは並びの先頭の妊娠・出産支援を選ぶ", () => {
+  assert.equal(resolveChildcareCategory(undefined), "pregnancy_birth");
+  assert.equal(resolveChildcareCategory("unknown"), "pregnancy_birth");
+  assert.equal(resolveChildcareCategory("age_0_2"), "age_0_2");
 });

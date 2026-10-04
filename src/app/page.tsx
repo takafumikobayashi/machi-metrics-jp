@@ -144,9 +144,6 @@ export default async function HomePage() {
               <h2 id="overview-heading">広島県23市町の現在地</h2>
             </div>
             <div className="dashboard-toolbar-meta">
-              <span className="live-badge">
-                <i aria-hidden="true" /> 準備版
-              </span>
               <span>{formatAsOfDate(summary.as_of_date)}</span>
             </div>
           </div>
