@@ -123,7 +123,7 @@ export default async function MunicipalityPage({
           </p>
         </div>
         <div className="detail-release">
-          <span>準備版</span>
+          <span>データリリース</span>
           <small>{manifest.release_id}</small>
         </div>
       </div>

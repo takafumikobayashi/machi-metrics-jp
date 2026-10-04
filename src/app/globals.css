@@ -276,15 +276,6 @@ a:hover {
   letter-spacing: 0.02em;
 }
 
-.brand span {
-  padding: 2px 8px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: var(--text-sm);
-  font-weight: 400;
-}
-
 nav {
   display: flex;
   gap: 24px;
@@ -482,16 +473,19 @@ h3 {
   .detail-heading {
     gap: 16px;
   }
-  /* タブが8つあるため、折り返さず横にスクロールさせる。 */
+  /*
+   * タブが8つあるため、横スクロールで隠さず2列の格子で全部を見せる。
+   * ラベルは省略しない。
+   */
   .detail-nav {
+    display: grid;
     width: 100%;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: thin;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
   .detail-nav a {
-    flex: 0 0 auto;
+    padding-inline: 8px;
+    text-align: center;
     white-space: nowrap;
   }
 }
@@ -540,7 +534,8 @@ h3 {
 }
 
 .detail-release span {
-  color: var(--orange);
+  color: var(--muted);
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -783,9 +778,14 @@ h3 {
   margin-bottom: 12px;
 }
 
+.grant-group-heading > div {
+  min-width: 0;
+}
+
 .grant-group-heading h3 {
   margin: 0;
   font-size: var(--text-h3);
+  overflow-wrap: anywhere;
 }
 
 .grant-group-meta {
@@ -844,7 +844,9 @@ h3 {
 }
 
 .finance-detail-table {
+  position: relative;
   min-width: 0;
+  overflow-x: auto;
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -1224,7 +1226,13 @@ h3 {
   font-size: var(--text-chart);
 }
 
-.table-wrap {
+/*
+ * position: relative で、表の中の読み上げ専用テキスト（position: absolute）を
+ * この枠の中に閉じ込める。無いとページ全体が横にはみ出す。
+ */
+.table-wrap,
+.table-scroll {
+  position: relative;
   overflow-x: auto;
 }
 
@@ -2252,26 +2260,6 @@ body {
   gap: 12px;
   color: var(--muted);
   font-size: var(--text-sm);
-}
-
-.live-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 9px;
-  border: 1px solid var(--primary-soft);
-  border-radius: 999px;
-  color: var(--primary);
-  background: var(--primary-soft);
-  font-size: var(--text-sm);
-  font-weight: 700;
-}
-
-.live-badge i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
 }
 
 .dashboard-metric-grid {
@@ -4645,13 +4633,21 @@ html[data-theme="dark"] .insight-panel {
   font-weight: 700;
 }
 
+/*
+ * ボタンを行内に並べ、text-wrap: balance で各行の数をそろえる。
+ * flexの折り返しだと、市14件のうち最後の1件だけが2行目に残っていた。
+ * 未対応のブラウザでは通常の折り返しになる。
+ */
 .municipality-picker-group ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
+  margin: 0 0 -8px;
   padding: 0;
   list-style: none;
+  text-wrap: balance;
+}
+
+.municipality-picker-group li {
+  display: inline-block;
+  margin: 0 8px 8px 0;
 }
 
 .municipality-picker-group a {
@@ -4840,5 +4836,174 @@ html[data-theme="dark"] .insight-panel {
 @media (max-width: 560px) {
   .overview-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 狭い画面のハンバーガーメニュー ---------- */
+
+.nav-toggle,
+.mobile-nav {
+  display: none;
+}
+
+.nav-toggle {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.nav-toggle:hover {
+  border-color: var(--muted);
+  background: var(--paper-strong);
+}
+
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.nav-toggle-bars {
+  display: grid;
+  width: 18px;
+  gap: 4px;
+}
+
+.nav-toggle-bars > span {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+/* 開いているときは3本線を×にする。 */
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars > span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars > span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars > span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 800px) {
+  /* ヘッダーを1行に戻し、左にサイト名、右にテーマ切替とメニューを置く。 */
+  .header-inner {
+    min-height: 60px;
+    padding-block: 10px;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .header-actions {
+    width: auto;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .site-nav-root {
+    order: 2;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* site-header（sticky）を基準に、ヘッダーの真下へ全幅で開く。 */
+  .mobile-nav:not([hidden]) {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: block;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+    padding: 8px 16px 20px;
+    border-bottom: 1px solid var(--line);
+    background: var(--white);
+    box-shadow: 0 12px 24px rgb(16 20 26 / 12%);
+  }
+
+  .mobile-nav a {
+    display: block;
+    padding: 12px 4px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .mobile-nav a[aria-current="page"] {
+    color: var(--primary-deep);
+    font-weight: 700;
+  }
+
+  .mobile-nav-primary {
+    font-weight: 700;
+  }
+
+  .mobile-nav-heading {
+    margin: 8px 0 0;
+    padding: 12px 4px 4px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .mobile-nav ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle-bars > span {
+    transition: none;
+  }
+}
+
+/* ---------- 最小クラスの画面幅（〜400px） ---------- */
+
+@media (max-width: 400px) {
+  /* サイト名は途中で折り返さない。右のボタンを含めても320px幅に収まる。 */
+  .brand {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* 切替ボタンは読み上げ用のラベルを持つため、文字を隠してアイコンだけにする。 */
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .theme-toggle-label {
+    display: none;
+  }
+
+  .migration-flow-row {
+    grid-template-columns: minmax(96px, 0.8fr) minmax(56px, 1.2fr) 62px;
   }
 }
