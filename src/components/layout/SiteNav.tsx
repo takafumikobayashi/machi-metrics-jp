@@ -16,9 +16,14 @@ export function SiteNav() {
   const rootRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDetailsElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  // 開いたときのパスを覚え、ページを移ったら自動的に閉じた扱いにする。
-  const [mobileOpenPath, setMobileOpenPath] = useState<string | null>(null);
-  const mobileOpen = mobileOpenPath === pathname;
+  const [mobileOpen, setMobileOpen] = useState(false);
+  // ページを移ったら、戻る・進むを含めて必ず閉じる。開いた状態をパスと
+  // 結び付けて覚えると、「進む」で元のページへ戻ったときに再び開いてしまう。
+  const [renderedPathname, setRenderedPathname] = useState(pathname);
+  if (renderedPathname !== pathname) {
+    setRenderedPathname(pathname);
+    setMobileOpen(false);
+  }
 
   useEffect(() => {
     if (menuRef.current) menuRef.current.open = false;
@@ -32,7 +37,7 @@ export function SiteNav() {
         menu.open = false;
       }
       if (!rootRef.current?.contains(target)) {
-        setMobileOpenPath(null);
+        setMobileOpen(false);
       }
     }
     function closeOnEscape(event: KeyboardEvent) {
@@ -44,7 +49,7 @@ export function SiteNav() {
       }
       const toggle = toggleRef.current;
       if (toggle?.getAttribute("aria-expanded") === "true") {
-        setMobileOpenPath(null);
+        setMobileOpen(false);
         toggle.focus();
       }
     }
@@ -96,7 +101,7 @@ export function SiteNav() {
         aria-expanded={mobileOpen}
         aria-label={mobileOpen ? "メニューを閉じる" : "メニューを開く"}
         className="nav-toggle"
-        onClick={() => setMobileOpenPath(mobileOpen ? null : pathname)}
+        onClick={() => setMobileOpen((open) => !open)}
         ref={toggleRef}
         type="button"
       >
@@ -114,7 +119,7 @@ export function SiteNav() {
         id="mobile-nav"
         onClick={(event) => {
           // 今いるページへのリンクを押した場合もパスが変わらないため、ここで閉じる。
-          if ((event.target as Element).closest("a")) setMobileOpenPath(null);
+          if ((event.target as Element).closest("a")) setMobileOpen(false);
         }}
       >
         <Link
