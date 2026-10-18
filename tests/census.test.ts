@@ -120,6 +120,69 @@ test("増減数が2時点の差と合わない国勢調査データはスキー�
   assert.equal(censusFileSchema.safeParse(file).success, false);
 });
 
+test("増減率が増減数÷2020年の値と合わない国勢調査データはスキーマで拒否する", () => {
+  const original = JSON.parse(readFileSync(publishedPath, "utf8"));
+  for (const key of [
+    "population_change_rate_5y",
+    "households_change_rate_5y",
+  ]) {
+    const file = structuredClone(original);
+    file.entries[2][key] += 0.001;
+    assert.equal(censusFileSchema.safeParse(file).success, false, key);
+  }
+
+  // 2020年の値が0の行は、増減率を定義できないため受け付けない。
+  const zero = structuredClone(original);
+  Object.assign(zero.entries[2], {
+    population_total_2020: 0,
+    population_change_5y: zero.entries[2].population_total,
+    population_change_rate_5y: 0,
+  });
+  assert.equal(censusFileSchema.safeParse(zero).success, false);
+});
+
+test("市町の欠け・重複・順序違い・名前違いの国勢調査データはスキーマで拒否する", () => {
+  const original = JSON.parse(readFileSync(publishedPath, "utf8"));
+  assert.equal(censusFileSchema.safeParse(original).success, true);
+  const variants: Array<[string, (entries: unknown[]) => unknown[]]> = [
+    ["1市町の欠け", (entries) => entries.slice(0, -1)],
+    [
+      "市町コードの重複",
+      (entries) => [...entries.slice(0, -1), entries.at(-2)],
+    ],
+    [
+      "順序の入れ替え",
+      (entries) => [
+        entries[0],
+        entries[1],
+        entries[3],
+        entries[2],
+        ...entries.slice(4),
+      ],
+    ],
+    [
+      "市町名の違い",
+      (entries) =>
+        entries.map((entry, index) =>
+          index === 2 ? { ...(entry as object), name_ja: "別の市" } : entry,
+        ),
+    ],
+    [
+      "区分の取り違え",
+      (entries) =>
+        entries.map((entry, index) =>
+          index === 1
+            ? { ...(entry as object), area_level: "municipality" }
+            : entry,
+        ),
+    ],
+  ];
+  for (const [label, mutate] of variants) {
+    const file = { ...original, entries: mutate(original.entries) };
+    assert.equal(censusFileSchema.safeParse(file).success, false, label);
+  }
+});
+
 test("国勢調査の正規化結果を検証してから公開先へ反映し、失敗時は変更しない", () => {
   const root = mkdtempSync(join(tmpdir(), "census-publish-"));
   try {

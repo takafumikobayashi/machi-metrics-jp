@@ -192,6 +192,8 @@ def parse_population(path: Path, codes: set[str]) -> dict[str, dict]:
             change = record[f"{prefix}_change_5y"]
             if current - previous != change:
                 raise ValueError(f"{context}の{prefix}増減数が原表と一致しません")
+            if previous == 0:
+                raise ValueError(f"{context}の{prefix}の2020年の値が0のため増減率を定義できません")
             rate = change / previous
             published = parse_number(row[columns[f"{prefix}_change_rate_percent"]], context) / 100
             if abs(rate - published) > 1e-6:

@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { hiroshimaMunicipalities } from "../config";
 import { isoDateSchema, isoDateTimeSchema, sha256Schema } from "./schema";
 
 const countSchema = z.number().int().nonnegative();
@@ -72,29 +73,67 @@ export const censusFileSchema = z
   })
   .strict()
   .superRefine((file, context) => {
-    const levels = file.entries.map(({ area_level }) => area_level);
-    for (const level of ["national", "prefecture"] as const) {
-      if (levels.filter((value) => value === level).length !== 1) {
-        context.addIssue({
-          code: "custom",
-          message: `${level}の行はちょうど1件必要です`,
-          path: ["entries"],
-        });
-      }
+    // 画面は「23市町」と書き、市町ページはコードで行を引くため、
+    // 全国・広島県・configの23市町をこの順序で、過不足なく持つことを求める。
+    const expected = [
+      { area_code: "00000", area_level: "national", name_ja: "全国" },
+      { area_code: "34000", area_level: "prefecture", name_ja: "広島県" },
+      ...hiroshimaMunicipalities.map(({ code, nameJa }) => ({
+        area_code: code,
+        area_level: "municipality",
+        name_ja: nameJa,
+      })),
+    ];
+    if (file.entries.length !== expected.length) {
+      context.addIssue({
+        code: "custom",
+        message: `地域の行は全国・広島県・23市町の${expected.length}件が必要です（${file.entries.length}件）`,
+        path: ["entries"],
+      });
     }
-    file.entries.forEach((entry, index) => {
-      const checks = [
-        entry.population_total - entry.population_total_2020 ===
-          entry.population_change_5y,
-        entry.households_total - entry.households_total_2020 ===
-          entry.households_change_5y,
-      ];
-      if (checks.some((ok) => !ok)) {
+    expected.forEach((area, index) => {
+      const entry = file.entries[index];
+      if (
+        entry &&
+        (entry.area_code !== area.area_code ||
+          entry.area_level !== area.area_level ||
+          entry.name_ja !== area.name_ja)
+      ) {
         context.addIssue({
           code: "custom",
-          message: "5年間の増減数が2時点の差と一致しません",
+          message: `${index + 1}行目は${area.area_code} ${area.name_ja}（${area.area_level}）である必要があります`,
           path: ["entries", index],
         });
+      }
+    });
+    file.entries.forEach((entry, index) => {
+      // 画面は増減率の項目をそのまま表示するため、2時点の人数から検算する。
+      // 前回値が0だと増減率を定義できないため、その行は受け付けない。
+      for (const prefix of ["population", "households"] as const) {
+        const current = entry[`${prefix}_total`];
+        const previous = entry[`${prefix}_total_2020`];
+        const change = entry[`${prefix}_change_5y`];
+        const rate = entry[`${prefix}_change_rate_5y`];
+        if (current - previous !== change) {
+          context.addIssue({
+            code: "custom",
+            message: `${prefix}の5年間の増減数が2時点の差と一致しません`,
+            path: ["entries", index, `${prefix}_change_5y`],
+          });
+        }
+        if (previous === 0) {
+          context.addIssue({
+            code: "custom",
+            message: `${prefix}の2020年の値が0のため、増減率を定義できません`,
+            path: ["entries", index, `${prefix}_total_2020`],
+          });
+        } else if (Math.abs(rate - change / previous) > 1e-12) {
+          context.addIssue({
+            code: "custom",
+            message: `${prefix}の5年間の増減率が増減数÷2020年の値と一致しません`,
+            path: ["entries", index, `${prefix}_change_rate_5y`],
+          });
+        }
       }
       for (const key of ["age_shares", "age_shares_2020"] as const) {
         const shares = entry[key];
