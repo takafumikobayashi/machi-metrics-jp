@@ -5,6 +5,7 @@ import type { FocusEvent, MouseEvent, ReactNode, RefObject } from "react";
 
 import { niceAxisBounds, niceAxisMax } from "@/lib/charts/scale";
 import { formatCount, formatSignedCount } from "@/lib/format/display";
+import { tooltipPosition } from "@/lib/charts/tooltip-position";
 
 export interface RegionalPopulationPoint {
   as_of_date: string;
@@ -40,26 +41,7 @@ function useChartHover() {
       return;
     }
 
-    const frameBounds = frame.getBoundingClientRect();
-    const targetBounds = event.currentTarget.getBoundingClientRect();
-    const pointerX =
-      "clientX" in event && event.clientX > 0
-        ? event.clientX
-        : targetBounds.left + targetBounds.width / 2;
-    const pointerY =
-      "clientY" in event && event.clientY > 0
-        ? event.clientY
-        : targetBounds.top + targetBounds.height / 2;
-    const left = Math.min(
-      Math.max(8, pointerX - frameBounds.left + 12),
-      Math.max(8, frameBounds.width - 196),
-    );
-
-    setHovered({
-      ...data,
-      left,
-      top: Math.max(8, pointerY - frameBounds.top - 64),
-    });
+    setHovered({ ...data, ...tooltipPosition(frame, event) });
   }
 
   function clearTooltip() {
