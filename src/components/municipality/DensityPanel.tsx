@@ -11,6 +11,7 @@ import {
   formatCount,
   formatPopulationDensity,
 } from "@/lib/format/display";
+import { tooltipPosition } from "@/lib/charts/tooltip-position";
 
 interface ChartTooltipData {
   title: string;
@@ -34,26 +35,7 @@ function useChartHover() {
     const frame = frameRef.current;
     if (!frame) return;
 
-    const frameBounds = frame.getBoundingClientRect();
-    const targetBounds = event.currentTarget.getBoundingClientRect();
-    const pointerX =
-      "clientX" in event && event.clientX > 0
-        ? event.clientX
-        : targetBounds.left + targetBounds.width / 2;
-    const pointerY =
-      "clientY" in event && event.clientY > 0
-        ? event.clientY
-        : targetBounds.top + targetBounds.height / 2;
-    const left = Math.min(
-      Math.max(8, pointerX - frameBounds.left + 12),
-      Math.max(8, frameBounds.width - 196),
-    );
-
-    setHovered({
-      ...data,
-      left,
-      top: Math.max(8, pointerY - frameBounds.top - 64),
-    });
+    setHovered({ ...data, ...tooltipPosition(frame, event) });
   }
 
   return {

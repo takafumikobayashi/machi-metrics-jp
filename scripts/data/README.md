@@ -75,6 +75,18 @@ pnpm publish:digital-dx
 再現可能な暫定値として使います。正規化対象のCSVは、抽出済みファイルではなく
 ハッシュを記録する`dashboard.zip`内から直接読み込みます。
 
+## 国勢調査データ
+
+令和7年国勢調査 人口等基本集計のExcel原本3点を`data/raw/census/2025/`へ取得し、人口タブの国勢調査の区画で使う公開JSONを作ります。総数は原数値の第1-1表、年齢構成の割合は不詳補完値の第2-7表（2025年分と2020年の遡及集計分）から作ります。取得時に`source.json`へURL・取得日時・SHA-256を記録し、正規化はハッシュが一致する原本だけを読み込みます。Excelの読み込みに`openpyxl`を使います。
+
+```bash
+pnpm acquire:census
+pnpm normalize:census
+pnpm publish:census
+```
+
+`normalize:census`は`data/processed/census/2025/census.json`を生成し、`publish:census`は`censusFileSchema`で検証してから`public/data/census/census-2025.json`へ原子的に反映します。
+
 ## 財務状況データ
 
 財務状況は、e-Statの表04・05・07〜12・14、e-Stat「統計でみる市区町村のすがた」D行政基盤、広島県の市町別Excel、経常収支比率を掲載した県PDFを同じスナップショットとして扱います。取得時に`data/raw/finance/source.json`へ各原本のURL・取得日時・SHA-256を保存し、正規化はこのマニフェストとハッシュが一致するファイルだけを読み込みます。PDFの比率表の抽出にはPopplerの`pdftotext`、財政力指数の旧形式Excel変換にはLibreOfficeの`soffice`が必要です。

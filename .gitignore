@@ -1,6 +1,8 @@
 # Dependencies and build output
 node_modules/
 .next/
+# Next.jsが dev と build で書き換えるため管理しない（Next.jsのTypeScript設定の案内による）。
+next-env.d.ts
 out/
 coverage/
 *.tsbuildinfo

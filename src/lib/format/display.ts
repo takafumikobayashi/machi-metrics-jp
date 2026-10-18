@@ -152,6 +152,26 @@ export function formatSignedRatioAsPercent(
   return withSign(rounded, Math.abs(rounded).toFixed(fractionDigits), "%");
 }
 
+/** 割合（0〜1）同士の差。百分率の差を「ポイント」で表し、増減率と読み分ける。 */
+export function formatSignedPointChange(
+  ratioDifference: number | null,
+  fractionDigits = 1,
+): string {
+  if (ratioDifference === null) {
+    return missingLabel;
+  }
+  if (!Number.isFinite(ratioDifference)) {
+    throw new Error("ratioDifference must be a finite number.");
+  }
+  const rounded = roundToFixed(ratioDifference * 100, fractionDigits);
+  const body = Math.abs(rounded).toFixed(fractionDigits);
+  // 差が0のときは「±0.0ポイント」だけで伝わるため、「（増減なし）」を付けない。
+  if (rounded === 0) {
+    return `±${body}ポイント`;
+  }
+  return withSign(rounded, body, "ポイント");
+}
+
 /**
  * 1,000人当たりの率。
  * 表の列見出しに単位を置く場合は `withUnitLabel: false` で単位を省く。

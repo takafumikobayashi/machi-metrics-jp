@@ -5,6 +5,7 @@ import type { FocusEvent, MouseEvent, ReactNode, RefObject } from "react";
 
 import { niceAxisBounds, niceAxisMax } from "@/lib/charts/scale";
 import { formatCount, formatSignedCount } from "@/lib/format/display";
+import { tooltipPosition } from "@/lib/charts/tooltip-position";
 
 export interface RegionalPopulationPoint {
   as_of_date: string;
@@ -40,26 +41,7 @@ function useChartHover() {
       return;
     }
 
-    const frameBounds = frame.getBoundingClientRect();
-    const targetBounds = event.currentTarget.getBoundingClientRect();
-    const pointerX =
-      "clientX" in event && event.clientX > 0
-        ? event.clientX
-        : targetBounds.left + targetBounds.width / 2;
-    const pointerY =
-      "clientY" in event && event.clientY > 0
-        ? event.clientY
-        : targetBounds.top + targetBounds.height / 2;
-    const left = Math.min(
-      Math.max(8, pointerX - frameBounds.left + 12),
-      Math.max(8, frameBounds.width - 196),
-    );
-
-    setHovered({
-      ...data,
-      left,
-      top: Math.max(8, pointerY - frameBounds.top - 64),
-    });
+    setHovered({ ...data, ...tooltipPosition(frame, event) });
   }
 
   function clearTooltip() {
@@ -93,7 +75,7 @@ interface ChartCardProps {
   expandButtonRef?: RefObject<HTMLButtonElement | null>;
 }
 
-function ChartCard({
+export function ChartCard({
   headingId,
   eyebrow,
   title,
@@ -128,7 +110,7 @@ function ChartCard({
   );
 }
 
-function ChartModal({
+export function ChartModal({
   title,
   titleId,
   onClose,
@@ -212,7 +194,7 @@ function compactPopulation(value: number): string {
   return formatCount(Math.round(value));
 }
 
-function ChartLegend({
+export function ChartLegend({
   items,
 }: {
   items: ReadonlyArray<{ label: string; tone: string }>;
@@ -565,6 +547,39 @@ function RegionalFlowSvg({
       </svg>
       {hovered ? <ChartTooltip hovered={hovered} /> : null}
     </div>
+  );
+}
+
+/**
+ * 自然増減・社会増減のグラフ本体（凡例とSVG）だけを出す。
+ * 自治体詳細では数値表と同じ区画に置くため、カードの枠と簡易表を持たない。
+ */
+export function RegionalFlowFigure({
+  points,
+  headingId,
+  subjectLabel,
+  title,
+}: {
+  points: readonly RegionalFlowPoint[];
+  headingId: string;
+  subjectLabel: string;
+  title: string;
+}) {
+  return (
+    <>
+      <ChartLegend
+        items={[
+          { label: "自然増減", tone: "natural" },
+          { label: "社会増減", tone: "migration" },
+        ]}
+      />
+      <RegionalFlowSvg
+        points={points}
+        headingId={headingId}
+        subjectLabel={subjectLabel}
+        title={title}
+      />
+    </>
   );
 }
 
