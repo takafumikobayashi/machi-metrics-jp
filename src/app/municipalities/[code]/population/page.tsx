@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { CensusPanel } from "@/components/municipality/CensusPanel";
 import { PopulationTrend } from "@/components/municipality/MunicipalityVisuals";
 import { MigrationFlowPanel } from "@/components/municipality/MigrationFlowPanel";
 import {
   AgeCategoryTrend,
   ResidentScopeCharts,
 } from "@/components/municipality/ResidentScopeCharts";
-import { RegionalFlowChart } from "@/components/dashboard/DashboardCharts";
+import { RegionalFlowFigure } from "@/components/dashboard/DashboardCharts";
 import { MunicipalityDetailNav } from "@/components/municipality/MunicipalityDetailNav";
 import { hiroshimaMunicipalities } from "@/lib/config";
 import { loadExtendedMunicipalityDetail } from "@/lib/data/extended-load";
 import {
+  loadCensus,
   loadLatestPointer,
   loadMigrationFlow,
   loadMigrationSummary,
@@ -86,14 +88,24 @@ export default async function MunicipalityPage({
   }
 
   const latestPointer = await loadLatestPointer();
-  const [detail, manifest, extendedDetail, migrationFlow, migrationSummary] =
-    await Promise.all([
-      loadMunicipalityDetail(latestPointer.release_id, code),
-      loadManifest(latestPointer.release_id),
-      loadExtendedMunicipalityDetail(latestPointer.release_id, code),
-      loadMigrationFlow(latestPointer.release_id),
-      loadMigrationSummary(latestPointer.release_id),
-    ]);
+  const [
+    detail,
+    manifest,
+    extendedDetail,
+    migrationFlow,
+    migrationSummary,
+    census,
+  ] = await Promise.all([
+    loadMunicipalityDetail(latestPointer.release_id, code),
+    loadManifest(latestPointer.release_id),
+    loadExtendedMunicipalityDetail(latestPointer.release_id, code),
+    loadMigrationFlow(latestPointer.release_id),
+    loadMigrationSummary(latestPointer.release_id),
+    loadCensus(),
+  ]);
+  const censusEntry = census.entries.find(
+    ({ area_code }) => area_code === code,
+  );
   const latestSnapshot = detail.snapshots.at(-1);
   const latestFlow = detail.flows.at(-1);
   if (!latestSnapshot || !latestFlow) {
@@ -175,46 +187,37 @@ export default async function MunicipalityPage({
 
       <AgeCategoryTrend detail={extendedDetail} />
 
-      <RegionalFlowChart
-        headingId="municipality-flow-chart-heading"
-        subjectLabel={municipality.nameJa}
-        title={`${municipality.nameJa}の人口動態`}
-        points={detail.flows.map((flow) => ({
-          period_end: flow.period_end,
-          natural_change: flow.natural_change_reported,
-          migration_change: flow.migration_change_reported,
-        }))}
-      />
-
-      {migrationSummary ? (
-        <MigrationFlowPanel
-          municipalityName={municipality.nameJa}
-          entries={migrationSummary.entries.filter(
-            ({ municipality_code }) => municipality_code === code,
-          )}
-          totals={
-            migrationFlow?.entries
-              .filter(({ municipality_code }) => municipality_code === code)
-              .map(({ year, inbound, outbound }) => ({
-                year,
-                inbound:
-                  inbound.find(({ area_type }) => area_type === "total")
-                    ?.all_nationalities ?? null,
-                outbound:
-                  outbound.find(({ area_type }) => area_type === "total")
-                    ?.all_nationalities ?? null,
-              })) ?? []
-          }
-        />
-      ) : null}
-
       <section className="data-card" aria-labelledby="flow-heading">
         <div className="section-heading compact-heading">
-          <p className="eyebrow">人口動態</p>
-          <h2 id="flow-heading">人口動態の数値一覧</h2>
+          <p className="eyebrow">自然増減・社会増減</p>
+          <h2 id="flow-heading">{municipality.nameJa}の人口動態</h2>
           <p className="section-note">
-            人口は基準日時点、人口動態は前年1年間です。社会増減は報告値と単純計算値を分けて表示します。
+            人口動態は前年1年間です。0を境に増加・減少を読み分けます。社会増減は報告値と単純計算値を分けて表示します。
           </p>
+        </div>
+        <RegionalFlowFigure
+          headingId="flow-heading"
+          subjectLabel={municipality.nameJa}
+          title={`${municipality.nameJa}の人口動態`}
+          points={detail.flows.map((flow) => ({
+            period_end: flow.period_end,
+            natural_change: flow.natural_change_reported,
+            migration_change: flow.migration_change_reported,
+          }))}
+        />
+        <div className="rate-callout">
+          <p>
+            直近の自然増減率{" "}
+            {formatRatePer1000(latestFlow.natural_rate_per_1000)}
+            、社会増減率 {formatRatePer1000(latestFlow.migration_rate_per_1000)}
+          </p>
+          <small>
+            率の分母:{" "}
+            {latestFlow.denominator_as_of_date
+              ? formatAsOfDate(latestFlow.denominator_as_of_date)
+              : "データなし"}
+            ・{formatCount(latestFlow.denominator_population)}
+          </small>
         </div>
         <details className="data-table-details">
           <summary>{detail.flows.length}期間の数値表を開く</summary>
@@ -266,23 +269,33 @@ export default async function MunicipalityPage({
             </table>
           </div>
         </details>
-        <div className="rate-callout">
-          <p>
-            直近の自然増減率{" "}
-            {formatRatePer1000(latestFlow.natural_rate_per_1000)}
-            、社会増減率 {formatRatePer1000(latestFlow.migration_rate_per_1000)}
-          </p>
-          <small>
-            率の分母:{" "}
-            {latestFlow.denominator_as_of_date
-              ? formatAsOfDate(latestFlow.denominator_as_of_date)
-              : "データなし"}
-            ・{formatCount(latestFlow.denominator_population)}
-          </small>
-        </div>
       </section>
 
+      {migrationSummary ? (
+        <MigrationFlowPanel
+          municipalityName={municipality.nameJa}
+          entries={migrationSummary.entries.filter(
+            ({ municipality_code }) => municipality_code === code,
+          )}
+          totals={
+            migrationFlow?.entries
+              .filter(({ municipality_code }) => municipality_code === code)
+              .map(({ year, inbound, outbound }) => ({
+                year,
+                inbound:
+                  inbound.find(({ area_type }) => area_type === "total")
+                    ?.all_nationalities ?? null,
+                outbound:
+                  outbound.find(({ area_type }) => area_type === "total")
+                    ?.all_nationalities ?? null,
+              })) ?? []
+          }
+        />
+      ) : null}
+
       <ResidentScopeCharts detail={extendedDetail} />
+
+      {censusEntry ? <CensusPanel census={census} entry={censusEntry} /> : null}
 
       <section className="source-card" aria-labelledby="source-heading">
         <div>

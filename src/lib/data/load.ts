@@ -4,6 +4,7 @@ import path from "node:path";
 
 import type { z } from "zod";
 
+import { censusFileSchema, type CensusFile } from "./census-schema";
 import { densityFileSchema, type DensityFile } from "./density-schema";
 import { childcareFileSchema, type ChildcareFile } from "./childcare-schema";
 import { furusatoFileSchema, type FurusatoFile } from "./furusato-schema";
@@ -220,6 +221,15 @@ export async function loadFinance(
   return readJsonFile(
     path.join(root, "finance", "finance.json"),
     financeFileSchema,
+  );
+}
+
+export async function loadCensus(
+  root: string = defaultPublicDataRoot(),
+): Promise<CensusFile> {
+  return readJsonFile(
+    path.join(root, "census", "census-2025.json"),
+    censusFileSchema,
   );
 }
 

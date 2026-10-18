@@ -1315,6 +1315,148 @@ h3 {
   font-weight: 400;
 }
 
+.census-table {
+  min-width: 720px;
+  margin-bottom: 8px;
+}
+
+/* 国勢調査の2つのグラフは同じ行数なので、上のグラフと違い等幅で並べる。 */
+.dashboard-chart-grid.census-chart-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.census-chart-block {
+  margin-top: 32px;
+}
+
+.census-chart-block h3 {
+  margin: 4px 0 0;
+  font-size: var(--text-h3);
+}
+
+.census-chart-frame {
+  position: relative;
+}
+
+.census-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.census-chart-compact {
+  min-width: 340px;
+}
+
+.census-chart-wide {
+  min-width: 760px;
+}
+
+.census-label {
+  fill: var(--muted);
+  font-size: var(--text-chart);
+  pointer-events: none;
+}
+
+.census-grid-line {
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+}
+
+/* 人口増減率は増加・減少の意味色、65歳以上の割合は系列色を使う。 */
+/*
+ * 表示時に棒を0の位置から伸ばす。産業構造の横棒と同じ速さと動き方にそろえる。
+ * 減少の棒は0の線が右端にあるため、右端を起点に左へ伸ばす。
+ */
+.census-bar {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: census-bar-grow 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.census-bar.is-negative {
+  transform-origin: right center;
+}
+
+.census-bar.is-positive {
+  fill: var(--increase);
+}
+
+.census-bar.is-negative {
+  fill: var(--decrease);
+}
+
+.census-bar.is-elderly {
+  fill: var(--series-4);
+}
+
+.legend-swatch.census-elderly-swatch {
+  background: var(--series-4);
+}
+
+.legend-swatch.census-previous-swatch {
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+/* 市町のページでは、見ている市町以外の棒と点を薄くする。 */
+.census-bar.is-muted {
+  fill: var(--chart-muted);
+}
+
+.census-previous-marker.is-muted {
+  fill: var(--muted);
+}
+
+.census-label.is-focus {
+  fill: var(--ink);
+  font-weight: 700;
+}
+
+.census-focus-value {
+  fill: var(--ink);
+  font-size: var(--text-chart);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.census-bar:hover,
+.census-bar:focus-visible {
+  filter: drop-shadow(0 3px 4px rgb(43 22 30 / 18%));
+  outline: none;
+}
+
+/* 前回値の点は棒の上に重なるため、面の色で縁取って棒と分ける。 */
+.census-previous-marker {
+  transform-box: fill-box;
+  transform-origin: center;
+  /* 棒が伸びきってから前回値の点を出す。 */
+  animation: census-marker-in 320ms ease-out 620ms both;
+  fill: var(--ink);
+  stroke: var(--white);
+  stroke-width: 2;
+}
+
+.census-reference line {
+  stroke: var(--ink);
+  stroke-dasharray: 3 3;
+  stroke-width: 1.5;
+}
+
+.census-reference text {
+  fill: var(--ink);
+  font-size: var(--text-chart);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.census-regional-table {
+  min-width: 760px;
+}
+
 .rate-callout {
   margin-top: 24px;
   padding: 14px 16px;
@@ -3049,6 +3191,30 @@ body {
   }
 }
 
+@keyframes census-bar-grow {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes census-marker-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes density-bar-grow {
   from {
     opacity: 0;
@@ -3920,6 +4086,7 @@ html[data-theme="dark"] .insight-panel {
   }
 
   .dashboard-chart-grid,
+  .dashboard-chart-grid.census-chart-grid,
   .dashboard-lower-grid,
   .finance-summary-composition-grid {
     grid-template-columns: 1fr;
@@ -3941,6 +4108,8 @@ html[data-theme="dark"] .insight-panel {
   .chart-modal,
   .density-bar,
   .industry-bar-segment,
+  .census-bar,
+  .census-previous-marker,
   .migration-flow-fill {
     animation: none;
   }

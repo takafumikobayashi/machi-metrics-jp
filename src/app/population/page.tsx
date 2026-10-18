@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { CensusRegionalPanel } from "@/components/dashboard/CensusRegionalPanel";
 import { PopulationOverview } from "@/components/dashboard/PopulationOverview";
 import { MunicipalityTable } from "@/components/dashboard/MunicipalityTable";
 import { ThemePageHeader } from "@/components/layout/ThemePageHeader";
-import { loadDensity } from "@/lib/data/load";
+import { loadCensus, loadDensity } from "@/lib/data/load";
 import {
   loadRegionalPopulation,
   populationEndYear,
@@ -22,14 +23,17 @@ export const metadata: Metadata = {
   ...pageOpenGraph({
     title: "人口の比較 | ひろしまダッシュボード",
     description:
-      "広島県23市町の人口推移、自然増減・社会増減、10年間の変化率を比較します。",
+      "広島県23市町の人口推移、自然増減・社会増減、10年間の変化率と、2025年国勢調査による5年間の変化を比較します。",
     path: "/population",
   }),
 };
 
 export default async function PopulationThemePage() {
   const population = await loadRegionalPopulation();
-  const density = await loadDensity(population.releaseId);
+  const [density, census] = await Promise.all([
+    loadDensity(population.releaseId),
+    loadCensus(),
+  ]);
   const { summary } = population;
   const rankedRows = [...summary.municipalities].sort(
     (a, b) =>
@@ -176,6 +180,8 @@ export default async function PopulationThemePage() {
           densityEntries={density.entries}
         />
       </section>
+
+      <CensusRegionalPanel census={census} />
     </article>
   );
 }

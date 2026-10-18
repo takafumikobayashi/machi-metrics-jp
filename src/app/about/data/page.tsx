@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { projectConfig } from "@/lib/config";
 import { selectLatestFinanceEntries } from "@/lib/data/finance";
 import {
+  loadCensus,
   loadDensity,
   loadFinance,
   loadFurusato,
@@ -47,6 +48,7 @@ export default async function DataAboutPage() {
     structureSimilarityModel,
     furusato,
     finance,
+    census,
   ] = await Promise.all([
     loadManifest(latestPointer.release_id),
     loadSimilarityModel(latestPointer.release_id),
@@ -56,7 +58,12 @@ export default async function DataAboutPage() {
     loadStructureSimilarityModel(latestPointer.release_id),
     loadFurusato(),
     loadFinance(),
+    loadCensus(),
   ]);
+  const censusTotalSource = census.sources.find(
+    ({ id }) => id === "population_households",
+  );
+  const censusAgeSource = census.sources.find(({ id }) => id === "age_2025");
   /** 年度は画面に書かず、公開データの最新年度から導く（DECISIONS D-029）。 */
   const furusatoFiscalYear = Math.max(
     ...furusato.entries.map((entry) => entry.fiscal_year),
@@ -159,6 +166,39 @@ export default async function DataAboutPage() {
         <p>
           総人口は、住民基本台帳に記録された日本人住民と外国人住民の合計を基本とします。
           国勢調査の常住人口とは基準日・定義が異なるため、一つの時系列には混ぜません。
+        </p>
+      </section>
+
+      <section>
+        <h2>国勢調査</h2>
+        <p>
+          人口タブには、住民基本台帳の推移とは別の区画として、
+          {census.reference_date}現在の{census.title}
+          の確定値を載せています。比べる相手は
+          {census.comparison_reference_date}
+          の前回調査で、5年間の変化を示します。
+        </p>
+        <p>
+          人口・世帯数とその増減は<strong>原数値</strong>
+          です。前回の値は、今の市町の区域に組み替えた値を使っています。年齢の割合と平均年齢は、回答のなかった年齢を統計局が補った
+          <strong>不詳補完値</strong>
+          で計算し、前回の値も同じ方法で補った遡及集計を使います。補いきれずに残った少数の年齢不詳は、割合の分母から除きます。
+        </p>
+        <p>
+          国勢調査の出典:{" "}
+          {censusTotalSource ? (
+            <a href={censusTotalSource.url} rel="noreferrer" target="_blank">
+              {censusTotalSource.title}
+            </a>
+          ) : null}
+          {censusAgeSource ? (
+            <>
+              、
+              <a href={censusAgeSource.url} rel="noreferrer" target="_blank">
+                {censusAgeSource.title}
+              </a>
+            </>
+          ) : null}
         </p>
       </section>
 
